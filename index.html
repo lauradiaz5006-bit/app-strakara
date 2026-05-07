@@ -288,29 +288,31 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .step-highlight .step-tag{color:var(--gold);border-color:rgba(200,169,106,.4)}
 
 /* ── ESPACES ── */
-.espaces{background:var(--white);padding:88px 0;border-bottom:1px solid var(--border)}
+.espaces{background:var(--light);padding:88px 0;border-bottom:1px solid var(--border)}
 .espaces-header{margin-bottom:48px}
-.espaces-note{font-size:13px;color:var(--muted);padding:14px 20px;border-left:2px solid var(--gold);background:var(--light);margin-bottom:36px;max-width:680px}
-.espaces-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.espace-card{background:var(--white);padding:28px 24px;position:relative;border-top:3px solid transparent;transition:border-color .2s}
-.espace-card:hover{border-top-color:var(--gold)}
-.e-badge{position:absolute;top:14px;right:14px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px}
+.espaces-note{font-size:13px;color:var(--muted);padding:14px 20px;border-left:2px solid var(--gold);background:var(--white);margin-bottom:36px;max-width:680px}
+.espaces-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.espace-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--border);display:flex;flex-direction:column;transition:border-top-color .2s,box-shadow .2s;overflow:hidden}
+.espace-card:hover{border-top-color:var(--gold);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.e-badge{display:block;width:100%;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;text-align:center}
 .badge-fav{background:#d4496a;color:#fff}
 .badge-hot{background:#b85e1a;color:#fff}
-.badge-new{background:var(--brand);color:var(--gold);border:1px solid var(--gold)}
+.badge-new{background:var(--brand);color:var(--gold)}
 .badge-last{background:#7a3a8a;color:#fff}
-.e-type{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;display:block}
-.e-location{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:3px}
-.e-region{font-size:11px;color:var(--muted);margin-bottom:14px}
+.badge-none{background:var(--gold);color:var(--brand)}
+.e-body{padding:22px 20px;flex:1;display:flex;flex-direction:column}
+.e-type{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:8px;display:block}
+.e-location{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.2}
+.e-region{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.4}
 .e-divider{height:1px;background:var(--border);margin:12px 0}
-.e-price{font-size:14px;font-weight:600;color:var(--gold-d);margin-bottom:3px}
+.e-price{font-size:15px;font-weight:700;color:var(--brand);margin-bottom:6px}
 .e-price span{font-size:11px;color:var(--muted);font-weight:300}
-.e-dispo{font-size:11px;color:var(--green);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:5px}
+.e-dispo{font-size:11px;font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(42,122,90,.1);color:var(--green);padding:4px 10px;width:fit-content}
 .e-dispo::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
-.e-dispo.late{color:#9a7a3a}
+.e-dispo.late{color:#8a6a20;background:rgba(154,122,58,.1)}
 .e-dispo.late::before{background:#9a7a3a}
-.e-meta{display:flex;flex-wrap:wrap;gap:6px}
-.e-chip{font-size:10px;color:var(--muted);background:var(--light);padding:3px 8px;border:1px solid var(--border)}
+.e-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
+.e-chip{font-size:10px;color:var(--brand);background:var(--light);padding:4px 9px;border:1px solid var(--border);font-weight:500}
 
 /* ── RÉASSURANCE ── */
 .reassurance{background:var(--brand);padding:88px 0;position:relative;overflow:hidden}
@@ -852,117 +854,135 @@ footer a:hover{color:var(--gold)}
 
       <div class="espace-card reveal reveal-delay-1">
         <span class="e-badge badge-fav">♥ Coup de cœur</span>
-        <span class="e-type">Stockage pro</span>
-        <div class="e-location">Secteur Pontivy</div>
-        <div class="e-region">Bretagne (56) · 2 lots · 100 m² chacun</div>
-        <div class="e-divider"></div>
-        <div class="e-price">1 067 € HT<span> / mois / espace</span></div>
-        <div class="e-dispo">Disponible 15 juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Vidéo int. &amp; ext.</span>
-          <span class="e-chip">Alarme</span>
-          <span class="e-chip">24h/24 · 7j/7</span>
-          <span class="e-chip">Accès PL</span>
+        <div class="e-body">
+          <span class="e-type">Stockage pro</span>
+          <div class="e-location">Secteur Pontivy</div>
+          <div class="e-region">Bretagne (56) · 2 lots · 100 m² chacun</div>
+          <div class="e-divider"></div>
+          <div class="e-price">1 067 € HT<span> / mois / espace</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Vidéo int. &amp; ext.</span>
+            <span class="e-chip">Alarme</span>
+            <span class="e-chip">24h/24 · 7j/7</span>
+            <span class="e-chip">Accès PL</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-2">
         <span class="e-badge badge-hot">▲ Très demandé</span>
-        <span class="e-type">Ateliers · Cellules · Stockage</span>
-        <div class="e-location">Secteur Brest</div>
-        <div class="e-region">Bretagne (29) · 32 lots · de 12 à 48 m²</div>
-        <div class="e-divider"></div>
-        <div class="e-price">À partir de 205 € HT<span> / mois / lot</span></div>
-        <div class="e-dispo">Disponible 1er juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Vidéosurveillance</span>
-          <span class="e-chip">24h/24 · 7j/7</span>
+        <div class="e-body">
+          <span class="e-type">Ateliers · Cellules · Stockage</span>
+          <div class="e-location">Secteur Brest</div>
+          <div class="e-region">Bretagne (29) · 32 lots · de 12 à 48 m²</div>
+          <div class="e-divider"></div>
+          <div class="e-price">À partir de 205 € HT<span> / mois / lot</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Vidéosurveillance</span>
+            <span class="e-chip">24h/24 · 7j/7</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-3">
         <span class="e-badge badge-new">★ Nouveauté 2025</span>
-        <span class="e-type">Entrepôt neuf 2025</span>
-        <div class="e-location">Axe logistique Landes</div>
-        <div class="e-region">Landes (40) · 2 lots · 400 m² chacun</div>
-        <div class="e-divider"></div>
-        <div class="e-price">1 933 € HT<span> / mois / espace</span></div>
-        <div class="e-dispo late">Disponible 15 juillet</div>
-        <div class="e-meta">
-          <span class="e-chip">Construction neuve</span>
-          <span class="e-chip">Accès PL</span>
-          <span class="e-chip">Vidéosurveillance</span>
+        <div class="e-body">
+          <span class="e-type">Entrepôt neuf 2025</span>
+          <div class="e-location">Axe logistique Landes</div>
+          <div class="e-region">Landes (40) · 2 lots · 400 m² chacun</div>
+          <div class="e-divider"></div>
+          <div class="e-price">1 933 € HT<span> / mois / espace</span></div>
+          <div class="e-dispo late">Disponible 15 juillet</div>
+          <div class="e-meta">
+            <span class="e-chip">Construction neuve</span>
+            <span class="e-chip">Accès PL</span>
+            <span class="e-chip">Vidéosurveillance</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-4">
         <span class="e-badge badge-last">■ Dernière dispo</span>
-        <span class="e-type">Hangar + Bureau + Mezzanine</span>
-        <div class="e-location">Axe logistique Landes</div>
-        <div class="e-region">Landes (40) · 1 lot unique · 280 m²</div>
-        <div class="e-divider"></div>
-        <div class="e-price">1 933 € HT<span> / mois</span></div>
-        <div class="e-dispo late">Disponible 15 juillet</div>
-        <div class="e-meta">
-          <span class="e-chip">Bureau inclus</span>
-          <span class="e-chip">Mezzanine</span>
-          <span class="e-chip">Accès PL</span>
+        <div class="e-body">
+          <span class="e-type">Hangar + Bureau + Mezzanine</span>
+          <div class="e-location">Axe logistique Landes</div>
+          <div class="e-region">Landes (40) · 1 lot unique · 280 m²</div>
+          <div class="e-divider"></div>
+          <div class="e-price">1 933 € HT<span> / mois</span></div>
+          <div class="e-dispo late">Disponible 15 juillet</div>
+          <div class="e-meta">
+            <span class="e-chip">Bureau inclus</span>
+            <span class="e-chip">Mezzanine</span>
+            <span class="e-chip">Accès PL</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal">
         <span class="e-badge badge-hot">▲ Beaucoup demandé</span>
-        <span class="e-type">Stockage palettes</span>
-        <div class="e-location">Secteur Bourg-Achard</div>
-        <div class="e-region">Normandie (27) · 16 lots · 50 à 400 empl.</div>
-        <div class="e-divider"></div>
-        <div class="e-price">À partir de 433 € HT<span> / mois / lot</span></div>
-        <div class="e-dispo">Disponible 1er juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Axe logistique</span>
-          <span class="e-chip">Vidéosurveillance</span>
-          <span class="e-chip">Accès PL</span>
+        <div class="e-body">
+          <span class="e-type">Stockage palettes</span>
+          <div class="e-location">Secteur Bourg-Achard</div>
+          <div class="e-region">Normandie (27) · 16 lots · 50 à 400 empl.</div>
+          <div class="e-divider"></div>
+          <div class="e-price">À partir de 433 € HT<span> / mois / lot</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Axe logistique</span>
+            <span class="e-chip">Vidéosurveillance</span>
+            <span class="e-chip">Accès PL</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-1">
-        <span class="e-type">Stockage</span>
-        <div class="e-location">Proximité Sainte-Marie-aux-Mines</div>
-        <div class="e-region">Alsace (68) · 14 lots · 75 à 120 m²</div>
-        <div class="e-divider"></div>
-        <div class="e-price">À partir de 600 € HT<span> / mois / espace</span></div>
-        <div class="e-dispo">Disponible 1er juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Vidéosurveillance</span>
-          <span class="e-chip">24h/24 · 7j/7</span>
+        <span class="e-badge badge-none">Disponible</span>
+        <div class="e-body">
+          <span class="e-type">Stockage</span>
+          <div class="e-location">Proximité Sainte-Marie-aux-Mines</div>
+          <div class="e-region">Alsace (68) · 14 lots · 75 à 120 m²</div>
+          <div class="e-divider"></div>
+          <div class="e-price">À partir de 600 € HT<span> / mois / espace</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Vidéosurveillance</span>
+            <span class="e-chip">24h/24 · 7j/7</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-2">
         <span class="e-badge badge-fav">♥ Coup de cœur</span>
-        <span class="e-type">Stockage pro</span>
-        <div class="e-location">Secteur Clermont-Ferrand</div>
-        <div class="e-region">Auvergne (63) · 8 lots · 40 à 84 m²</div>
-        <div class="e-divider"></div>
-        <div class="e-price">À partir de 422 € HT<span> / mois / espace</span></div>
-        <div class="e-dispo">Disponible 1er juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Vidéo 24h/24</span>
-          <span class="e-chip">Alertes temps réel</span>
-          <span class="e-chip">24h/24 · 7j/7</span>
+        <div class="e-body">
+          <span class="e-type">Stockage pro</span>
+          <div class="e-location">Secteur Clermont-Ferrand</div>
+          <div class="e-region">Auvergne (63) · 8 lots · 40 à 84 m²</div>
+          <div class="e-divider"></div>
+          <div class="e-price">À partir de 422 € HT<span> / mois / espace</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Vidéo 24h/24</span>
+            <span class="e-chip">Alertes temps réel</span>
+            <span class="e-chip">24h/24 · 7j/7</span>
+          </div>
         </div>
       </div>
 
       <div class="espace-card reveal reveal-delay-3">
-        <span class="e-type">Bureaux privatifs</span>
-        <div class="e-location">Proximité Montpellier</div>
-        <div class="e-region">Hérault (34) · 5 bureaux · 24 à 25 m²</div>
-        <div class="e-divider"></div>
-        <div class="e-price">À partir de 264 € HT<span> / mois / bureau</span></div>
-        <div class="e-dispo">Disponible 1er juin</div>
-        <div class="e-meta">
-          <span class="e-chip">Vidéosurveillance</span>
-          <span class="e-chip">Accès sécurisé</span>
+        <span class="e-badge badge-none">Disponible</span>
+        <div class="e-body">
+          <span class="e-type">Bureaux privatifs</span>
+          <div class="e-location">Proximité Montpellier</div>
+          <div class="e-region">Hérault (34) · 5 bureaux · 24 à 25 m²</div>
+          <div class="e-divider"></div>
+          <div class="e-price">À partir de 264 € HT<span> / mois / bureau</span></div>
+          <div class="e-dispo">Disponible 15 juin</div>
+          <div class="e-meta">
+            <span class="e-chip">Vidéosurveillance</span>
+            <span class="e-chip">Accès sécurisé</span>
+          </div>
         </div>
       </div>
 
