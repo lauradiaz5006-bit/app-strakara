@@ -158,6 +158,21 @@
       font-weight: 600;
     }
 
+  .founder-quote {
+  padding: 22px 24px;
+  border-left: 2px solid var(--gold);
+  background: rgba(255,255,255,.03);
+  margin-bottom: 36px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.82);
+  font-style: italic;
+  font-weight: 400;
+}
+
+
     /* PILLIERS */
     .pilliers { display: flex; flex-direction: column; gap: 1px; margin-bottom: 36px; }
     .pillier {
@@ -217,20 +232,36 @@
       display: block;
       margin-top: 4px;
     }
+    
 
     /* FORM DROITE */
-    .form-block {
-      background: var(--white);
-      padding: 44px 40px;
-      position: relative;
-    }
-    .form-block::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gold);
-    }
+  .form-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.form-block {
+  background: var(--white);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  z-index: 2;
+}
+
+.form-content {
+  padding: 36px 40px 44px;
+}
     .form-label-top {
       font-size: 11px;
       font-weight: 600;
@@ -563,7 +594,8 @@
       .topbar { padding: 16px 20px; }
       .topbar-badge span { display: none; }
       .page { padding: 32px 20px 48px; }
-      .form-block { padding: 32px 24px; }
+      .form-content { padding: 32px 24px; }
+      .form-photo { height: 200px; }
       .field-row { grid-template-columns: 1fr; }
       .pitch h1 { font-size: 32px; }
       .countdown-block { padding: 10px 12px; }
@@ -592,7 +624,10 @@
         <div class="opening-date-icon"></div>
         <span>Ouverture officielle le <strong>7 juillet 2026</strong> — annuaire, offres & besoins, événements</span>
       </div>
-
+ <div class="founder-quote">
+  « Je ne voulais pas créer une simple plateforme d’annonces.<br><br>
+  Je voulais construire un réseau professionnel structuré, où les entreprises peuvent trouver rapidement un espace, des contacts et des opportunités, dans un cadre clair, vérifié et humain. »
+</div>
       <div class="pilliers">
         <div class="pillier">
           <div class="pillier-icon">
@@ -631,11 +666,19 @@
       </div>
     </div>
 
-    <!-- DROITE -->
-    <div class="form-block">
+   <!-- DROITE -->
+<div class="form-block">
 
-      <!-- FORMULAIRE -->
-      <div id="form-section">
+  <img 
+    src="images/photo-reseau-strakara-entrepot.png"
+    alt="Échange professionnel sur un site logistique STRAKARA"
+    class="form-photo"
+  >
+
+  <div class="form-content">
+
+    <!-- FORMULAIRE -->
+    <div id="form-section">
         <div class="form-label-top">Accès fondateur — Gratuit</div>
         <h2 class="form-title">Rejoignez le réseau<br><em>avant l'ouverture.</em></h2>
         <p class="form-subtitle">100 places fondateurs disponibles. Inscrivez-vous maintenant et bénéficiez d'avantages exclusifs gelés à vie.</p>
@@ -730,19 +773,35 @@
           <div class="post-sent" id="post-sent">✓ Reçu — on l'intègre au réseau le 7 juillet. Merci.</div>
         </div>
 
-        <a class="btn-confirmation" href="https://www.strakara.fr">
+             <a class="btn-confirmation" href="https://www.strakara.fr">
           Découvrir STRAKARA
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
-        <p class="conf-note">Une question ? <a href="mailto:contact@strakara.fr">contact@strakara.fr</a> · 07 59 64 77 54</p>
-      </div>
 
+        <p class="conf-note">
+          Une question ?
+          <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
+          · 07 59 64 77 54
+        </p>
+
+      </div>
     </div>
   </div>
+</div>
 
   <div class="page-footer">
-    <p>© 2026 STRAKARA SASU — <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a> · <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a> · 07 59 64 77 54</p>
-  </div>
+  <p>
+    © 2026 STRAKARA SASU —
+    <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
+    ·
+    <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
+    ·
+    <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
+    · 07 59 64 77 54
+  </p>
+</div>
 
   <script>
     // COMPTE A REBOURS
