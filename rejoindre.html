@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rejoindre le Réseau STRAKARA — Liste d'accès prioritaire</title>
+  <meta name="description" content="Rejoignez le réseau STRAKARA avant l'ouverture officielle. Entraide pro, annuaire vérifié SIRET, offres & besoins entre membres. Accès gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #1E1F23;
+      --gold: #C8A96A;
+      --gold-dark: #A8894A;
+      --gold-light: #D4B97A;
+      --light: #F6F5F0;
+      --text: #1E1F23;
+      --muted: #6E7175;
+      --border: #E8E0D0;
+      --white: #FFFFFF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      background: var(--brand);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,0.04) 79px, rgba(200,169,106,0.04) 80px),
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(200,169,106,0.04) 79px, rgba(200,169,106,0.04) 80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* LOGO BAR */
+    .topbar {
+      position: relative; z-index: 10;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(200,169,106,.15);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .logo:hover { color: var(--gold); }
+    .topbar-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,169,106,.3);
+      padding: 5px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.6); }
+    }
+
+    /* MAIN LAYOUT */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* LEFT — PITCH */
+    .pitch { padding-top: 8px; }
+    .pitch-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pitch-eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+      display: block;
+    }
+    .pitch h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .pitch h1 em { font-style: italic; color: var(--gold); }
+    .pitch-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+
+    /* PILLIERS */
+    .pilliers { display: flex; flex-direction: column; gap: 1px; margin-bottom: 40px; }
+    .pillier {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,.03);
+      border-left: 2px solid transparent;
+      transition: border-color .2s, background .2s;
+    }
+    .pillier:hover {
+      border-left-color: var(--gold);
+      background: rgba(255,255,255,.05);
+    }
+    .pillier-icon {
+      width: 36px; height: 36px;
+      background: rgba(200,169,106,.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pillier-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--gold); fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .pillier-text h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .pillier-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      line-height: 1.5;
+    }
+
+    /* SOCIAL PROOF */
+    .proof-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .proof-avatars {
+      display: flex;
+    }
+    .proof-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--brand);
+      background: rgba(200,169,106,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-left: -8px;
+    }
+    .proof-avatar:first-child { margin-left: 0; }
+    .proof-text {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+      line-height: 1.4;
+    }
+    .proof-text strong { color: rgba(255,255,255,.6); font-weight: 500; }
+
+    /* RIGHT — FORM */
+    .form-block {
+      background: var(--white);
+      padding: 44px 40px;
+      position: relative;
+    }
+    .form-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .form-label-top {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .form-title em { font-style: italic; color: var(--gold); }
+    .form-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    /* FORM FIELDS */
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .field input, .field select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      outline: none;
+      transition: border-color .2s, background .2s;
+      appearance: none;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+    .field input::placeholder { color: #B0ABA3; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--muted);
+      pointer-events: none;
+    }
+
+    /* AVANTAGES FONDATEURS */
+    .avantages {
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .avantages-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .avantages-title::before {
+      content: '★';
+      color: var(--gold);
+      font-size: 10px;
+    }
+    .avantage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .avantage-item:last-child { margin-bottom: 0; }
+    .avantage-dot {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .avantage-item span {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .avantage-item strong { font-weight: 600; }
+
+    /* SUBMIT */
+    .btn-submit {
+      width: 100%;
+      background: var(--brand);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px 24px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .02em;
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .btn-submit:hover { background: #2E2F35; }
+    .btn-submit svg {
+      width: 15px; height: 15px;
+      stroke: var(--white); fill: none;
+      stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .form-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .form-note a { color: var(--gold-dark); text-decoration: none; }
+
+    /* MESSAGE DE CONFIRMATION */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .confirmation.show { display: block; }
+    .confirmation-icon {
+      width: 56px; height: 56px;
+      background: rgba(200,169,106,.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .confirmation-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--gold); fill: none;
+      stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .confirmation h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .confirmation h2 em { font-style: italic; color: var(--gold); }
+    .confirmation-msg {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-weight: 300;
+      text-align: left;
+    }
+    .confirmation-avantages {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .confirmation-avantages-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 10px;
+    }
+    .conf-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .conf-item:last-child { margin-bottom: 0; }
+    .conf-item-dot {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .btn-confirmation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--gold);
+      color: var(--brand);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 24px;
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: background .2s;
+      margin-bottom: 10px;
+    }
+    .btn-confirmation:hover { background: var(--gold-light); }
+    .btn-confirmation svg {
+      width: 14px; height: 14px;
+      stroke: var(--brand); fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .conf-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 24px 48px 40px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .page-footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,.2);
+    }
+    .page-footer a { color: rgba(255,255,255,.35); text-decoration: none; }
+    .page-footer a:hover { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pitch { animation: fadeUp .5s ease both; }
+    .form-block { animation: fadeUp .5s .15s ease both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; gap: 48px; padding: 40px 24px 60px; }
+      .topbar { padding: 20px 24px; }
+    }
+    @media (max-width: 600px) {
+      .topbar { padding: 16px 20px; }
+      .topbar-badge { display: none; }
+      .page { padding: 32px 20px 48px; }
+      .form-block { padding: 32px 24px; }
+      .field-row { grid-template-columns: 1fr; }
+      .pitch h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <a class="logo" href="https://www.strakara.fr">STRAKARA</a>
+    <div class="topbar-badge">Ouverture en cours</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="page">
+
+    <!-- GAUCHE — PITCH -->
+    <div class="pitch">
+      <div class="pitch-eyebrow">Réseau professionnel B2B — France entière</div>
+      <h1>Le réseau qui fait<br>avancer les pros<br><em>ensemble.</em></h1>
+      <p class="pitch-desc">
+        Artisans, PME, e-commerçants, indépendants — vous partagez les mêmes réalités terrain. STRAKARA construit la communauté qui vous manquait. Gratuit. Vérifié. Humain.
+      </p>
+
+      <div class="pilliers">
+        <div class="pillier">
+          <div class="pillier-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="pillier-text">
+            <h3>Annuaire pro vérifié SIRET</h3>
+            <p>Chaque membre est vérifié. Vous ne rencontrez que des professionnels sérieux.</p>
+          </div>
+        </div>
+        <div class="pillier">
+          <div class="pillier-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="pillier-text">
+            <h3>Offres & besoins entre membres</h3>
+            <p>Publiez ce que vous cherchez ou proposez. Votre prochain partenaire est peut-être déjà là.</p>
+          </div>
+        </div>
+        <div class="pillier">
+          <div class="pillier-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          </div>
+          <div class="pillier-text">
+            <h3>Entraide & sous-traitance</h3>
+            <p>Partagez charges, compétences et ressources. Ensemble on va plus loin.</p>
+          </div>
+        </div>
+        <div class="pillier">
+          <div class="pillier-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="pillier-text">
+            <h3>Événements réseau locaux</h3>
+            <p>Des rencontres mensuelles près de chez vous — présentiel ou visio, 1h chrono.</p>
+          </div>
+        </div>
+        <div class="pillier">
+          <div class="pillier-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="pillier-text">
+            <h3>Espaces pros sans bail</h3>
+            <p>Membres prioritaires sur nos annonces d'espaces flexibles partout en France.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-line">
+        <div class="proof-avatars">
+          <div class="proof-avatar">JM</div>
+          <div class="proof-avatar">SL</div>
+          <div class="proof-avatar">AB</div>
+          <div class="proof-avatar">+</div>
+        </div>
+        <p class="proof-text"><strong>Premiers membres fondateurs</strong><br>déjà inscrits sur liste d'accès prioritaire</p>
+      </div>
+    </div>
+
+    <!-- DROITE — FORMULAIRE -->
+    <div class="form-block">
+
+      <!-- FORMULAIRE -->
+      <div id="form-section">
+        <div class="form-label-top">Accès prioritaire — Gratuit</div>
+        <h2 class="form-title">Rejoignez le réseau<br><em>avant l'ouverture.</em></h2>
+        <p class="form-subtitle">Inscrivez-vous maintenant et bénéficiez des avantages membres fondateurs — gelés à vie.</p>
+
+        <div class="avantages">
+          <div class="avantages-title">Avantages membres fondateurs</div>
+          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Accès réseau gratuit à vie</strong> — aucun abonnement jamais</span></div>
+          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Activation espace gelée à 190€</strong> — prix fondateur garanti</span></div>
+          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Parrainage</strong> — chaque membre que vous amenez renforce votre statut</span></div>
+          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Accès prioritaire</strong> aux nouveaux espaces avant mise en ligne publique</span></div>
+          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil réseau</span></div>
+        </div>
+
+        <form id="strakara-form" action="https://formspree.io/f/xbdwydve" method="POST">
+          <div class="field-row">
+            <div class="field">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+            </div>
+            <div class="field">
+              <label for="email">Email professionnel</label>
+              <input type="email" id="email" name="email" placeholder="vous@entreprise.fr" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="entreprise">Nom de l'entreprise</label>
+            <input type="text" id="entreprise" name="entreprise" placeholder="Raison sociale ou nom commercial" required>
+          </div>
+          <div class="field">
+            <label for="besoin">Votre besoin principal</label>
+            <div class="select-wrap">
+              <select id="besoin" name="besoin" required>
+                <option value="" disabled selected>Choisissez votre profil</option>
+                <option value="reseau-entraide">Rejoindre le réseau d'entraide pro</option>
+                <option value="espace-stockage">Trouver un espace de stockage / atelier</option>
+                <option value="espace-bureau">Trouver un bureau flexible</option>
+                <option value="hebergeur">Proposer mon espace au réseau</option>
+                <option value="les-deux">Les deux — réseau + espace</option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" name="_subject" value="Nouvelle inscription réseau STRAKARA">
+          <input type="hidden" name="_next" value="">
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Rejoindre le réseau — Gratuit
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <p class="form-note">Aucune carte bancaire · 100% gratuit · Données protégées RGPD<br><a href="https://www.strakara.fr/politique-confidentialite.html">Politique de confidentialité</a></p>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div id="confirmation-section" class="confirmation">
+        <div class="confirmation-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>Bienvenue dans<br><em>le réseau STRAKARA.</em></h2>
+        <p class="confirmation-msg">
+          Merci du fond du cœur.<br><br>
+          Vous faites partie des premiers à croire en ce projet — et ça compte vraiment. STRAKARA n'est pas juste une plateforme. C'est une communauté construite par des professionnels, pour des professionnels. Des gens comme vous, qui savent ce que c'est de porter une activité, de chercher des solutions concrètes, et de vouloir avancer avec des partenaires de confiance.<br><br>
+          Votre inscription est enregistrée. Nous vous contacterons en priorité dès l'ouverture officielle du réseau.
+        </p>
+
+        <div class="confirmation-avantages">
+          <div class="confirmation-avantages-title">Vos avantages fondateurs — garantis</div>
+          <div class="conf-item"><div class="conf-item-dot"></div><span><strong>Réseau gratuit à vie</strong> — votre accès ne sera jamais payant</span></div>
+          <div class="conf-item"><div class="conf-item-dot"></div><span><strong>Activation espace à 190€ gelée</strong> — ce prix n'existera plus après ouverture</span></div>
+          <div class="conf-item"><div class="conf-item-dot"></div><span><strong>Parrainage actif</strong> — chaque pro que vous amenez renforce votre statut dans le réseau</span></div>
+          <div class="conf-item"><div class="conf-item-dot"></div><span><strong>Accès prioritaire</strong> aux espaces avant toute mise en ligne publique</span></div>
+          <div class="conf-item"><div class="conf-item-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil — une marque de confiance</span></div>
+        </div>
+
+        <a class="btn-confirmation" href="https://app.strakara.fr">
+          Voir les espaces disponibles
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="conf-note">Une question ? <a href="mailto:contact@strakara.fr" style="color:var(--gold-dark);">contact@strakara.fr</a> · 07 59 64 77 54</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <p>© 2026 STRAKARA SASU — <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a> · <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a> · 07 59 64 77 54</p>
+  </div>
+
+  <script>
+    document.getElementById('strakara-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Envoi en cours...';
+      btn.disabled = true;
+
+      var form = this;
+      var data = new FormData(form);
+
+      fetch('https://formspree.io/f/xbdwydve', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          document.getElementById('form-section').style.display = 'none';
+          var conf = document.getElementById('confirmation-section');
+          conf.style.display = 'block';
+          conf.classList.add('show');
+          conf.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          btn.textContent = 'Rejoindre le réseau — Gratuit';
+          btn.disabled = false;
+          alert('Une erreur est survenue. Veuillez réessayer ou nous contacter à contact@strakara.fr');
+        }
+      }).catch(function() {
+        btn.textContent = 'Rejoindre le réseau — Gratuit';
+        btn.disabled = false;
+        alert('Une erreur est survenue. Veuillez réessayer ou nous contacter à contact@strakara.fr');
+      });
+    });
+  </script>
+
+</body>
+</html>
