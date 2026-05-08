@@ -158,21 +158,6 @@
       font-weight: 600;
     }
 
-  .founder-quote {
-  padding: 22px 24px;
-  border-left: 2px solid var(--gold);
-  background: rgba(255,255,255,.03);
-  margin-bottom: 36px;
-
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  line-height: 1.8;
-  color: rgba(255,255,255,.82);
-  font-style: italic;
-  font-weight: 400;
-}
-
-
     /* PILLIERS */
     .pilliers { display: flex; flex-direction: column; gap: 1px; margin-bottom: 36px; }
     .pillier {
@@ -204,11 +189,7 @@
     .pillier-text p { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.5; }
 
     /* COMPTE A REBOURS */
-    .countdown {
-      display: flex;
-      gap: 1px;
-      margin-bottom: 0;
-    }
+    .countdown { display: flex; gap: 1px; }
     .countdown-block {
       background: rgba(255,255,255,.05);
       padding: 14px 18px;
@@ -232,36 +213,62 @@
       display: block;
       margin-top: 4px;
     }
-    
 
     /* FORM DROITE */
-  .form-photo {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
+    .form-block {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      z-index: 2;
+    }
 
-.form-block {
-  background: var(--white);
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-}
+    /* PHOTO + CITATION */
+    .form-photo-wrap { position: relative; }
+    .form-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .form-photo-caption {
+      padding: 10px 16px;
+      background: var(--brand);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-photo-caption::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+    .form-photo-caption p {
+      font-size: 12px;
+      font-style: italic;
+      color: rgba(255,255,255,.55);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .form-photo-caption p strong {
+      color: rgba(255,255,255,.75);
+      font-weight: 500;
+      font-style: normal;
+    }
 
-.form-block::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--gold);
-  z-index: 2;
-}
+    .form-content { padding: 32px 36px 40px; }
 
-.form-content {
-  padding: 36px 40px 44px;
-}
     .form-label-top {
       font-size: 11px;
       font-weight: 600;
@@ -353,6 +360,14 @@
       pointer-events: none;
     }
 
+    /* PLACES BAR */
+    .places-bar { margin-bottom: 20px; }
+    .places-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .places-label { font-size: 12px; color: var(--muted); font-weight: 400; }
+    .places-count { font-size: 12px; font-weight: 600; color: var(--gold-dark); }
+    .places-track { height: 3px; background: var(--border); width: 100%; }
+    .places-fill { height: 3px; background: var(--gold); width: 23%; }
+
     /* SUBMIT */
     .btn-submit {
       width: 100%;
@@ -379,203 +394,46 @@
     .form-note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.5; }
     .form-note a { color: var(--gold-dark); }
 
-    /* PLACES RESTANTES */
-    .places-bar { margin-bottom: 20px; }
-    .places-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-    .places-label { font-size: 12px; color: var(--muted); font-weight: 400; }
-    .places-count { font-size: 12px; font-weight: 600; color: var(--gold-dark); }
-    .places-track {
-      height: 3px;
-      background: var(--border);
-      width: 100%;
-    }
-    .places-fill {
-      height: 3px;
-      background: var(--gold);
-      width: 23%;
-    }
-
     /* CONFIRMATION */
     .confirmation { display: none; }
     .confirmation.show { display: block; }
-
     .conf-header { margin-bottom: 20px; }
     .conf-check {
       width: 48px; height: 48px;
       background: rgba(200,169,106,.1);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin-bottom: 16px;
     }
     .conf-check svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .conf-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
+    .conf-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 6px; }
     .conf-title em { font-style: italic; color: var(--gold); }
-    .conf-merci {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      padding: 14px 16px;
-      background: var(--light);
-      border-left: 3px solid var(--gold);
-    }
-    .conf-msg {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 20px;
-      font-weight: 300;
-    }
-
-    /* COUNTDOWN CONFIRMATION */
-    .conf-countdown {
-      background: var(--brand);
-      padding: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .conf-countdown-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .conf-countdown-blocks {
-      display: flex;
-      gap: 1px;
-      justify-content: center;
-    }
-    .conf-cd-block {
-      background: rgba(255,255,255,.06);
-      padding: 10px 16px;
-      text-align: center;
-      min-width: 60px;
-    }
-    .conf-cd-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--gold);
-      line-height: 1;
-      display: block;
-    }
-    .conf-cd-lbl {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-      display: block;
-      margin-top: 3px;
-    }
-
-    /* MINI FORMULAIRE POST-INSCRIPTION */
+    .conf-merci { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.6; margin-bottom: 16px; padding: 14px 16px; background: var(--light); border-left: 3px solid var(--gold); }
+    .conf-msg { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
+    .conf-countdown { background: var(--brand); padding: 16px; margin-bottom: 20px; text-align: center; }
+    .conf-countdown-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+    .conf-countdown-blocks { display: flex; gap: 1px; justify-content: center; }
+    .conf-cd-block { background: rgba(255,255,255,.06); padding: 10px 16px; text-align: center; min-width: 60px; }
+    .conf-cd-num { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--gold); line-height: 1; display: block; }
+    .conf-cd-lbl { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); display: block; margin-top: 3px; }
     .post-form { margin-bottom: 20px; }
-    .post-form-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .post-form-sub {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .post-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 13px;
-      color: var(--text);
-      background: var(--light);
-      border: 1px solid var(--border);
-      outline: none;
-      resize: none;
-      height: 80px;
-      transition: border-color .2s;
-      border-radius: 0;
-    }
+    .post-form-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .post-form-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+    .post-form textarea { width: 100%; padding: 12px 14px; font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text); background: var(--light); border: 1px solid var(--border); outline: none; resize: none; height: 80px; transition: border-color .2s; border-radius: 0; }
     .post-form textarea:focus { border-color: var(--gold); background: var(--white); }
     .post-form textarea::placeholder { color: #B0ABA3; }
-    .btn-post {
-      width: 100%;
-      background: var(--light);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      padding: 11px 16px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: border-color .2s, background .2s;
-      margin-top: 8px;
-      letter-spacing: .01em;
-    }
+    .btn-post { width: 100%; background: var(--light); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; padding: 11px 16px; border: 1px solid var(--border); cursor: pointer; transition: border-color .2s, background .2s; margin-top: 8px; letter-spacing: .01em; }
     .btn-post:hover { border-color: var(--gold); background: var(--white); }
-    .post-sent {
-      display: none;
-      font-size: 12px;
-      color: var(--gold-dark);
-      font-weight: 500;
-      text-align: center;
-      padding: 8px;
-      background: rgba(200,169,106,.08);
-      border: 1px solid rgba(200,169,106,.2);
-      margin-top: 8px;
-    }
+    .post-sent { display: none; font-size: 12px; color: var(--gold-dark); font-weight: 500; text-align: center; padding: 8px; background: rgba(200,169,106,.08); border: 1px solid rgba(200,169,106,.2); margin-top: 8px; }
     .post-sent.show { display: block; }
-
-    /* BTN CONFIRMATION */
-    .btn-confirmation {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: var(--gold);
-      color: var(--brand);
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 14px 24px;
-      letter-spacing: .02em;
-      transition: background .2s;
-      margin-bottom: 10px;
-      border: none;
-      cursor: pointer;
-    }
+    .btn-confirmation { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--gold); color: var(--brand); font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; padding: 14px 24px; letter-spacing: .02em; transition: background .2s; margin-bottom: 10px; border: none; cursor: pointer; }
     .btn-confirmation:hover { background: var(--gold-light); }
     .btn-confirmation svg { width: 14px; height: 14px; stroke: var(--brand); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     .conf-note { font-size: 11px; color: var(--muted); text-align: center; }
     .conf-note a { color: var(--gold-dark); }
 
     /* FOOTER */
-    .page-footer {
-      position: relative; z-index: 1;
-      text-align: center;
-      padding: 24px 48px 40px;
-      border-top: 1px solid rgba(255,255,255,.06);
-    }
+    .page-footer { position: relative; z-index: 1; text-align: center; padding: 24px 48px 40px; border-top: 1px solid rgba(255,255,255,.06); }
     .page-footer p { font-size: 12px; color: rgba(255,255,255,.2); }
     .page-footer a { color: rgba(255,255,255,.35); }
     .page-footer a:hover { color: var(--gold); }
@@ -594,8 +452,8 @@
       .topbar { padding: 16px 20px; }
       .topbar-badge span { display: none; }
       .page { padding: 32px 20px 48px; }
-      .form-content { padding: 32px 24px; }
-      .form-photo { height: 200px; }
+      .form-content { padding: 28px 20px 36px; }
+      .form-photo { height: 160px; }
       .field-row { grid-template-columns: 1fr; }
       .pitch h1 { font-size: 32px; }
       .countdown-block { padding: 10px 12px; }
@@ -624,10 +482,7 @@
         <div class="opening-date-icon"></div>
         <span>Ouverture officielle le <strong>7 juillet 2026</strong> — annuaire, offres & besoins, événements</span>
       </div>
- <div class="founder-quote">
-  « Je ne voulais pas créer une simple plateforme d’annonces.<br><br>
-  Je voulais construire un réseau professionnel structuré, où les entreprises peuvent trouver rapidement un espace, des contacts et des opportunités, dans un cadre clair, vérifié et humain. »
-</div>
+
       <div class="pilliers">
         <div class="pillier">
           <div class="pillier-icon">
@@ -666,188 +521,153 @@
       </div>
     </div>
 
-   <!-- DROITE -->
-<div class="form-block">
+    <!-- DROITE -->
+    <div class="form-block">
 
-  <img 
-    src="images/photo-reseau-strakara-entrepot.png"
-    alt="Échange professionnel sur un site logistique STRAKARA"
-    class="form-photo"
-  >
-
-  <div class="form-content">
-
-    <!-- FORMULAIRE -->
-    <div id="form-section">
-        <div class="form-label-top">Accès fondateur — Gratuit</div>
-        <h2 class="form-title">Rejoignez le réseau<br><em>avant l'ouverture.</em></h2>
-        <p class="form-subtitle">100 places fondateurs disponibles. Inscrivez-vous maintenant et bénéficiez d'avantages exclusifs gelés à vie.</p>
-
-        <div class="places-bar">
-          <div class="places-top">
-            <span class="places-label">Places fondateurs</span>
-            <span class="places-count">77 places restantes</span>
-          </div>
-          <div class="places-track"><div class="places-fill"></div></div>
+      <!-- Photo + citation discrète dessous -->
+      <div class="form-photo-wrap">
+        <img
+          src="images/photo-reseau-strakara-entrepot.png"
+          alt="Échange professionnel sur un site logistique STRAKARA"
+          class="form-photo"
+        >
+        <div class="form-photo-caption">
+          <p>« Un réseau structuré, vérifié et humain — <strong>Laura Charron, fondatrice</strong> »</p>
         </div>
-
-        <div class="avantages">
-          <div class="avantages-title">Avantages membres fondateurs</div>
-          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Accès réseau gratuit à vie</strong> — aucun abonnement jamais</span></div>
-          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Parrainage actif</strong> — chaque pro que vous amenez renforce votre statut</span></div>
-          <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil réseau</span></div>
-        </div>
-
-        <form id="strakara-form" action="https://formspree.io/f/xbdwydve" method="POST">
-          <div class="field-row">
-            <div class="field">
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="vous@entreprise.fr" required>
-            </div>
-          </div>
-          <div class="field">
-            <label for="entreprise">Entreprise</label>
-            <input type="text" id="entreprise" name="entreprise" placeholder="Raison sociale ou nom commercial" required>
-          </div>
-          <div class="field">
-            <label for="besoin">Votre besoin principal</label>
-            <div class="select-wrap">
-              <select id="besoin" name="besoin" required>
-                <option value="" disabled selected>Choisissez votre profil</option>
-                <option value="reseau-entraide">Rejoindre le réseau d'entraide pro</option>
-                <option value="espace-stockage">Trouver un espace de stockage / atelier</option>
-                <option value="espace-bureau">Trouver un bureau flexible</option>
-                <option value="hebergeur">Proposer mon espace au réseau</option>
-                <option value="les-deux">Les deux — réseau + espace</option>
-              </select>
-            </div>
-          </div>
-          <input type="hidden" name="_subject" value="Nouvelle inscription réseau STRAKARA — Membre fondateur">
-          <button type="submit" class="btn-submit" id="submit-btn">
-            Rejoindre le réseau — Gratuit
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </form>
-        <p class="form-note">Aucune carte bancaire · 100% gratuit · RGPD<br><a href="https://www.strakara.fr/politique-confidentialite.html">Politique de confidentialité</a></p>
       </div>
 
-      <!-- CONFIRMATION -->
-      <div id="confirmation-section" class="confirmation">
+      <div class="form-content">
 
-        <div class="conf-header">
-          <div class="conf-check">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <!-- FORMULAIRE -->
+        <div id="form-section">
+          <div class="form-label-top">Accès fondateur — Gratuit</div>
+          <h2 class="form-title">Rejoignez le réseau<br><em>avant l'ouverture.</em></h2>
+          <p class="form-subtitle">100 places fondateurs disponibles. Inscrivez-vous maintenant et bénéficiez d'avantages exclusifs gelés à vie.</p>
+
+          <div class="places-bar">
+            <div class="places-top">
+              <span class="places-label">Places fondateurs</span>
+              <span class="places-count">77 places restantes</span>
+            </div>
+            <div class="places-track"><div class="places-fill"></div></div>
           </div>
-          <h2 class="conf-title">Bienvenue dans<br><em>le réseau STRAKARA.</em></h2>
-        </div>
 
-        <div class="conf-merci">
-          Un grand Merci ! Vous faites partie des 100 premiers membres fondateurs — on construit quelque chose de sérieux et votre confiance sera récompensée et valorisée chez nous.
-        </div>
-
-        <p class="conf-msg">
-          Le réseau ouvre officiellement le <strong>7 juillet 2026</strong>. À cette date vous recevrez votre accès complet — annuaire des membres, offres & besoins, événements réseau locaux.<br><br>
-          En attendant, votre place est réservée et vos avantages fondateurs sont gelés.
-        </p>
-
-        <div class="conf-countdown">
-          <span class="conf-countdown-label">Ouverture dans</span>
-          <div class="conf-countdown-blocks">
-            <div class="conf-cd-block"><span class="conf-cd-num" id="c-days">--</span><span class="conf-cd-lbl">Jours</span></div>
-            <div class="conf-cd-block"><span class="conf-cd-num" id="c-hours">--</span><span class="conf-cd-lbl">Heures</span></div>
-            <div class="conf-cd-block"><span class="conf-cd-num" id="c-min">--</span><span class="conf-cd-lbl">Min</span></div>
-            <div class="conf-cd-block"><span class="conf-cd-num" id="c-sec">--</span><span class="conf-cd-lbl">Sec</span></div>
+          <div class="avantages">
+            <div class="avantages-title">Avantages membres fondateurs</div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Accès réseau gratuit à vie</strong> — aucun abonnement jamais</span></div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Parrainage actif</strong> — chaque pro que vous amenez renforce votre statut</span></div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil réseau</span></div>
           </div>
+
+          <form id="strakara-form" action="https://formspree.io/f/xbdwydve" method="POST">
+            <div class="field-row">
+              <div class="field">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="vous@entreprise.fr" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="entreprise">Entreprise</label>
+              <input type="text" id="entreprise" name="entreprise" placeholder="Raison sociale ou nom commercial" required>
+            </div>
+            <div class="field">
+              <label for="besoin">Votre besoin principal</label>
+              <div class="select-wrap">
+                <select id="besoin" name="besoin" required>
+                  <option value="" disabled selected>Choisissez votre profil</option>
+                  <option value="reseau-entraide">Rejoindre le réseau d'entraide pro</option>
+                  <option value="espace-stockage">Trouver un espace de stockage / atelier</option>
+                  <option value="espace-bureau">Trouver un bureau flexible</option>
+                  <option value="hebergeur">Proposer mon espace au réseau</option>
+                  <option value="les-deux">Les deux — réseau + espace</option>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" name="_subject" value="Nouvelle inscription réseau STRAKARA — Membre fondateur">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              Rejoindre le réseau — Gratuit
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <p class="form-note">Aucune carte bancaire · 100% gratuit · RGPD<br><a href="https://www.strakara.fr/politique-confidentialite.html">Politique de confidentialité</a></p>
         </div>
 
-        <!-- MINI FORMULAIRE POST-INSCRIPTION -->
-        <div class="post-form">
-          <div class="post-form-title">Une offre ou un besoin à publier dès l'ouverture ?</div>
-          <div class="post-form-sub">Partagez-le maintenant — on l'intègre directement au réseau le 7 juillet.</div>
-          <textarea id="post-content" placeholder="Ex : Je cherche un transporteur sur Lyon / Je propose de la sous-traitance menuiserie en Bretagne / J'ai du matériel à louer..."></textarea>
-          <button class="btn-post" id="btn-post" onclick="sendPost()">Envoyer au réseau →</button>
-          <div class="post-sent" id="post-sent">✓ Reçu — on l'intègre au réseau le 7 juillet. Merci.</div>
+        <!-- CONFIRMATION -->
+        <div id="confirmation-section" class="confirmation">
+          <div class="conf-header">
+            <div class="conf-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 class="conf-title">Bienvenue dans<br><em>le réseau STRAKARA.</em></h2>
+          </div>
+          <div class="conf-merci">
+            Un grand Merci ! Vous faites partie des 100 premiers membres fondateurs — on construit quelque chose de sérieux et votre confiance sera récompensée et valorisée chez nous.
+          </div>
+          <p class="conf-msg">
+            Le réseau ouvre officiellement le <strong>7 juillet 2026</strong>. À cette date vous recevrez votre accès complet — annuaire des membres, offres & besoins, événements réseau locaux.<br><br>
+            En attendant, votre place est réservée et vos avantages fondateurs sont gelés.
+          </p>
+          <div class="conf-countdown">
+            <span class="conf-countdown-label">Ouverture dans</span>
+            <div class="conf-countdown-blocks">
+              <div class="conf-cd-block"><span class="conf-cd-num" id="c-days">--</span><span class="conf-cd-lbl">Jours</span></div>
+              <div class="conf-cd-block"><span class="conf-cd-num" id="c-hours">--</span><span class="conf-cd-lbl">Heures</span></div>
+              <div class="conf-cd-block"><span class="conf-cd-num" id="c-min">--</span><span class="conf-cd-lbl">Min</span></div>
+              <div class="conf-cd-block"><span class="conf-cd-num" id="c-sec">--</span><span class="conf-cd-lbl">Sec</span></div>
+            </div>
+          </div>
+          <div class="post-form">
+            <div class="post-form-title">Une offre ou un besoin à publier dès l'ouverture ?</div>
+            <div class="post-form-sub">Partagez-le maintenant — on l'intègre directement au réseau le 7 juillet.</div>
+            <textarea id="post-content" placeholder="Ex : Je cherche un transporteur sur Lyon / Je propose de la sous-traitance menuiserie en Bretagne / J'ai du matériel à louer..."></textarea>
+            <button class="btn-post" id="btn-post" onclick="sendPost()">Envoyer au réseau →</button>
+            <div class="post-sent" id="post-sent">✓ Reçu — on l'intègre au réseau le 7 juillet. Merci.</div>
+          </div>
+          <a class="btn-confirmation" href="https://www.strakara.fr">
+            Découvrir STRAKARA
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p class="conf-note">Une question ? <a href="mailto:contact@strakara.fr">contact@strakara.fr</a> · 07 59 64 77 54</p>
         </div>
-
-             <a class="btn-confirmation" href="https://www.strakara.fr">
-          Découvrir STRAKARA
-          <svg viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-
-        <p class="conf-note">
-          Une question ?
-          <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
-          · 07 59 64 77 54
-        </p>
 
       </div>
     </div>
+
   </div>
-</div>
 
   <div class="page-footer">
-  <p>
-    © 2026 STRAKARA SASU —
-    <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
-    ·
-    <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
-    ·
-    <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
-    · 07 59 64 77 54
-  </p>
-</div>
+    <p>© 2026 STRAKARA SASU — <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a> · <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a> · 07 59 64 77 54</p>
+  </div>
 
   <script>
-    // COMPTE A REBOURS
     var target = new Date('2026-07-07T00:00:00').getTime();
     function updateCountdown() {
       var now = new Date().getTime();
-      var diff = target - now;
-      if (diff < 0) { diff = 0; }
+      var diff = Math.max(0, target - now);
       var days = Math.floor(diff / (1000*60*60*24));
       var hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
       var min = Math.floor((diff % (1000*60*60)) / (1000*60));
       var sec = Math.floor((diff % (1000*60)) / 1000);
       function pad(n) { return n < 10 ? '0'+n : n; }
-      // Gauche
-      var ld = document.getElementById('l-days');
-      var lh = document.getElementById('l-hours');
-      var lm = document.getElementById('l-min');
-      var ls = document.getElementById('l-sec');
-      if(ld) ld.textContent = pad(days);
-      if(lh) lh.textContent = pad(hours);
-      if(lm) lm.textContent = pad(min);
-      if(ls) ls.textContent = pad(sec);
-      // Confirmation
-      var cd = document.getElementById('c-days');
-      var ch = document.getElementById('c-hours');
-      var cm = document.getElementById('c-min');
-      var cs = document.getElementById('c-sec');
-      if(cd) cd.textContent = pad(days);
-      if(ch) ch.textContent = pad(hours);
-      if(cm) cm.textContent = pad(min);
-      if(cs) cs.textContent = pad(sec);
+      ['l-days','c-days'].forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=pad(days); });
+      ['l-hours','c-hours'].forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=pad(hours); });
+      ['l-min','c-min'].forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=pad(min); });
+      ['l-sec','c-sec'].forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=pad(sec); });
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // FORMULAIRE PRINCIPAL
     document.getElementById('strakara-form').addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = document.getElementById('submit-btn');
       btn.textContent = 'Envoi en cours...';
       btn.disabled = true;
-      var data = new FormData(this);
       fetch('https://formspree.io/f/xbdwydve', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' }
       }).then(function(r) {
         if (r.ok) {
           document.getElementById('form-section').style.display = 'none';
@@ -867,7 +687,6 @@
       });
     });
 
-    // MINI FORMULAIRE POST-INSCRIPTION
     function sendPost() {
       var content = document.getElementById('post-content').value.trim();
       if (!content) return;
@@ -878,10 +697,8 @@
       data.append('_subject', 'Offre/Besoin réseau STRAKARA — pré-ouverture');
       data.append('message', content);
       fetch('https://formspree.io/f/xbdwydve', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function(r) {
+        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+      }).then(function() {
         document.getElementById('post-sent').classList.add('show');
         btn.style.display = 'none';
         document.getElementById('post-content').style.display = 'none';
