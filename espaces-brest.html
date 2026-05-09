@@ -3,100 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Espaces professionnels · Brest — Sans engagement · STRAKARA</title>
-<meta name="description" content="Cellules de stockage et espaces d'activité professionnels à Brest. Parc sécurisé. Disponible avant le 1er juillet. Accès 6h-22h. Nouveau concept flexible.">
+<title>Espaces professionnels · Brest — Sans bail · STRAKARA</title>
+<meta name="description" content="3 formats d'espaces professionnels à Brest. Stockage 14m², Atelier 12,5m², Cellule 48m². Disponible avant le 1er juillet. Sans bail. Caution 0€ bloqué.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --brand: #1E1F23;
-  --gold: #C8A96A;
-  --gold-d: #A8894A;
-  --gold-l: #D4B97A;
-  --gold-pale: #F5EDD8;
-  --light: #F6F5F0;
-  --white: #FFFFFF;
-  --muted: #6E7175;
-  --border: #E8E0D0;
-  --text: #1E1F23;
-  --green: #2A7A5A;
-}
+:root{--brand:#1E1F23;--gold:#C8A96A;--gold-d:#A8894A;--gold-l:#D4B97A;--gold-pale:#F5EDD8;--light:#F6F5F0;--white:#FFFFFF;--muted:#6E7175;--border:#E8E0D0;--text:#1E1F23}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.65}
+body{font-family:"Outfit",sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.65}
 .container{max-width:1200px;margin:0 auto;padding:0 48px}
-
 /* TOPBAR */
 .topbar{background:var(--brand);color:var(--gold);text-align:center;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
-.topbar strong{color:var(--white)}
-.topbar .sep{margin:0 12px;opacity:.35}
-
+.topbar strong{color:var(--white)}.topbar .sep{margin:0 12px;opacity:.35}
 /* NAV */
 .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:68px;padding:0 48px;display:flex;align-items:center}
 .navbar-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--brand);text-decoration:none;letter-spacing:.05em}
+.logo{font-family:"Playfair Display",serif;font-size:19px;font-weight:600;color:var(--brand);text-decoration:none;letter-spacing:.05em}
 .logo:hover{color:var(--gold-d)}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;padding:7px 14px;transition:color .18s}
 .nav-links a:hover{color:var(--brand)}
 .nav-right{display:flex;align-items:center;gap:16px}
-.nav-tel{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500}
-.nav-tel:hover{color:var(--brand)}
+.nav-tel{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500}.nav-tel:hover{color:var(--brand)}
 .btn-nav{background:var(--brand);color:var(--white);padding:10px 22px;font-size:13px;font-weight:500;text-decoration:none;transition:background .18s;white-space:nowrap;display:inline-block}
 .btn-nav:hover{background:#2e2f35}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
 .hamburger span{display:block;width:20px;height:1.5px;background:var(--text)}
-
 /* HERO */
 .hero{min-height:calc(100vh - 100px);background:var(--brand);position:relative;overflow:hidden;display:flex;align-items:center;padding:80px 0 60px}
 .hero-grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px),repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
 .hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(200,169,106,.08) 0%,transparent 70%);pointer-events:none}
 .hero-inner{position:relative;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center}
 .hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
-.hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.6rem);line-height:1.08;color:var(--white);margin-bottom:24px;font-weight:700}
+.hero-tag::before{content:"";display:block;width:24px;height:1px;background:var(--gold)}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,4vw,3.6rem);line-height:1.08;color:var(--white);margin-bottom:24px;font-weight:700}
 .hero h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.75;font-weight:300;max-width:480px;margin-bottom:28px}
 .hero-sub strong{color:rgba(255,255,255,.9);font-weight:500}
-
-/* NOUVEAU CONCEPT BADGE */
-.nouveau-concept{display:inline-flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.nc-badge{background:var(--gold);color:var(--brand);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px}
-.nc-text{font-size:12px;color:rgba(255,255,255,.5);font-weight:300;letter-spacing:.04em}
-
 .offre-premium{display:inline-flex;align-items:stretch;margin-bottom:28px;border:1px solid rgba(200,169,106,.35)}
 .offre-premium-label{background:var(--gold);color:var(--brand);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;display:flex;align-items:center}
 .offre-premium-text{padding:8px 16px;font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px}
-.offre-premium-text strong{color:var(--white)}
-.offre-premium-text s{color:rgba(255,255,255,.35);font-size:12px}
-
+.offre-premium-text strong{color:var(--white)}.offre-premium-text s{color:rgba(255,255,255,.35);font-size:12px}
 /* HERO LOTS GRID */
 .hero-lots{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-bottom:36px;border:1px solid rgba(255,255,255,.08)}
 .hlot{background:rgba(255,255,255,.03);padding:16px 14px;border-bottom:2px solid transparent;transition:border-color .2s,background .2s;cursor:pointer;text-decoration:none;display:block}
 .hlot:hover{background:rgba(255,255,255,.07);border-bottom-color:var(--gold)}
-.hlot-size{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1}
+.hlot-size{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1}
 .hlot-name{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;margin-bottom:6px}
 .hlot-price{font-size:13px;color:rgba(255,255,255,.8);font-weight:500}
 .hlot-price span{font-size:11px;color:rgba(255,255,255,.4)}
 .hlot-sub{font-size:10px;color:rgba(255,255,255,.3);margin-top:3px;font-style:italic}
-
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin-bottom:36px;border:1px solid rgba(255,255,255,.08)}
 .hstat{background:rgba(255,255,255,.03);padding:16px 14px}
-.hstat-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
+.hstat-n{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
 .hstat-l{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
-
-.mention-paiement{background:rgba(255,255,255,.04);border-left:2px solid var(--gold);padding:14px 18px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.65;max-width:480px;margin-bottom:28px}
-.mention-paiement strong{color:rgba(255,255,255,.85);font-weight:600;display:block;margin-bottom:4px}
-
 .hero-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
 .btn-hero-primary{background:var(--gold);color:var(--brand);padding:16px 32px;font-weight:600;font-size:15px;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;letter-spacing:.02em}
 .btn-hero-primary:hover{background:var(--gold-l);transform:translateY(-1px)}
 .btn-hero-call{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(200,169,106,.35);color:rgba(255,255,255,.8);padding:15px 24px;font-size:14px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
 .btn-hero-call:hover{border-color:var(--gold);color:var(--white)}
-.btn-hero-network{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,106,.1);border:1px solid rgba(200,169,106,.3);color:var(--gold);padding:13px 22px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;letter-spacing:.03em}
-.btn-hero-network:hover{background:rgba(200,169,106,.2);border-color:var(--gold);color:var(--gold-l)}
-
-/* HERO RIGHT FORM */
+.mention-paiement{background:rgba(255,255,255,.04);border-left:2px solid var(--gold);padding:14px 18px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.65;max-width:480px;margin-bottom:28px}
+.mention-paiement strong{color:rgba(255,255,255,.85);font-weight:600;display:block;margin-bottom:4px}
+/* HERO FORM */
 .hero-right{display:flex;flex-direction:column}
 .hero-right-header{padding:20px 24px;background:rgba(255,255,255,.05);border:1px solid rgba(200,169,106,.2);border-bottom:none}
 .hero-right-header p{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
@@ -104,119 +73,115 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .hero-form{padding:20px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(200,169,106,.2)}
 .hf-row{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
 .hf-row label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.hf-row input,.hf-row select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.hf-row input,.hf-row select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--white);font-family:"Outfit",sans-serif;font-size:14px;font-weight:300;padding:11px 14px;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 .hf-row input::placeholder{color:rgba(255,255,255,.25)}
 .hf-row input:focus,.hf-row select:focus{border-color:var(--gold)}
 .hf-row select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0l6 7 6-7z' fill='%23C8A96A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
 .hf-row select option{background:#1e1f23;color:white}
 .hf-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-hform{width:100%;background:var(--gold);color:var(--brand);padding:14px 20px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;transition:background .2s;letter-spacing:.03em;margin-top:14px}
+.btn-hform{width:100%;background:var(--gold);color:var(--brand);padding:14px 20px;font-family:"Outfit",sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;transition:background .2s;letter-spacing:.03em;margin-top:14px}
 .btn-hform:hover{background:var(--gold-l)}
 .hform-note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:8px;line-height:1.5}
-
 /* CALL BAND */
 .call-band{background:var(--gold-pale);border-bottom:1px solid var(--border);padding:20px 48px;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
 .call-band-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.call-band-tel{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--brand);text-decoration:none}
+.call-band-tel{font-family:"Playfair Display",serif;font-size:22px;font-weight:600;color:var(--brand);text-decoration:none}
 .call-band-tel:hover{color:var(--gold-d)}
-.call-band-name{font-size:13px;color:var(--muted)}
-.call-band-name strong{color:var(--text)}
+.call-band-name{font-size:13px;color:var(--muted)}.call-band-name strong{color:var(--text)}
 .call-band-sep{width:1px;height:28px;background:var(--border)}
-
-/* SECTION COMMUNE */
+/* PHOTOS */
+.photos{background:var(--brand);padding:0}
+.photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.photo-item{position:relative;overflow:hidden;aspect-ratio:4/3}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.photo-item:hover img{transform:scale(1.03)}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));padding:20px 20px 14px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+/* COUNTERS */
+.counters{background:var(--white);border-bottom:1px solid var(--border)}
+.counters-inner{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--border)}
+.counter-item{padding:32px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.counter-num{font-family:"Playfair Display",serif;font-size:3rem;font-weight:700;color:var(--brand);line-height:1;margin-bottom:6px}
+.counter-num span{color:var(--gold)}
+.counter-label{font-size:12px;color:var(--muted);line-height:1.5}
+.counter-sub{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-top:4px}
+/* SHARED */
 .section-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-d);margin-bottom:14px}
-.h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);line-height:1.2;margin-bottom:16px}
+.h2{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);line-height:1.2;margin-bottom:16px}
 .h2 em{font-style:italic;color:var(--gold)}
 .lead{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300}
-
-/* NETWORK BAND */
-.network-band{background:linear-gradient(135deg,rgba(200,169,106,.12) 0%,rgba(200,169,106,.04) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-.nb-text{text-align:center}
-.nb-text p{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:6px}
-.nb-text span{font-size:13px;color:var(--muted)}
-.btn-network{background:var(--brand);color:var(--white);padding:14px 32px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:background .18s;display:inline-block}
-.btn-network:hover{background:var(--gold-d)}
-.btn-network-outline{background:transparent;border:2px solid var(--gold);color:var(--gold-d);padding:12px 28px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:all .18s;display:inline-block}
-.btn-network-outline:hover{background:var(--gold);color:var(--brand)}
-
-/* SITE INFO BAND */
-.site-band{background:var(--brand);padding:48px 0;border-bottom:3px solid rgba(200,169,106,.2)}
-.site-band-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.08)}
-.site-stat{background:rgba(255,255,255,.03);padding:28px 24px;text-align:center}
-.site-stat-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold)}
-.site-stat-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
-
-/* ESPACES / LOTS */
-.espaces{background:var(--light);padding:88px 0;border-bottom:1px solid var(--border)}
-.espaces-intro{margin-bottom:64px}
-
-/* LOT CARD */
-.lot-card{background:var(--white);border:1px solid var(--border);margin-bottom:2px;overflow:hidden;transition:box-shadow .2s}
-.lot-card:hover{box-shadow:0 4px 32px rgba(0,0,0,.07)}
-.lot-card-inner{display:grid;grid-template-columns:380px 1fr;gap:0}
-.lot-photo{position:relative;overflow:hidden;background:var(--brand);min-height:280px}
-.lot-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-.lot-card:hover .lot-photo img{transform:scale(1.03)}
-.lot-photo-placeholder{width:100%;height:100%;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.03)}
-.lot-photo-placeholder span{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.lot-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:var(--brand);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px}
-.lot-content{padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between}
-.lot-header{margin-bottom:20px}
-.lot-profil{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
-.lot-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--brand);line-height:1.15;margin-bottom:12px}
-.lot-desc{font-size:13px;color:var(--muted);line-height:1.75;max-width:500px}
-.lot-badges{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-.lot-badge-item{display:inline-flex;align-items:center;gap:6px;background:var(--light);border:1px solid var(--border);padding:5px 12px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em}
-.lot-badge-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.lot-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--border)}
-.lot-price-block{}
-.lot-price-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px}
-.lot-price{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--brand);line-height:1}
-.lot-price em{font-style:italic;color:var(--gold);font-size:1.1rem}
-.lot-price-sub{font-size:12px;color:var(--muted);margin-top:4px}
-.lot-price-option{font-size:12px;color:var(--gold-d);margin-top:6px;font-weight:500;border-top:1px dashed var(--border);padding-top:6px}
-.lot-caution{font-size:11px;color:var(--muted);margin-top:6px}
-.lot-caution strong{color:var(--text)}
-.lot-plans{font-size:11px;color:var(--muted);margin-top:8px;padding:8px 12px;background:var(--light);border-left:2px solid var(--gold)}
-.lot-plans a{color:var(--gold-d);text-decoration:none;font-weight:600}
-.lot-plans a:hover{text-decoration:underline}
-.lot-cta{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.btn-lot{background:var(--brand);color:var(--white);padding:13px 28px;font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:background .18s;white-space:nowrap}
-.btn-lot:hover{background:#2e2f35}
-.btn-lot-outline{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 24px;font-size:12px;font-weight:500;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s;white-space:nowrap}
-.btn-lot-outline:hover{border-color:var(--gold-d);color:var(--gold-d)}
-
-/* DETAILS EXPAND */
-.lot-details{display:none;background:var(--light);border-top:1px solid var(--border);padding:32px 40px}
-.lot-details.open{display:block}
-.lot-details-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
-.detail-block h3{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:12px}
-.detail-list{list-style:none}
-.detail-list li{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
-.detail-list li:last-child{border-bottom:none}
-.detail-list li::before{content:'›';color:var(--gold-d);font-size:14px;flex-shrink:0}
-.detail-list strong{color:var(--text);font-weight:600}
-.detail-note{background:var(--white);border:1px solid var(--border);border-left:2px solid var(--gold);padding:12px 14px;font-size:11px;color:var(--muted);margin-top:12px;line-height:1.6}
-.detail-note strong{color:var(--text)}
-
 /* FEATURES */
-.features{background:var(--white);padding:88px 0;border-bottom:1px solid var(--border)}
+.features{background:var(--light);padding:88px 0;border-bottom:1px solid var(--border)}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 .feat-card{background:var(--white);padding:36px 28px;position:relative;overflow:hidden;transition:background .2s}
 .feat-card:hover{background:#fdfcf8}
-.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .2s}
+.feat-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .2s}
 .feat-card:hover::after{opacity:1}
 .feat-icon-line{width:32px;height:2px;background:var(--gold);margin-bottom:20px}
-.feat-card h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px}
+.feat-card h3{font-family:"Playfair Display",serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px}
 .feat-card p{font-size:13px;color:var(--muted);line-height:1.7}
-
+/* LOTS */
+.lots{background:var(--white);padding:88px 0;border-bottom:1px solid var(--border)}
+.lot-card{border:1px solid var(--border);margin-bottom:24px;overflow:hidden;transition:box-shadow .2s}
+.lot-card:hover{box-shadow:0 4px 32px rgba(0,0,0,.07)}
+.lot-header-bar{display:grid;grid-template-columns:1fr auto;align-items:center;padding:20px 32px;background:var(--light);border-bottom:1px solid var(--border);gap:24px}
+.lot-profil{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-d);margin-bottom:6px}
+.lot-title{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700;color:var(--brand);line-height:1.2}
+.lot-price-hero{text-align:right}
+.lot-price-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px}
+.lot-price-num{font-family:"Playfair Display",serif;font-size:2rem;font-weight:700;color:var(--brand);line-height:1}
+.lot-price-num em{font-style:italic;color:var(--gold);font-size:.9rem}
+.lot-price-option{font-size:12px;color:var(--gold-d);font-weight:600;margin-top:4px}
+.lot-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.lot-col{padding:28px 28px;border-right:1px solid var(--border)}
+.lot-col:last-child{border-right:none}
+.lot-col-title{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.lot-list{list-style:none}
+.lot-list li{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
+.lot-list li:last-child{border-bottom:none}
+.lot-list li::before{content:"›";color:var(--gold-d);font-size:14px;flex-shrink:0}
+.lot-list strong{color:var(--text);font-weight:600}
+.lot-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.lot-badge{display:inline-flex;align-items:center;gap:5px;background:var(--light);border:1px solid var(--border);padding:4px 10px;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+.lot-badge::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.lot-footer{padding:16px 28px;background:var(--light);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.lot-caution{font-size:12px;color:var(--muted)}.lot-caution strong{color:var(--text)}
+.lot-plans{font-size:11px;color:var(--muted);padding:8px 14px;background:var(--white);border-left:2px solid var(--gold)}
+.lot-plans a{color:var(--gold-d);text-decoration:none;font-weight:600}
+.lot-cta-group{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn-lot{background:var(--brand);color:var(--white);padding:12px 24px;font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:background .18s;white-space:nowrap}
+.btn-lot:hover{background:#2e2f35}
+.btn-lot-sm{background:transparent;border:1px solid var(--border);color:var(--muted);padding:11px 20px;font-size:12px;font-weight:500;text-decoration:none;display:inline-block;transition:all .2s;white-space:nowrap}
+.btn-lot-sm:hover{border-color:var(--gold-d);color:var(--gold-d)}
+/* PRICING RECAP */
+.pricing{background:var(--light);padding:88px 0;border-bottom:1px solid var(--border)}
+.pricing-table{background:var(--white);border:1px solid var(--border)}
+.pt-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--brand);padding:0}
+.pt-head{padding:14px 20px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);border-right:1px solid rgba(255,255,255,.08)}
+.pt-head:last-child{border-right:none}
+.pt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--border)}
+.pt-row:last-child{border-bottom:none}
+.pt-row.highlight{background:rgba(200,169,106,.04)}
+.pt-cell{padding:16px 20px;font-size:13px;color:var(--muted);border-right:1px solid var(--border);display:flex;align-items:center}
+.pt-cell:last-child{border-right:none}
+.pt-cell strong{color:var(--text);font-weight:600;display:block}
+.pt-cell em{color:var(--gold-d);font-style:normal;font-weight:600}
+.pt-cell small{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.offre-block{background:var(--brand);border:1px solid rgba(200,169,106,.25);padding:28px;margin-top:32px}
+.offre-block-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:16px;flex-wrap:wrap}
+.offre-block-badge{background:var(--gold);color:var(--brand);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px}
+.offre-block-deadline{font-size:12px;color:rgba(255,255,255,.45)}
+.offre-block-deadline strong{color:var(--gold-l)}
+.offre-block p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+.offre-block p strong{color:var(--white)}
+.offre-price-compare{display:flex;align-items:baseline;gap:14px;margin-top:12px}
+.offre-price-now{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:700;color:var(--gold-l)}
+.offre-price-after{font-size:14px;color:rgba(255,255,255,.35);text-decoration:line-through}
+.offre-price-label{font-size:12px;color:rgba(255,255,255,.4)}
 /* GARANTIES */
 .garanties{background:var(--brand);padding:88px 0;position:relative;overflow:hidden}
-.garanties::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
+.garanties::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
 .garanties-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.garanties-left .section-tag{color:var(--gold)}
-.garanties-left .h2{color:var(--white)}
-.garanties-left .lead{color:rgba(255,255,255,.5);margin-bottom:36px}
+.garanties-left .section-tag{color:var(--gold)}.garanties-left .h2{color:var(--white)}.garanties-left .lead{color:rgba(255,255,255,.5);margin-bottom:36px}
 .garanties-items{display:flex;flex-direction:column;gap:1px}
 .garanties-item{display:flex;gap:18px;background:rgba(255,255,255,.04);padding:22px 24px;border:1px solid rgba(255,255,255,.07);border-bottom:none;transition:background .2s}
 .garanties-item:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
@@ -224,13 +189,12 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .garanties-check{width:32px;height:32px;min-width:32px;background:var(--gold);color:var(--brand);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .garanties-item h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px}
 .garanties-item p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.6}
-
 /* PROCESS */
 .process{background:var(--light);padding:88px 0;border-bottom:1px solid var(--border)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);margin-top:48px}
 .step-card{background:var(--white);padding:32px 22px}
 .step-card:last-child{background:var(--brand)}
-.step-n{width:36px;height:36px;border-radius:50%;background:var(--brand);color:var(--gold);font-family:'Playfair Display',serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.step-n{width:36px;height:36px;border-radius:50%;background:var(--brand);color:var(--gold);font-family:"Playfair Display",serif;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
 .step-card:last-child .step-n{background:var(--gold);color:var(--brand)}
 .step-card h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3}
 .step-card:last-child h4{color:var(--white)}
@@ -238,32 +202,27 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .step-card:last-child p{color:rgba(255,255,255,.5)}
 .step-tag{display:inline-block;margin-top:12px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);border-bottom:1px solid var(--gold);padding-bottom:2px}
 .step-card:last-child .step-tag{color:var(--gold-l);border-color:rgba(200,169,106,.4)}
-
 /* FAQ */
 .faq{background:var(--white);padding:88px 0;border-bottom:1px solid var(--border)}
 .faq-list{background:var(--white);border:1px solid var(--border);margin-top:48px}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-item:last-child{border-bottom:none}
-.faq-q{padding:20px 24px;font-weight:500;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;transition:background .18s;user-select:none;width:100%;background:none;border:none;text-align:left;color:var(--text);font-family:'Outfit',sans-serif}
-.faq-q:hover{background:var(--light)}
-.faq-q.open{background:var(--light)}
+.faq-item{border-bottom:1px solid var(--border)}.faq-item:last-child{border-bottom:none}
+.faq-q{padding:20px 24px;font-weight:500;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;transition:background .18s;user-select:none;width:100%;background:none;border:none;text-align:left;color:var(--text);font-family:"Outfit",sans-serif}
+.faq-q:hover{background:var(--light)}.faq-q.open{background:var(--light)}
 .faq-arrow{font-size:14px;color:var(--gold);transition:transform .2s;flex-shrink:0}
 .faq-q.open .faq-arrow{transform:rotate(180deg)}
 .faq-a{display:none;padding:0 24px 20px;font-size:13px;color:var(--muted);line-height:1.75}
-.faq-a.open{display:block}
-.faq-a strong{color:var(--text);font-weight:600}
-
+.faq-a.open{display:block}.faq-a strong{color:var(--text);font-weight:600}
 /* FORMULAIRE */
 .formulaire{background:var(--brand);padding:88px 0;position:relative;overflow:hidden;border-top:3px solid var(--gold)}
-.formulaire::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
+.formulaire::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
 .formulaire-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .formulaire-left .section-tag{color:var(--gold)}
-.formulaire-left h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--white);line-height:1.2;margin-bottom:16px}
+.formulaire-left h2{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--white);line-height:1.2;margin-bottom:16px}
 .formulaire-left h2 em{font-style:italic;color:var(--gold)}
 .formulaire-left p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300}
 .form-promesses{margin-top:24px;display:flex;flex-direction:column;gap:10px}
 .form-promesse{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
-.form-promesse::before{content:'';width:5px;height:5px;min-width:5px;background:var(--gold);border-radius:50%;margin-top:7px;flex-shrink:0}
+.form-promesse::before{content:"";width:5px;height:5px;min-width:5px;background:var(--gold);border-radius:50%;margin-top:7px;flex-shrink:0}
 .contact-direct{margin-top:28px;padding:20px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .contact-direct p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.8}
 .contact-direct a{color:var(--gold);text-decoration:none;font-weight:500}
@@ -272,11 +231,11 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .alerte-paiement{background:rgba(200,169,106,.08);border:1px solid rgba(200,169,106,.25);padding:14px 18px;font-size:12px;color:rgba(255,255,255,.6);line-height:1.65;margin-top:20px}
 .alerte-paiement strong{color:var(--gold-l);display:block;margin-bottom:4px}
 .form-box{background:var(--white);padding:40px}
-.form-box-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:6px}
+.form-box-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:6px}
 .form-box-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
 .fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
 .fg label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d)}
-.fg input,.fg select,.fg textarea{background:var(--white);border:1px solid var(--border);border-bottom:1px solid #c8bdb0;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;padding:12px 14px;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.fg input,.fg select,.fg textarea{background:var(--white);border:1px solid var(--border);border-bottom:1px solid #c8bdb0;color:var(--text);font-family:"Outfit",sans-serif;font-size:14px;font-weight:300;padding:12px 14px;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
 .fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0l6 7 6-7z' fill='%23A8894A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
 .fg select option{background:white;color:var(--text)}
@@ -287,98 +246,68 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .rgpd-row label{font-size:11px;color:var(--muted);line-height:1.55;font-weight:300}
 .form-notice{background:var(--gold-pale);border:1px solid var(--border);padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:20px}
 .form-notice strong{color:var(--text);display:block;margin-bottom:4px}
-.btn-submit{display:block;width:100%;background:var(--brand);color:var(--white);padding:16px 24px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.btn-submit{display:block;width:100%;background:var(--brand);color:var(--white);padding:16px 24px;font-family:"Outfit",sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
 .btn-submit:hover{background:#2e2f35}
 .form-note{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
 .form-success{display:none;text-align:center;padding:48px 24px;background:rgba(200,169,106,.06);border:1px solid var(--gold)}
-.form-success h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold-d);margin-bottom:12px}
+.form-success h4{font-family:"Playfair Display",serif;font-size:1.8rem;color:var(--gold-d);margin-bottom:12px}
 .form-success p{font-size:13px;color:var(--muted);line-height:1.7}
-
-/* RÉSEAU SECTION */
-.reseau{background:var(--brand);padding:72px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-.reseau-inner{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
-.reseau-left .section-tag{color:var(--gold)}
-.reseau-left h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);color:var(--white);line-height:1.2;margin-bottom:12px}
-.reseau-left h2 em{font-style:italic;color:var(--gold)}
-.reseau-left p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;max-width:440px}
-.reseau-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex-shrink:0}
-
-/* AUTRES ESPACES */
+/* AUTRES */
 .autres{background:var(--white);padding:72px 0;border-bottom:1px solid var(--border)}
 .autres-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
 .autres-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex-shrink:0}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 28px;font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold-d)}
-
 /* FOOTER */
 .contact-bar{background:var(--light);padding:32px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
 .ci{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
 .ci-l{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d)}
-.ci a{color:var(--text);text-decoration:none;font-weight:500}
-.ci a:hover{color:var(--gold-d)}
+.ci a{color:var(--text);text-decoration:none;font-weight:500}.ci a:hover{color:var(--gold-d)}
 footer{background:#111214;padding:28px 48px;text-align:center;font-size:12px;color:rgba(255,255,255,.25);line-height:1.7}
-footer a{color:rgba(255,255,255,.25);text-decoration:none}
-footer a:hover{color:var(--gold)}
-
+footer a{color:rgba(255,255,255,.25);text-decoration:none}footer a:hover{color:var(--gold)}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
-.reveal-d1{transition-delay:.1s}
-.reveal-d2{transition-delay:.2s}
-.reveal-d3{transition-delay:.3s}
-
-/* DISPO BADGE PULSE */
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-.dispo-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:8px;animation:pulse-dot 2s ease-in-out infinite}
-
-/* RESPONSIVE */
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-right{max-width:600px}
+  .hero-inner{grid-template-columns:1fr;gap:48px}.hero-right{max-width:600px}
   .garanties-inner,.formulaire-inner{grid-template-columns:1fr;gap:48px}
-  .feat-grid{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .lot-card-inner{grid-template-columns:1fr}
-  .lot-details-grid{grid-template-columns:1fr 1fr}
-  .site-band-inner{grid-template-columns:1fr}
-  .autres-inner,.reseau-inner{flex-direction:column;align-items:flex-start}
-  .autres-cta{align-items:flex-start}
+  .feat-grid{grid-template-columns:1fr 1fr}.counters-inner{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}.autres-inner{flex-direction:column;align-items:flex-start}
+  .autres-cta{align-items:flex-start}.lot-body{grid-template-columns:1fr 1fr}
+  .lot-col:last-child{border-top:1px solid var(--border);grid-column:1/-1}
+  .pt-header,.pt-row{grid-template-columns:2fr 1fr 1fr}
+  .pt-head:last-child,.pt-cell:last-child{display:none}
 }
 @media(max-width:768px){
-  .container{padding:0 20px}
-  .navbar{padding:0 20px}
-  .nav-links,.nav-tel{display:none}
-  .hamburger{display:flex}
-  .hero{min-height:auto;padding:56px 0 48px}
-  .hero h1{font-size:2.1rem}
-  .hero-stats{grid-template-columns:1fr 1fr}
-  .hero-lots{grid-template-columns:1fr}
-  .feat-grid{grid-template-columns:1fr}
-  .lot-details-grid{grid-template-columns:1fr}
-  .call-band{padding:16px 20px;gap:16px}
-  .contact-bar{gap:24px;padding:24px}
-  .fg-grid,.hf-grid{grid-template-columns:1fr}
-  .offre-premium{flex-direction:column}
-  .lot-bottom{flex-direction:column;align-items:flex-start}
-  .lot-cta{align-items:flex-start}
-  .network-band{padding:20px;gap:20px;flex-direction:column;text-align:center}
+  .container{padding:0 20px}.navbar{padding:0 20px}
+  .nav-links,.nav-tel{display:none}.hamburger{display:flex}
+  .hero{min-height:auto;padding:56px 0 48px}.hero h1{font-size:2.1rem}
+  .hero-stats,.hero-lots{grid-template-columns:1fr 1fr}
+  .feat-grid{grid-template-columns:1fr}.photos-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}.call-band{padding:16px 20px;gap:16px}
+  .contact-bar{gap:24px;padding:24px}.fg-grid,.hf-grid{grid-template-columns:1fr}
+  .offre-premium{flex-direction:column}.lot-body{grid-template-columns:1fr}
+  .lot-col{border-right:none;border-bottom:1px solid var(--border)}
+  .lot-header-bar{grid-template-columns:1fr}
+  .pt-header,.pt-row{grid-template-columns:1fr 1fr}
+  .pt-head:nth-child(3),.pt-head:nth-child(4),.pt-cell:nth-child(3),.pt-cell:nth-child(4){display:none}
 }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
-  <span class="dispo-dot"></span> Nouveau concept · Disponible avant le 1er juillet <span class="sep">·</span> Frais d'activation <strong>190 € HT</strong> <span class="sep">·</span> <strong>Brest · Parc sécurisé professionnel</strong>
+  Offre de Lancement <span class="sep">&middot;</span> Frais d'activation <strong>190 &euro; HT</strong> <span class="sep">&middot;</span> Apr&egrave;s le 7 juillet&nbsp;: 299 &euro; HT <span class="sep">&middot;</span> <strong>Brest &middot; Parc s&eacute;curis&eacute; professionnel</strong>
 </div>
 
-<!-- NAV -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a class="logo" href="https://www.strakara.fr">STRAKARA</a>
     <nav class="nav-links">
       <a href="#espaces">Les espaces</a>
-      <a href="#site">Le site</a>
+      <a href="#tarifs">Tarifs</a>
       <a href="#processus">Processus</a>
       <a href="#faq">FAQ</a>
       <a href="https://app.strakara.fr" target="_blank">Autres espaces</a>
@@ -387,892 +316,638 @@ footer a:hover{color:var(--gold)}
       <a class="nav-tel" href="tel:0759647754">07 59 64 77 54</a>
       <a class="btn-nav" href="#formulaire">Prendre contact</a>
     </div>
-    <button class="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
+  <div class="hero-grid"></div><div class="hero-glow"></div>
   <div class="container">
     <div class="hero-inner">
-
       <div>
-        <div class="hero-tag">Disponible avant le 1er juillet · Brest</div>
-
-        <div class="nouveau-concept">
-          <span class="nc-badge">✦ Nouveau Concept</span>
-          <span class="nc-text">Espaces mutualisés · Flexibilité totale · 0 bail</span>
-        </div>
-
-        <h1>
-          Espaces professionnels<br>
-          <em>sans engagement.</em><br>
-          Brest.
-        </h1>
-
+        <div class="hero-tag">Disponible avant le 1er juillet &mdash; Brest</div>
+        <h1>Espaces professionnels<br><em>sans bail.</em><br>Brest.</h1>
         <div class="offre-premium">
           <div class="offre-premium-label">Offre de Lancement</div>
-          <div class="offre-premium-text">
-            Frais d'activation <strong>190 € HT</strong> — gelés à vie pour les premiers membres
-            <s>299 €</s>
-          </div>
+          <div class="offre-premium-text">Frais d'activation <strong>190 &euro; HT</strong> &mdash; gel&eacute;s &agrave; vie pour les premiers membres <s>299 &euro;</s></div>
         </div>
-
-        <p class="hero-sub">
-          Parc sécurisé professionnel à Brest. Cellules de stockage, ateliers et espaces d'activité avec accès badge 6h-22h, vidéosurveillance et parking dédié. <strong>Sans bail. De 1 à 12 mois. Résiliable librement.</strong>
-        </p>
-
-        <!-- 3 LOTS EN APERÇU -->
+        <p class="hero-sub">Parc s&eacute;curis&eacute; professionnel &agrave; Brest. 3 formats d'espaces mutualis&eacute;s avec acc&egrave;s badge 6h-22h, vid&eacute;osurveillance et parking d&eacute;di&eacute;. <strong>Sans bail. De 1 &agrave; 12 mois selon vos besoins.</strong></p>
         <div class="hero-lots">
-          <a class="hlot" href="#lot-starter-14">
-            <div class="hlot-size">14 m²</div>
-            <div class="hlot-name">Stockage · Mutualisé</div>
-            <div class="hlot-price">219 € <span>HT/mois</span></div>
-            <div class="hlot-sub">ou 56 m² entiers — sur demande</div>
+          <a class="hlot" href="#lot1">
+            <div class="hlot-size">14 m&sup2;</div>
+            <div class="hlot-name">Stockage &middot; Mutualis&eacute;</div>
+            <div class="hlot-price">219 &euro; <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 56 m&sup2; entiers &mdash; sur demande</div>
           </a>
-          <a class="hlot" href="#lot-atelier">
-            <div class="hlot-size">12,5 m²</div>
-            <div class="hlot-name">Atelier · 1 voisin</div>
-            <div class="hlot-price">230 € <span>HT/mois</span></div>
-            <div class="hlot-sub">ou 25 m² entiers — sur demande</div>
+          <a class="hlot" href="#lot2">
+            <div class="hlot-size">12,5 m&sup2;</div>
+            <div class="hlot-name">Atelier &middot; 1 voisin</div>
+            <div class="hlot-price">230 &euro; <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 25 m&sup2; entiers &mdash; sur demande</div>
           </a>
-          <a class="hlot" href="#lot-pme">
-            <div class="hlot-size">48 m²</div>
+          <a class="hlot" href="#lot3">
+            <div class="hlot-size">48 m&sup2;</div>
             <div class="hlot-name">Stock + Bureau</div>
-            <div class="hlot-price">623 € <span>HT/mois</span></div>
-            <div class="hlot-sub">ou 96 m² entiers — sur demande</div>
+            <div class="hlot-price">623 &euro; <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 96 m&sup2; entiers &mdash; sur demande</div>
           </a>
         </div>
-
         <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-n">6h<span style="font-size:1rem">–22h</span></div>
-            <div class="hstat-l">Accès 7j/7</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-n">0<span style="font-size:1rem"> €</span></div>
-            <div class="hstat-l">Caution bloquée</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-n">1<span style="font-size:1rem"> juil.</span></div>
-            <div class="hstat-l">Dispo avant</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-n">100<span style="font-size:1rem">%</span></div>
-            <div class="hstat-l">Membres vérifiés</div>
-          </div>
+          <div class="hstat"><div class="hstat-n">6h<span style="font-size:1rem">&ndash;22h</span></div><div class="hstat-l">Acc&egrave;s 7j/7</div></div>
+          <div class="hstat"><div class="hstat-n">0<span style="font-size:1rem"> &euro;</span></div><div class="hstat-l">Caution bloqu&eacute;e</div></div>
+          <div class="hstat"><div class="hstat-n">1<span style="font-size:1rem"> juil.</span></div><div class="hstat-l">Dispo avant</div></div>
+          <div class="hstat"><div class="hstat-n">100<span style="font-size:1rem">%</span></div><div class="hstat-l">Membres v&eacute;rifi&eacute;s</div></div>
         </div>
-
         <div class="mention-paiement">
-          <strong>Aucun paiement à ce stade.</strong>
-          Un échange préalable — par visio ou par téléphone — est nécessaire avant toute contractualisation. Le règlement intervient uniquement avant votre entrée dans les lieux, après validation de votre dossier.
+          <strong>Aucun paiement &agrave; ce stade.</strong>
+          Un &eacute;change pr&eacute;alable &mdash; par visio ou par t&eacute;l&eacute;phone &mdash; est n&eacute;cessaire avant toute contractualisation. Le r&egrave;glement intervient uniquement avant votre entr&eacute;e dans les lieux.
         </div>
-
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="#formulaire">Prendre contact — 0 € aujourd'hui</a>
-          <a class="btn-hero-call" href="tel:0759647754">Appeler — 07 59 64 77 54</a>
-        </div>
-        <div style="margin-top:12px">
-          <a class="btn-hero-network" href="https://app.strakara.fr/rejoindre" target="_blank">→ Rejoindre le réseau STRAKARA</a>
+          <a class="btn-hero-primary" href="#formulaire">Prendre contact &mdash; 0 &euro; aujourd'hui</a>
+          <a class="btn-hero-call" href="tel:0759647754">Appeler &mdash; 07 59 64 77 54</a>
         </div>
       </div>
-
-      <!-- HERO RIGHT FORM -->
       <div class="hero-right">
         <div class="hero-right-header">
           <p>Demande de renseignements</p>
-          <span>Rappel par notre équipe sous 24h ouvrées — aucun engagement</span>
+          <span>Rappel sous 24h ouvr&eacute;es &mdash; aucun engagement</span>
         </div>
         <div class="hero-form">
           <form id="hero-form" action="https://formspree.io/f/xgodzyzj" method="POST">
             <input type="hidden" name="source" value="Landing Brest — Hero">
-            <input type="hidden" name="espace" value="Espaces professionnels Brest — Parc sécurisé">
             <div class="hf-grid">
-              <div class="hf-row">
-                <label>Nom *</label>
-                <input type="text" name="nom" required placeholder="Jean Dupont">
-              </div>
-              <div class="hf-row">
-                <label>Téléphone *</label>
-                <input type="tel" name="telephone" required placeholder="06 00 00 00 00">
-              </div>
+              <div class="hf-row"><label>Nom *</label><input type="text" name="nom" required placeholder="Jean Dupont"></div>
+              <div class="hf-row"><label>T&eacute;l&eacute;phone *</label><input type="tel" name="telephone" required placeholder="06 00 00 00 00"></div>
             </div>
+            <div class="hf-row"><label>Email professionnel</label><input type="email" name="email" placeholder="vous@entreprise.fr"></div>
+            <div class="hf-row"><label>Entreprise</label><input type="text" name="entreprise" placeholder="Nom de votre soci&eacute;t&eacute;"></div>
             <div class="hf-row">
-              <label>Email professionnel</label>
-              <input type="email" name="email" placeholder="vous@entreprise.fr">
-            </div>
-            <div class="hf-row">
-              <label>Entreprise</label>
-              <input type="text" name="entreprise" placeholder="Nom de votre société">
-            </div>
-            <div class="hf-row">
-              <label>Espace souhaité</label>
+              <label>Espace souhait&eacute;</label>
               <select name="espace_choisi">
-                <option value="" disabled selected>Sélectionnez</option>
-                <option>Stockage 14 m² — 219 € HT/mois</option>
-                <option>Stockage 56 m² (lot entier) — 876 € HT/mois</option>
-                <option>Atelier 12,5 m² — 230 € HT/mois</option>
-                <option>Atelier 25 m² (entier) — 460 € HT/mois</option>
-                <option>Stock + Bureau 48 m² — 623 € HT/mois</option>
-                <option>Stock + Bureau 96 m² (entier) — 1 246 € HT/mois</option>
+                <option value="" disabled selected>S&eacute;lectionnez</option>
+                <option>Stockage 14 m&sup2; &mdash; 219 &euro; HT/mois</option>
+                <option>Stockage 56 m&sup2; (lot entier) &mdash; 876 &euro; HT/mois</option>
+                <option>Atelier 12,5 m&sup2; &mdash; 230 &euro; HT/mois</option>
+                <option>Atelier 25 m&sup2; (entier) &mdash; 460 &euro; HT/mois</option>
+                <option>Cellule Stock + Bureau 48 m&sup2; &mdash; 623 &euro; HT/mois</option>
+                <option>B&acirc;timent entier 96 m&sup2; &mdash; 1 246 &euro; HT/mois</option>
                 <option>Je ne sais pas encore</option>
               </select>
             </div>
             <div class="hf-row">
-              <label>Durée souhaitée</label>
+              <label>Dur&eacute;e souhait&eacute;e</label>
               <select name="duree">
-                <option value="" disabled selected>Sélectionnez</option>
+                <option value="" disabled selected>S&eacute;lectionnez</option>
                 <option>1 mois</option>
-                <option>2 à 3 mois</option>
-                <option>4 à 6 mois</option>
-                <option>7 à 12 mois</option>
+                <option>2 &agrave; 3 mois</option>
+                <option>4 &agrave; 6 mois</option>
+                <option>7 &agrave; 12 mois</option>
               </select>
             </div>
-            <button type="submit" class="btn-hform" id="hero-btn">Être rappelé sous 24h</button>
-            <p class="hform-note">Sans engagement · Aucun paiement à cette étape · Activation 190 € HT gelée</p>
+            <button type="submit" class="btn-hform" id="hero-btn">&Ecirc;tre rappel&eacute; sous 24h</button>
+            <p class="hform-note">Sans engagement &middot; Aucun paiement &middot; Activation 190 &euro; HT gel&eacute;e</p>
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- CALL BAND -->
 <div class="call-band">
   <div class="call-band-label">Contact direct</div>
   <div class="call-band-sep"></div>
   <a href="tel:0759647754" class="call-band-tel">07 59 64 77 54</a>
   <div class="call-band-sep"></div>
-  <div class="call-band-name"><strong>Laura Charron</strong> — STRAKARA · Réponse sous 24h</div>
+  <div class="call-band-name"><strong>Laura Charron</strong> &mdash; STRAKARA &middot; R&eacute;ponse sous 24h</div>
   <div class="call-band-sep"></div>
   <div class="call-band-label"><a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a></div>
 </div>
 
-<!-- NETWORK JOIN BAND -->
-<div class="network-band">
-  <div class="nb-text">
-    <p>Vous avez un espace à optimiser ?</p>
-    <span>Rejoignez le réseau STRAKARA et valorisez vos m² vacants sans contrainte</span>
+<div class="photos">
+  <div style="background:var(--brand);border-bottom:1px solid rgba(200,169,106,.15);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)">Visuels du site</span>
+    <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);font-weight:500">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:blink 1.8s ease-in-out infinite"></span>
+      Plans et photos suppl&eacute;mentaires sur demande &mdash; <a href="tel:0759647754" style="color:var(--gold);text-decoration:none">07 59 64 77 54</a> &middot; <a href="mailto:contact@strakara.fr" style="color:var(--gold);text-decoration:none">contact@strakara.fr</a>
+    </span>
   </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-    <a class="btn-network" href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le réseau STRAKARA</a>
-    <a class="btn-network-outline" href="https://app.strakara.fr" target="_blank">Voir tous les espaces</a>
-  </div>
-</div>
-
-<!-- SITE INFO -->
-<div class="site-band" id="site">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:40px">
-      <span class="section-tag" style="color:var(--gold)">Le site</span>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.4rem);color:var(--white);margin-top:10px;line-height:1.2">Parc sécurisé · <em style="font-style:italic;color:var(--gold)">Brest.</em></h2>
-      <p style="font-size:14px;color:rgba(255,255,255,.45);max-width:520px;margin:12px auto 0;line-height:1.75">Parc d'activité professionnel entièrement clôturé. Parking dédié, accès badge RFID, vidéosurveillance 24h/24. À 10 minutes du centre de Brest.</p>
+  <div class="photos-grid">
+    <div class="photo-item">
+      <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/interieur-entrepot-stockage-60m2-profondeur-brest-strakara.jpg" alt="Stockage 14m2 Brest" loading="lazy">
+      <div class="photo-caption">Stockage 14 m&sup2; &mdash; Mutualis&eacute; &middot; Drive-in</div>
     </div>
-    <div class="site-band-inner">
-      <div class="site-stat">
-        <div class="site-stat-n">Sécurisé</div>
-        <div class="site-stat-l">Clôturé · Vidéosurveillé</div>
-      </div>
-      <div class="site-stat">
-        <div class="site-stat-n">6h – 22h</div>
-        <div class="site-stat-l">Accès 7j/7 par badge RFID</div>
-      </div>
-      <div class="site-stat">
-        <div class="site-stat-n">24h/24</div>
-        <div class="site-stat-l">Vidéosurveillance continue</div>
-      </div>
+    <div class="photo-item">
+      <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/box-stockage-24m2-porte-ouverte-brest-strakara.jpg" alt="Atelier 12,5m2 Brest" loading="lazy">
+      <div class="photo-caption">Atelier 12,5 m&sup2; &mdash; Prise tripha&eacute;se &middot; Point d'eau</div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:1px">
-      <div style="background:rgba(255,255,255,.03);padding:20px 24px;text-align:center">
-        <div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Localisation</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6">Brest · Secteur ouest<br>À 10 min du centre-ville</div>
-      </div>
-      <div style="background:rgba(255,255,255,.03);padding:20px 24px;text-align:center">
-        <div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Accès véhicule</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6">Voiture &amp; camionnette<br>Parking dédié à chaque lot</div>
-      </div>
-      <div style="background:rgba(255,255,255,.03);padding:20px 24px;text-align:center">
-        <div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Disponibilité</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6">Nouveau site<br>Disponible avant le 1er juillet</div>
-      </div>
+    <div class="photo-item">
+      <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/cellule-activite-48m2-stockage-rez-de-chaussee-brest-strakara.jpg" alt="Cellule 48m2 Brest" loading="lazy">
+      <div class="photo-caption">Cellule 48 m&sup2; &mdash; Stock RDC + Bureau &eacute;tage</div>
     </div>
   </div>
 </div>
 
-<!-- ESPACES / LOTS -->
-<section class="espaces" id="espaces">
-  <div class="container">
-    <div class="espaces-intro reveal">
-      <span class="section-tag">Les espaces disponibles</span>
-      <h2 class="h2">3 formats.<br><em>Un seul site.</em></h2>
-      <p class="lead" style="max-width:560px">Stockage mutualisé, atelier ou cellule avec bureau — choisissez l'espace adapté à votre activité. Tous sans bail, de 1 à 12 mois. Plans et détails complémentaires disponibles sur demande par <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600;text-decoration:none">téléphone</a> ou à <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a>.</p>
+<div class="counters" id="espaces">
+  <div class="container" style="padding:0">
+    <div class="counters-inner">
+      <div class="counter-item"><div class="counter-num">3 <span>formats</span></div><div class="counter-label">mutualis&eacute;s ou entiers &mdash; selon votre besoin</div><div class="counter-sub">Lots flexibles</div></div>
+      <div class="counter-item"><div class="counter-num">6h<span>&ndash;22h</span></div><div class="counter-label">acc&egrave;s badge RFID autonome</div><div class="counter-sub">7j/7 sans contrainte</div></div>
+      <div class="counter-item"><div class="counter-num">0 <span>&euro;</span></div><div class="counter-label">bloqu&eacute; sur votre compte</div><div class="counter-sub">Caution empreinte Swikly</div></div>
+      <div class="counter-item"><div class="counter-num">190 <span>&euro;</span></div><div class="counter-label">HT &mdash; frais d'activation gel&eacute;s &agrave; vie</div><div class="counter-sub">Offre de lancement</div></div>
     </div>
-
-    <!-- LOT 1 : STOCKAGE 14 m² -->
-    <div class="lot-card reveal" id="lot-starter-14">
-      <div class="lot-card-inner">
-        <div class="lot-photo">
-          <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/interieur-entrepot-stockage-60m2-profondeur-brest-strakara.jpg" alt="Stockage 14 m² Brest" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'lot-photo-placeholder\'><span>Photo disponible prochainement</span></div>'">
-          <div class="lot-badge">★ Disponible</div>
-        </div>
-        <div class="lot-content">
-          <div class="lot-header">
-            <div class="lot-profil">Starter · Artisan / E-commerce / TPE</div>
-            <h3 class="lot-title">Stockage 14 m²<br>Espace mutualisé · Drive</h3>
-            <p class="lot-desc">Espace de stockage de 14 m² au sein d'un espace mutualisé en 4 lots — chaque occupant dispose de sa porte d'accès dédiée. Idéal pour stocker du matériel, des marchandises ou des équipements dans un cadre professionnel sécurisé. <strong>Possibilité de louer l'ensemble des 4 lots (56 m²)</strong> sur demande.</p>
-            <div class="lot-badges">
-              <span class="lot-badge-item">Drive-in</span>
-              <span class="lot-badge-item">Accès 6h-22h · 7j/7</span>
-              <span class="lot-badge-item">Badge RFID</span>
-              <span class="lot-badge-item">Vidéosurveillance</span>
-              <span class="lot-badge-item">Parking dédié</span>
-              <span class="lot-badge-item">Mutualisé · 4 lots</span>
-            </div>
-          </div>
-          <div class="lot-bottom">
-            <div class="lot-price-block">
-              <div class="lot-price-label">Mensualité</div>
-              <div class="lot-price">219 € <em>HT</em></div>
-              <div class="lot-price-sub">par mois · 14 m² exclusifs · 8 lots disponibles</div>
-              <div class="lot-price-option">▸ Lot entier 56 m² disponible : <strong>876 € HT/mois</strong></div>
-              <div class="lot-caution"><strong>Caution :</strong> 300 € HT — empreinte bancaire Swikly, 0 € débité</div>
-              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
-            </div>
-            <div class="lot-cta">
-              <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Stockage 14 m² — 219 € HT/mois')">Demander ce lot</a>
-              <button class="btn-lot-outline" onclick="toggleDetails('details-14')">Détails techniques ↓</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lot-details" id="details-14">
-        <div class="lot-details-grid">
-          <div class="detail-block">
-            <h3>Caractéristiques</h3>
-            <ul class="detail-list">
-              <li><span><strong>Surface :</strong> 14 m² — espace mutualisé en 4 lots</span></li>
-              <li><span><strong>Sol :</strong> Béton propre</span></li>
-              <li><span><strong>Usage :</strong> Stockage sec — matériel, marchandises, e-commerce</span></li>
-              <li><span><strong>Électricité :</strong> Non incluse sur l'espace</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer l'ensemble (56 m²) à 876 € HT/mois</span></li>
-              <li><span><strong>Site :</strong> Mutualisé — partagé entre professionnels vérifiés</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Accès &amp; équipements</h3>
-            <ul class="detail-list">
-              <li><span><strong>Accès :</strong> Porte de service double vantaux dédiée</span></li>
-              <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
-              <li><span><strong>Véhicule :</strong> Voiture et utilitaire léger devant le box</span></li>
-              <li><span><strong>Sécurité :</strong> Vidéosurveillance 24h/24 + clôture périmétrique</span></li>
-              <li><span><strong>Portail :</strong> Électrique à badge</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Conditions</h3>
-            <ul class="detail-list">
-              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
-              <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
-              <li><span><strong>1er paiement :</strong> 409 € HT (activation + 1er mois)</span></li>
-              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
-            </ul>
-            <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LOT 2 : ATELIER 12,5 m² -->
-    <div class="lot-card reveal reveal-d1" id="lot-atelier">
-      <div class="lot-card-inner">
-        <div class="lot-photo">
-          <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/box-stockage-24m2-porte-ouverte-brest-strakara.jpg" alt="Atelier 12,5 m² Brest" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'lot-photo-placeholder\'><span>Photo disponible prochainement</span></div>'">
-          <div class="lot-badge">★ Disponible</div>
-        </div>
-        <div class="lot-content">
-          <div class="lot-header">
-            <div class="lot-profil">Starter · Artisan / E-commerce / TPE</div>
-            <h3 class="lot-title">Atelier 12,5 m²<br>Prise triphasée · Point d'eau · 1 voisin</h3>
-            <p class="lot-desc">Atelier de 12,5 m² partagé avec une seule autre entreprise — chaque occupant dispose de sa zone clairement délimitée. Prise triphasée et point d'eau disponibles. Charges incluses. <strong>Possibilité de louer les 25 m² entiers</strong> sur demande.</p>
-            <div class="lot-badges">
-              <span class="lot-badge-item">Drive-in</span>
-              <span class="lot-badge-item">Accès 6h-22h · 7j/7</span>
-              <span class="lot-badge-item">Prise triphasée</span>
-              <span class="lot-badge-item">Point d'eau</span>
-              <span class="lot-badge-item">Vidéosurveillance</span>
-              <span class="lot-badge-item">Charges incluses</span>
-              <span class="lot-badge-item">1 seul voisin vérifié</span>
-            </div>
-          </div>
-          <div class="lot-bottom">
-            <div class="lot-price-block">
-              <div class="lot-price-label">Mensualité</div>
-              <div class="lot-price">230 € <em>HT</em></div>
-              <div class="lot-price-sub">par mois · 12,5 m² · charges incluses · 14 lots disponibles</div>
-              <div class="lot-price-option">▸ Espace entier 25 m² disponible : <strong>460 € HT/mois</strong></div>
-              <div class="lot-caution"><strong>Caution :</strong> 300 € HT — empreinte bancaire Swikly, 0 € débité</div>
-              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
-            </div>
-            <div class="lot-cta">
-              <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Atelier 12,5 m² — 230 € HT/mois')">Demander ce lot</a>
-              <button class="btn-lot-outline" onclick="toggleDetails('details-atelier')">Détails techniques ↓</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lot-details" id="details-atelier">
-        <div class="lot-details-grid">
-          <div class="detail-block">
-            <h3>Caractéristiques</h3>
-            <ul class="detail-list">
-              <li><span><strong>Surface :</strong> 12,5 m² — partagé avec 1 seul voisin (25 m² total)</span></li>
-              <li><span><strong>Sol :</strong> Béton propre</span></li>
-              <li><span><strong>Électricité :</strong> Prise triphasée disponible</span></li>
-              <li><span><strong>Eau :</strong> Point d'eau disponible</span></li>
-              <li><span><strong>Charges :</strong> Incluses (provision 10 €/mois, régularisation en fin de séjour)</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer les 25 m² entiers à 460 € HT/mois</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Accès &amp; équipements</h3>
-            <ul class="detail-list">
-              <li><span><strong>Accès :</strong> Porte sectionnelle indépendante</span></li>
-              <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
-              <li><span><strong>Véhicule :</strong> Voiture et camionnette devant le lot</span></li>
-              <li><span><strong>Parking :</strong> Dédié à proximité immédiate</span></li>
-              <li><span><strong>Sécurité :</strong> Vidéosurveillance 24h/24 + clôture</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Conditions</h3>
-            <ul class="detail-list">
-              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
-              <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
-              <li><span><strong>1er paiement :</strong> 420 € HT (activation + 1er mois)</span></li>
-              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
-            </ul>
-            <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LOT 3 : CELLULE 48 m² -->
-    <div class="lot-card reveal reveal-d2" id="lot-pme">
-      <div class="lot-card-inner">
-        <div class="lot-photo">
-          <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/cellule-activite-48m2-stockage-rez-de-chaussee-brest-strakara.jpg" alt="Cellule 48 m² stock + bureau Brest" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'lot-photo-placeholder\'><span>Photo disponible prochainement</span></div>'">
-          <div class="lot-badge">★ Disponible</div>
-        </div>
-        <div class="lot-content">
-          <div class="lot-header">
-            <div class="lot-profil">PME · Entreprise en croissance</div>
-            <h3 class="lot-title">Cellule 48 m²<br>24 m² stockage RDC + 24 m² bureau étage</h3>
-            <p class="lot-desc">Cellule professionnelle sur deux niveaux : 24 m² de stockage au rez-de-chaussée (accès plain-pied, porte sectionnelle) + 24 m² de bureau à l'étage. Partagé avec une seule autre entreprise. Wifi, sanitaires privatifs, charges incluses. <strong>Possibilité de louer l'ensemble (96 m²)</strong> sur demande.</p>
-            <div class="lot-badges">
-              <span class="lot-badge-item">Drive-in RDC</span>
-              <span class="lot-badge-item">Bureau à l'étage</span>
-              <span class="lot-badge-item">WiFi inclus</span>
-              <span class="lot-badge-item">Sanitaires privatifs</span>
-              <span class="lot-badge-item">Chauffé / isolé</span>
-              <span class="lot-badge-item">Charges incluses</span>
-              <span class="lot-badge-item">1 seul voisin vérifié</span>
-            </div>
-          </div>
-          <div class="lot-bottom">
-            <div class="lot-price-block">
-              <div class="lot-price-label">Mensualité</div>
-              <div class="lot-price">623 € <em>HT</em></div>
-              <div class="lot-price-sub">par mois · 48 m² sur 2 niveaux · 10 lots disponibles</div>
-              <div class="lot-price-option">▸ Bâtiment entier 96 m² disponible : <strong>1 246 € HT/mois</strong></div>
-              <div class="lot-caution"><strong>Caution :</strong> 1 000 € HT — empreinte bancaire Swikly, 0 € débité</div>
-              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
-            </div>
-            <div class="lot-cta">
-              <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Cellule Stock + Bureau 48 m² — 623 € HT/mois')">Demander ce lot</a>
-              <button class="btn-lot-outline" onclick="toggleDetails('details-pme')">Détails techniques ↓</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lot-details" id="details-pme">
-        <div class="lot-details-grid">
-          <div class="detail-block">
-            <h3>Caractéristiques</h3>
-            <ul class="detail-list">
-              <li><span><strong>Surface :</strong> 48 m² total — 24 m² RDC + 24 m² étage</span></li>
-              <li><span><strong>RDC :</strong> 24 m² stockage — accès plain-pied + porte sectionnelle</span></li>
-              <li><span><strong>Étage :</strong> 24 m² bureau — livré non meublé</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer le bâtiment entier (96 m²) à 1 246 € HT/mois</span></li>
-              <li><span><strong>Équipements :</strong> Wifi, sanitaires privatifs, électricité, éclairage</span></li>
-              <li><span><strong>Charges :</strong> Incluses (provision 10 €/mois, régularisation en fin de séjour)</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Accès &amp; équipements</h3>
-            <ul class="detail-list">
-              <li><span><strong>RDC :</strong> Porte sectionnelle + porte de service indépendante</span></li>
-              <li><span><strong>Étage :</strong> Accès sécurisé par escalier interne</span></li>
-              <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
-              <li><span><strong>Véhicule :</strong> Voiture — parking dédié à proximité</span></li>
-              <li><span><strong>Sécurité :</strong> Vidéosurveillance 24h/24 + portail badge + clôture</span></li>
-            </ul>
-          </div>
-          <div class="detail-block">
-            <h3>Conditions</h3>
-            <ul class="detail-list">
-              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
-              <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
-              <li><span><strong>1er paiement :</strong> 813 € HT (activation + 1er mois)</span></li>
-              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
-            </ul>
-            <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement. Pas d'accès poids lourds.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-</section>
+</div>
 
-<!-- FEATURES DU SITE -->
 <section class="features">
   <div class="container">
     <div class="reveal" style="margin-bottom:56px">
-      <span class="section-tag">Le site en détail</span>
-      <h2 class="h2">Un parc sécurisé.<br><em>Un nouveau concept.</em></h2>
-      <p class="lead" style="max-width:520px">Tout ce dont votre activité a besoin, dans un environnement structuré et sécurisé.</p>
+      <span class="section-tag">Le site en d&eacute;tail</span>
+      <h2 class="h2">Un parc s&eacute;curis&eacute;.<br><em>Z&eacute;ro contrainte.</em></h2>
+      <p class="lead" style="max-width:520px">Tout ce dont votre activit&eacute; a besoin, dans un environnement professionnel s&eacute;curis&eacute; &agrave; Brest.</p>
     </div>
     <div class="feat-grid">
-      <div class="feat-card reveal reveal-d1">
-        <div class="feat-icon-line"></div>
-        <h3>Accès badge RFID</h3>
-        <p>Portail électrique et accès 6h-22h, 7j/7. Vous accédez à votre espace en totale autonomie, selon vos horaires professionnels.</p>
+      <div class="feat-card reveal reveal-d1"><div class="feat-icon-line"></div><h3>Acc&egrave;s badge RFID</h3><p>Portail &eacute;lectrique et acc&egrave;s 6h-22h, 7j/7. Vous acc&eacute;dez &agrave; votre espace en totale autonomie selon vos horaires.</p></div>
+      <div class="feat-card reveal reveal-d2"><div class="feat-icon-line"></div><h3>Vid&eacute;osurveillance 24h/24</h3><p>Cam&eacute;ras ext&eacute;rieures et surveillance continue. Vos biens sont s&eacute;curis&eacute;s en permanence, hors de vos heures de pr&eacute;sence.</p></div>
+      <div class="feat-card reveal reveal-d3"><div class="feat-icon-line"></div><h3>Parking d&eacute;di&eacute; &agrave; chaque lot</h3><p>Acc&egrave;s voiture et utilitaire directement devant votre espace. Chargement et d&eacute;chargement sans contrainte.</p></div>
+      <div class="feat-card reveal reveal-d1"><div class="feat-icon-line"></div><h3>CGV flexibles &mdash; sans bail</h3><p>De 1 &agrave; 12 mois selon vos besoins. Pas de notaire. Pas d'engagement pluriannuel. Sans reconduction automatique. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">Consulter les CGV &rarr;</a></p></div>
+      <div class="feat-card reveal reveal-d2"><div class="feat-icon-line"></div><h3>Lots mutualis&eacute;s ou entiers</h3><p>Prenez un lot seul ou l'ensemble de l'espace. 3 configurations possibles &mdash; tout est disponible d&egrave;s le 1er juillet.</p></div>
+      <div class="feat-card reveal reveal-d3"><div class="feat-icon-line"></div><h3>Site professionnel v&eacute;rifi&eacute;</h3><p>SIRET, assurances et activit&eacute; contr&ocirc;l&eacute;s &agrave; l'entr&eacute;e pour chaque occupant. Un r&eacute;seau de professionnels s&eacute;rieux.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="lots" id="espaces-detail">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px">
+      <span class="section-tag">Les 3 espaces disponibles</span>
+      <h2 class="h2">Choisissez votre format.<br><em>Ou prenez l'ensemble.</em></h2>
+      <p class="lead" style="max-width:560px">Plans et photos suppl&eacute;mentaires disponibles sur demande par <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600;text-decoration:none">t&eacute;l&eacute;phone</a> ou &agrave; <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a>.</p>
+    </div>
+
+    <!-- LOT 1 -->
+    <div class="lot-card reveal" id="lot1">
+      <div class="lot-header-bar">
+        <div>
+          <div class="lot-profil">Starter &middot; Artisan / E-commerce / TPE</div>
+          <div class="lot-title">Stockage 14 m&sup2; &mdash; Espace mutualis&eacute; en 4 lots</div>
+          <div class="lot-badges" style="margin-top:10px">
+            <span class="lot-badge">Drive-in</span>
+            <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
+            <span class="lot-badge">Badge RFID</span>
+            <span class="lot-badge">Vid&eacute;osurveillance</span>
+            <span class="lot-badge">Parking d&eacute;di&eacute;</span>
+            <span class="lot-badge">Mutualis&eacute; &middot; 4 lots</span>
+          </div>
+        </div>
+        <div class="lot-price-hero">
+          <div class="lot-price-label">Mensualit&eacute; HT</div>
+          <div class="lot-price-num">219 &euro; <em>HT</em></div>
+          <div class="lot-price-option">&#9658; Lot entier 56 m&sup2;&nbsp;: 876 &euro; HT/mois</div>
+        </div>
       </div>
-      <div class="feat-card reveal reveal-d2">
-        <div class="feat-icon-line"></div>
-        <h3>Vidéosurveillance 24h/24</h3>
-        <p>Caméras extérieures et surveillance continue du site. Vos biens stockés sont sécurisés en permanence, hors de vos heures de présence.</p>
+      <div class="lot-body">
+        <div class="lot-col">
+          <div class="lot-col-title">Caract&eacute;ristiques</div>
+          <ul class="lot-list">
+            <li><span><strong>Surface :</strong> 14 m&sup2; &mdash; 1/4 d'un espace de 56 m&sup2;</span></li>
+            <li><span><strong>Sol :</strong> B&eacute;ton propre, sec</span></li>
+            <li><span><strong>&Eacute;lectricit&eacute; :</strong> Non incluse</span></li>
+            <li><span><strong>Usage :</strong> Stockage sec &mdash; mat&eacute;riel, marchandises, e-commerce</span></li>
+            <li><span><strong>Option :</strong> Lot entier 56 m&sup2; &agrave; 876 &euro; HT/mois</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Acc&egrave;s &amp; &eacute;quipements</div>
+          <ul class="lot-list">
+            <li><span><strong>Acc&egrave;s :</strong> Porte de service double vantaux d&eacute;di&eacute;e</span></li>
+            <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
+            <li><span><strong>V&eacute;hicule :</strong> Voiture et utilitaire l&eacute;ger</span></li>
+            <li><span><strong>S&eacute;curit&eacute; :</strong> Vid&eacute;osurveillance 24h/24 + cl&ocirc;ture</span></li>
+            <li><span><strong>Portail :</strong> &Eacute;lectrique &agrave; badge</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Conditions</div>
+          <ul class="lot-list">
+            <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> &mdash; hors bail</span></li>
+            <li><span><strong>Dur&eacute;e :</strong> 1 &agrave; 12 mois &mdash; choisie &agrave; la r&eacute;servation</span></li>
+            <li><span><strong>Reconduction :</strong> Pas automatique</span></li>
+            <li><span><strong>Activation :</strong> 190 &euro; HT (unique)</span></li>
+            <li><span><strong>1er paiement :</strong> 409 &euro; HT (activation + 1er mois)</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="feat-card reveal reveal-d3">
-        <div class="feat-icon-line"></div>
-        <h3>Parking dédié à chaque lot</h3>
-        <p>Accès voiture et utilitaire directement devant votre espace. Chargement et déchargement sans contrainte de timing.</p>
+      <div class="lot-footer">
+        <div>
+          <div class="lot-caution"><strong>Caution :</strong> 300 &euro; HT &mdash; empreinte Swikly, 0 &euro; d&eacute;bit&eacute;</div>
+          <div class="lot-plans" style="margin-top:8px">&#128208; Plans et d&eacute;tails sur demande &mdash; <a href="tel:0759647754">07 59 64 77 54</a> &middot; <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
+        </div>
+        <div class="lot-cta-group">
+          <a class="btn-lot" href="#formulaire">Demander ce lot</a>
+          <a class="btn-lot-sm" href="#formulaire">Lot entier 56 m&sup2; &mdash; 876 &euro; HT</a>
+        </div>
       </div>
-      <div class="feat-card reveal reveal-d1">
-        <div class="feat-icon-line"></div>
-        <h3>CGV flexibles — sans bail</h3>
-        <p>De 1 à 12 mois selon vos besoins. Pas de notaire. Pas d'engagement pluriannuel. Pas de frais d'agence. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">Consulter nos CGV →</a></p>
+    </div>
+
+    <!-- LOT 2 -->
+    <div class="lot-card reveal reveal-d1" id="lot2">
+      <div class="lot-header-bar">
+        <div>
+          <div class="lot-profil">Starter &middot; Artisan / Activit&eacute; productive</div>
+          <div class="lot-title">Atelier 12,5 m&sup2; &mdash; Prise tripha&eacute;se &middot; Point d'eau &middot; 1 voisin</div>
+          <div class="lot-badges" style="margin-top:10px">
+            <span class="lot-badge">Drive-in</span>
+            <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
+            <span class="lot-badge">Prise tripha&eacute;se</span>
+            <span class="lot-badge">Point d'eau</span>
+            <span class="lot-badge">Charges incluses</span>
+            <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
+          </div>
+        </div>
+        <div class="lot-price-hero">
+          <div class="lot-price-label">Mensualit&eacute; HT</div>
+          <div class="lot-price-num">230 &euro; <em>HT</em></div>
+          <div class="lot-price-option">&#9658; Espace entier 25 m&sup2;&nbsp;: 460 &euro; HT/mois</div>
+        </div>
       </div>
-      <div class="feat-card reveal reveal-d2">
-        <div class="feat-icon-line"></div>
-        <h3>Parc professionnel sécurisé</h3>
-        <p>Infrastructure entièrement clôturée, vidéosurveillée, accessible par badge. Environnement calme et structuré, adapté à une activité sérieuse.</p>
+      <div class="lot-body">
+        <div class="lot-col">
+          <div class="lot-col-title">Caract&eacute;ristiques</div>
+          <ul class="lot-list">
+            <li><span><strong>Surface :</strong> 12,5 m&sup2; &mdash; partag&eacute; avec 1 seul voisin (25 m&sup2; total)</span></li>
+            <li><span><strong>&Eacute;lectricit&eacute; :</strong> Prise tripha&eacute;se disponible</span></li>
+            <li><span><strong>Eau :</strong> Point d'eau disponible</span></li>
+            <li><span><strong>Charges :</strong> Incluses</span></li>
+            <li><span><strong>Option :</strong> 25 m&sup2; entiers &agrave; 460 &euro; HT/mois</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Acc&egrave;s &amp; &eacute;quipements</div>
+          <ul class="lot-list">
+            <li><span><strong>Acc&egrave;s :</strong> Porte sectionnelle ind&eacute;pendante</span></li>
+            <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
+            <li><span><strong>V&eacute;hicule :</strong> Voiture et camionnette</span></li>
+            <li><span><strong>Parking :</strong> D&eacute;di&eacute; &agrave; proximit&eacute;</span></li>
+            <li><span><strong>S&eacute;curit&eacute; :</strong> Vid&eacute;osurveillance 24h/24 + cl&ocirc;ture</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Conditions</div>
+          <ul class="lot-list">
+            <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> &mdash; hors bail</span></li>
+            <li><span><strong>Dur&eacute;e :</strong> 1 &agrave; 12 mois &mdash; choisie &agrave; la r&eacute;servation</span></li>
+            <li><span><strong>Reconduction :</strong> Pas automatique</span></li>
+            <li><span><strong>Activation :</strong> 190 &euro; HT (unique)</span></li>
+            <li><span><strong>1er paiement :</strong> 420 &euro; HT (activation + 1er mois)</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="feat-card reveal reveal-d3">
-        <div class="feat-icon-line"></div>
-        <h3>Site professionnel vérifié</h3>
-        <p>SIRET, assurances et activité contrôlés à l'entrée pour chaque occupant. Un réseau de professionnels sérieux dans un cadre mutualisé.</p>
+      <div class="lot-footer">
+        <div>
+          <div class="lot-caution"><strong>Caution :</strong> 300 &euro; HT &mdash; empreinte Swikly, 0 &euro; d&eacute;bit&eacute;</div>
+          <div class="lot-plans" style="margin-top:8px">&#128208; Plans et d&eacute;tails sur demande &mdash; <a href="tel:0759647754">07 59 64 77 54</a> &middot; <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
+        </div>
+        <div class="lot-cta-group">
+          <a class="btn-lot" href="#formulaire">Demander ce lot</a>
+          <a class="btn-lot-sm" href="#formulaire">Espace entier 25 m&sup2; &mdash; 460 &euro; HT</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOT 3 -->
+    <div class="lot-card reveal reveal-d2" id="lot3">
+      <div class="lot-header-bar">
+        <div>
+          <div class="lot-profil">PME &middot; Entreprise en croissance</div>
+          <div class="lot-title">Cellule 48 m&sup2; &mdash; 24 m&sup2; stockage RDC + 24 m&sup2; bureau &eacute;tage</div>
+          <div class="lot-badges" style="margin-top:10px">
+            <span class="lot-badge">Drive-in RDC</span>
+            <span class="lot-badge">Bureau &agrave; l'&eacute;tage</span>
+            <span class="lot-badge">WiFi inclus</span>
+            <span class="lot-badge">Sanitaires privatifs</span>
+            <span class="lot-badge">Chauff&eacute; / isol&eacute;</span>
+            <span class="lot-badge">Charges incluses</span>
+            <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
+          </div>
+        </div>
+        <div class="lot-price-hero">
+          <div class="lot-price-label">Mensualit&eacute; HT</div>
+          <div class="lot-price-num">623 &euro; <em>HT</em></div>
+          <div class="lot-price-option">&#9658; B&acirc;timent entier 96 m&sup2;&nbsp;: 1 246 &euro; HT/mois</div>
+        </div>
+      </div>
+      <div class="lot-body">
+        <div class="lot-col">
+          <div class="lot-col-title">Caract&eacute;ristiques</div>
+          <ul class="lot-list">
+            <li><span><strong>Surface :</strong> 48 m&sup2; total &mdash; 24 m&sup2; RDC + 24 m&sup2; &eacute;tage</span></li>
+            <li><span><strong>RDC :</strong> Stockage &mdash; acc&egrave;s plain-pied, porte sectionnelle</span></li>
+            <li><span><strong>&Eacute;tage :</strong> Bureau livr&eacute; non meubl&eacute;</span></li>
+            <li><span><strong>&Eacute;quipements :</strong> Wifi, sanitaires privatifs, &eacute;clairage</span></li>
+            <li><span><strong>Option :</strong> B&acirc;timent entier 96 m&sup2; &agrave; 1 246 &euro; HT/mois</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Acc&egrave;s &amp; &eacute;quipements</div>
+          <ul class="lot-list">
+            <li><span><strong>RDC :</strong> Porte sectionnelle + porte de service</span></li>
+            <li><span><strong>&Eacute;tage :</strong> Acc&egrave;s s&eacute;curis&eacute; par escalier interne</span></li>
+            <li><span><strong>Horaires :</strong> 6h-22h, 7j/7 via badge RFID</span></li>
+            <li><span><strong>Parking :</strong> D&eacute;di&eacute; &agrave; proximit&eacute;</span></li>
+            <li><span><strong>S&eacute;curit&eacute; :</strong> Vid&eacute;osurveillance 24h/24 + portail badge</span></li>
+          </ul>
+        </div>
+        <div class="lot-col">
+          <div class="lot-col-title">Conditions</div>
+          <ul class="lot-list">
+            <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> &mdash; hors bail</span></li>
+            <li><span><strong>Dur&eacute;e :</strong> 1 &agrave; 12 mois &mdash; choisie &agrave; la r&eacute;servation</span></li>
+            <li><span><strong>Reconduction :</strong> Pas automatique</span></li>
+            <li><span><strong>Activation :</strong> 190 &euro; HT (unique)</span></li>
+            <li><span><strong>1er paiement :</strong> 813 &euro; HT (activation + 1er mois)</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="lot-footer">
+        <div>
+          <div class="lot-caution"><strong>Caution :</strong> 1 000 &euro; HT &mdash; empreinte Swikly, 0 &euro; d&eacute;bit&eacute; &middot; Pas d'acc&egrave;s poids lourds</div>
+          <div class="lot-plans" style="margin-top:8px">&#128208; Plans et d&eacute;tails sur demande &mdash; <a href="tel:0759647754">07 59 64 77 54</a> &middot; <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
+        </div>
+        <div class="lot-cta-group">
+          <a class="btn-lot" href="#formulaire">Demander ce lot</a>
+          <a class="btn-lot-sm" href="#formulaire">B&acirc;timent entier 96 m&sup2; &mdash; 1 246 &euro; HT</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GARANTIES -->
+<section class="pricing" id="tarifs">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px">
+      <span class="section-tag">R&eacute;capitulatif tarifaire</span>
+      <h2 class="h2">Tarifs clairs.<br><em>Z&eacute;ro surprise.</em></h2>
+      <p class="lead" style="max-width:520px">Tous les prix sont en HT. Le r&egrave;glement intervient avant votre entr&eacute;e, jamais avant votre accord explicite.</p>
+    </div>
+    <div class="pricing-table reveal">
+      <div class="pt-header">
+        <div class="pt-head">Espace</div>
+        <div class="pt-head">Mensualit&eacute; HT</div>
+        <div class="pt-head">Caution Swikly</div>
+        <div class="pt-head">1er paiement HT</div>
+      </div>
+      <div class="pt-row">
+        <div class="pt-cell"><strong>Stockage 14 m&sup2;</strong><small>Mutualis&eacute; en 4 lots &middot; Drive-in</small></div>
+        <div class="pt-cell"><em>219 &euro;</em></div>
+        <div class="pt-cell">300 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">409 &euro; <small>activation + 1er mois</small></div>
+      </div>
+      <div class="pt-row highlight">
+        <div class="pt-cell"><strong>Stockage 56 m&sup2;</strong><small>Lot entier &mdash; sur demande</small></div>
+        <div class="pt-cell"><em>876 &euro;</em></div>
+        <div class="pt-cell">1 000 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">1 066 &euro; <small>activation + 1er mois</small></div>
+      </div>
+      <div class="pt-row">
+        <div class="pt-cell"><strong>Atelier 12,5 m&sup2;</strong><small>1 voisin &middot; Tripha&eacute;se &middot; Eau &middot; Charges incluses</small></div>
+        <div class="pt-cell"><em>230 &euro;</em></div>
+        <div class="pt-cell">300 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">420 &euro; <small>activation + 1er mois</small></div>
+      </div>
+      <div class="pt-row highlight">
+        <div class="pt-cell"><strong>Atelier 25 m&sup2;</strong><small>Espace entier &mdash; sur demande</small></div>
+        <div class="pt-cell"><em>460 &euro;</em></div>
+        <div class="pt-cell">500 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">650 &euro; <small>activation + 1er mois</small></div>
+      </div>
+      <div class="pt-row">
+        <div class="pt-cell"><strong>Cellule 48 m&sup2;</strong><small>Stock RDC + Bureau &eacute;tage &middot; Wifi &middot; Sanitaires</small></div>
+        <div class="pt-cell"><em>623 &euro;</em></div>
+        <div class="pt-cell">1 000 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">813 &euro; <small>activation + 1er mois</small></div>
+      </div>
+      <div class="pt-row highlight">
+        <div class="pt-cell"><strong>B&acirc;timent entier 96 m&sup2;</strong><small>Les 2 cellules &mdash; sur demande</small></div>
+        <div class="pt-cell"><em>1 246 &euro;</em></div>
+        <div class="pt-cell">2 000 &euro; (0 &euro; d&eacute;bit&eacute;)</div>
+        <div class="pt-cell">1 436 &euro; <small>activation + 1er mois</small></div>
+      </div>
+    </div>
+    <div class="offre-block reveal reveal-d1" style="max-width:600px;margin-top:32px">
+      <div class="offre-block-header">
+        <div class="offre-block-badge">Offre de Lancement</div>
+        <div class="offre-block-deadline">Apr&egrave;s le 7 juillet&nbsp;: <strong>299 &euro; HT</strong></div>
+      </div>
+      <p>Les premiers membres b&eacute;n&eacute;ficient de frais d'activation r&eacute;duits &agrave; 190 &euro; HT, <strong>gel&eacute;s &agrave; vie</strong> sur tous leurs contrats futurs.</p>
+      <div class="offre-price-compare">
+        <div class="offre-price-now">190 &euro; HT</div>
+        <div><div class="offre-price-after">299 &euro; HT</div><div class="offre-price-label">apr&egrave;s le 7 juillet</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="processus">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Comment &ccedil;a marche</span>
+      <h2 class="h2">De la demande &agrave; l'acc&egrave;s.<br><em>En quelques jours.</em></h2>
+      <p class="lead" style="max-width:520px">Un &eacute;change pr&eacute;alable est toujours pr&eacute;vu avant tout paiement.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step-card"><div class="step-n">1</div><h4>Vous faites une demande</h4><p>Formulaire ou appel direct. Deux minutes. Aucun engagement &agrave; cette &eacute;tape.</p><span class="step-tag">0 &euro; &mdash; sans engagement</span></div>
+      <div class="step-card"><div class="step-n">2</div><h4>Rappel sous 24h</h4><p>Notre &eacute;quipe vous rappelle pour confirmer que l'espace correspond &agrave; votre activit&eacute;.</p><span class="step-tag">24h ouvr&eacute;es</span></div>
+      <div class="step-card"><div class="step-n">3</div><h4>&Eacute;change pr&eacute;alable</h4><p>Visio ou t&eacute;l&eacute;phone. Cet &eacute;change est requis avant toute contractualisation.</p><span class="step-tag">Visio &middot; T&eacute;l&eacute;phone</span></div>
+      <div class="step-card"><div class="step-n">4</div><h4>Signature des CGV en ligne</h4><p>SIRET, assurance, <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a>, caution Swikly. 100 % digital.</p><span class="step-tag">100 % digital</span></div>
+      <div class="step-card"><div class="step-n">5</div><h4>Paiement et acc&egrave;s</h4><p>R&egrave;glement avant votre entr&eacute;e, apr&egrave;s validation compl&egrave;te du dossier.</p><span class="step-tag">Avant entr&eacute;e dans les lieux</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="garanties">
   <div class="container">
     <div class="garanties-inner">
       <div class="garanties-left reveal">
         <span class="section-tag">Le cadre STRAKARA</span>
-        <h2 class="h2">Ce que STRAKARA <em>vérifie.</em><br>Ce que vous <em>signez.</em></h2>
-        <p class="lead">Pas d'opacité. Pas de surprise. Chaque étape est transparente, documentée et protectrice pour les deux parties.</p>
+        <h2 class="h2">Ce que STRAKARA <em>v&eacute;rifie.</em><br>Ce que vous <em>signez.</em></h2>
+        <p class="lead">Pas d'opacit&eacute;. Pas de surprise. Chaque &eacute;tape est transparente et protectrice pour les deux parties.</p>
         <div style="padding:20px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);margin-bottom:16px">
           <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7">
-            <strong style="color:var(--gold);display:block;margin-bottom:6px">Une question avant de vous décider ?</strong>
-            Appelez ou écrivez directement à notre équipe.<br>
-            <a href="tel:0759647754" style="color:rgba(255,255,255,.75);text-decoration:none;font-weight:500">07 59 64 77 54</a>
-            &nbsp;·&nbsp;
+            <strong style="color:var(--gold);display:block;margin-bottom:6px">Une question avant de vous d&eacute;cider ?</strong>
+            <a href="tel:0759647754" style="color:rgba(255,255,255,.75);text-decoration:none;font-weight:500">07 59 64 77 54</a> &nbsp;&middot;&nbsp;
             <a href="mailto:contact@strakara.fr" style="color:rgba(255,255,255,.75);text-decoration:none;font-weight:500">contact@strakara.fr</a>
-            <span style="display:block;margin-top:6px;font-size:11px;color:rgba(255,255,255,.3)">Laura Charron — STRAKARA · Réponse sous 24h</span>
+            <span style="display:block;margin-top:6px;font-size:11px;color:rgba(255,255,255,.3)">Laura Charron &mdash; STRAKARA &middot; R&eacute;ponse sous 24h</span>
           </p>
         </div>
         <div style="padding:16px 18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)">
           <p style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6">
             <strong style="color:var(--gold-l);display:block;margin-bottom:4px">Cadre juridique transparent</strong>
-            STRAKARA opère via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">CGV</a> signées en ligne. Hors bail commercial. Sans mandat. Coordination administrative directe.
+            STRAKARA op&egrave;re via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">CGV</a> sign&eacute;es en ligne. Hors bail commercial. Hors loi Hoguet.
           </p>
         </div>
       </div>
       <div class="garanties-items reveal">
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>CGV signées en ligne — pas un bail</h4>
-            <p>Document clair, conforme au droit français. Pas de notaire, pas de clauses abusives. Signature électronique légale. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">Consulter les CGV →</a></p>
-          </div>
-        </div>
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>Caution via Swikly — 0 € bloqué</h4>
-            <p>Empreinte bancaire sécurisée. Aucune somme débitée sauf manquement documenté. Levée automatiquement à la fin de votre contrat.</p>
-          </div>
-        </div>
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>Membres 100 % vérifiés</h4>
-            <p>SIRET, assurance RC pro et identité contrôlés à l'entrée. Vos voisins de site ont été vérifiés comme vous.</p>
-          </div>
-        </div>
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>Paiement sécurisé via Stripe Connect</h4>
-            <p>Prestataire certifié DSP2. STRAKARA ne détient jamais vos fonds. Prélèvement SEPA automatique ou carte bancaire.</p>
-          </div>
-        </div>
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>États des lieux horodatés</h4>
-            <p>Constat photographique à l'entrée et à la sortie. Archivage sécurisé 5 ans. Protection des deux parties.</p>
-          </div>
-        </div>
-        <div class="garanties-item">
-          <div class="garanties-check">V</div>
-          <div>
-            <h4>Annuaire professionnel B2B inclus</h4>
-            <p>Votre entreprise est référencée dans l'annuaire STRAKARA dès votre activation. Visibilité auprès des membres vérifiés du réseau.</p>
-          </div>
-        </div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>CGV sign&eacute;es en ligne &mdash; pas un bail</h4><p>Document clair, conforme au droit fran&ccedil;ais. Signature &eacute;lectronique l&eacute;gale. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">Consulter les CGV &rarr;</a></p></div></div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>Caution via Swikly &mdash; 0 &euro; bloqu&eacute;</h4><p>Empreinte bancaire s&eacute;curis&eacute;e. Aucune somme d&eacute;bit&eacute;e sauf manquement document&eacute;. Lev&eacute;e automatique sous 15 jours apr&egrave;s l'&eacute;tat des lieux.</p></div></div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>Membres 100 % v&eacute;rifi&eacute;s</h4><p>SIRET, assurance RC pro et identit&eacute; contr&ocirc;l&eacute;s &agrave; l'entr&eacute;e. Vos voisins ont &eacute;t&eacute; v&eacute;rifi&eacute;s comme vous.</p></div></div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>Paiement s&eacute;curis&eacute; via Stripe Connect</h4><p>Certifi&eacute; DSP2. STRAKARA ne d&eacute;tient jamais vos fonds. SEPA automatique ou carte bancaire.</p></div></div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>&Eacute;tats des lieux horodat&eacute;s</h4><p>Constat photographique entr&eacute;e et sortie. Archivage s&eacute;curis&eacute; 5 ans. Protection des deux parties.</p></div></div>
+        <div class="garanties-item"><div class="garanties-check">V</div><div><h4>Annuaire professionnel B2B inclus</h4><p>Votre entreprise r&eacute;f&eacute;renc&eacute;e dans l'annuaire STRAKARA d&egrave;s l'activation. Visibilit&eacute; r&eacute;seau.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESSUS -->
-<section class="process" id="processus">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-tag">Comment ça marche</span>
-      <h2 class="h2">De la demande à l'accès.<br><em>En quelques jours.</em></h2>
-      <p class="lead" style="max-width:520px">Un échange préalable est toujours prévu avant tout paiement — par visio ou par téléphone.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step-card">
-        <div class="step-n">1</div>
-        <h4>Vous faites une demande</h4>
-        <p>Formulaire en ligne ou appel direct. Deux minutes. Aucun engagement à cette étape.</p>
-        <span class="step-tag">0 € — sans engagement</span>
-      </div>
-      <div class="step-card">
-        <div class="step-n">2</div>
-        <h4>Rappel sous 24h</h4>
-        <p>Notre équipe vous rappelle pour confirmer que l'espace correspond à votre activité.</p>
-        <span class="step-tag">24h ouvrées</span>
-      </div>
-      <div class="step-card">
-        <div class="step-n">3</div>
-        <h4>Signature des CGV en ligne</h4>
-        <p>SIRET, assurance, <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);font-weight:600;text-decoration:none">CGV STRAKARA</a>, caution Swikly. Tout se transmet en ligne. 100 % digital.</p>
-        <span class="step-tag">100 % digital</span>
-      </div>
-      <div class="step-card">
-        <div class="step-n">4</div>
-        <h4>Paiement et accès</h4>
-        <p>Le règlement intervient avant votre entrée dans les lieux, après validation complète de votre dossier.</p>
-        <span class="step-tag">Avant entrée dans les lieux</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
     <div class="reveal">
-      <span class="section-tag">Questions fréquentes</span>
-      <h2 class="h2">Vos questions.<br><em>Nos réponses.</em></h2>
-      <p class="lead" style="max-width:480px">Les vraies objections. Les vraies réponses. Vous ne trouvez pas la vôtre ? Appelez le <a href="tel:07596477
-      <p class="lead" style="max-width:480px">Les vraies objections. Les vraies réponses. Vous ne trouvez pas la vôtre ? Appelez le <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500;text-decoration:none">07 59 64 77 54</a>.</p>
+      <span class="section-tag">Questions fr&eacute;quentes</span>
+      <h2 class="h2">Vos questions.<br><em>Nos r&eacute;ponses.</em></h2>
+      <p class="lead" style="max-width:480px">Vous ne trouvez pas la v&ocirc;tre ? Appelez le <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500;text-decoration:none">07 59 64 77 54</a>.</p>
     </div>
     <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Est-ce légal ? Comment fonctionnent vos CGV ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          <strong>Oui, totalement légal.</strong> STRAKARA opère via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">Conditions Générales de Vente</a>, signées en ligne. Ce n'est pas un bail commercial. C'est un cadre contractuel clair, conforme au droit français, sans notaire et sans engagement pluriannuel. Vos droits sont protégés à chaque étape.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quand est-ce que je paie exactement ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          <strong>Aucun paiement à ce stade.</strong> Un échange préalable — par visio ou par téléphone — est nécessaire avant toute contractualisation. Le règlement intervient avant votre entrée dans les lieux, après validation complète de votre dossier. En cas de doute, appelez le <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a>.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Comment fonctionne la caution Swikly ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          <strong>Rien n'est débité.</strong> La caution est gérée par empreinte bancaire sécurisée via Swikly. Aucune somme n'est prélevée à l'inscription. L'empreinte n'est activée qu'en cas de manquement avéré et documenté. Elle est levée automatiquement à la fin de votre contrat.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quelle est la durée d'engagement ? Puis-je partir quand je veux ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          Nos <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">CGV</a> permettent des durées de <strong>1 à 12 mois</strong>, selon vos besoins et votre activité. Pas d'engagement pluriannuel. Consultez directement nos CGV pour tous les détails.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quelles assurances dois-je fournir ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          Chaque client doit justifier d'une <strong>assurance RC professionnelle</strong> et d'une <strong>assurance des biens stockés</strong> avant l'activation. Ces justificatifs sont transmis lors de la constitution du dossier. STRAKARA vérifie leur validité.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Puis-je accueillir des clients ou domicilier mon entreprise ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          <strong>Non.</strong> Les espaces STRAKARA sont réservés à un usage professionnel de stockage ou d'activité productive, sans accueil de clientèle sur site. La domiciliation et le siège social ne sont pas autorisés.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quelle est la différence entre les 3 espaces disponibles à Brest ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          <strong>Stockage 14 m²</strong> — mutualisé en 4 lots, idéal stockage. Option 56 m² entiers : 876 € HT/mois.<br><br>
-          <strong>Atelier 12,5 m²</strong> — prise triphasée + point d'eau, 1 seul voisin. Option 25 m² entiers : 460 € HT/mois.<br><br>
-          <strong>Cellule 48 m²</strong> — stockage RDC + bureau étage. Option 96 m² entiers : 1 246 € HT/mois.<br><br>
-          Plans et détails sur demande — <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600">contact@strakara.fr</a>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Je veux rejoindre le réseau STRAKARA en tant qu'hébergeur — comment faire ? <em class="faq-arrow">&#9662;</em></button>
-        <div class="faq-a">
-          Vous avez des m² vacants à valoriser ? <a href="https://app.strakara.fr/rejoindre" target="_blank" style="color:var(--gold-d);font-weight:600">Déposer votre espace ici →</a>
-        </div>
-      </div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Est-ce l&eacute;gal ? Comment fonctionnent vos CGV ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a"><strong>Oui, totalement l&eacute;gal.</strong> STRAKARA op&egrave;re via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">CGV</a> sign&eacute;es en ligne. Ce n'est pas un bail commercial. Conforme au droit fran&ccedil;ais, sans notaire, sans engagement pluriannuel.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quand est-ce que je paie exactement ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a"><strong>Aucun paiement &agrave; ce stade.</strong> Un &eacute;change pr&eacute;alable est n&eacute;cessaire avant toute contractualisation. Le r&egrave;glement intervient avant votre entr&eacute;e, apr&egrave;s validation compl&egrave;te du dossier. En cas de doute : <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a>.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Comment fonctionne la caution Swikly ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a"><strong>Rien n'est d&eacute;bit&eacute;.</strong> La caution est g&eacute;r&eacute;e par empreinte bancaire s&eacute;curis&eacute;e. Aucune somme pr&eacute;lev&eacute;e &agrave; l'inscription. Lev&eacute;e automatiquement sous 15 jours apr&egrave;s l'&eacute;tat des lieux de sortie.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quelle est la dur&eacute;e d'occupation ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a">La dur&eacute;e est <strong>choisie &agrave; la r&eacute;servation, de 1 &agrave; 12 mois</strong>. <strong>Pas de reconduction automatique</strong> : toute prolongation demande un nouvel accord. Consultez nos <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">CGV</a> pour tous les d&eacute;tails.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Puis-je louer l'espace entier plut&ocirc;t qu'un lot ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a">Oui, sur demande. Chaque espace peut &ecirc;tre lou&eacute; en totalit&eacute; : <strong>56 m&sup2; &agrave; 876 &euro; HT/mois</strong> (4 lots stockage), <strong>25 m&sup2; &agrave; 460 &euro; HT/mois</strong> (atelier entier), <strong>96 m&sup2; &agrave; 1 246 &euro; HT/mois</strong> (b&acirc;timent entier). Contactez-nous directement.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quelles assurances dois-je fournir ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a">Une <strong>assurance RC professionnelle</strong> et une <strong>assurance des biens stock&eacute;s</strong> sont obligatoires avant l'activation. STRAKARA v&eacute;rifie leur validit&eacute;.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Puis-je accueillir des clients ou domicilier mon entreprise ? <em class="faq-arrow">&#9662;</em></button><div class="faq-a"><strong>Non.</strong> Usage professionnel de stockage ou d'activit&eacute; productive uniquement. Sans accueil de client&egrave;le. Domiciliation et si&egrave;ge social non autoris&eacute;s.</div></div>
     </div>
   </div>
 </section>
 
-<!-- FORMULAIRE FINAL -->
 <section class="formulaire" id="formulaire">
   <div class="container formulaire-inner">
     <div class="formulaire-left reveal">
       <span class="section-tag">Prise de contact</span>
-      <h2>Un échange d'abord.<br><em>Aucun paiement aujourd'hui.</em></h2>
-      <p>Notre équipe vous rappelle sous 24h — visio ou téléphone. Le règlement intervient uniquement avant votre entrée dans les lieux, après validation de votre dossier.</p>
+      <h2>Un &eacute;change d'abord.<br><em>Aucun paiement aujourd'hui.</em></h2>
+      <p>Notre &eacute;quipe vous rappelle sous 24h &mdash; visio ou t&eacute;l&eacute;phone selon votre disponibilit&eacute;. Le r&egrave;glement intervient uniquement avant votre entr&eacute;e dans les lieux.</p>
       <div class="form-promesses">
-        <div class="form-promesse">Rappel téléphonique sous 24h ouvrées</div>
-        <div class="form-promesse">Échange préalable obligatoire — visio ou téléphone</div>
+        <div class="form-promesse">Rappel t&eacute;l&eacute;phonique sous 24h ouvr&eacute;es</div>
+        <div class="form-promesse">&Eacute;change pr&eacute;alable obligatoire &mdash; visio ou t&eacute;l&eacute;phone</div>
         <div class="form-promesse">Aucun paiement avant validation du dossier</div>
-        <div class="form-promesse">Frais d'activation 190 € HT — gelés à vie</div>
-        <div class="form-promesse">Caution Swikly — aucun fond immobilisé</div>
-        <div class="form-promesse">De 1 à 12 mois — flexible selon votre activité</div>
-        <div class="form-promesse">CGV claires signées en ligne — pas de bail</div>
-        <div class="form-promesse">Dossier 100 % en ligne après l'échange</div>
+        <div class="form-promesse">Frais d'activation 190 &euro; HT &mdash; gel&eacute;s &agrave; vie</div>
+        <div class="form-promesse">Caution Swikly &mdash; aucun fond immobilis&eacute;</div>
+        <div class="form-promesse">De 1 &agrave; 12 mois &mdash; dur&eacute;e choisie &agrave; la r&eacute;servation</div>
+        <div class="form-promesse">CGV claires sign&eacute;es en ligne &mdash; pas de bail</div>
+        <div class="form-promesse">Option lot entier disponible sur chaque espace</div>
       </div>
       <div class="contact-direct">
         <p>
-          <strong>Vous préférez parler directement ?</strong><br>
-          <a href="tel:0759647754">07 59 64 77 54</a> — Laura Charron, STRAKARA<br>
+          <strong>Vous pr&eacute;f&eacute;rez parler directement ?</strong><br>
+          <a href="tel:0759647754">07 59 64 77 54</a> &mdash; Laura Charron, STRAKARA<br>
           <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
-          <span class="contact-name">Réponse sous 24h ouvrées · Visio ou téléphone</span>
+          <span class="contact-name">R&eacute;ponse sous 24h ouvr&eacute;es &middot; Visio ou t&eacute;l&eacute;phone</span>
         </p>
       </div>
       <div class="alerte-paiement">
-        <strong>Important.</strong>
-        Aucun paiement n'est demandé à cette étape. Un échange préalable est nécessaire avant toute contractualisation.
+        <strong>Important.</strong> Aucun paiement &agrave; cette &eacute;tape. Un &eacute;change pr&eacute;alable est n&eacute;cessaire avant toute contractualisation.
       </div>
     </div>
     <div class="reveal">
       <div class="form-box">
         <div class="form-box-title">Demande de contact</div>
-        <div class="form-box-sub">Espaces professionnels · Brest · Disponibles avant le 1er juillet</div>
-        <div class="form-notice">
-          <strong>Aucun paiement à cette étape.</strong>
-          Un échange préalable est nécessaire avant tout contrat. Notre équipe vous contacte sous 24h.
-        </div>
+        <div class="form-box-sub">Espaces professionnels &middot; Brest &middot; Disponibles avant le 1er juillet</div>
+        <div class="form-notice"><strong>Aucun paiement &agrave; cette &eacute;tape.</strong> Notre &eacute;quipe vous contacte sous 24h pour convenir d'un &eacute;change.</div>
         <form id="main-form" action="https://formspree.io/f/xgodzyzj" method="POST">
           <input type="hidden" name="source" value="Landing Brest — Formulaire principal">
           <input type="hidden" name="ville" value="Brest">
           <div class="fg-grid">
-            <div class="fg">
-              <label>Nom / Prénom *</label>
-              <input type="text" name="nom" required placeholder="Jean Dupont">
-            </div>
-            <div class="fg">
-              <label>Téléphone *</label>
-              <input type="tel" name="telephone" required placeholder="06 00 00 00 00">
-            </div>
+            <div class="fg"><label>Nom / Pr&eacute;nom *</label><input type="text" name="nom" required placeholder="Jean Dupont"></div>
+            <div class="fg"><label>T&eacute;l&eacute;phone *</label><input type="tel" name="telephone" required placeholder="06 00 00 00 00"></div>
           </div>
+          <div class="fg"><label>Email professionnel *</label><input type="email" name="email" required placeholder="vous@entreprise.fr"></div>
+          <div class="fg"><label>Entreprise / SIRET</label><input type="text" name="entreprise" placeholder="Nom de votre soci&eacute;t&eacute;"></div>
           <div class="fg">
-            <label>Email professionnel *</label>
-            <input type="email" name="email" required placeholder="vous@entreprise.fr">
-          </div>
-          <div class="fg">
-            <label>Entreprise / SIRET</label>
-            <input type="text" name="entreprise" placeholder="Nom de votre société">
-          </div>
-          <div class="fg">
-            <label>Espace souhaité *</label>
+            <label>Espace souhait&eacute; *</label>
             <select name="espace_choisi" id="select-espace" required>
-              <option value="" disabled selected>Sélectionnez</option>
-              <option value="Stockage 14 m² — 219 € HT/mois">Stockage 14 m² (mutualisé) — 219 € HT/mois</option>
-              <option value="Stockage 56 m² lot entier — 876 € HT/mois">Stockage 56 m² (lot entier) — 876 € HT/mois</option>
-              <option value="Atelier 12,5 m² — 230 € HT/mois">Atelier 12,5 m² (1 voisin) — 230 € HT/mois</option>
-              <option value="Atelier 25 m² entier — 460 € HT/mois">Atelier 25 m² (entier) — 460 € HT/mois</option>
-              <option value="Cellule Stock + Bureau 48 m² — 623 € HT/mois">Cellule Stock + Bureau 48 m² — 623 € HT/mois</option>
-              <option value="Bâtiment entier 96 m² — 1 246 € HT/mois">Bâtiment entier 96 m² — 1 246 € HT/mois</option>
-              <option value="Je ne sais pas encore">Je ne sais pas encore</option>
+              <option value="" disabled selected>S&eacute;lectionnez</option>
+              <option>Stockage 14 m&sup2; (mutualis&eacute;) &mdash; 219 &euro; HT/mois</option>
+              <option>Stockage 56 m&sup2; (lot entier) &mdash; 876 &euro; HT/mois</option>
+              <option>Atelier 12,5 m&sup2; (1 voisin) &mdash; 230 &euro; HT/mois</option>
+              <option>Atelier 25 m&sup2; (entier) &mdash; 460 &euro; HT/mois</option>
+              <option>Cellule Stock + Bureau 48 m&sup2; &mdash; 623 &euro; HT/mois</option>
+              <option>B&acirc;timent entier 96 m&sup2; &mdash; 1 246 &euro; HT/mois</option>
+              <option>Je ne sais pas encore</option>
             </select>
           </div>
           <div class="fg-grid">
             <div class="fg">
-              <label>Durée souhaitée *</label>
+              <label>Dur&eacute;e souhait&eacute;e *</label>
               <select name="duree" required>
-                <option value="" disabled selected>Sélectionnez</option>
+                <option value="" disabled selected>S&eacute;lectionnez</option>
                 <option>1 mois</option>
-                <option>2 à 3 mois</option>
-                <option>4 à 6 mois</option>
-                <option>7 à 12 mois</option>
+                <option>2 &agrave; 3 mois</option>
+                <option>4 &agrave; 6 mois</option>
+                <option>7 &agrave; 12 mois</option>
               </select>
             </div>
             <div class="fg">
-              <label>Mode d'échange préféré *</label>
+              <label>Mode d'&eacute;change pr&eacute;f&eacute;r&eacute; *</label>
               <select name="contact_mode" required>
-                <option value="" disabled selected>Sélectionnez</option>
-                <option>Téléphone</option>
+                <option value="" disabled selected>S&eacute;lectionnez</option>
+                <option>T&eacute;l&eacute;phone</option>
                 <option>Visio</option>
               </select>
             </div>
           </div>
-          <div class="fg">
-            <label>Type d'activité / usage</label>
-            <input type="text" name="activite" placeholder="E-commerce, artisan, négoce, PME...">
-          </div>
-          <div class="fg">
-            <label>Message (optionnel)</label>
-            <textarea name="message" placeholder="Date de démarrage souhaitée, questions, contraintes..."></textarea>
-          </div>
+          <div class="fg"><label>Type d'activit&eacute; / usage</label><input type="text" name="activite" placeholder="E-commerce, artisan, n&eacute;goce, PME..."></div>
+          <div class="fg"><label>Message (optionnel)</label><textarea name="message" placeholder="Date de d&eacute;marrage, questions, contraintes..."></textarea></div>
           <div class="rgpd-row">
             <input type="checkbox" id="rgpd" name="rgpd" required>
-            <label for="rgpd">J'accepte que mes informations soient transmises à l'équipe STRAKARA. Données non partagées avec des tiers. Droits RGPD : contact@strakara.fr</label>
+            <label for="rgpd">J'accepte que mes informations soient transmises &agrave; l'&eacute;quipe STRAKARA. Donn&eacute;es non partag&eacute;es. Droits RGPD : contact@strakara.fr</label>
           </div>
           <button type="submit" class="btn-submit" id="main-btn">Envoyer ma demande de contact</button>
-          <p class="form-note">Rappel sous 24h · Sans engagement · <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d)">Consulter les CGV</a></p>
+          <p class="form-note">Rappel sous 24h &middot; Sans engagement &middot; <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d)">Consulter les CGV</a></p>
         </form>
         <div class="form-success" id="main-success">
-          <h4>Demande enregistrée.</h4>
-          <p>Notre équipe vous rappelle sous 24h ouvrées.<br><br>Pour toute urgence : <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a></p>
+          <h4>Demande enregistr&eacute;e.</h4>
+          <p>Notre &eacute;quipe vous rappelle sous 24h ouvr&eacute;es. Bienvenue dans le r&eacute;seau STRAKARA.<br><br>Urgence : <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REJOINDRE LE RÉSEAU -->
-<section class="reseau">
+<section class="autres">
   <div class="container">
-    <div class="reseau-inner reveal">
-      <div class="reseau-left">
-        <span class="section-tag">Réseau STRAKARA</span>
-        <h2>Vous avez des m² à valoriser ?<br><em>Rejoignez le réseau.</em></h2>
-        <p>Hébergeurs, propriétaires, gestionnaires d'actifs : STRAKARA prend en charge la coordination administrative et technique de vos espaces vacants. Vous percevez 100 % du loyer, sans contrainte opérationnelle.</p>
+    <div class="autres-inner reveal">
+      <div>
+        <span class="section-tag">R&eacute;seau STRAKARA</span>
+        <h2 class="h2" style="font-size:clamp(1.5rem,2.5vw,2.2rem)">D'autres espaces<br><em>partout en France.</em></h2>
+        <p class="lead" style="max-width:440px;margin-top:0">8 sites actifs. Bretagne, Normandie, Landes, Alsace, Auvergne, Occitanie.</p>
       </div>
-      <div class="reseau-cta">
-        <a class="btn-network" href="https://app.strakara.fr/rejoindre" target="_blank">→ Rentrer dans le réseau STRAKARA</a>
-        <a class="btn-network-outline" href="https://app.strakara.fr" target="_blank">Voir tous nos espaces disponibles</a>
-        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;text-align:center">8 sites actifs · Bretagne, Normandie, Landes, Alsace et plus</div>
+      <div class="autres-cta">
+        <a class="btn-nav" href="https://app.strakara.fr" target="_blank" style="padding:14px 32px;font-size:14px">Voir tous les espaces disponibles</a>
+        <a class="btn-outline" href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le r&eacute;seau STRAKARA</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT BAR -->
 <div class="contact-bar">
-  <div class="ci"><span class="ci-l">Téléphone</span><a href="tel:0759647754">07 59 64 77 54</a></div>
+  <div class="ci"><span class="ci-l">T&eacute;l&eacute;phone</span><a href="tel:0759647754">07 59 64 77 54</a></div>
   <div class="ci"><span class="ci-l">Contact</span><a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
   <div class="ci"><span class="ci-l">CGV</span><a href="https://www.strakara.fr/cgv.html" target="_blank">strakara.fr/cgv</a></div>
-  <div class="ci"><span class="ci-l">Réseau</span><a href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le réseau</a></div>
+  <div class="ci"><span class="ci-l">R&eacute;seau</span><a href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le r&eacute;seau</a></div>
 </div>
 
 <footer>
-  <p>STRAKARA SASU — Coordination administrative &amp; technique d'espaces professionnels · RCS Paris 103 312 211 · 231 rue Saint-Honoré, 75001 Paris</p>
-  <p style="margin-top:6px">Tous les prix en HT · L'inscription ne constitue pas un engagement contractuel ·
-    <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a> ·
-    <a href="https://www.strakara.fr/cgv.html">CGV</a> ·
-    <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
+  <p>STRAKARA SASU &mdash; Coordination administrative &amp; technique d'espaces professionnels &middot; RCS Paris 103 312 211 &middot; 231 rue Saint-Honor&eacute;, 75001 Paris</p>
+  <p style="margin-top:6px">Tous les prix en HT &middot; L'inscription ne constitue pas un engagement contractuel &middot;
+    <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a> &middot;
+    <a href="https://www.strakara.fr/cgv.html">CGV</a> &middot;
+    <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
   </p>
 </footer>
 
 <script>
-function toggleFaq(el) {
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.faq-q.open').forEach(q => {
-    q.classList.remove('open');
-    q.nextElementSibling.classList.remove('open');
-  });
-  if (!isOpen) { el.classList.add('open'); el.nextElementSibling.classList.add('open'); }
-}
-
-function toggleDetails(id) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.lot-details.open').forEach(d => d.classList.remove('open'));
-  if (!isOpen) {
-    el.classList.add('open');
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-
-function preselectEspace(val) {
-  setTimeout(() => {
-    const sel = document.getElementById('select-espace');
-    if (sel) {
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value === val) { sel.selectedIndex = i; break; }
-      }
-    }
-  }, 300);
-}
-
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-document.getElementById('hero-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('hero-btn');
-  btn.textContent = 'Envoi...'; btn.disabled = true;
-  try {
-    const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-    if (res.ok) { btn.textContent = 'Reçu — rappel sous 24h'; btn.style.background = '#2A7A5A'; }
-    else { btn.textContent = 'Erreur — appelez le 07 59 64 77 54'; btn.disabled = false; }
-  } catch { btn.textContent = 'Erreur — appelez le 07 59 64 77 54'; btn.disabled = false; }
-});
-
-document.getElementById('main-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('main-btn');
-  btn.textContent = 'Envoi en cours...'; btn.disabled = true;
-  try {
-    const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-    if (res.ok) {
-      this.style.display = 'none';
-      const s = document.getElementById('main-success');
-      s.style.display = 'block';
-      s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else { btn.textContent = 'Erreur — Appelez le 07 59 64 77 54'; btn.disabled = false; }
-  } catch { btn.textContent = 'Erreur — Appelez le 07 59 64 77 54'; btn.disabled = false; }
-});
+function toggleFaq(el){const o=el.classList.contains("open");document.querySelectorAll(".faq-q.open").forEach(q=>{q.classList.remove("open");q.nextElementSibling.classList.remove("open")});if(!o){el.classList.add("open");el.nextElementSibling.classList.add("open")}}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("visible")})},{threshold:0.08,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+document.getElementById("hero-form").addEventListener("submit",async function(e){e.preventDefault();const b=document.getElementById("hero-btn");b.textContent="Envoi...";b.disabled=true;try{const r=await fetch(this.action,{method:"POST",body:new FormData(this),headers:{"Accept":"application/json"}});if(r.ok){b.textContent="Reçu — rappel sous 24h";b.style.background="#2A7A5A"}else{b.textContent="Erreur — appelez le 07 59 64 77 54";b.disabled=false}}catch{b.textContent="Erreur — appelez le 07 59 64 77 54";b.disabled=false}});
+document.getElementById("main-form").addEventListener("submit",async function(e){e.preventDefault();const b=document.getElementById("main-btn");b.textContent="Envoi en cours...";b.disabled=true;try{const r=await fetch(this.action,{method:"POST",body:new FormData(this),headers:{"Accept":"application/json"}});if(r.ok){this.style.display="none";const s=document.getElementById("main-success");s.style.display="block";s.scrollIntoView({behavior:"smooth",block:"center"})}else{b.textContent="Erreur — Appelez le 07 59 64 77 54";b.disabled=false}}catch{b.textContent="Erreur — Appelez le 07 59 64 77 54";b.disabled=false}});
 </script>
 </body>
 </html>
