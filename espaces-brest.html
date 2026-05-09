@@ -119,6 +119,25 @@ body{font-family:"Outfit",sans-serif;color:var(--text);background:var(--white);-
 .feat-icon-line{width:32px;height:2px;background:var(--gold);margin-bottom:20px}
 .feat-card h3{font-family:"Playfair Display",serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px}
 .feat-card p{font-size:13px;color:var(--muted);line-height:1.7}
+  .lot-cover{
+  width:100%;
+  height:320px;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+  background:#f3f3f3;
+}
+
+.lot-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .4s ease;
+}
+
+.lot-card:hover .lot-cover img{
+  transform:scale(1.02);
+}
 /* LOTS */
 .lots{background:var(--white);padding:88px 0;border-bottom:1px solid var(--border)}
 .lot-card{border:1px solid var(--border);margin-bottom:24px;overflow:hidden;transition:box-shadow .2s}
@@ -294,6 +313,7 @@ footer a{color:rgba(255,255,255,.25);text-decoration:none}footer a:hover{color:v
   .pt-header,.pt-row{grid-template-columns:1fr 1fr}
   .pt-head:nth-child(3),.pt-head:nth-child(4),.pt-cell:nth-child(3),.pt-cell:nth-child(4){display:none}
 }
+  
 </style>
 </head>
 <body>
@@ -484,21 +504,34 @@ footer a{color:rgba(255,255,255,.25);text-decoration:none}footer a:hover{color:v
       <p class="lead" style="max-width:560px">Plans et photos suppl&eacute;mentaires disponibles sur demande par <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600;text-decoration:none">t&eacute;l&eacute;phone</a> ou &agrave; <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a>.</p>
     </div>
 
-    <!-- LOT 1 -->
-    <div class="lot-card reveal" id="lot1">
-      <div class="lot-header-bar">
-        <div>
-          <div class="lot-profil">Starter &middot; Artisan / E-commerce / TPE</div>
-          <div class="lot-title">Stockage 14 m&sup2; &mdash; Espace mutualis&eacute; en 4 lots</div>
-          <div class="lot-badges" style="margin-top:10px">
-            <span class="lot-badge">Drive-in</span>
-            <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
-            <span class="lot-badge">Badge RFID</span>
-            <span class="lot-badge">Vid&eacute;osurveillance</span>
-            <span class="lot-badge">Parking d&eacute;di&eacute;</span>
-            <span class="lot-badge">Mutualis&eacute; &middot; 4 lots</span>
-          </div>
-        </div>
+   <!-- LOT 1 -->
+<div class="lot-card reveal" id="lot1">
+
+  <div class="lot-cover">
+    <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/interieur-entrepot-stockage-60m2-profondeur-brest-strakara.jpg" alt="Stockage professionnel Brest">
+  </div>
+
+  <div class="lot-header-bar">
+
+    <div>
+      <div class="lot-profil">
+        Starter &middot; Artisan / E-commerce / TPE
+      </div>
+
+      <div class="lot-title">
+        Stockage 14 m&sup2; &mdash; Espace mutualis&eacute; en 4 lots
+      </div>
+
+      <div class="lot-badges" style="margin-top:10px">
+        <span class="lot-badge">Drive-in</span>
+        <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
+        <span class="lot-badge">Badge RFID</span>
+        <span class="lot-badge">Vid&eacute;osurveillance</span>
+        <span class="lot-badge">Parking d&eacute;di&eacute;</span>
+        <span class="lot-badge">Mutualis&eacute; &middot; 4 lots</span>
+      </div>
+    </div>
+       
         <div class="lot-price-hero">
           <div class="lot-price-label">Mensualit&eacute; HT</div>
           <div class="lot-price-num">219 &euro; <em>HT</em></div>
@@ -549,21 +582,34 @@ footer a{color:rgba(255,255,255,.25);text-decoration:none}footer a:hover{color:v
       </div>
     </div>
 
-    <!-- LOT 2 -->
-    <div class="lot-card reveal reveal-d1" id="lot2">
-      <div class="lot-header-bar">
-        <div>
-          <div class="lot-profil">Starter &middot; Artisan / Activit&eacute; productive</div>
-          <div class="lot-title">Atelier 12,5 m&sup2; &mdash; Prise tripha&eacute;se &middot; Point d'eau &middot; 1 voisin</div>
-          <div class="lot-badges" style="margin-top:10px">
-            <span class="lot-badge">Drive-in</span>
-            <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
-            <span class="lot-badge">Prise tripha&eacute;se</span>
-            <span class="lot-badge">Point d'eau</span>
-            <span class="lot-badge">Charges incluses</span>
-            <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
-          </div>
-        </div>
+  
+ <!-- LOT 2 -->
+<div class="lot-card reveal reveal-d1" id="lot2">
+
+  <div class="lot-cover">
+    <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/box-stockage-24m2-porte-ouverte-brest-strakara.jpg" alt="Atelier Brest">
+  </div>
+
+  <div class="lot-header-bar">
+
+    <div>
+      <div class="lot-profil">
+        Starter &middot; Artisan / Activit&eacute; productive
+      </div>
+
+      <div class="lot-title">
+        Atelier 12,5 m&sup2; &mdash; Prise tripha&eacute;se &middot; Point d'eau &middot; 1 voisin
+      </div>
+
+      <div class="lot-badges" style="margin-top:10px">
+        <span class="lot-badge">Drive-in</span>
+        <span class="lot-badge">Acc&egrave;s 6h-22h &middot; 7j/7</span>
+        <span class="lot-badge">Prise tripha&eacute;se</span>
+        <span class="lot-badge">Point d'eau</span>
+        <span class="lot-badge">Charges incluses</span>
+        <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
+      </div>
+    </div>
         <div class="lot-price-hero">
           <div class="lot-price-label">Mensualit&eacute; HT</div>
           <div class="lot-price-num">230 &euro; <em>HT</em></div>
@@ -614,22 +660,32 @@ footer a{color:rgba(255,255,255,.25);text-decoration:none}footer a:hover{color:v
       </div>
     </div>
 
-    <!-- LOT 3 -->
-    <div class="lot-card reveal reveal-d2" id="lot3">
-      <div class="lot-header-bar">
-        <div>
-          <div class="lot-profil">PME &middot; Entreprise en croissance</div>
-          <div class="lot-title">Cellule 48 m&sup2; &mdash; 24 m&sup2; stockage RDC + 24 m&sup2; bureau &eacute;tage</div>
-          <div class="lot-badges" style="margin-top:10px">
-            <span class="lot-badge">Drive-in RDC</span>
-            <span class="lot-badge">Bureau &agrave; l'&eacute;tage</span>
-            <span class="lot-badge">WiFi inclus</span>
-            <span class="lot-badge">Sanitaires privatifs</span>
-            <span class="lot-badge">Chauff&eacute; / isol&eacute;</span>
-            <span class="lot-badge">Charges incluses</span>
-            <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
-          </div>
-        </div>
+  <!-- LOT 3 -->
+<div class="lot-card reveal reveal-d2" id="lot3">
+
+  <div class="lot-cover">
+    <img src="https://raw.githubusercontent.com/lauradiaz5006-bit/app-strakara/main/images/cellule-activite-48m2-stockage-rez-de-chaussee-brest-strakara.jpg" alt="Cellule activité Brest">
+  </div>
+
+  <div class="lot-header-bar">
+
+    <div>
+      <div class="lot-profil">PME &middot; Entreprise en croissance</div>
+
+      <div class="lot-title">
+        Cellule 48 m&sup2; &mdash; 24 m&sup2; stockage RDC + 24 m&sup2; bureau &eacute;tage
+      </div>
+
+      <div class="lot-badges" style="margin-top:10px">
+        <span class="lot-badge">Drive-in RDC</span>
+        <span class="lot-badge">Bureau &agrave; l'&eacute;tage</span>
+        <span class="lot-badge">WiFi inclus</span>
+        <span class="lot-badge">Sanitaires privatifs</span>
+        <span class="lot-badge">Chauff&eacute; / isol&eacute;</span>
+        <span class="lot-badge">Charges incluses</span>
+        <span class="lot-badge">1 seul voisin v&eacute;rifi&eacute;</span>
+      </div>
+    </div>
         <div class="lot-price-hero">
           <div class="lot-price-label">Mensualit&eacute; HT</div>
           <div class="lot-price-num">623 &euro; <em>HT</em></div>
