@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Espaces professionnels · Brest — Sans bail · STRAKARA</title>
-<meta name="description" content="Cellules de stockage et espaces d'activité professionnels à Brest. Parc neuf 12 000 m². Disponible avant le 1er juillet. Accès 6h-22h. Sans bail. Caution 0 € bloqué.">
+<title>Espaces professionnels · Brest — Sans engagement · STRAKARA</title>
+<meta name="description" content="Cellules de stockage et espaces d'activité professionnels à Brest. Parc sécurisé. Disponible avant le 1er juillet. Accès 6h-22h. Nouveau concept flexible.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -59,6 +59,11 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .hero-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.75;font-weight:300;max-width:480px;margin-bottom:28px}
 .hero-sub strong{color:rgba(255,255,255,.9);font-weight:500}
 
+/* NOUVEAU CONCEPT BADGE */
+.nouveau-concept{display:inline-flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nc-badge{background:var(--gold);color:var(--brand);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px}
+.nc-text{font-size:12px;color:rgba(255,255,255,.5);font-weight:300;letter-spacing:.04em}
+
 .offre-premium{display:inline-flex;align-items:stretch;margin-bottom:28px;border:1px solid rgba(200,169,106,.35)}
 .offre-premium-label{background:var(--gold);color:var(--brand);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;display:flex;align-items:center}
 .offre-premium-text{padding:8px 16px;font-size:13px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px}
@@ -73,6 +78,7 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .hlot-name{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;margin-bottom:6px}
 .hlot-price{font-size:13px;color:rgba(255,255,255,.8);font-weight:500}
 .hlot-price span{font-size:11px;color:rgba(255,255,255,.4)}
+.hlot-sub{font-size:10px;color:rgba(255,255,255,.3);margin-top:3px;font-style:italic}
 
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin-bottom:36px;border:1px solid rgba(255,255,255,.08)}
 .hstat{background:rgba(255,255,255,.03);padding:16px 14px}
@@ -87,6 +93,8 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .btn-hero-primary:hover{background:var(--gold-l);transform:translateY(-1px)}
 .btn-hero-call{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(200,169,106,.35);color:rgba(255,255,255,.8);padding:15px 24px;font-size:14px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
 .btn-hero-call:hover{border-color:var(--gold);color:var(--white)}
+.btn-hero-network{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,106,.1);border:1px solid rgba(200,169,106,.3);color:var(--gold);padding:13px 22px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;letter-spacing:.03em}
+.btn-hero-network:hover{background:rgba(200,169,106,.2);border-color:var(--gold);color:var(--gold-l)}
 
 /* HERO RIGHT FORM */
 .hero-right{display:flex;flex-direction:column}
@@ -120,6 +128,16 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);line-height:1.2;margin-bottom:16px}
 .h2 em{font-style:italic;color:var(--gold)}
 .lead{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* NETWORK BAND */
+.network-band{background:linear-gradient(135deg,rgba(200,169,106,.12) 0%,rgba(200,169,106,.04) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 48px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.nb-text{text-align:center}
+.nb-text p{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:6px}
+.nb-text span{font-size:13px;color:var(--muted)}
+.btn-network{background:var(--brand);color:var(--white);padding:14px 32px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:background .18s;display:inline-block}
+.btn-network:hover{background:var(--gold-d)}
+.btn-network-outline{background:transparent;border:2px solid var(--gold);color:var(--gold-d);padding:12px 28px;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:all .18s;display:inline-block}
+.btn-network-outline:hover{background:var(--gold);color:var(--brand)}
 
 /* SITE INFO BAND */
 .site-band{background:var(--brand);padding:48px 0;border-bottom:3px solid rgba(200,169,106,.2)}
@@ -156,8 +174,12 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .lot-price{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--brand);line-height:1}
 .lot-price em{font-style:italic;color:var(--gold);font-size:1.1rem}
 .lot-price-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.lot-price-option{font-size:12px;color:var(--gold-d);margin-top:6px;font-weight:500;border-top:1px dashed var(--border);padding-top:6px}
 .lot-caution{font-size:11px;color:var(--muted);margin-top:6px}
 .lot-caution strong{color:var(--text)}
+.lot-plans{font-size:11px;color:var(--muted);margin-top:8px;padding:8px 12px;background:var(--light);border-left:2px solid var(--gold)}
+.lot-plans a{color:var(--gold-d);text-decoration:none;font-weight:600}
+.lot-plans a:hover{text-decoration:underline}
 .lot-cta{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
 .btn-lot{background:var(--brand);color:var(--white);padding:13px 28px;font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:background .18s;white-space:nowrap}
 .btn-lot:hover{background:#2e2f35}
@@ -272,6 +294,15 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .form-success h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold-d);margin-bottom:12px}
 .form-success p{font-size:13px;color:var(--muted);line-height:1.7}
 
+/* RÉSEAU SECTION */
+.reseau{background:var(--brand);padding:72px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.reseau-inner{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.reseau-left .section-tag{color:var(--gold)}
+.reseau-left h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);color:var(--white);line-height:1.2;margin-bottom:12px}
+.reseau-left h2 em{font-style:italic;color:var(--gold)}
+.reseau-left p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;max-width:440px}
+.reseau-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex-shrink:0}
+
 /* AUTRES ESPACES */
 .autres{background:var(--white);padding:72px 0;border-bottom:1px solid var(--border)}
 .autres-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
@@ -310,7 +341,7 @@ footer a:hover{color:var(--gold)}
   .lot-card-inner{grid-template-columns:1fr}
   .lot-details-grid{grid-template-columns:1fr 1fr}
   .site-band-inner{grid-template-columns:1fr}
-  .autres-inner{flex-direction:column;align-items:flex-start}
+  .autres-inner,.reseau-inner{flex-direction:column;align-items:flex-start}
   .autres-cta{align-items:flex-start}
 }
 @media(max-width:768px){
@@ -330,6 +361,7 @@ footer a:hover{color:var(--gold)}
   .offre-premium{flex-direction:column}
   .lot-bottom{flex-direction:column;align-items:flex-start}
   .lot-cta{align-items:flex-start}
+  .network-band{padding:20px;gap:20px;flex-direction:column;text-align:center}
 }
 </style>
 </head>
@@ -337,7 +369,7 @@ footer a:hover{color:var(--gold)}
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <span class="dispo-dot"></span> Nouveau site · Disponible avant le 1er juillet <span class="sep">·</span> Frais d'activation <strong>190 € HT</strong> <span class="sep">·</span> <strong>Brest · Parc professionnel neuf</strong>
+  <span class="dispo-dot"></span> Nouveau concept · Disponible avant le 1er juillet <span class="sep">·</span> Frais d'activation <strong>190 € HT</strong> <span class="sep">·</span> <strong>Brest · Parc sécurisé professionnel</strong>
 </div>
 
 <!-- NAV -->
@@ -369,15 +401,21 @@ footer a:hover{color:var(--gold)}
     <div class="hero-inner">
 
       <div>
-        <div class="hero-tag">Nouveau site — disponible avant le 1er juillet</div>
+        <div class="hero-tag">Disponible avant le 1er juillet · Brest</div>
+
+        <div class="nouveau-concept">
+          <span class="nc-badge">✦ Nouveau Concept</span>
+          <span class="nc-text">Espaces mutualisés · Flexibilité totale · 0 bail</span>
+        </div>
+
         <h1>
           Espaces professionnels<br>
-          <em>sans bail.</em><br>
+          <em>sans engagement.</em><br>
           Brest.
         </h1>
 
         <div class="offre-premium">
-          <div class="offre-premium-label">Offre Premium de Lancement</div>
+          <div class="offre-premium-label">Offre de Lancement</div>
           <div class="offre-premium-text">
             Frais d'activation <strong>190 € HT</strong> — gelés à vie pour les premiers membres
             <s>299 €</s>
@@ -385,33 +423,32 @@ footer a:hover{color:var(--gold)}
         </div>
 
         <p class="hero-sub">
-          Parc professionnel neuf de 12 000 m² à Brest. Cellules de stockage, ateliers et espaces d'activité avec accès badge 6h-22h, vidéosurveillance et parking dédié. <strong>Sans bail commercial. Sans engagement long terme.</strong>
+          Parc sécurisé professionnel à Brest. Cellules de stockage, ateliers et espaces d'activité avec accès badge 6h-22h, vidéosurveillance et parking dédié. <strong>Sans bail. De 1 à 12 mois. Résiliable librement.</strong>
         </p>
 
         <!-- 3 LOTS EN APERÇU -->
         <div class="hero-lots">
           <a class="hlot" href="#lot-starter-14">
             <div class="hlot-size">14 m²</div>
-            <div class="hlot-name">Stockage Drive</div>
+            <div class="hlot-name">Stockage · Mutualisé</div>
             <div class="hlot-price">219 € <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 56 m² entiers — sur demande</div>
           </a>
           <a class="hlot" href="#lot-atelier">
             <div class="hlot-size">12,5 m²</div>
-            <div class="hlot-name">Atelier partagé</div>
+            <div class="hlot-name">Atelier · 1 voisin</div>
             <div class="hlot-price">230 € <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 25 m² entiers — sur demande</div>
           </a>
           <a class="hlot" href="#lot-pme">
             <div class="hlot-size">48 m²</div>
             <div class="hlot-name">Stock + Bureau</div>
             <div class="hlot-price">623 € <span>HT/mois</span></div>
+            <div class="hlot-sub">ou 96 m² entiers — sur demande</div>
           </a>
         </div>
 
         <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-n">12<span style="font-size:1rem"> 000</span></div>
-            <div class="hstat-l">m² · Parc neuf</div>
-          </div>
           <div class="hstat">
             <div class="hstat-n">6h<span style="font-size:1rem">–22h</span></div>
             <div class="hstat-l">Accès 7j/7</div>
@@ -424,6 +461,10 @@ footer a:hover{color:var(--gold)}
             <div class="hstat-n">1<span style="font-size:1rem"> juil.</span></div>
             <div class="hstat-l">Dispo avant</div>
           </div>
+          <div class="hstat">
+            <div class="hstat-n">100<span style="font-size:1rem">%</span></div>
+            <div class="hstat-l">Membres vérifiés</div>
+          </div>
         </div>
 
         <div class="mention-paiement">
@@ -434,6 +475,9 @@ footer a:hover{color:var(--gold)}
         <div class="hero-cta-row">
           <a class="btn-hero-primary" href="#formulaire">Prendre contact — 0 € aujourd'hui</a>
           <a class="btn-hero-call" href="tel:0759647754">Appeler — 07 59 64 77 54</a>
+        </div>
+        <div style="margin-top:12px">
+          <a class="btn-hero-network" href="https://app.strakara.fr/rejoindre" target="_blank">→ Rejoindre le réseau STRAKARA</a>
         </div>
       </div>
 
@@ -446,7 +490,7 @@ footer a:hover{color:var(--gold)}
         <div class="hero-form">
           <form id="hero-form" action="https://formspree.io/f/xgodzyzj" method="POST">
             <input type="hidden" name="source" value="Landing Brest — Hero">
-            <input type="hidden" name="espace" value="Espaces professionnels Brest — Parc neuf">
+            <input type="hidden" name="espace" value="Espaces professionnels Brest — Parc sécurisé">
             <div class="hf-grid">
               <div class="hf-row">
                 <label>Nom *</label>
@@ -470,8 +514,11 @@ footer a:hover{color:var(--gold)}
               <select name="espace_choisi">
                 <option value="" disabled selected>Sélectionnez</option>
                 <option>Stockage 14 m² — 219 € HT/mois</option>
+                <option>Stockage 56 m² (lot entier) — 876 € HT/mois</option>
                 <option>Atelier 12,5 m² — 230 € HT/mois</option>
+                <option>Atelier 25 m² (entier) — 460 € HT/mois</option>
                 <option>Stock + Bureau 48 m² — 623 € HT/mois</option>
+                <option>Stock + Bureau 96 m² (entier) — 1 246 € HT/mois</option>
                 <option>Je ne sais pas encore</option>
               </select>
             </div>
@@ -479,14 +526,14 @@ footer a:hover{color:var(--gold)}
               <label>Durée souhaitée</label>
               <select name="duree">
                 <option value="" disabled selected>Sélectionnez</option>
-                <option>3 mois</option>
-                <option>6 mois</option>
-                <option>9 mois</option>
-                <option>Plus de 9 mois</option>
+                <option>1 mois</option>
+                <option>2 à 3 mois</option>
+                <option>4 à 6 mois</option>
+                <option>7 à 12 mois</option>
               </select>
             </div>
             <button type="submit" class="btn-hform" id="hero-btn">Être rappelé sous 24h</button>
-            <p class="hform-note">Sans engagement · Aucun paiement à cette étape · Offre Premium 190 € HT gelée</p>
+            <p class="hform-note">Sans engagement · Aucun paiement à cette étape · Activation 190 € HT gelée</p>
           </form>
         </div>
       </div>
@@ -506,18 +553,30 @@ footer a:hover{color:var(--gold)}
   <div class="call-band-label"><a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a></div>
 </div>
 
+<!-- NETWORK JOIN BAND -->
+<div class="network-band">
+  <div class="nb-text">
+    <p>Vous avez un espace à optimiser ?</p>
+    <span>Rejoignez le réseau STRAKARA et valorisez vos m² vacants sans contrainte</span>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <a class="btn-network" href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le réseau STRAKARA</a>
+    <a class="btn-network-outline" href="https://app.strakara.fr" target="_blank">Voir tous les espaces</a>
+  </div>
+</div>
+
 <!-- SITE INFO -->
 <div class="site-band" id="site">
   <div class="container">
     <div style="text-align:center;margin-bottom:40px">
       <span class="section-tag" style="color:var(--gold)">Le site</span>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.4rem);color:var(--white);margin-top:10px;line-height:1.2">Parc professionnel neuf · <em style="font-style:italic;color:var(--gold)">Brest.</em></h2>
-      <p style="font-size:14px;color:rgba(255,255,255,.45);max-width:520px;margin:12px auto 0;line-height:1.75">Parc d'activité entièrement clôturé, conçu pour les professionnels. Parking dédié, accès badge RFID, vidéosurveillance 24h/24. À 10 minutes du centre de Brest.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.4rem);color:var(--white);margin-top:10px;line-height:1.2">Parc sécurisé · <em style="font-style:italic;color:var(--gold)">Brest.</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.45);max-width:520px;margin:12px auto 0;line-height:1.75">Parc d'activité professionnel entièrement clôturé. Parking dédié, accès badge RFID, vidéosurveillance 24h/24. À 10 minutes du centre de Brest.</p>
     </div>
     <div class="site-band-inner">
       <div class="site-stat">
-        <div class="site-stat-n">12 000 m²</div>
-        <div class="site-stat-l">Surface totale du parc</div>
+        <div class="site-stat-n">Sécurisé</div>
+        <div class="site-stat-l">Clôturé · Vidéosurveillé</div>
       </div>
       <div class="site-stat">
         <div class="site-stat-n">6h – 22h</div>
@@ -551,7 +610,7 @@ footer a:hover{color:var(--gold)}
     <div class="espaces-intro reveal">
       <span class="section-tag">Les espaces disponibles</span>
       <h2 class="h2">3 formats.<br><em>Un seul site.</em></h2>
-      <p class="lead" style="max-width:520px">Stockage simple, atelier partagé ou cellule avec bureau — choisissez l'espace adapté à votre activité. Tous sans bail commercial.</p>
+      <p class="lead" style="max-width:560px">Stockage mutualisé, atelier ou cellule avec bureau — choisissez l'espace adapté à votre activité. Tous sans bail, de 1 à 12 mois. Plans et détails complémentaires disponibles sur demande par <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600;text-decoration:none">téléphone</a> ou à <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600;text-decoration:none">contact@strakara.fr</a>.</p>
     </div>
 
     <!-- LOT 1 : STOCKAGE 14 m² -->
@@ -564,14 +623,15 @@ footer a:hover{color:var(--gold)}
         <div class="lot-content">
           <div class="lot-header">
             <div class="lot-profil">Starter · Artisan / E-commerce / TPE</div>
-            <h3 class="lot-title">Stockage 14 m²<br>Drive · Accès direct voiture</h3>
-            <p class="lot-desc">Zone de stockage de 14 m² au sein d'un plateau de 57 m² divisé en 4 lots — chaque occupant dispose de sa porte d'accès dédiée. Possibilité de louer l'ensemble du plateau (57 m²) sur demande. Espace sec et fonctionnel, idéal pour stocker matériel, marchandises ou équipements.</p>
+            <h3 class="lot-title">Stockage 14 m²<br>Espace mutualisé · Drive</h3>
+            <p class="lot-desc">Espace de stockage de 14 m² au sein d'un espace mutualisé en 4 lots — chaque occupant dispose de sa porte d'accès dédiée. Idéal pour stocker du matériel, des marchandises ou des équipements dans un cadre professionnel sécurisé. <strong>Possibilité de louer l'ensemble des 4 lots (56 m²)</strong> sur demande.</p>
             <div class="lot-badges">
               <span class="lot-badge-item">Drive-in</span>
               <span class="lot-badge-item">Accès 6h-22h · 7j/7</span>
               <span class="lot-badge-item">Badge RFID</span>
               <span class="lot-badge-item">Vidéosurveillance</span>
               <span class="lot-badge-item">Parking dédié</span>
+              <span class="lot-badge-item">Mutualisé · 4 lots</span>
             </div>
           </div>
           <div class="lot-bottom">
@@ -579,7 +639,9 @@ footer a:hover{color:var(--gold)}
               <div class="lot-price-label">Mensualité</div>
               <div class="lot-price">219 € <em>HT</em></div>
               <div class="lot-price-sub">par mois · 14 m² exclusifs · 8 lots disponibles</div>
+              <div class="lot-price-option">▸ Lot entier 56 m² disponible : <strong>876 € HT/mois</strong></div>
               <div class="lot-caution"><strong>Caution :</strong> 300 € HT — empreinte bancaire Swikly, 0 € débité</div>
+              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
             </div>
             <div class="lot-cta">
               <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Stockage 14 m² — 219 € HT/mois')">Demander ce lot</a>
@@ -593,12 +655,12 @@ footer a:hover{color:var(--gold)}
           <div class="detail-block">
             <h3>Caractéristiques</h3>
             <ul class="detail-list">
-              <li><span><strong>Surface :</strong> 14 m² — 1/4 d'un plateau de 57 m²</span></li>
+              <li><span><strong>Surface :</strong> 14 m² — espace mutualisé en 4 lots</span></li>
               <li><span><strong>Sol :</strong> Béton propre</span></li>
               <li><span><strong>Usage :</strong> Stockage sec — matériel, marchandises, e-commerce</span></li>
               <li><span><strong>Électricité :</strong> Non incluse sur l'espace</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer l'ensemble du plateau (57 m²) sur demande</span></li>
-              <li><span><strong>Site :</strong> Mutualisé — plateau partagé entre professionnels vérifiés</span></li>
+              <li><span><strong>Option :</strong> Possibilité de louer l'ensemble (56 m²) à 876 € HT/mois</span></li>
+              <li><span><strong>Site :</strong> Mutualisé — partagé entre professionnels vérifiés</span></li>
             </ul>
           </div>
           <div class="detail-block">
@@ -614,11 +676,11 @@ footer a:hover{color:var(--gold)}
           <div class="detail-block">
             <h3>Conditions</h3>
             <ul class="detail-list">
-              <li><span><strong>Type :</strong> Convention d'occupation — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 3, 6 ou 9 mois — renouvelables</span></li>
-              <li><span><strong>Préavis :</strong> 2 mois</span></li>
+              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
+              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
               <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
               <li><span><strong>1er paiement :</strong> 409 € HT (activation + 1er mois)</span></li>
+              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
             </ul>
             <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement</div>
           </div>
@@ -636,8 +698,8 @@ footer a:hover{color:var(--gold)}
         <div class="lot-content">
           <div class="lot-header">
             <div class="lot-profil">Starter · Artisan / E-commerce / TPE</div>
-            <h3 class="lot-title">Atelier 12,5 m²<br>Prise triphasée · Point d'eau</h3>
-            <p class="lot-desc">Atelier de 12,5 m² dans un parc neuf — moitié d'un plateau de 25 m² partagé avec une seule autre entreprise, chaque occupant disposant de sa zone clairement délimitée. Possibilité de louer les 25 m² entiers sur demande. Prise triphasée et point d'eau disponibles. Charges incluses.</p>
+            <h3 class="lot-title">Atelier 12,5 m²<br>Prise triphasée · Point d'eau · 1 voisin</h3>
+            <p class="lot-desc">Atelier de 12,5 m² partagé avec une seule autre entreprise — chaque occupant dispose de sa zone clairement délimitée. Prise triphasée et point d'eau disponibles. Charges incluses. <strong>Possibilité de louer les 25 m² entiers</strong> sur demande.</p>
             <div class="lot-badges">
               <span class="lot-badge-item">Drive-in</span>
               <span class="lot-badge-item">Accès 6h-22h · 7j/7</span>
@@ -645,6 +707,7 @@ footer a:hover{color:var(--gold)}
               <span class="lot-badge-item">Point d'eau</span>
               <span class="lot-badge-item">Vidéosurveillance</span>
               <span class="lot-badge-item">Charges incluses</span>
+              <span class="lot-badge-item">1 seul voisin vérifié</span>
             </div>
           </div>
           <div class="lot-bottom">
@@ -652,7 +715,9 @@ footer a:hover{color:var(--gold)}
               <div class="lot-price-label">Mensualité</div>
               <div class="lot-price">230 € <em>HT</em></div>
               <div class="lot-price-sub">par mois · 12,5 m² · charges incluses · 14 lots disponibles</div>
+              <div class="lot-price-option">▸ Espace entier 25 m² disponible : <strong>460 € HT/mois</strong></div>
               <div class="lot-caution"><strong>Caution :</strong> 300 € HT — empreinte bancaire Swikly, 0 € débité</div>
+              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
             </div>
             <div class="lot-cta">
               <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Atelier 12,5 m² — 230 € HT/mois')">Demander ce lot</a>
@@ -666,13 +731,12 @@ footer a:hover{color:var(--gold)}
           <div class="detail-block">
             <h3>Caractéristiques</h3>
             <ul class="detail-list">
-              <li><span><strong>Surface :</strong> 12,5 m² — moitié d'un plateau de 25 m²</span></li>
+              <li><span><strong>Surface :</strong> 12,5 m² — partagé avec 1 seul voisin (25 m² total)</span></li>
               <li><span><strong>Sol :</strong> Béton propre</span></li>
               <li><span><strong>Électricité :</strong> Prise triphasée disponible</span></li>
               <li><span><strong>Eau :</strong> Point d'eau disponible</span></li>
               <li><span><strong>Charges :</strong> Incluses (provision 10 €/mois, régularisation en fin de séjour)</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer les 25 m² entiers sur demande</span></li>
-              <li><span><strong>Site :</strong> Mutualisé — 1 seul voisin professionnel vérifié</span></li>
+              <li><span><strong>Option :</strong> Possibilité de louer les 25 m² entiers à 460 € HT/mois</span></li>
             </ul>
           </div>
           <div class="detail-block">
@@ -688,11 +752,11 @@ footer a:hover{color:var(--gold)}
           <div class="detail-block">
             <h3>Conditions</h3>
             <ul class="detail-list">
-              <li><span><strong>Type :</strong> Convention d'occupation — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 3, 6 ou 9 mois — renouvelables</span></li>
-              <li><span><strong>Préavis :</strong> 2 mois</span></li>
+              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
+              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
               <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
               <li><span><strong>1er paiement :</strong> 420 € HT (activation + 1er mois)</span></li>
+              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
             </ul>
             <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement</div>
           </div>
@@ -711,7 +775,7 @@ footer a:hover{color:var(--gold)}
           <div class="lot-header">
             <div class="lot-profil">PME · Entreprise en croissance</div>
             <h3 class="lot-title">Cellule 48 m²<br>24 m² stockage RDC + 24 m² bureau étage</h3>
-            <p class="lot-desc">Cellule professionnelle sur deux niveaux : 24 m² de stockage au rez-de-chaussée (accès plain-pied, porte sectionnelle) + 24 m² de bureau à l'étage — soit 48 m² au total. Partagé avec une seule autre entreprise dans un bâtiment de 96 m². Possibilité de louer l'ensemble (96 m²) sur demande. Wifi, sanitaires privatifs, charges incluses.</p>
+            <p class="lot-desc">Cellule professionnelle sur deux niveaux : 24 m² de stockage au rez-de-chaussée (accès plain-pied, porte sectionnelle) + 24 m² de bureau à l'étage. Partagé avec une seule autre entreprise. Wifi, sanitaires privatifs, charges incluses. <strong>Possibilité de louer l'ensemble (96 m²)</strong> sur demande.</p>
             <div class="lot-badges">
               <span class="lot-badge-item">Drive-in RDC</span>
               <span class="lot-badge-item">Bureau à l'étage</span>
@@ -719,6 +783,7 @@ footer a:hover{color:var(--gold)}
               <span class="lot-badge-item">Sanitaires privatifs</span>
               <span class="lot-badge-item">Chauffé / isolé</span>
               <span class="lot-badge-item">Charges incluses</span>
+              <span class="lot-badge-item">1 seul voisin vérifié</span>
             </div>
           </div>
           <div class="lot-bottom">
@@ -726,7 +791,9 @@ footer a:hover{color:var(--gold)}
               <div class="lot-price-label">Mensualité</div>
               <div class="lot-price">623 € <em>HT</em></div>
               <div class="lot-price-sub">par mois · 48 m² sur 2 niveaux · 10 lots disponibles</div>
+              <div class="lot-price-option">▸ Bâtiment entier 96 m² disponible : <strong>1 246 € HT/mois</strong></div>
               <div class="lot-caution"><strong>Caution :</strong> 1 000 € HT — empreinte bancaire Swikly, 0 € débité</div>
+              <div class="lot-plans">📐 Plans et détails sur demande — <a href="tel:0759647754">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
             </div>
             <div class="lot-cta">
               <a class="btn-lot" href="#formulaire" onclick="preselectEspace('Cellule Stock + Bureau 48 m² — 623 € HT/mois')">Demander ce lot</a>
@@ -743,10 +810,9 @@ footer a:hover{color:var(--gold)}
               <li><span><strong>Surface :</strong> 48 m² total — 24 m² RDC + 24 m² étage</span></li>
               <li><span><strong>RDC :</strong> 24 m² stockage — accès plain-pied + porte sectionnelle</span></li>
               <li><span><strong>Étage :</strong> 24 m² bureau — livré non meublé</span></li>
-              <li><span><strong>Option :</strong> Possibilité de louer l'ensemble du bâtiment (96 m²) sur demande</span></li>
+              <li><span><strong>Option :</strong> Possibilité de louer le bâtiment entier (96 m²) à 1 246 € HT/mois</span></li>
               <li><span><strong>Équipements :</strong> Wifi, sanitaires privatifs, électricité, éclairage</span></li>
               <li><span><strong>Charges :</strong> Incluses (provision 10 €/mois, régularisation en fin de séjour)</span></li>
-              <li><span><strong>Site :</strong> Mutualisé — 1 seul voisin professionnel vérifié</span></li>
             </ul>
           </div>
           <div class="detail-block">
@@ -762,11 +828,11 @@ footer a:hover{color:var(--gold)}
           <div class="detail-block">
             <h3>Conditions</h3>
             <ul class="detail-list">
-              <li><span><strong>Type :</strong> Convention d'occupation — hors bail commercial</span></li>
-              <li><span><strong>Durée :</strong> 3, 6 ou 9 mois — renouvelables</span></li>
-              <li><span><strong>Préavis :</strong> 2 mois</span></li>
+              <li><span><strong>Type :</strong> <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">CGV STRAKARA</a> — hors bail commercial</span></li>
+              <li><span><strong>Durée :</strong> 1 à 12 mois — libre selon votre activité</span></li>
               <li><span><strong>Activation :</strong> 190 € HT (unique)</span></li>
               <li><span><strong>1er paiement :</strong> 813 € HT (activation + 1er mois)</span></li>
+              <li><span><strong>Plans &amp; détails :</strong> Sur demande — tél. ou email</span></li>
             </ul>
             <div class="detail-note"><strong>Accueil client non autorisé</strong> — usage professionnel uniquement. Pas d'accès poids lourds.</div>
           </div>
@@ -782,8 +848,8 @@ footer a:hover{color:var(--gold)}
   <div class="container">
     <div class="reveal" style="margin-bottom:56px">
       <span class="section-tag">Le site en détail</span>
-      <h2 class="h2">Un parc professionnel.<br><em>Aucune contrainte.</em></h2>
-      <p class="lead" style="max-width:520px">Tout ce dont votre activité a besoin, dans un environnement neuf et sécurisé.</p>
+      <h2 class="h2">Un parc sécurisé.<br><em>Un nouveau concept.</em></h2>
+      <p class="lead" style="max-width:520px">Tout ce dont votre activité a besoin, dans un environnement structuré et sécurisé.</p>
     </div>
     <div class="feat-grid">
       <div class="feat-card reveal reveal-d1">
@@ -803,13 +869,13 @@ footer a:hover{color:var(--gold)}
       </div>
       <div class="feat-card reveal reveal-d1">
         <div class="feat-icon-line"></div>
-        <h3>Convention flexible — sans bail</h3>
-        <p>Durée 3, 6 ou 9 mois renouvelables. Pas de notaire. Pas d'engagement pluriannuel. Pas de frais d'agence. Sortie avec 2 mois de préavis.</p>
+        <h3>CGV flexibles — sans bail</h3>
+        <p>De 1 à 12 mois selon vos besoins. Pas de notaire. Pas d'engagement pluriannuel. Pas de frais d'agence. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600;text-decoration:none">Consulter nos CGV →</a></p>
       </div>
       <div class="feat-card reveal reveal-d2">
         <div class="feat-icon-line"></div>
-        <h3>Parc neuf 12 000 m²</h3>
-        <p>Infrastructure professionnelle récente, entièrement clôturée. Environnement calme et structuré, adapté à une activité sérieuse.</p>
+        <h3>Parc professionnel sécurisé</h3>
+        <p>Infrastructure entièrement clôturée, vidéosurveillée, accessible par badge. Environnement calme et structuré, adapté à une activité sérieuse.</p>
       </div>
       <div class="feat-card reveal reveal-d3">
         <div class="feat-icon-line"></div>
@@ -840,8 +906,8 @@ footer a:hover{color:var(--gold)}
         </div>
         <div style="padding:16px 18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)">
           <p style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6">
-            <strong style="color:var(--gold-l);display:block;margin-bottom:4px">Modèle juridique encadré</strong>
-            STRAKARA opère dans le cadre de conventions d'occupation conformes au droit français. Hors bail commercial. Contrats élaborés avec conseil juridique spécialisé.
+            <strong style="color:var(--gold-l);display:block;margin-bottom:4px">Cadre juridique transparent</strong>
+            STRAKARA opère via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">CGV</a> signées en ligne. Hors bail commercial. Sans mandat. Coordination administrative directe.
           </p>
         </div>
       </div>
@@ -849,8 +915,8 @@ footer a:hover{color:var(--gold)}
         <div class="garanties-item">
           <div class="garanties-check">V</div>
           <div>
-            <h4>Convention d'occupation — pas un bail</h4>
-            <p>Document clair, conforme au droit français. Pas de notaire, pas de clauses abusives. Signature électronique légale.</p>
+            <h4>CGV signées en ligne — pas un bail</h4>
+            <p>Document clair, conforme au droit français. Pas de notaire, pas de clauses abusives. Signature électronique légale. <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);text-decoration:none;font-weight:600">Consulter les CGV →</a></p>
           </div>
         </div>
         <div class="garanties-item">
@@ -916,8 +982,8 @@ footer a:hover{color:var(--gold)}
       </div>
       <div class="step-card">
         <div class="step-n">3</div>
-        <h4>Dossier en ligne</h4>
-        <p>SIRET, assurance, convention, caution Swikly. Tout se transmet en ligne. 100 % digital.</p>
+        <h4>Signature des CGV en ligne</h4>
+        <p>SIRET, assurance, <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold);font-weight:600;text-decoration:none">CGV STRAKARA</a>, caution Swikly. Tout se transmet en ligne. 100 % digital.</p>
         <span class="step-tag">100 % digital</span>
       </div>
       <div class="step-card">
@@ -936,13 +1002,14 @@ footer a:hover{color:var(--gold)}
     <div class="reveal">
       <span class="section-tag">Questions fréquentes</span>
       <h2 class="h2">Vos questions.<br><em>Nos réponses.</em></h2>
+      <p class="lead" style="max-width:480px">Les vraies objections. Les vraies réponses. Vous ne trouvez pas la vôtre ? Appelez le <a href="tel:07596477
       <p class="lead" style="max-width:480px">Les vraies objections. Les vraies réponses. Vous ne trouvez pas la vôtre ? Appelez le <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500;text-decoration:none">07 59 64 77 54</a>.</p>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Est-ce légal ? Qu'est-ce qu'une convention d'occupation ? <em class="faq-arrow">&#9662;</em></button>
+        <button class="faq-q" onclick="toggleFaq(this)">Est-ce légal ? Comment fonctionnent vos CGV ? <em class="faq-arrow">&#9662;</em></button>
         <div class="faq-a">
-          <strong>Oui, totalement légal.</strong> STRAKARA opère dans le cadre de conventions d'occupation conformes au droit français. Ce n'est pas un bail commercial. C'est un contrat de coordination de services encadré contractuellement entre les parties. Vos droits sont protégés à chaque étape.
+          <strong>Oui, totalement légal.</strong> STRAKARA opère via ses <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">Conditions Générales de Vente</a>, signées en ligne. Ce n'est pas un bail commercial. C'est un cadre contractuel clair, conforme au droit français, sans notaire et sans engagement pluriannuel. Vos droits sont protégés à chaque étape.
         </div>
       </div>
       <div class="faq-item">
@@ -958,9 +1025,9 @@ footer a:hover{color:var(--gold)}
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Puis-je partir avant la fin de ma convention ? <em class="faq-arrow">&#9662;</em></button>
+        <button class="faq-q" onclick="toggleFaq(this)">Quelle est la durée d'engagement ? Puis-je partir quand je veux ? <em class="faq-arrow">&#9662;</em></button>
         <div class="faq-a">
-          Oui. Un <strong>préavis de 2 mois</strong> est requis. Aucun engagement pluriannuel. La convention est renouvelable sur simple demande.
+          Nos <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d);font-weight:600">CGV</a> permettent des durées de <strong>1 à 12 mois</strong>, selon vos besoins et votre activité. Pas d'engagement pluriannuel. Consultez directement nos CGV pour tous les détails.
         </div>
       </div>
       <div class="faq-item">
@@ -978,9 +1045,16 @@ footer a:hover{color:var(--gold)}
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Quelle est la différence entre les 3 espaces disponibles à Brest ? <em class="faq-arrow">&#9662;</em></button>
         <div class="faq-a">
-          <strong>Stockage 14 m²</strong> — espace brut, sans électricité, idéal pour stocker marchandises ou matériel. Le plus accessible.<br><br>
-          <strong>Atelier 12,5 m²</strong> — espace avec prise triphasée et point d'eau, partagé avec un seul voisin. Idéal pour artisans et petites activités productives.<br><br>
-          <strong>Cellule 48 m²</strong> — deux niveaux : stockage au RDC et bureau à l'étage. Solution complète pour les PME qui veulent centraliser leur activité dans un seul lieu.
+          <strong>Stockage 14 m²</strong> — mutualisé en 4 lots, idéal stockage. Option 56 m² entiers : 876 € HT/mois.<br><br>
+          <strong>Atelier 12,5 m²</strong> — prise triphasée + point d'eau, 1 seul voisin. Option 25 m² entiers : 460 € HT/mois.<br><br>
+          <strong>Cellule 48 m²</strong> — stockage RDC + bureau étage. Option 96 m² entiers : 1 246 € HT/mois.<br><br>
+          Plans et détails sur demande — <a href="tel:0759647754" style="color:var(--gold-d);font-weight:600">07 59 64 77 54</a> · <a href="mailto:contact@strakara.fr" style="color:var(--gold-d);font-weight:600">contact@strakara.fr</a>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Je veux rejoindre le réseau STRAKARA en tant qu'hébergeur — comment faire ? <em class="faq-arrow">&#9662;</em></button>
+        <div class="faq-a">
+          Vous avez des m² vacants à valoriser ? <a href="https://app.strakara.fr/rejoindre" target="_blank" style="color:var(--gold-d);font-weight:600">Déposer votre espace ici →</a>
         </div>
       </div>
     </div>
@@ -993,14 +1067,15 @@ footer a:hover{color:var(--gold)}
     <div class="formulaire-left reveal">
       <span class="section-tag">Prise de contact</span>
       <h2>Un échange d'abord.<br><em>Aucun paiement aujourd'hui.</em></h2>
-      <p>Formulaire en ligne. Notre équipe vous rappelle sous 24h pour organiser un échange — visio ou téléphone selon votre disponibilité. Le règlement intervient uniquement avant votre entrée dans les lieux, après validation de votre dossier.</p>
+      <p>Notre équipe vous rappelle sous 24h — visio ou téléphone. Le règlement intervient uniquement avant votre entrée dans les lieux, après validation de votre dossier.</p>
       <div class="form-promesses">
         <div class="form-promesse">Rappel téléphonique sous 24h ouvrées</div>
         <div class="form-promesse">Échange préalable obligatoire — visio ou téléphone</div>
         <div class="form-promesse">Aucun paiement avant validation du dossier</div>
-        <div class="form-promesse">Frais d'activation 190 € HT — Offre Premium, gelés à vie</div>
-        <div class="form-promesse">Caution Swikly — aucun fond immobilisé sur votre compte</div>
-        <div class="form-promesse">Convention flexible — sans bail commercial</div>
+        <div class="form-promesse">Frais d'activation 190 € HT — gelés à vie</div>
+        <div class="form-promesse">Caution Swikly — aucun fond immobilisé</div>
+        <div class="form-promesse">De 1 à 12 mois — flexible selon votre activité</div>
+        <div class="form-promesse">CGV claires signées en ligne — pas de bail</div>
         <div class="form-promesse">Dossier 100 % en ligne après l'échange</div>
       </div>
       <div class="contact-direct">
@@ -1012,8 +1087,8 @@ footer a:hover{color:var(--gold)}
         </p>
       </div>
       <div class="alerte-paiement">
-        <strong>Important — lisez avant de remplir.</strong>
-        Aucun paiement n'est demandé à cette étape. Un échange préalable (visio ou téléphone) est nécessaire avant toute contractualisation. En cas de doute, appelez le 07 59 64 77 54.
+        <strong>Important.</strong>
+        Aucun paiement n'est demandé à cette étape. Un échange préalable est nécessaire avant toute contractualisation.
       </div>
     </div>
     <div class="reveal">
@@ -1022,7 +1097,7 @@ footer a:hover{color:var(--gold)}
         <div class="form-box-sub">Espaces professionnels · Brest · Disponibles avant le 1er juillet</div>
         <div class="form-notice">
           <strong>Aucun paiement à cette étape.</strong>
-          Un échange préalable (visio ou téléphone) est nécessaire avant tout contrat. Notre équipe vous contacte sous 24h.
+          Un échange préalable est nécessaire avant tout contrat. Notre équipe vous contacte sous 24h.
         </div>
         <form id="main-form" action="https://formspree.io/f/xgodzyzj" method="POST">
           <input type="hidden" name="source" value="Landing Brest — Formulaire principal">
@@ -1049,9 +1124,12 @@ footer a:hover{color:var(--gold)}
             <label>Espace souhaité *</label>
             <select name="espace_choisi" id="select-espace" required>
               <option value="" disabled selected>Sélectionnez</option>
-              <option value="Stockage 14 m² — 219 € HT/mois">Stockage 14 m² — 219 € HT/mois</option>
-              <option value="Atelier 12,5 m² — 230 € HT/mois">Atelier 12,5 m² — 230 € HT/mois</option>
+              <option value="Stockage 14 m² — 219 € HT/mois">Stockage 14 m² (mutualisé) — 219 € HT/mois</option>
+              <option value="Stockage 56 m² lot entier — 876 € HT/mois">Stockage 56 m² (lot entier) — 876 € HT/mois</option>
+              <option value="Atelier 12,5 m² — 230 € HT/mois">Atelier 12,5 m² (1 voisin) — 230 € HT/mois</option>
+              <option value="Atelier 25 m² entier — 460 € HT/mois">Atelier 25 m² (entier) — 460 € HT/mois</option>
               <option value="Cellule Stock + Bureau 48 m² — 623 € HT/mois">Cellule Stock + Bureau 48 m² — 623 € HT/mois</option>
+              <option value="Bâtiment entier 96 m² — 1 246 € HT/mois">Bâtiment entier 96 m² — 1 246 € HT/mois</option>
               <option value="Je ne sais pas encore">Je ne sais pas encore</option>
             </select>
           </div>
@@ -1060,10 +1138,10 @@ footer a:hover{color:var(--gold)}
               <label>Durée souhaitée *</label>
               <select name="duree" required>
                 <option value="" disabled selected>Sélectionnez</option>
-                <option>3 mois</option>
-                <option>6 mois</option>
-                <option>9 mois</option>
-                <option>Plus de 9 mois</option>
+                <option>1 mois</option>
+                <option>2 à 3 mois</option>
+                <option>4 à 6 mois</option>
+                <option>7 à 12 mois</option>
               </select>
             </div>
             <div class="fg">
@@ -1085,32 +1163,33 @@ footer a:hover{color:var(--gold)}
           </div>
           <div class="rgpd-row">
             <input type="checkbox" id="rgpd" name="rgpd" required>
-            <label for="rgpd">J'accepte que mes informations soient transmises à l'équipe STRAKARA pour le traitement de ma demande. Données non partagées avec des tiers. Droits RGPD : contact@strakara.fr</label>
+            <label for="rgpd">J'accepte que mes informations soient transmises à l'équipe STRAKARA. Données non partagées avec des tiers. Droits RGPD : contact@strakara.fr</label>
           </div>
           <button type="submit" class="btn-submit" id="main-btn">Envoyer ma demande de contact</button>
-          <p class="form-note">Rappel sous 24h · Sans engagement · <strong>Offre Premium 190 € HT gelée</strong></p>
+          <p class="form-note">Rappel sous 24h · Sans engagement · <a href="https://www.strakara.fr/cgv.html" style="color:var(--gold-d)">Consulter les CGV</a></p>
         </form>
         <div class="form-success" id="main-success">
           <h4>Demande enregistrée.</h4>
-          <p>Notre équipe vous rappelle sous 24h ouvrées pour convenir d'un échange. Bienvenue dans le réseau STRAKARA.<br><br>Pour toute urgence : <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a></p>
+          <p>Notre équipe vous rappelle sous 24h ouvrées.<br><br>Pour toute urgence : <a href="tel:0759647754" style="color:var(--gold-d);font-weight:500">07 59 64 77 54</a></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AUTRES ESPACES -->
-<section class="autres">
+<!-- REJOINDRE LE RÉSEAU -->
+<section class="reseau">
   <div class="container">
-    <div class="autres-inner reveal">
-      <div>
+    <div class="reseau-inner reveal">
+      <div class="reseau-left">
         <span class="section-tag">Réseau STRAKARA</span>
-        <h2 class="h2" style="font-size:clamp(1.5rem,2.5vw,2.2rem)">D'autres espaces<br><em>partout en France.</em></h2>
-        <p class="lead" style="max-width:440px;margin-top:0">8 sites actifs. 92 lots disponibles. Bretagne, Normandie, Landes, Alsace, Auvergne, Occitanie.</p>
+        <h2>Vous avez des m² à valoriser ?<br><em>Rejoignez le réseau.</em></h2>
+        <p>Hébergeurs, propriétaires, gestionnaires d'actifs : STRAKARA prend en charge la coordination administrative et technique de vos espaces vacants. Vous percevez 100 % du loyer, sans contrainte opérationnelle.</p>
       </div>
-      <div class="autres-cta">
-        <a class="btn-nav" href="https://app.strakara.fr" target="_blank" style="padding:14px 32px;font-size:14px">Voir tous les espaces disponibles</a>
-        <a class="btn-outline" href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le réseau STRAKARA</a>
+      <div class="reseau-cta">
+        <a class="btn-network" href="https://app.strakara.fr/rejoindre" target="_blank">→ Rentrer dans le réseau STRAKARA</a>
+        <a class="btn-network-outline" href="https://app.strakara.fr" target="_blank">Voir tous nos espaces disponibles</a>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px;text-align:center">8 sites actifs · Bretagne, Normandie, Landes, Alsace et plus</div>
       </div>
     </div>
   </div>
@@ -1120,7 +1199,7 @@ footer a:hover{color:var(--gold)}
 <div class="contact-bar">
   <div class="ci"><span class="ci-l">Téléphone</span><a href="tel:0759647754">07 59 64 77 54</a></div>
   <div class="ci"><span class="ci-l">Contact</span><a href="mailto:contact@strakara.fr">contact@strakara.fr</a></div>
-  <div class="ci"><span class="ci-l">Plateforme</span><a href="https://app.strakara.fr" target="_blank">app.strakara.fr</a></div>
+  <div class="ci"><span class="ci-l">CGV</span><a href="https://www.strakara.fr/cgv.html" target="_blank">strakara.fr/cgv</a></div>
   <div class="ci"><span class="ci-l">Réseau</span><a href="https://app.strakara.fr/rejoindre" target="_blank">Rejoindre le réseau</a></div>
 </div>
 
