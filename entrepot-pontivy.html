@@ -52,8 +52,13 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .hero{min-height:calc(100vh - 100px);background:var(--brand);position:relative;overflow:hidden;display:flex;align-items:center;padding:80px 0 60px}
 .hero-grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px),repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none}
 .hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(200,169,106,.08) 0%,transparent 70%);pointer-events:none}
-.hero-inner{position:relative;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center}
-
+.hero-inner{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 480px;
+  gap:72px;
+  align-items:center;
+}
 /* Hero left */
 .hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
 .hero-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
@@ -361,11 +366,14 @@ footer a:hover{color:var(--gold)}
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
+
   <div class="container">
     <div class="hero-inner">
 
-      <div>
+      <!-- COLONNE GAUCHE -->
+      <div class="hero-left">
         <div class="hero-tag">Disponible le 15 juin — 2 lots restants</div>
+
         <h1>
           Entrepôt 100 m²<br>
           <em>sans bail.</em><br>
@@ -381,7 +389,8 @@ footer a:hover{color:var(--gold)}
         </div>
 
         <p class="hero-sub">
-          Espace de stockage professionnel avec accès 24h/24, grande porte camion et vidéosurveillance intérieure et extérieure. <strong>Sans bail commercial. Sans engagement long terme.</strong>
+          Espace de stockage professionnel avec accès 24h/24, grande porte camion et vidéosurveillance intérieure et extérieure.
+          <strong>Sans bail commercial. Sans engagement long terme.</strong>
         </p>
 
         <div class="hero-stats">
@@ -408,44 +417,51 @@ footer a:hover{color:var(--gold)}
           Un échange préalable — par visio, téléphone ou sur place — est nécessaire avant toute contractualisation. Le règlement intervient uniquement avant votre entrée dans les lieux, après validation de votre dossier. En cas de doute, appelez-nous directement.
         </div>
 
-       <div class="hero-cta-row">
-  <a class="btn-hero-primary" href="https://espacepro.strakara.fr/details-annonce?recordId=rec8KlMXRiXhOewZJ" target="_blank">
-    Réserver
-  </a>
+        <div class="hero-cta-row">
+          <a class="btn-hero-primary" href="https://espacepro.strakara.fr/details-annonce?recordId=rec8KlMXRiXhOewZJ" target="_blank">
+            Réserver
+          </a>
 
-  <a class="btn-hero-call" href="#formulaire">
-    Prendre contact — 0 € aujourd'hui
-  </a>
-</div>
+          <a class="btn-hero-call" href="#formulaire">
+            Prendre contact — 0 € aujourd'hui
+          </a>
+        </div>
+      </div>
 
-      <!-- HERO RIGHT FORM -->
+      <!-- COLONNE DROITE : FORMULAIRE -->
       <div class="hero-right">
         <div class="hero-right-header">
           <p>Demande de renseignements</p>
           <span>Rappel par notre équipe sous 24h ouvrées — aucun engagement</span>
         </div>
+
         <div class="hero-form">
           <form id="hero-form" action="https://formspree.io/f/xgodzyzj" method="POST">
             <input type="hidden" name="source" value="Landing Pontivy — Hero">
             <input type="hidden" name="espace" value="Entrepôt 100 m² Secteur Pontivy — 1 067 € HT/mois — Dispo 15 juin">
+
             <div class="hf-grid">
               <div class="hf-row">
                 <label>Nom *</label>
                 <input type="text" name="nom" required placeholder="Jean Dupont">
               </div>
+
               <div class="hf-row">
                 <label>Téléphone *</label>
                 <input type="tel" name="telephone" required placeholder="06 00 00 00 00">
               </div>
             </div>
+
             <div class="hf-row">
               <label>Email professionnel</label>
               <input type="email" name="email" placeholder="vous@entreprise.fr">
             </div>
+
             <div class="hf-row">
               <label>Entreprise</label>
               <input type="text" name="entreprise" placeholder="Nom de votre société">
             </div>
+
             <div class="hf-row">
               <label>Durée souhaitée</label>
               <select name="duree">
@@ -456,6 +472,7 @@ footer a:hover{color:var(--gold)}
                 <option>Plus de 9 mois</option>
               </select>
             </div>
+
             <div class="hf-row">
               <label>Disponibilité pour un échange</label>
               <select name="contact_mode">
@@ -465,8 +482,12 @@ footer a:hover{color:var(--gold)}
                 <option>Sur place</option>
               </select>
             </div>
+
             <button type="submit" class="btn-hform" id="hero-btn">Être rappelé sous 24h</button>
-            <p class="hform-note">Sans engagement · Aucun paiement à cette étape · Offre Premium 190 € HT gelée</p>
+
+            <p class="hform-note">
+              Sans engagement · Aucun paiement à cette étape · Offre Premium 190 € HT gelée
+            </p>
           </form>
         </div>
       </div>
