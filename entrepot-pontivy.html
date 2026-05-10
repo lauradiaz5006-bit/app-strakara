@@ -280,12 +280,47 @@ body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);-
 .form-success h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold-d);margin-bottom:12px}
 .form-success p{font-size:13px;color:var(--muted);line-height:1.7}
 
+
 /* AUTRES ESPACES */
-.autres{background:var(--white);padding:72px 0;border-bottom:1px solid var(--border)}
-.autres-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
-.autres-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex-shrink:0}
-.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 28px;font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold-d)}
+.autres{
+  background:var(--white);
+  padding:72px 0;
+  border-bottom:1px solid var(--border)
+}
+
+.autres-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap
+}
+
+.autres-cta{
+  display:flex;
+  flex-direction:row;
+  gap:14px;
+  align-items:center;
+  flex-shrink:0;
+  flex-wrap:wrap
+}
+
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:12px 28px;
+  font-size:13px;
+  font-weight:500;
+  text-decoration:none;
+  display:inline-block;
+  transition:border-color .2s,color .2s
+}
+
+.btn-outline:hover{
+  border-color:var(--gold);
+  color:var(--gold-d)
+}
 
 /* FOOTER */
 .contact-bar{background:var(--light);padding:32px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
@@ -314,8 +349,12 @@ footer a:hover{color:var(--gold)}
   .counters-inner{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
   .autres-inner{flex-direction:column;align-items:flex-start}
-  .autres-cta{align-items:flex-start}
+  .autres-cta{
+  flex-direction:column;
+  align-items:flex-start;
+  width:100%;
 }
+ 
 @media(max-width:768px){
   .container{padding:0 20px}
   .navbar{padding:0 20px}
