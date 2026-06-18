@@ -43,7 +43,66 @@
     .sk-banner__btn { background: var(--gold); color: var(--brand); font-family: 'Outfit', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 5px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
     .sk-banner__btn:hover { opacity: .85; }
     .sk-banner__close { position: absolute; right: 16px; background: none; border: none; color: #666; font-size: 18px; cursor: pointer; }
+/* DROPDOWN SECTEURS */
 
+.sk-nav__dropdown{
+  position:relative;
+}
+
+.sk-nav__dropdown-toggle{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.sk-nav__dropdown-toggle svg{
+  width:12px;
+  height:12px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+
+.sk-nav__dropdown-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:260px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+  z-index:999;
+  padding:8px 0;
+}
+
+.sk-nav__dropdown:hover .sk-nav__dropdown-menu{
+  display:block;
+}
+
+.sk-nav__dropdown-menu a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.sk-nav__dropdown-menu a:hover{
+  background:#F6F5F0;
+  color:var(--brand);
+}
+
+.sk-nav__dropdown-menu svg{
+  width:16px !important;
+  height:16px !important;
+  min-width:16px;
+  max-width:16px;
+  stroke:var(--gold-dark);
+  fill:none;
+  stroke-width:1.6;
+}
     /* ── NAV ── */
     .sk-nav { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 24px; display: flex; align-items: center; height: 58px; position: sticky; top: 0; z-index: 100; }
     .sk-nav__logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
