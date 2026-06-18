@@ -476,7 +476,7 @@
     <div class="pitch">
       <div class="pitch-eyebrow">Réseau professionnel B2B — France entière</div>
       <h1>Le réseau qui fait<br>avancer les pros<br><em>ensemble.</em></h1>
-      <p class="pitch-desc">Artisans, PME, e-commerçants, indépendants — vous partagez les mêmes réalités terrain. STRAKARA construit la communauté qui vous manquait. Gratuit. Vérifié. Humain.</p>
+      <p class="pitch-desc">Artisans, PME, transporteurs, commerçants, indépendants — gagnez en visibilité, créez votre profil public et rejoignez un réseau où les clients peuvent vous trouver et où les pros peuvent s’entraider.</p>
 
       <div class="opening-date">
         <div class="opening-date-icon"></div>
@@ -489,8 +489,8 @@
             <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
           <div class="pillier-text">
-            <h3>Offres & besoins entre membres</h3>
-            <p>Publiez ce que vous cherchez ou proposez. Votre prochain partenaire est peut-être déjà là.</p>
+            <h3>Un profil visible par les clients</h3>
+            <p>Présentez votre activité, votre zone d’intervention et vos coordonnées pour être trouvé plus facilement.</p>
           </div>
         </div>
         <div class="pillier">
@@ -498,8 +498,8 @@
             <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           </div>
           <div class="pillier-text">
-            <h3>Entraide & sous-traitance</h3>
-            <p>Partagez charges, compétences et ressources. Ensemble on va plus loin.</p>
+            <h3>Un réseau utile entre pros</h3>
+            <p>Trouvez un prestataire, un partenaire, une mission ou une recommandation sans chercher seul.</p>
           </div>
         </div>
         <div class="pillier">
@@ -507,8 +507,8 @@
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
           <div class="pillier-text">
-            <h3>Événements réseau locaux</h3>
-            <p>Des rencontres mensuelles près de chez vous — présentiel ou visio, 1h chrono.</p>
+            <h3>Des opportunités concrètes</h3>
+            <p>Publiez une annonce, faites connaître votre entreprise et préparez votre visibilité avant l’ouverture.</p>
           </div>
         </div>
       </div>
@@ -541,8 +541,8 @@
         <!-- FORMULAIRE -->
         <div id="form-section">
           <div class="form-label-top">Accès fondateur — Gratuit</div>
-          <h2 class="form-title">Rejoignez le réseau<br><em>avant l'ouverture.</em></h2>
-          <p class="form-subtitle">100 places fondateurs disponibles. Inscrivez-vous maintenant et bénéficiez d'avantages exclusifs gelés à vie.</p>
+          <h2 class="form-title">Créez votre profil<br><em>membre fondateur.</em></h2>
+          <p class="form-subtitle">Votre inscription prépare votre présence dans l’annuaire public STRAKARA : activité, zone, besoins, services proposés et visibilité auprès des clients.</p>
 
           <div class="places-bar">
             <div class="places-top">
@@ -554,9 +554,9 @@
 
           <div class="avantages">
             <div class="avantages-title">Avantages membres fondateurs</div>
-            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Accès réseau gratuit à vie</strong> — aucun abonnement jamais</span></div>
-            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Parrainage actif</strong> — chaque pro que vous amenez renforce votre statut</span></div>
-            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil réseau</span></div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Profil public préparé</strong> — votre entreprise pourra être trouvée par des clients</span></div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Réseau entre pros</strong> — entraide, recommandations, missions et partenaires</span></div>
+            <div class="avantage-item"><div class="avantage-dot"></div><span><strong>Badge Membre Fondateur</strong> visible sur votre profil STRAKARA</span></div>
           </div>
 
           <form id="strakara-form" action="https://formspree.io/f/xbdwydve" method="POST">
@@ -575,21 +575,43 @@
               <input type="text" id="entreprise" name="entreprise" placeholder="Raison sociale ou nom commercial" required>
             </div>
             <div class="field">
-              <label for="besoin">Votre besoin principal</label>
+              <label for="metier">Métier / activité</label>
+              <input type="text" id="metier" name="metier" placeholder="Ex : électricien, transporteur, décoratrice, développeur..." required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="ville">Ville / secteur</label>
+                <input type="text" id="ville" name="ville" placeholder="Ex : Brest, Rennes, Nantes..." required>
+              </div>
+              <div class="field">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="07 00 00 00 00">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="visibilite">Ce que vous voulez en priorité</label>
               <div class="select-wrap">
-                <select id="besoin" name="besoin" required>
-                  <option value="" disabled selected>Choisissez votre profil</option>
-                  <option value="reseau-entraide">Rejoindre le réseau d'entraide pro</option>
-                  <option value="espace-stockage">Trouver un espace de stockage / atelier</option>
-                  <option value="espace-bureau">Trouver un bureau flexible</option>
-                  <option value="hebergeur">Proposer mon espace au réseau</option>
-                  <option value="les-deux">Les deux — réseau + espace</option>
+                <select id="visibilite" name="objectif_prioritaire" required>
+                  <option value="" disabled selected>Choisissez votre objectif principal</option>
+                  <option value="etre-visible-clients">Être visible par des clients</option>
+                  <option value="trouver-clients">Trouver plus facilement des clients</option>
+                  <option value="trouver-pros">Trouver des professionnels fiables autour de moi</option>
+                  <option value="publier-annonces">Publier des offres ou des besoins</option>
+                  <option value="reseau-recommandations">Développer mon réseau et mes recommandations</option>
+                  <option value="tout">Un peu tout ça</option>
                 </select>
               </div>
             </div>
-            <input type="hidden" name="_subject" value="Nouvelle inscription réseau STRAKARA — Membre fondateur">
+
+            <div class="field">
+              <label for="description">Présentation rapide</label>
+              <input type="text" id="description" name="description" placeholder="Présentez votre activité en une phrase : ce que vous faites, pour qui, où.">
+            </div>
+            <input type="hidden" name="_subject" value="Nouvelle inscription profil membre fondateur STRAKARA">
             <button type="submit" class="btn-submit" id="submit-btn">
-              Rejoindre le réseau — Gratuit
+              Créer mon profil fondateur
               <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </form>
@@ -621,9 +643,9 @@
             </div>
           </div>
           <div class="post-form">
-            <div class="post-form-title">Une offre ou un besoin à publier dès l'ouverture ?</div>
-            <div class="post-form-sub">Partagez-le maintenant — on l'intègre directement au réseau le 21 septembre.</div>
-            <textarea id="post-content" placeholder="Ex : Je cherche un transporteur sur Lyon / Je propose de la sous-traitance menuiserie en Bretagne / J'ai du matériel à louer..."></textarea>
+            <div class="post-form-title">Une annonce ou une demande à préparer dès maintenant ?</div>
+            <div class="post-form-sub">Ajoutez une offre, un besoin, une demande de partenariat ou une mission à publier à l’ouverture.</div>
+            <textarea id="post-content" placeholder="Ex : Je cherche un artisan fiable / Je propose mes services / Je cherche un partenaire / Je veux être contacté pour des chantiers..."></textarea>
             <button class="btn-post" id="btn-post" onclick="sendPost()">Envoyer au réseau →</button>
             <div class="post-sent" id="post-sent">✓ Reçu — on l'intègre au réseau le 21 septembre. Merci.</div>
           </div>
@@ -676,12 +698,12 @@
           c.classList.add('show');
           c.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-          btn.textContent = 'Rejoindre le réseau — Gratuit';
+          btn.textContent = 'Créer mon profil fondateur';
           btn.disabled = false;
           alert('Une erreur est survenue. Contactez-nous à contact@strakara.fr');
         }
       }).catch(function() {
-        btn.textContent = 'Rejoindre le réseau — Gratuit';
+        btn.textContent = 'Créer mon profil fondateur';
         btn.disabled = false;
         alert('Une erreur est survenue. Contactez-nous à contact@strakara.fr');
       });
