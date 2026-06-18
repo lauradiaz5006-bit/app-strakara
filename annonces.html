@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annonces du réseau — STRAKARA Réseau Pro</title>
+  <meta name="description" content="Trouvez des espaces professionnels, missions, prestataires et opportunités business près de chez vous. Annonces gratuites entre pros vérifiés STRAKARA.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://app.strakara.fr/annonces.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand:      #1E1F23;
+      --gold:       #C8A96A;
+      --gold-dark:  #A8894A;
+      --gold-light: #D4B97A;
+      --light:      #F6F5F0;
+      --text:       #1E1F23;
+      --muted:      #6E7175;
+      --border:     #E8E0D0;
+      --white:      #FFFFFF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Outfit', sans-serif; color: var(--text); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    a { text-decoration: none; }
+
+    /* ── TYPO ── */
+    .label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 14px; }
+    .btn-dark { display: inline-block; background: var(--brand); color: var(--white); padding: 14px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; transition: background .2s; }
+    .btn-dark:hover { background: #2E2F35; }
+    .btn-gold { display: inline-block; background: var(--gold); color: var(--white); padding: 14px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; transition: background .2s; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline { display: inline-block; background: transparent; color: var(--brand); padding: 13px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; border: 1px solid var(--border); transition: border-color .2s; }
+    .btn-outline:hover { border-color: var(--brand); }
+
+    /* ── BANDEAU ── */
+    .sk-banner { background: var(--brand); padding: 9px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; }
+    .sk-banner__text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--gold); }
+    .sk-banner__btn { background: var(--gold); color: var(--brand); font-family: 'Outfit', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 5px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
+    .sk-banner__btn:hover { opacity: .85; }
+    .sk-banner__close { position: absolute; right: 16px; background: none; border: none; color: #666; font-size: 18px; cursor: pointer; }
+
+    /* ── NAV ── */
+    .sk-nav { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 24px; display: flex; align-items: center; height: 58px; position: sticky; top: 0; z-index: 100; }
+    .sk-nav__logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+    .sk-nav__logo span { color: var(--gold); }
+    .sk-nav__links { display: flex; align-items: center; gap: 26px; flex: 1; list-style: none; }
+    .sk-nav__links a { font-size: 13px; color: var(--muted); white-space: nowrap; transition: color .15s; }
+    .sk-nav__links a:hover, .sk-nav__links a.active { color: var(--brand); font-weight: 500; }
+    .sk-nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
+    .sk-nav__sep { width: 0.5px; height: 18px; background: var(--border); }
+    .sk-btn-reseau { display: flex; align-items: center; gap: 6px; background: var(--gold); color: var(--brand); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
+    .sk-btn-reseau:hover { opacity: .88; }
+    .sk-btn-reseau__dot { width: 5px; height: 5px; background: var(--brand); border-radius: 50%; flex-shrink: 0; }
+    .sk-btn-espace { background: var(--brand); color: var(--white); font-size: 12px; font-weight: 500; padding: 7px 16px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
+    .sk-btn-espace:hover { opacity: .85; }
+    .sk-nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; flex-direction: column; gap: 5px; }
+    .sk-nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--brand); }
+    .sk-nav__mobile { display: none; flex-direction: column; background: var(--white); border-bottom: 0.5px solid var(--border); padding: 16px 24px 20px; }
+    .sk-nav__mobile a { font-size: 14px; color: var(--muted); padding: 11px 0; border-bottom: 0.5px solid var(--border); display: block; }
+    .sk-nav__mobile a:last-of-type { border-bottom: none; }
+    .sk-nav__mobile-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .sk-nav__mobile-btns .sk-btn-reseau, .sk-nav__mobile-btns .sk-btn-espace { justify-content: center; text-align: center; font-size: 13px; padding: 10px 16px; }
+
+    /* ── HERO ANNONCES ── */
+    .annonces-hero { padding: 72px 0 64px; background: var(--white); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .annonces-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,0.035) 79px, rgba(200,169,106,0.035) 80px); pointer-events: none; }
+    .annonces-hero-inner { position: relative; max-width: 760px; }
+    .annonces-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 56px); line-height: 1.1; color: var(--brand); margin-bottom: 18px; font-weight: 400; }
+    .annonces-hero h1 em { color: var(--gold); font-style: italic; }
+    .annonces-hero p { font-size: 17px; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 560px; }
+
+    /* ── FILTRES ── */
+    .annonces-filtres-wrap { background: var(--light); border-bottom: 1px solid var(--border); padding: 28px 0; position: sticky; top: 58px; z-index: 90; }
+    .annonces-filtres { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 0; }
+    .filtre-input, .filtre-select { padding: 15px 18px; border: 1px solid var(--border); border-right: none; background: var(--white); font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color .2s; width: 100%; appearance: none; -webkit-appearance: none; }
+    .filtre-input::placeholder { color: var(--muted); }
+    .filtre-input:focus, .filtre-select:focus { border-color: var(--gold); z-index: 1; position: relative; }
+    .filtre-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+    .filtre-btn { background: var(--brand); color: var(--white); border: none; padding: 0 32px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; letter-spacing: .03em; transition: background .2s; white-space: nowrap; }
+    .filtre-btn:hover { background: #2E2F35; }
+    .filtre-btn svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; margin-right: 6px; }
+
+    /* ── TABS CATEGORIES ── */
+    .annonces-tabs { border-bottom: 1px solid var(--border); background: var(--white); }
+    .annonces-tabs-inner { display: flex; gap: 0; overflow-x: auto; }
+    .tab-btn { padding: 18px 24px; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s; display: flex; align-items: center; gap: 8px; }
+    .tab-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .tab-btn:hover { color: var(--brand); }
+    .tab-btn.active { color: var(--brand); border-bottom-color: var(--gold); font-weight: 600; }
+    .tab-count { display: inline-block; background: var(--light); color: var(--muted); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+    .tab-btn.active .tab-count { background: rgba(200,169,106,0.15); color: var(--gold-dark); }
+
+    /* ── BODY ANNONCES ── */
+    .annonces-body { padding: 56px 0 88px; background: var(--light); min-height: 60vh; }
+    .annonces-body-inner { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; }
+
+    /* ── SIDEBAR FILTRES ── */
+    .sidebar { background: var(--white); border: 1px solid var(--border); padding: 28px; }
+    .sidebar-title { font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 20px; display: block; }
+    .sidebar-section { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .sidebar-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sidebar-section-title { font-size: 13px; font-weight: 600; color: var(--brand); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .sidebar-section-title svg { width: 14px; height: 14px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+    .checkbox-item span { font-size: 13px; color: var(--muted); transition: color .15s; }
+    .checkbox-item:hover span { color: var(--brand); }
+    .sidebar-range { width: 100%; accent-color: var(--gold); margin: 8px 0; }
+    .sidebar-range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+    .sidebar-reset { width: 100%; padding: 12px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; cursor: pointer; transition: border-color .2s, color .2s; margin-top: 4px; }
+    .sidebar-reset:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* ── GRILLE ANNONCES ── */
+    .annonces-results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+    .annonces-count { font-size: 13px; color: var(--muted); }
+    .annonces-count strong { color: var(--brand); font-weight: 600; }
+    .annonces-sort { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+    .annonces-sort select { padding: 8px 32px 8px 12px; border: 1px solid var(--border); background: var(--white); font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text); outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+    .annonces-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+
+    /* ── CARTE ANNONCE ── */
+    .annonce-card { background: var(--white); overflow: hidden; transition: background .2s; position: relative; display: flex; flex-direction: column; }
+    .annonce-card:hover { background: #FDFCF8; }
+    .annonce-card-img { width: 100%; height: 200px; background: var(--border); overflow: hidden; position: relative; }
+    .annonce-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .annonce-card:hover .annonce-card-img img { transform: scale(1.04); }
+    .annonce-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .annonce-card-img-placeholder svg { width: 40px; height: 40px; stroke: var(--border); fill: none; stroke-width: 1; }
+    .annonce-card-badge { position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; }
+    .badge-strakara-card { background: var(--brand); color: var(--gold); }
+    .badge-strakara-card svg { width: 10px; height: 10px; fill: var(--gold); stroke: none; }
+    .badge-offre-card { background: rgba(200,169,106,0.92); color: var(--brand); }
+    .badge-offre-card svg { width: 10px; height: 10px; stroke: var(--brand); fill: none; stroke-width: 2; }
+    .badge-demande-card { background: rgba(30,31,35,0.88); color: var(--white); }
+    .badge-demande-card svg { width: 10px; height: 10px; stroke: var(--white); fill: none; stroke-width: 2; }
+    .annonce-card-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+    .annonce-card-ville { font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+    .annonce-card-ville svg { width: 11px; height: 11px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .annonce-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 10px; font-weight: 400; line-height: 1.3; }
+    .annonce-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+    .annonce-card-infos { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+    .annonce-card-surface { font-size: 13px; font-weight: 600; color: var(--brand); display: flex; align-items: center; gap: 5px; }
+    .annonce-card-surface svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .annonce-card-prix { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold-dark); font-weight: 600; }
+    .annonce-card-prix span { font-family: 'Outfit', sans-serif; font-size: 11px; color: var(--muted); font-weight: 300; margin-left: 3px; }
+    .annonce-card-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+    .annonce-card-link:hover { color: var(--gold-dark); border-color: var(--gold); }
+    .annonce-card-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── PUBLIER CTA ── */
+    .publier-cta { background: var(--brand); border: none; padding: 40px 28px; text-align: center; position: relative; overflow: hidden; }
+    .publier-cta::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,0.04) 79px, rgba(200,169,106,0.04) 80px); pointer-events: none; }
+    .publier-cta-inner { position: relative; }
+    .publier-cta p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+    .publier-cta h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); margin-bottom: 20px; font-weight: 400; }
+    .publier-cta h3 em { color: var(--gold); font-style: italic; }
+    .btn-gold-outline { display: inline-block; background: transparent; color: var(--gold); padding: 12px 24px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .03em; border: 1px solid rgba(200,169,106,0.4); transition: border-color .2s, color .2s; }
+    .btn-gold-outline:hover { border-color: var(--gold); }
+
+    /* ── PAGINATION ── */
+    .pagination { display: flex; justify-content: center; gap: 4px; margin-top: 40px; }
+    .page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: var(--white); font-size: 13px; color: var(--muted); cursor: pointer; transition: all .2s; font-family: 'Outfit', sans-serif; }
+    .page-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .page-btn.active { background: var(--brand); color: var(--white); border-color: var(--brand); }
+    .page-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FOOTER ── */
+    .footer { background: #111214; padding: 56px 0 32px; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: white; font-weight: 600; letter-spacing: .04em; display: block; margin-bottom: 14px; }
+    .footer-logo span { color: var(--gold); }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 10px; transition: color .18s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-bottom-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .annonces-body-inner { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+    }
+    @media (max-width: 960px) {
+      .sk-nav__links, .sk-nav__right { display: none; }
+      .sk-nav__hamburger { display: flex; }
+      .annonces-filtres { grid-template-columns: 1fr 1fr; }
+      .annonces-filtres .filtre-btn { grid-column: 1 / -1; padding: 15px; }
+      .annonces-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .annonces-hero { padding: 48px 0; }
+      .annonces-filtres { grid-template-columns: 1fr; }
+      .filtre-input, .filtre-select { border-right: 1px solid var(--border); border-bottom: none; }
+      .filtre-btn { padding: 16px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU -->
+  <div class="sk-banner" id="sk-banner">
+    <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
+    <a href="https://app.strakara.fr/rejoindre" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+    <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
+  </div>
+
+  <!-- NAV -->
+  <nav class="sk-nav">
+    <a href="https://www.strakara.fr" class="sk-nav__logo">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a></li>
+      <li><a href="https://strakara.netlify.app/espaces.html">Nos espaces</a></li>
+      <li><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a></li>
+      <li><a href="https://app.strakara.fr/" class="active">R&eacute;seau Pro</a></li>
+      <li><a href="https://www.strakara.fr/modele-stockage-professionnel.html">&Agrave; propos</a></li>
+      <li><a href="https://www.strakara.fr/contact.html">Contact</a></li>
+    </ul>
+    <div class="sk-nav__right">
+      <a href="tel:0759647754" style="font-size:12.5px;color:var(--muted);">07 59 64 77 54</a>
+      <div class="sk-nav__sep"></div>
+      <a href="https://app.strakara.fr/rejoindre" class="sk-btn-reseau">
+        <span class="sk-btn-reseau__dot"></span>Rejoindre &mdash; Gratuit
+      </a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-espace">Connexion</a>
+    </div>
+    <button class="sk-nav__hamburger" onclick="this.nextElementSibling.classList.toggle('sk-open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="sk-nav__mobile">
+    <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a>
+    <a href="https://strakara.netlify.app/espaces.html">Nos espaces</a>
+    <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a>
+    <a href="https://app.strakara.fr/">R&eacute;seau Pro</a>
+    <a href="https://www.strakara.fr/modele-stockage-professionnel.html">&Agrave; propos</a>
+    <a href="https://www.strakara.fr/contact.html">Contact</a>
+    <div class="sk-nav__mobile-btns">
+      <a href="https://app.strakara.fr/rejoindre" class="sk-btn-reseau"><span class="sk-btn-reseau__dot"></span>Rejoindre &mdash; Gratuit</a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-espace">Connexion membre</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="annonces-hero">
+    <div class="container">
+      <div class="annonces-hero-inner">
+        <span class="label">Annonces du r&eacute;seau</span>
+        <h1>Toutes les <em>opportunit&eacute;s</em><br>disponibles.</h1>
+        <p>Espaces professionnels, missions, prestataires, mat&eacute;riel &mdash; publi&eacute;es gratuitement par les membres v&eacute;rifi&eacute;s du r&eacute;seau STRAKARA partout en France.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTRES STICKY -->
+  <div class="annonces-filtres-wrap">
+    <div class="container">
+      <div class="annonces-filtres">
+        <input class="filtre-input" type="text" placeholder="Ville, d&eacute;partement ou r&eacute;gion...">
+        <select class="filtre-select">
+          <option>Tous les secteurs</option>
+          <option>Immobilier Pro</option>
+          <option>BTP &amp; Artisans</option>
+          <option>Transport &amp; Logistique</option>
+          <option>Prestataires</option>
+          <option>Jobs saisonniers</option>
+        </select>
+        <select class="filtre-select">
+          <option>Toutes les surfaces</option>
+          <option>0 &agrave; 50 m&sup2;</option>
+          <option>50 &agrave; 100 m&sup2;</option>
+          <option>100 &agrave; 250 m&sup2;</option>
+          <option>250 m&sup2; et +</option>
+        </select>
+        <select class="filtre-select">
+          <option>Offres &amp; demandes</option>
+          <option>Offres uniquement</option>
+          <option>Demandes uniquement</option>
+          <option>Espaces STRAKARA</option>
+        </select>
+        <button class="filtre-btn">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Rechercher
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="annonces-tabs">
+    <div class="container">
+      <div class="annonces-tabs-inner">
+        <button class="tab-btn active">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Toutes <span class="tab-count">24</span>
+        </button>
+        <button class="tab-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Immobilier <span class="tab-count">8</span>
+        </button>
+        <button class="tab-btn">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          BTP <span class="tab-count">6</span>
+        </button>
+        <button class="tab-btn">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Transport <span class="tab-count">4</span>
+        </button>
+        <button class="tab-btn">
+          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Prestataires <span class="tab-count">4</span>
+        </button>
+        <button class="tab-btn">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Saisonniers <span class="tab-count">2</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <section class="annonces-body">
+    <div class="container">
+      <div class="annonces-body-inner">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <span class="sidebar-title">Affiner</span>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              R&eacute;gion
+            </div>
+            <label class="checkbox-item"><input type="checkbox" checked><span>&Icirc;le-de-France</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Bretagne</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Auvergne-Rh&ocirc;ne-Alpes</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Nouvelle-Aquitaine</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Occitanie</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Hauts-de-France</span></label>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Type d&apos;annonce
+            </div>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Espaces STRAKARA</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Offres membres</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Demandes membres</span></label>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Budget mensuel max
+            </div>
+            <input type="range" class="sidebar-range" min="0" max="3000" value="2000">
+            <div class="sidebar-range-labels"><span>0 &euro;</span><span>3 000 &euro; HT</span></div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">
+              <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+              Surface
+            </div>
+            <label class="checkbox-item"><input type="checkbox"><span>Moins de 50 m&sup2;</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>50 &agrave; 200 m&sup2;</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>200 &agrave; 500 m&sup2;</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>500 m&sup2; et +</span></label>
+          </div>
+
+          <button class="sidebar-reset">Effacer les filtres</button>
+        </aside>
+
+        <!-- RESULTATS -->
+        <div>
+          <div class="annonces-results-header">
+            <p class="annonces-count"><strong>24 annonces</strong> correspondent &agrave; votre recherche</p>
+            <div class="annonces-sort">
+              <span>Trier par</span>
+              <select>
+                <option>Les plus r&eacute;centes</option>
+                <option>Prix croissant</option>
+                <option>Prix d&eacute;croissant</option>
+                <option>Surface croissante</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="annonces-grid">
+
+            <!-- CARTE 1 — STRAKARA -->
+            <article class="annonce-card">
+              <div class="annonce-card-img">
+                <div class="annonce-card-img-placeholder">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <span class="annonce-card-badge badge-strakara-card">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  Espace STRAKARA
+                </span>
+              </div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Champigny-sur-Marne (94)
+                </span>
+                <h3>Activit&eacute; &amp; Stockage &mdash; 91 m&sup2;</h3>
+                <p>Espace flexible sans bail, op&eacute;rationnel sous 72h. Acc&egrave;s 24h/24, espace partag&eacute; possible. Id&eacute;al logistique ou artisan.</p>
+                <div class="annonce-card-infos">
+                  <span class="annonce-card-surface">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                    91 m&sup2;
+                  </span>
+                  <span class="annonce-card-prix">726 &euro; <span>HT/mois</span></span>
+                </div>
+                <a href="https://strakara.netlify.app/espaces.html" class="annonce-card-link">
+                  Voir l&apos;espace
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- CARTE 2 — OFFRE -->
+            <article class="annonce-card">
+              <div class="annonce-card-img">
+                <div class="annonce-card-img-placeholder">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <span class="annonce-card-badge badge-offre-card">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Offre
+                </span>
+              </div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Paris &amp; IDF
+                </span>
+                <h3>&Eacute;lectricien qualifi&eacute; RGE &mdash; disponible</h3>
+                <p>Artisan &eacute;lectricien 15 ans d&apos;exp&eacute;rience, disponible pour sous-traitance chantiers IDF. Qualifi&eacute; RGE, assurance d&eacute;cennale en cours.</p>
+                <div class="annonce-card-infos">
+                  <span class="annonce-card-surface">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    BTP &amp; Artisans
+                  </span>
+                  <span class="annonce-card-prix">Sur devis</span>
+                </div>
+                <a href="#" class="annonce-card-link">
+                  Contacter
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- CARTE 3 — DEMANDE -->
+            <article class="annonce-card">
+              <div class="annonce-card-img">
+                <div class="annonce-card-img-placeholder">
+                  <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <span class="annonce-card-badge badge-demande-card">
+                  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  Besoin
+                </span>
+              </div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Paris &amp; IDF
+                </span>
+                <h3>Cherche transporteur &mdash; livraisons dernier km</h3>
+                <p>E-commer&ccedil;ant cherche partenaire transport pour livraisons J+1 en r&eacute;gion parisienne. Volume&nbsp;: 50&ndash;80 colis/semaine.</p>
+                <div class="annonce-card-infos">
+                  <span class="annonce-card-surface">
+                    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/></svg>
+                    Transport
+                  </span>
+                  <span class="annonce-card-prix">Budget ouvert</span>
+                </div>
+                <a href="#" class="annonce-card-link">
+                  R&eacute;pondre
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- CARTE 4 — STRAKARA -->
+            <article class="annonce-card">
+              <div class="annonce-card-img">
+                <div class="annonce-card-img-placeholder">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <span class="annonce-card-badge badge-strakara-card">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  Espace STRAKARA
+                </span>
+              </div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Brest (29)
+                </span>
+                <h3>Box de stockage 12&ndash;24 m&sup2;</h3>
+                <p>Boxes s&eacute;curis&eacute;s disponibles imm&eacute;diatement. Acc&egrave;s 24h/24, espace privatif. Id&eacute;al artisan ou PME cherchant flexibilit&eacute;.</p>
+                <div class="annonce-card-infos">
+                  <span class="annonce-card-surface">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                    12&ndash;24 m&sup2;
+                  </span>
+                  <span class="annonce-card-prix">230 &euro; <span>HT/mois</span></span>
+                </div>
+                <a href="https://strakara.netlify.app/espaces.html" class="annonce-card-link">
+                  Voir l&apos;espace
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- CARTE 5 — OFFRE -->
+            <article class="annonce-card">
+              <div class="annonce-card-img">
+                <div class="annonce-card-img-placeholder">
+                  <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <span class="annonce-card-badge badge-offre-card">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Offre
+                </span>
+              </div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Lyon &amp; Remote
+                </span>
+                <h3>D&eacute;veloppeur web freelance &mdash; disponible</h3>
+                <p>D&eacute;veloppeur fullstack 8 ans d&apos;exp&eacute;rience. Sp&eacute;cialis&eacute; sites PME, e-commerce, applications m&eacute;tier. Devis gratuit sous 48h.</p>
+                <div class="annonce-card-infos">
+                  <span class="annonce-card-surface">
+                    <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+                    Prestataires
+                  </span>
+                  <span class="annonce-card-prix">Sur devis</span>
+                </div>
+                <a href="#" class="annonce-card-link">
+                  Contacter
+                  <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- CARTE 6 — CTA PUBLIER -->
+            <article class="annonce-card publier-cta">
+              <div class="publier-cta-inner">
+                <svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 16px;display:block;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <p>Vous avez quelque chose &agrave; proposer ?</p>
+                <h3>Publiez votre annonce<br><em>gratuitement.</em></h3>
+                <a href="publier.html" class="btn-gold-outline">Publier une annonce &rarr;</a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- PAGINATION -->
+          <div class="pagination">
+            <button class="page-btn">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">&hellip;</button>
+            <button class="page-btn">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="https://www.strakara.fr" class="footer-logo">STRA<span>KARA</span></a>
+          <p>Le r&eacute;seau professionnel d&apos;espaces partag&eacute;s et d&apos;entraide pro en France. Sans bail, sans gestion, sans friction.</p>
+        </div>
+        <div class="footer-col">
+          <h4>R&eacute;seau Pro</h4>
+          <a href="reseau/immobilier.html">Immobilier Pro</a>
+          <a href="reseau/btp.html">BTP &amp; Artisans</a>
+          <a href="reseau/transport.html">Transport</a>
+          <a href="reseau/prestataires.html">Prestataires</a>
+          <a href="reseau/saisonnier.html">Jobs saisonniers</a>
+        </div>
+        <div class="footer-col">
+          <h4>STRAKARA</h4>
+          <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a>
+          <a href="https://strakara.netlify.app/espaces.html">Nos espaces</a>
+          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a>
+          <a href="https://www.strakara.fr/modele-stockage-professionnel.html">&Agrave; propos</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="https://www.strakara.fr/contact.html">Nous contacter</a>
+          <a href="tel:0759647754">07 59 64 77 54</a>
+          <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
+          <a href="https://app.strakara.fr/rejoindre">Rejoindre le r&eacute;seau</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s</p>
+        <div class="footer-bottom-links">
+          <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
+          <a href="https://www.strakara.fr/cgv.html">CGV</a>
+          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
