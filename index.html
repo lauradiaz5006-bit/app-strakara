@@ -57,17 +57,6 @@
     .btn-gold:hover { background: var(--gold-light); }
     .btn-outline { display: inline-block; background: transparent; color: var(--brand); padding: 13px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; border: 1px solid var(--border); transition: border-color .2s; }
     .btn-outline:hover { border-color: var(--brand); }
-
-    /* SVG ICONS */
-    .icon { display: inline-block; vertical-align: middle; }
-    .secteur-icon-wrap { width: 48px; height: 48px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-    .secteur-icon-wrap svg { width: 24px; height: 24px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .annonce-pin svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; margin-right: 3px; }
-    .valeur-icon-wrap { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    .valeur-icon-wrap svg { width: 20px; height: 20px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .espace-star { display: inline-flex; align-items: center; gap: 6px; }
-    .espace-star svg { width: 12px; height: 12px; fill: var(--gold); stroke: none; }
-
     /* BANDEAU */
     .sk-banner { background: var(--brand); padding: 9px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; }
     .sk-banner__text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--gold); }
@@ -132,18 +121,14 @@
     .annonce-card { background: var(--white); padding: 32px; transition: background .2s; }
     .annonce-card:hover { background: var(--light); }
     .annonce-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 14px; }
-    .annonce-badge svg { width: 11px; height: 11px; }
-    .badge-offre { background: rgba(200,169,106,0.12); color: var(--gold-dark); }
+.badge-offre { background: rgba(200,169,106,0.12); color: var(--gold-dark); }
     .badge-demande { background: rgba(30,31,35,0.06); color: var(--brand); }
     .badge-strakara { background: var(--brand); color: var(--gold); }
-    .badge-strakara svg { stroke: var(--gold); fill: none; stroke-width: 1.5; }
-    .badge-offre svg { stroke: var(--gold-dark); fill: none; stroke-width: 1.5; }
-    .badge-demande svg { stroke: var(--brand); fill: none; stroke-width: 1.5; }
-    .annonce-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); margin-bottom: 10px; font-weight: 400; line-height: 1.3; }
+.badge-offre svg { stroke: var(--gold-dark); fill: none; stroke-width: 1.5; }
+.annonce-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); margin-bottom: 10px; font-weight: 400; line-height: 1.3; }
     .annonce-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
     .annonce-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; align-items: center; }
-    .annonce-meta svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; margin-right: 3px; }
-    .annonce-cta { text-align: center; }
+.annonce-cta { text-align: center; }
     .annonce-link { display: inline-block; margin-top: 16px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color .2s; }
     .annonce-link:hover { border-color: var(--gold-dark); }
 
@@ -159,11 +144,9 @@
     .espace-card { background: rgba(255,255,255,0.03); padding: 36px; transition: background .2s; }
     .espace-card:hover { background: rgba(255,255,255,0.07); }
     .espace-disponible { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); background: rgba(200,169,106,0.12); padding: 4px 10px; margin-bottom: 14px; }
-    .espace-disponible svg { width: 11px; height: 11px; fill: var(--gold); stroke: none; }
-    .espace-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; font-weight: 400; }
+.espace-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--white); margin-bottom: 8px; font-weight: 400; }
     .espace-lieu { font-size: 12px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; display: flex; align-items: center; gap: 5px; }
-    .espace-lieu svg { width: 12px; height: 12px; stroke: rgba(255,255,255,0.35); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-    .espace-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 20px; }
+.espace-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 20px; }
     .espace-infos { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .espace-info-tag { font-size: 11px; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; }
     .espace-prix { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 600; }
@@ -181,14 +164,11 @@
     .achat-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); opacity: 0; transition: opacity .2s; }
     .achat-card:hover::after { opacity: 1; }
     .achat-card-icon { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-    .achat-card-icon svg { width: 18px; height: 18px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .achat-region { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; display: block; }
+.achat-region { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 10px; display: block; }
     .achat-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); margin-bottom: 8px; font-weight: 400; }
     .achat-card p { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
     .achat-membres { font-size: 11px; color: var(--gold-dark); font-weight: 600; display: flex; align-items: center; gap: 5px; }
-    .achat-membres svg { width: 12px; height: 12px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-
-    /* VALEURS */
+/* VALEURS */
     .valeurs { padding: 88px 0; background: var(--white); border-bottom: 1px solid var(--border); }
     .valeurs-header { text-align: center; margin-bottom: 56px; }
     .valeurs-header .lead { margin: 0 auto; text-align: center; }
@@ -222,6 +202,118 @@
     .footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.25); }
     .footer-bottom-links a:hover { color: var(--gold); }
 
+
+    /* BOUTONS NAV SANS SVG */
+    .sk-btn-publier {
+      display: inline-block;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 7px 12px;
+      border-left: 1px solid var(--border);
+      transition: color .15s;
+    }
+    .sk-btn-publier:hover { color: var(--gold-dark); }
+
+    .sk-btn-connexion {
+      display: inline-block;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: border-color .15s, color .15s;
+    }
+    .sk-btn-connexion:hover {
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    /* FOOTER APP */
+    .sk-footer {
+      background: #111214;
+      padding: 56px 0 32px;
+    }
+    .sk-footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .sk-footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: white;
+      font-weight: 600;
+      letter-spacing: .04em;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .sk-footer-logo span { color: var(--gold); }
+    .sk-footer-logo-sub {
+      display: block;
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 14px;
+    }
+    .sk-footer-brand p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 18px;
+    }
+    .sk-footer-strakara-link {
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      transition: color .18s;
+    }
+    .sk-footer-strakara-link:hover { color: var(--gold); }
+    .sk-footer-col h4 {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 16px;
+    }
+    .sk-footer-col a {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
+      transition: color .18s;
+    }
+    .sk-footer-col a:hover { color: var(--gold); }
+    .sk-footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .sk-footer-bottom p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+    .sk-footer-bottom-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .sk-footer-bottom-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+    .sk-footer-bottom-links a:hover { color: var(--gold); }
+
     /* RESPONSIVE */
     @media (max-width: 960px) {
       .sk-nav__links, .sk-nav__right { display: none; }
@@ -231,7 +323,7 @@
       .espaces-grid { grid-template-columns: 1fr; }
       .achats-grid { grid-template-columns: 1fr 1fr; }
       .valeurs-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-inner, .sk-footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 600px) {
       .container { padding: 0 20px; }
@@ -243,70 +335,10 @@
       .achats-grid { grid-template-columns: 1fr; }
       .h2 { font-size: 28px; }
       .rejoindre-btns { flex-direction: column; align-items: center; }
-      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-inner, .sk-footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom, .sk-footer-bottom { flex-direction: column; text-align: center; }
     }
-    <style>
-.sk-nav__dropdown{
-  position:relative;
-}
-
-.sk-nav__dropdown-toggle{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.sk-nav__dropdown-toggle svg{
-  width:12px;
-  height:12px;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:2;
-}
-
-.sk-nav__dropdown-menu{
-  display:none;
-  position:absolute;
-  top:34px;
-  left:0;
-  min-width:240px;
-  background:#fff;
-  border:1px solid var(--border);
-  box-shadow:0 14px 40px rgba(0,0,0,.08);
-  z-index:999;
-  padding:10px 0;
-}
-
-.sk-nav__dropdown:hover .sk-nav__dropdown-menu{
-  display:block;
-}
-
-.sk-nav__dropdown-menu a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 16px;
-  font-size:13px;
-  color:var(--muted);
-  white-space:nowrap;
-}
-
-.sk-nav__dropdown-menu a:hover{
-  background:#F6F5F0;
-  color:#1E1F23;
-}
-
-.sk-nav__dropdown-menu svg{
-  width:16px !important;
-  height:16px !important;
-  min-width:16px;
-  stroke:var(--gold-dark);
-  fill:none;
-  stroke-width:1.6;
-}
 </style>
-  </style>
 </head>
 <body>
 
@@ -326,38 +358,10 @@
     <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
     <li><a href="https://app.strakara.fr/annonces.html" class="">Annonces</a></li>
     <li><a href="https://app.strakara.fr/membres.html" class="">Membres</a></li>
-    <li class="sk-nav__dropdown">
-      <a href="#" class="sk-nav__dropdown-toggle {{active_secteurs}}">
-        Secteurs
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
-      <div class="sk-nav__dropdown-menu">
-        <a href="https://app.strakara.fr/reseau/immobilier.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Immobilier Pro
-        </a>
-        <a href="https://app.strakara.fr/reseau/btp.html">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          BTP &amp; Artisans
-        </a>
-        <a href="https://app.strakara.fr/reseau/transport.html">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Transport &amp; Logistique
-        </a>
-        <a href="https://app.strakara.fr/reseau/prestataires.html">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Prestataires &amp; Services
-        </a>
-        <a href="https://app.strakara.fr/reseau/saisonnier.html">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          Jobs saisonniers
-        </a>
-        <a href="https://app.strakara.fr/reseau/humanite.html">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Humanit&eacute; &amp; &Eacute;v&eacute;nements
-        </a>
-      </div>
-    </li>
+    <li><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier</a></li>
+    <li><a href="https://app.strakara.fr/reseau/btp.html">BTP</a></li>
+    <li><a href="https://app.strakara.fr/reseau/transport.html">Transport</a></li>
+    <li><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a></li>
     <li><a href="https://app.strakara.fr/blog/index.html" class="">Blog</a></li>
     <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
   </ul>
@@ -436,10 +440,7 @@
       <div class="secteurs-grid">
 
         <a href="reseau/immobilier.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h3>Immobilier Pro</h3>
+<h3>Immobilier Pro</h3>
           <p>Espaces flexibles STRAKARA, locaux longue dur&eacute;e, bureaux partag&eacute;s. Trouvez ou proposez votre espace pro.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">Recruter</span>
@@ -449,10 +450,7 @@
         </a>
 
         <a href="reseau/btp.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/><path d="M7 7h.01M7 11h.01M11 7h6M11 11h6"/></svg>
-          </div>
-          <h3>BTP &amp; Artisans</h3>
+<h3>BTP &amp; Artisans</h3>
           <p>Partagez missions, mat&eacute;riel, sous-traitance. Trouvez un artisan de confiance ou proposez vos comp&eacute;tences.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">Recruter</span>
@@ -462,10 +460,7 @@
         </a>
 
         <a href="reseau/transport.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <h3>Transport &amp; Logistique</h3>
+<h3>Transport &amp; Logistique</h3>
           <p>Fret retour, capacit&eacute;s disponibles, prestataires logistiques. Optimisez vos tourn&eacute;es avec d&apos;autres pros.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">Fret retour</span>
@@ -475,10 +470,7 @@
         </a>
 
         <a href="reseau/prestataires.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <h3>Prestataires &amp; Services</h3>
+<h3>Prestataires &amp; Services</h3>
           <p>D&eacute;veloppeurs, comptables, juristes, commerciaux. Trouvez le bon prestataire ou proposez vos services.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">Missions</span>
@@ -488,10 +480,7 @@
         </a>
 
         <a href="reseau/saisonnier.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          </div>
-          <h3>Jobs Saisonniers</h3>
+<h3>Jobs Saisonniers</h3>
           <p>Valorisez vos comp&eacute;tences pendant les temps morts. Trouvez une mission courte ou proposez votre disponibilit&eacute;.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">Missions courtes</span>
@@ -501,10 +490,7 @@
         </a>
 
         <a href="reseau/humanite.html" class="secteur-card">
-          <div class="secteur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Humanit&eacute; &amp; &Eacute;v&eacute;nements</h3>
+<h3>Humanit&eacute; &amp; &Eacute;v&eacute;nements</h3>
           <p>Conseils, portraits de chefs d&apos;entreprise, &eacute;v&eacute;nements r&eacute;seau locaux. Restez humain m&ecirc;me surbooqu&eacute;.</p>
           <div class="secteur-tags">
             <span class="secteur-tag">&Eacute;v&eacute;nements</span>
@@ -530,16 +516,12 @@
       <div class="annonces-grid">
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-strakara">
-            <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:var(--gold);stroke:none;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Espace STRAKARA
+          <span class="annonce-badge badge-strakara">Espace STRAKARA
           </span>
           <h3>Activit&eacute; &amp; Stockage &mdash; 91 m&sup2;</h3>
           <p>Espace flexible sans bail, op&eacute;rationnel sous 72h. Acc&egrave;s 24h/24, espace partag&eacute; possible. Champigny-sur-Marne (94).</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Champigny-sur-Marne
+            <span>Champigny-sur-Marne
             </span>
             <span>726 &euro; HT/mois</span>
           </div>
@@ -547,48 +529,36 @@
         </div>
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-offre">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Offre
+          <span class="annonce-badge badge-offre">Offre
           </span>
           <h3>Disponible &mdash; &Eacute;lectricien qualifi&eacute; RGE</h3>
           <p>Artisan &eacute;lectricien 15 ans d&apos;exp&eacute;rience, disponible pour sous-traitance chantiers IDF. Qualifi&eacute; RGE, assurance d&eacute;cennale.</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Paris IDF
+            <span>Paris IDF
             </span>
             <span>BTP</span>
           </div>
         </div>
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-demande">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            Besoin
+          <span class="annonce-badge badge-demande">Besoin
           </span>
           <h3>Cherche transporteur &mdash; livraisons dernier km</h3>
           <p>E-commer&ccedil;ant cherche partenaire transport pour livraisons J+1 en r&eacute;gion parisienne. Volume&nbsp;: 50&ndash;80 colis/semaine.</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Paris &amp; IDF
+            <span>Paris &amp; IDF
             </span>
             <span>Transport</span>
           </div>
         </div>
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-strakara">
-            <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:var(--gold);stroke:none;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Espace STRAKARA
+          <span class="annonce-badge badge-strakara">Espace STRAKARA
           </span>
           <h3>Box de stockage 12&ndash;24 m&sup2; &mdash; Brest</h3>
           <p>Boxes s&eacute;curis&eacute;s disponibles imm&eacute;diatement. Acc&egrave;s 24h/24, espace privatif. Id&eacute;al artisan ou PME.</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Brest
+            <span>Brest
             </span>
             <span>230 &euro; HT/mois</span>
           </div>
@@ -596,32 +566,24 @@
         </div>
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-offre">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Offre
+          <span class="annonce-badge badge-offre">Offre
           </span>
           <h3>D&eacute;veloppeur web freelance &mdash; disponible</h3>
           <p>D&eacute;veloppeur fullstack 8 ans d&apos;exp&eacute;rience. Sp&eacute;cialis&eacute; sites PME, e-commerce, applications m&eacute;tier. Devis gratuit.</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Lyon + Remote
+            <span>Lyon + Remote
             </span>
             <span>Prestataire</span>
           </div>
         </div>
 
         <div class="annonce-card">
-          <span class="annonce-badge badge-demande">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            Besoin
+          <span class="annonce-badge badge-demande">Besoin
           </span>
           <h3>Recherche local artisan &mdash; court terme</h3>
           <p>Plombier chauffagiste cherche local de stockage 30&ndash;50 m&sup2; pour mat&eacute;riel chantier. Besoin imm&eacute;diat, 3 mois minimum.</p>
           <div class="annonce-meta">
-            <span>
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Bordeaux
+            <span>Bordeaux
             </span>
             <span>Immobilier</span>
           </div>
@@ -647,14 +609,10 @@
         <div class="espaces-grid">
 
           <div class="espace-card">
-            <span class="espace-disponible">
-              <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:var(--gold);stroke:none;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Disponible imm&eacute;diatement
+            <span class="espace-disponible">Disponible imm&eacute;diatement
             </span>
             <h3>Activit&eacute; &amp; Stockage &mdash; 91 m&sup2;</h3>
-            <p class="espace-lieu">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Champigny-sur-Marne (94)
+            <p class="espace-lieu">Champigny-sur-Marne (94)
             </p>
             <p>Espace professionnel flexible id&eacute;al pour logistique, artisan ou stockage. Acc&egrave;s facile, s&eacute;curis&eacute;.</p>
             <div class="espace-infos">
@@ -667,14 +625,10 @@
           </div>
 
           <div class="espace-card">
-            <span class="espace-disponible">
-              <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:var(--gold);stroke:none;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Disponible imm&eacute;diatement
+            <span class="espace-disponible">Disponible imm&eacute;diatement
             </span>
             <h3>Entrep&ocirc;t 200 m&sup2; &mdash; Acc&egrave;s 24h/24</h3>
-            <p class="espace-lieu">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Pontivy (56)
+            <p class="espace-lieu">Pontivy (56)
             </p>
             <p>Grand entrep&ocirc;t avec acc&egrave;s 24h/24, id&eacute;al stockage et activit&eacute; logistique. Zone industrielle s&eacute;curis&eacute;e.</p>
             <div class="espace-infos">
@@ -687,14 +641,10 @@
           </div>
 
           <div class="espace-card">
-            <span class="espace-disponible">
-              <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:var(--gold);stroke:none;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Disponible imm&eacute;diatement
+            <span class="espace-disponible">Disponible imm&eacute;diatement
             </span>
             <h3>Box de stockage 12&ndash;24 m&sup2;</h3>
-            <p class="espace-lieu">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Brest &mdash; Espace privatif
+            <p class="espace-lieu">Brest &mdash; Espace privatif
             </p>
             <p>Boxes s&eacute;curis&eacute;s modulables, id&eacute;als pour artisan, commer&ccedil;ant ou PME cherchant une solution flexible.</p>
             <div class="espace-infos">
@@ -727,54 +677,34 @@
       <div class="achats-grid">
 
         <div class="achat-card">
-          <div class="achat-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <span class="achat-region">&Icirc;le-de-France</span>
+<span class="achat-region">&Icirc;le-de-France</span>
           <h3>Mat&eacute;riaux BTP</h3>
           <p>B&eacute;ton, acier, bois, isolation. N&eacute;gociation collective aupr&egrave;s des fournisseurs r&eacute;gionaux.</p>
-          <span class="achat-membres">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            12 membres &middot; Ouvert
+          <span class="achat-membres">12 membres &middot; Ouvert
           </span>
         </div>
 
         <div class="achat-card">
-          <div class="achat-card-icon">
-            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <span class="achat-region">Bretagne</span>
+<span class="achat-region">Bretagne</span>
           <h3>Carburant &amp; Pneumatiques</h3>
           <p>Pour transporteurs et artisans. Carte carburant n&eacute;goci&eacute;e, pneumatiques pro &agrave; tarif collectif.</p>
-          <span class="achat-membres">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            8 membres &middot; Ouvert
+          <span class="achat-membres">8 membres &middot; Ouvert
           </span>
         </div>
 
         <div class="achat-card">
-          <div class="achat-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="achat-region">France enti&egrave;re</span>
+<span class="achat-region">France enti&egrave;re</span>
           <h3>Assurances Pro</h3>
           <p>RC Pro, d&eacute;cennale, multirisque. Tarifs de groupe impossibles &agrave; obtenir individuellement.</p>
-          <span class="achat-membres">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            En formation
+          <span class="achat-membres">En formation
           </span>
         </div>
 
         <div class="achat-card">
-          <div class="achat-card-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          </div>
-          <span class="achat-region">France enti&egrave;re</span>
+<span class="achat-region">France enti&egrave;re</span>
           <h3>Logiciels &amp; Outils</h3>
           <p>Licences group&eacute;es CRM, comptabilit&eacute;, gestion de chantier. Jusqu&apos;&agrave; 60% d&apos;&eacute;conomie.</p>
-          <span class="achat-membres">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            En formation
+          <span class="achat-membres">En formation
           </span>
         </div>
 
@@ -793,55 +723,37 @@
       <div class="valeurs-grid">
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="valeur-num">01</div>
+<div class="valeur-num">01</div>
           <h3>Gratuit &mdash; <em>vraiment.</em></h3>
           <p>Publier une annonce, rejoindre le r&eacute;seau, acc&eacute;der aux achats group&eacute;s. Tout est gratuit. STRAKARA se r&eacute;mun&egrave;re uniquement sur les locations d&apos;espaces.</p>
         </div>
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="valeur-num">02</div>
+<div class="valeur-num">02</div>
           <h3>V&eacute;rifi&eacute; &mdash; <em>chaque membre.</em></h3>
           <p>SIRET, assurances, identit&eacute; v&eacute;rifi&eacute;s avant activation. Vous partagez le r&eacute;seau avec des professionnels s&eacute;rieux, pas des inconnus anonymes.</p>
         </div>
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="valeur-num">03</div>
+<div class="valeur-num">03</div>
           <h3>Humain &mdash; <em>m&ecirc;me surbooqu&eacute;.</em></h3>
           <p>Des &eacute;v&eacute;nements, des portraits, des conseils pour rester humain dans votre quotidien professionnel. STRAKARA croit que l&apos;&eacute;panouissement pro et perso ne s&apos;opposent pas.</p>
         </div>
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="valeur-num">04</div>
+<div class="valeur-num">04</div>
           <h3>Local &mdash; <em>ancr&eacute; sur le terrain.</em></h3>
           <p>Des &eacute;v&eacute;nements pr&egrave;s de chez vous, des achats group&eacute;s par r&eacute;gion, des espaces &agrave; 20 minutes. Le r&eacute;seau qui conna&icirc;t votre bassin &eacute;conomique.</p>
         </div>
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          </div>
-          <div class="valeur-num">05</div>
+<div class="valeur-num">05</div>
           <h3>Flexible &mdash; <em>comme vous.</em></h3>
           <p>R&eacute;siliable en 30 jours, sans engagement. Les pros du terrain ont besoin d&apos;agilit&eacute;, pas de contraintes. STRAKARA s&apos;adapte &agrave; votre rythme.</p>
         </div>
 
         <div class="valeur-card">
-          <div class="valeur-icon-wrap">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="valeur-num">06</div>
+<div class="valeur-num">06</div>
           <h3>Utile &mdash; <em>d&egrave;s le premier jour.</em></h3>
           <p>D&egrave;s votre inscription&nbsp;: acc&egrave;s aux annonces, aux espaces disponibles, aux achats group&eacute;s actifs. La valeur est imm&eacute;diate &mdash; pas une promesse lointaine.</p>
         </div>
@@ -878,72 +790,44 @@
         <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
         <p>Le r&eacute;seau gratuit des pros du terrain &mdash; annonces, entraide, achats group&eacute;s et &eacute;v&eacute;nements pour artisans, TPE, PME et transporteurs.</p>
         <a href="https://www.strakara.fr" class="sk-footer-strakara-link">
-          Voir aussi strakara.fr &mdash; location d&apos;espaces
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+          Voir aussi strakara.fr &mdash; location d&apos;espaces</a>
       </div>
 
       <div class="sk-footer-col">
         <h4>R&eacute;seau</h4>
-        <a href="https://app.strakara.fr/annonces.html">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Annonces
+        <a href="https://app.strakara.fr/annonces.html">Annonces
         </a>
-        <a href="https://app.strakara.fr/membres.html">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          Membres
+        <a href="https://app.strakara.fr/membres.html">Membres
         </a>
-        <a href="https://app.strakara.fr/publier.html">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Publier une annonce
+        <a href="https://app.strakara.fr/publier.html">Publier une annonce
         </a>
-        <a href="https://app.strakara.fr/rejoindre.html">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-          Rejoindre &mdash; Gratuit
+        <a href="https://app.strakara.fr/rejoindre.html">Rejoindre &mdash; Gratuit
         </a>
       </div>
 
       <div class="sk-footer-col">
         <h4>Secteurs</h4>
-        <a href="https://app.strakara.fr/reseau/immobilier.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          Immobilier Pro
+        <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro
         </a>
-        <a href="https://app.strakara.fr/reseau/btp.html">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
-          BTP &amp; Artisans
+        <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans
         </a>
-        <a href="https://app.strakara.fr/reseau/transport.html">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/></svg>
-          Transport
+        <a href="https://app.strakara.fr/reseau/transport.html">Transport
         </a>
-        <a href="https://app.strakara.fr/reseau/prestataires.html">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
-          Prestataires
+        <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires
         </a>
-        <a href="https://app.strakara.fr/reseau/saisonnier.html">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-          Jobs saisonniers
+        <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers
         </a>
       </div>
 
       <div class="sk-footer-col">
         <h4>STRAKARA</h4>
-        <a href="https://app.strakara.fr/blog/index.html">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Blog &amp; Conseils
+        <a href="https://app.strakara.fr/blog/index.html">Blog &amp; Conseils
         </a>
-        <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          Location d&apos;espaces
+        <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d&apos;espaces
         </a>
-        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Devenir h&eacute;bergeur
+        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir h&eacute;bergeur
         </a>
-        <a href="https://www.strakara.fr/contact.html">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Contact
+        <a href="https://www.strakara.fr/contact.html">Contact
         </a>
       </div>
     </div>
