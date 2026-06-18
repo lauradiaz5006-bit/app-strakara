@@ -3,746 +3,349 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Membres du réseau — STRAKARA Réseau Pro</title>
-  <meta name="description" content="Découvrez les professionnels vérifiés du réseau STRAKARA. Hébergeurs, artisans, TPE, PME, transporteurs — trouvez votre prochain partenaire business.">
+  <title>Annuaire des professionnels — STRAKARA Réseau Pro</title>
+  <meta name="description" content="Trouvez des professionnels vérifiés du réseau STRAKARA : artisans, transporteurs, prestataires, hébergeurs d'espaces et entreprises locales. Annuaire public et réseau d'entraide entre pros.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://app.strakara.fr/membres.html">
+  <meta property="og:title" content="Annuaire des professionnels — STRAKARA Réseau Pro">
+  <meta property="og:description" content="Un annuaire public pour trouver des pros vérifiés et un réseau pour se recommander entre professionnels.">
+  <meta property="og:url" content="https://app.strakara.fr/membres.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Annuaire des professionnels STRAKARA",
+    "url":"https://app.strakara.fr/membres.html",
+    "description":"Annuaire public de professionnels vérifiés et réseau d'entraide entre pros.",
+    "isPartOf":{"@type":"WebSite","name":"STRAKARA Réseau Pro","url":"https://app.strakara.fr"}
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --brand:      #1E1F23;
-      --gold:       #C8A96A;
-      --gold-dark:  #A8894A;
-      --gold-light: #D4B97A;
-      --light:      #F6F5F0;
-      --text:       #1E1F23;
-      --muted:      #6E7175;
-      --border:     #E8E0D0;
-      --white:      #FFFFFF;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: 'Outfit', sans-serif; color: var(--text); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-    a { text-decoration: none; }
+    :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;}
+    .container{max-width:1280px;margin:0 auto;padding:0 48px;}
+    .label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:background .2s;}
+    .btn-dark:hover{background:#2E2F35;}
+    .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;}
+    .btn-outline:hover{border-color:var(--brand);}
 
-    /* ── TYPO ── */
-    .label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 14px; }
-    .btn-dark { display: inline-block; background: var(--brand); color: var(--white); padding: 14px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; transition: background .2s; }
-    .btn-dark:hover { background: #2E2F35; }
-    .btn-gold { display: inline-block; background: var(--gold); color: var(--white); padding: 14px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; transition: background .2s; }
-    .btn-gold:hover { background: var(--gold-light); }
-    .btn-outline { display: inline-block; background: transparent; color: var(--brand); padding: 13px 30px; font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .03em; border: 1px solid var(--border); transition: border-color .2s; }
-    .btn-outline:hover { border-color: var(--brand); }
+    .sk-banner{background:var(--brand);padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
+    .sk-banner__text{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold);}
+    .sk-banner__btn{background:var(--gold);color:var(--brand);font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
+    .sk-banner__btn:hover{opacity:.85;}
+    .sk-banner__close{position:absolute;right:16px;background:none;border:none;color:#777;font-size:18px;cursor:pointer;}
 
-    /* ── BANDEAU ── */
-    .sk-banner { background: var(--brand); padding: 9px 24px; display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; }
-    .sk-banner__text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--gold); }
-    .sk-banner__btn { background: var(--gold); color: var(--brand); font-family: 'Outfit', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 5px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
-    .sk-banner__btn:hover { opacity: .85; }
-    .sk-banner__close { position: absolute; right: 16px; background: none; border: none; color: #666; font-size: 18px; cursor: pointer; }
-/* DROPDOWN SECTEURS */
+    .sk-nav{background:var(--white);border-bottom:.5px solid var(--border);padding:0 24px;display:flex;align-items:center;height:58px;position:sticky;top:0;z-index:100;}
+    .sk-nav__logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-right:36px;white-space:nowrap;flex-shrink:0;}
+    .sk-nav__logo span{color:var(--gold);}
+    .sk-nav__links{display:flex;align-items:center;gap:22px;flex:1;list-style:none;}
+    .sk-nav__links a{font-size:13px;color:var(--muted);white-space:nowrap;transition:color .15s;}
+    .sk-nav__links a:hover,.sk-nav__links a.active{color:var(--brand);font-weight:500;}
+    .sk-nav__right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0;}
+    .sk-nav__sep{width:.5px;height:18px;background:var(--border);}
+    .sk-btn-publier{background:var(--gold);color:var(--brand);font-size:12px;font-weight:700;padding:7px 14px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
+    .sk-btn-publier:hover{opacity:.88;}
+    .sk-btn-connexion{background:var(--brand);color:var(--white);font-size:12px;font-weight:500;padding:7px 16px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
+    .sk-btn-connexion:hover{opacity:.85;}
+    .sk-nav__hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto;flex-direction:column;gap:5px;}
+    .sk-nav__hamburger span{display:block;width:22px;height:1.5px;background:var(--brand);}
+    .sk-nav__mobile{display:none;flex-direction:column;background:var(--white);border-bottom:.5px solid var(--border);padding:16px 24px 20px;}
+    .sk-nav__mobile.sk-open{display:flex;}
+    .sk-nav__mobile a{font-size:14px;color:var(--muted);padding:11px 0;border-bottom:.5px solid var(--border);display:block;}
+    .sk-nav__mobile-sep{display:block;font-size:11px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.12em;margin-top:12px;padding-top:12px;}
+    .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+    .sk-nav__mobile-btns .sk-btn-publier,.sk-nav__mobile-btns .sk-btn-connexion{justify-content:center;text-align:center;font-size:13px;padding:10px 16px;}
 
-.sk-nav__dropdown{
-  position:relative;
-}
+    .membres-hero{padding:76px 0 64px;background:var(--white);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .membres-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.035) 79px,rgba(200,169,106,.035) 80px);pointer-events:none;}
+    .membres-hero-inner{position:relative;max-width:840px;}
+    .membres-hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,58px);line-height:1.1;color:var(--brand);margin-bottom:18px;font-weight:400;}
+    .membres-hero h1 em{color:var(--gold);font-style:italic;}
+    .membres-hero p{font-size:18px;color:var(--muted);line-height:1.78;font-weight:300;max-width:680px;margin-bottom:32px;}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
+    .membres-hero-stats{display:flex;gap:40px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border);}
+    .hero-stat-num{font-family:'Playfair Display',serif;font-size:26px;color:var(--brand);font-weight:600;display:block;}
+    .hero-stat-label{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em;text-transform:uppercase;}
 
-.sk-nav__dropdown-toggle{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
+    .membres-filtres-wrap{background:var(--light);border-bottom:1px solid var(--border);padding:24px 0;position:sticky;top:58px;z-index:90;}
+    .membres-filtres{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:0;}
+    .filtre-input,.filtre-select{padding:15px 18px;border:1px solid var(--border);border-right:none;background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
+    .filtre-input::placeholder{color:var(--muted);}
+    .filtre-input:focus,.filtre-select:focus{border-color:var(--gold);z-index:1;position:relative;}
+    .filtre-select{cursor:pointer;}
+    .filtre-btn{background:var(--brand);color:var(--white);border:none;padding:0 32px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;letter-spacing:.03em;transition:background .2s;white-space:nowrap;}
+    .filtre-btn:hover{background:#2E2F35;}
 
-.sk-nav__dropdown-toggle svg{
-  width:12px;
-  height:12px;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:2;
-}
+    .membres-tabs{border-bottom:1px solid var(--border);background:var(--white);}
+    .membres-tabs-inner{display:flex;gap:0;overflow-x:auto;}
+    .tab-btn{padding:18px 24px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;display:flex;align-items:center;gap:8px;}
+    .tab-btn:hover{color:var(--brand);}
+    .tab-btn.active{color:var(--brand);border-bottom-color:var(--gold);font-weight:600;}
+    .tab-count{display:inline-block;background:var(--light);color:var(--muted);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;}
+    .tab-btn.active .tab-count{background:rgba(200,169,106,.15);color:var(--gold-dark);}
 
-.sk-nav__dropdown-menu{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  min-width:260px;
-  background:#fff;
-  border:1px solid var(--border);
-  box-shadow:0 15px 40px rgba(0,0,0,.08);
-  z-index:999;
-  padding:8px 0;
-}
+    .membres-body{padding:56px 0 88px;background:var(--light);min-height:60vh;}
+    .directory-note{background:var(--white);border:1px solid var(--border);padding:24px 28px;margin-bottom:28px;display:flex;justify-content:space-between;gap:24px;align-items:center;}
+    .directory-note p{font-size:14px;color:var(--muted);line-height:1.7;max-width:760px;}
+    .directory-note strong{color:var(--brand);font-weight:600;}
+    .membres-results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+    .membres-count{font-size:13px;color:var(--muted);}
+    .membres-count strong{color:var(--brand);font-weight:600;}
+    .membres-sort{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
+    .membres-sort select{padding:8px 12px;border:1px solid var(--border);background:var(--white);font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);outline:none;}
+    .membres-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);}
 
-.sk-nav__dropdown:hover .sk-nav__dropdown-menu{
-  display:block;
-}
+    .membre-card{background:var(--white);padding:34px;display:flex;gap:24px;transition:background .2s;position:relative;overflow:hidden;}
+    .membre-card::after{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--gold);opacity:0;transition:opacity .2s;}
+    .membre-card:hover{background:#FDFCF8;}
+    .membre-card:hover::after{opacity:1;}
+    .membre-avatar{width:64px;height:64px;min-width:64px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:.04em;flex-shrink:0;}
+    .membre-avatar.gold{background:var(--gold);color:var(--brand);}
+    .membre-avatar.light{background:var(--light);color:var(--brand);border:1px solid var(--border);}
+    .membre-avatar.soft{background:rgba(200,169,106,.12);color:var(--gold-dark);border:1px solid rgba(200,169,106,.3);}
+    .membre-content{flex:1;min-width:0;}
+    .membre-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:12px;}
+    .membre-role-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;background:rgba(200,169,106,.12);color:var(--gold-dark);}
+    .membre-verified{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0;}
+    .membre-content h3{font-family:'Playfair Display',serif;font-size:21px;color:var(--text);margin-bottom:8px;font-weight:400;line-height:1.25;}
+    .membre-content p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+    .membre-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+    .membre-tag{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);background:var(--light);border:1px solid var(--border);padding:4px 10px;}
+    .membre-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:16px;border-top:1px solid var(--border);}
+    .membre-localisation{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+    .membre-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+    .membre-link,.membre-call{display:inline-flex;align-items:center;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .2s,border-color .2s;}
+    .membre-link{color:var(--brand);}
+    .membre-call{color:var(--gold-dark);}
+    .membre-link:hover,.membre-call:hover{color:var(--gold-dark);border-color:var(--gold);}
 
-.sk-nav__dropdown-menu a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 16px;
-  color:var(--muted);
-  font-size:13px;
-}
+    .membre-card-cta{background:var(--brand);padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;min-height:240px;}
+    .membre-card-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
+    .membre-card-cta-inner{position:relative;}
+    .membre-card-cta p{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:8px;}
+    .membre-card-cta h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:20px;font-weight:400;line-height:1.3;}
+    .membre-card-cta h3 em{color:var(--gold);font-style:italic;}
+    .btn-gold-sm{display:inline-block;background:var(--gold);color:var(--brand);padding:10px 22px;font-weight:700;font-size:12px;letter-spacing:.03em;transition:opacity .2s;}
+    .btn-gold-sm:hover{opacity:.88;}
 
-.sk-nav__dropdown-menu a:hover{
-  background:#F6F5F0;
-  color:var(--brand);
-}
+    .pagination{display:flex;justify-content:center;gap:4px;margin-top:40px;}
+    .page-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--white);font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
+    .page-btn:hover{border-color:var(--brand);color:var(--brand);}
+    .page-btn.active{background:var(--brand);color:var(--white);border-color:var(--brand);}
 
-.sk-nav__dropdown-menu svg{
-  width:16px !important;
-  height:16px !important;
-  min-width:16px;
-  max-width:16px;
-  stroke:var(--gold-dark);
-  fill:none;
-  stroke-width:1.6;
-}
-    /* ── NAV ── */
-    .sk-nav { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 24px; display: flex; align-items: center; height: 58px; position: sticky; top: 0; z-index: 100; }
-    .sk-nav__logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
-    .sk-nav__logo span { color: var(--gold); }
-    .sk-nav__links { display: flex; align-items: center; gap: 26px; flex: 1; list-style: none; }
-    .sk-nav__links a { font-size: 13px; color: var(--muted); white-space: nowrap; transition: color .15s; }
-    .sk-nav__links a:hover, .sk-nav__links a.active { color: var(--brand); font-weight: 500; }
-    .sk-nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
-    .sk-nav__sep { width: 0.5px; height: 18px; background: var(--border); }
-    .sk-btn-reseau { display: flex; align-items: center; gap: 6px; background: var(--gold); color: var(--brand); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
-    .sk-btn-reseau:hover { opacity: .88; }
-    .sk-btn-reseau__dot { width: 5px; height: 5px; background: var(--brand); border-radius: 50%; flex-shrink: 0; }
-    .sk-btn-espace { background: var(--brand); color: var(--white); font-size: 12px; font-weight: 500; padding: 7px 16px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
-    .sk-btn-espace:hover { opacity: .85; }
-    .sk-nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; flex-direction: column; gap: 5px; }
-    .sk-nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--brand); }
-    .sk-nav__mobile { display: none; flex-direction: column; background: var(--white); border-bottom: 0.5px solid var(--border); padding: 16px 24px 20px; }
-    .sk-nav__mobile a { font-size: 14px; color: var(--muted); padding: 11px 0; border-bottom: 0.5px solid var(--border); display: block; }
-    .sk-nav__mobile a:last-of-type { border-bottom: none; }
-    .sk-nav__mobile-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
-    .sk-nav__mobile-btns .sk-btn-reseau, .sk-nav__mobile-btns .sk-btn-espace { justify-content: center; text-align: center; font-size: 13px; padding: 10px 16px; }
+    .sk-footer{background:#111214;padding:56px 0 32px;}
+    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
+    .sk-footer-logo span{color:var(--gold);}
+    .sk-footer-logo-sub{display:block;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
+    .sk-footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:280px;margin-bottom:18px;}
+    .sk-footer-strakara-link{display:inline-block;font-size:12px;color:var(--gold);border-bottom:1px solid rgba(200,169,106,.3);padding-bottom:2px;}
+    .sk-footer-col h4{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
+    .sk-footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px;transition:color .18s;}
+    .sk-footer-col a:hover{color:var(--gold);}
+    .sk-footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .sk-footer-bottom p{font-size:12px;color:rgba(255,255,255,.25);}
+    .sk-footer-bottom-links{display:flex;gap:20px;}
+    .sk-footer-bottom-links a{font-size:12px;color:rgba(255,255,255,.25);}
+    .sk-footer-bottom-links a:hover{color:var(--gold);}
 
-    /* ── HERO ── */
-    .membres-hero { padding: 72px 0 64px; background: var(--white); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-    .membres-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,0.035) 79px, rgba(200,169,106,0.035) 80px); pointer-events: none; }
-    .membres-hero-inner { position: relative; max-width: 760px; }
-    .membres-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 56px); line-height: 1.1; color: var(--brand); margin-bottom: 18px; font-weight: 400; }
-    .membres-hero h1 em { color: var(--gold); font-style: italic; }
-    .membres-hero p { font-size: 17px; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 560px; margin-bottom: 32px; }
-    .membres-hero-stats { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border); }
-    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--brand); font-weight: 600; display: block; }
-    .hero-stat-label { font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
-
-    /* ── FILTRES ── */
-    .membres-filtres-wrap { background: var(--light); border-bottom: 1px solid var(--border); padding: 24px 0; position: sticky; top: 58px; z-index: 90; }
-    .membres-filtres { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 0; }
-    .filtre-input, .filtre-select { padding: 15px 18px; border: 1px solid var(--border); border-right: none; background: var(--white); font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color .2s; width: 100%; appearance: none; -webkit-appearance: none; }
-    .filtre-input::placeholder { color: var(--muted); }
-    .filtre-input:focus, .filtre-select:focus { border-color: var(--gold); z-index: 1; position: relative; }
-    .filtre-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
-    .filtre-btn { background: var(--brand); color: var(--white); border: none; padding: 0 32px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; letter-spacing: .03em; transition: background .2s; white-space: nowrap; }
-    .filtre-btn:hover { background: #2E2F35; }
-    .filtre-btn svg { width: 15px; height: 15px; stroke: var(--white); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; margin-right: 6px; }
-
-    /* ── TABS ── */
-    .membres-tabs { border-bottom: 1px solid var(--border); background: var(--white); }
-    .membres-tabs-inner { display: flex; gap: 0; overflow-x: auto; }
-    .tab-btn { padding: 18px 24px; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s; display: flex; align-items: center; gap: 8px; }
-    .tab-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .tab-btn:hover { color: var(--brand); }
-    .tab-btn.active { color: var(--brand); border-bottom-color: var(--gold); font-weight: 600; }
-    .tab-count { display: inline-block; background: var(--light); color: var(--muted); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
-    .tab-btn.active .tab-count { background: rgba(200,169,106,0.15); color: var(--gold-dark); }
-
-    /* ── BODY ── */
-    .membres-body { padding: 56px 0 88px; background: var(--light); min-height: 60vh; }
-    .membres-results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
-    .membres-count { font-size: 13px; color: var(--muted); }
-    .membres-count strong { color: var(--brand); font-weight: 600; }
-    .membres-sort { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
-    .membres-sort select { padding: 8px 32px 8px 12px; border: 1px solid var(--border); background: var(--white); font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text); outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
-
-    /* ── GRILLE MEMBRES ── */
-    .membres-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-
-    /* ── CARTE MEMBRE ── */
-    .membre-card { background: var(--white); padding: 36px; display: flex; gap: 24px; transition: background .2s; position: relative; overflow: hidden; }
-    .membre-card::after { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--gold); opacity: 0; transition: opacity .2s; }
-    .membre-card:hover { background: #FDFCF8; }
-    .membre-card:hover::after { opacity: 1; }
-
-    /* Avatar */
-    .membre-avatar { width: 64px; height: 64px; min-width: 64px; border-radius: 50%; background: var(--brand); color: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; letter-spacing: .04em; flex-shrink: 0; }
-    .membre-avatar.fondateur { background: var(--gold); color: var(--brand); }
-    .membre-avatar.hebergeur { background: var(--brand); color: var(--gold); }
-    .membre-avatar.client { background: var(--light); color: var(--brand); border: 1px solid var(--border); }
-    .membre-avatar.prestataire { background: rgba(200,169,106,0.12); color: var(--gold-dark); border: 1px solid rgba(200,169,106,0.3); }
-
-    /* Contenu */
-    .membre-content { flex: 1; min-width: 0; }
-    .membre-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 12px; }
-    .membre-role-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; }
-    .badge-fondateur { background: rgba(200,169,106,0.15); color: var(--gold-dark); }
-    .badge-fondateur svg { width: 10px; height: 10px; fill: var(--gold-dark); stroke: none; }
-    .badge-hebergeur { background: rgba(30,31,35,0.06); color: var(--brand); }
-    .badge-hebergeur svg { width: 10px; height: 10px; stroke: var(--brand); fill: none; stroke-width: 1.5; }
-    .badge-client { background: var(--light); color: var(--muted); }
-    .badge-client svg { width: 10px; height: 10px; stroke: var(--muted); fill: none; stroke-width: 1.5; }
-    .badge-prestataire { background: rgba(200,169,106,0.08); color: var(--gold-dark); }
-    .badge-prestataire svg { width: 10px; height: 10px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; }
-    .membre-verified { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: .04em; flex-shrink: 0; }
-    .membre-verified svg { width: 13px; height: 13px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .membre-content h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 8px; font-weight: 400; line-height: 1.25; }
-    .membre-content p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-    .membre-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-    .membre-tag { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); background: var(--light); border: 1px solid var(--border); padding: 4px 10px; }
-    .membre-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border); }
-    .membre-localisation { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
-    .membre-localisation svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .membre-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s; }
-    .membre-link:hover { color: var(--gold-dark); border-color: var(--gold); }
-    .membre-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    /* Carte CTA rejoindre */
-    .membre-card-cta { background: var(--brand); padding: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; min-height: 220px; }
-    .membre-card-cta::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,0.04) 79px, rgba(200,169,106,0.04) 80px); pointer-events: none; }
-    .membre-card-cta-inner { position: relative; }
-    .membre-card-cta svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 14px; display: block; }
-    .membre-card-cta p { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
-    .membre-card-cta h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 20px; font-weight: 400; line-height: 1.3; }
-    .membre-card-cta h3 em { color: var(--gold); font-style: italic; }
-    .btn-gold-sm { display: inline-block; background: var(--gold); color: var(--brand); padding: 10px 22px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .03em; transition: opacity .2s; }
-    .btn-gold-sm:hover { opacity: .88; }
-
-    /* Pagination */
-    .pagination { display: flex; justify-content: center; gap: 4px; margin-top: 40px; }
-    .page-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: var(--white); font-size: 13px; color: var(--muted); cursor: pointer; transition: all .2s; font-family: 'Outfit', sans-serif; }
-    .page-btn:hover { border-color: var(--brand); color: var(--brand); }
-    .page-btn.active { background: var(--brand); color: var(--white); border-color: var(--brand); }
-    .page-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    /* ── FOOTER ── */
-    .footer { background: #111214; padding: 56px 0 32px; }
-    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: white; font-weight: 600; letter-spacing: .04em; display: block; margin-bottom: 14px; }
-    .footer-logo span { color: var(--gold); }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
-    .footer-col h4 { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; }
-    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 10px; transition: color .18s; }
-    .footer-col a:hover { color: var(--gold); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
-    .footer-bottom-links { display: flex; gap: 20px; }
-    .footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.25); }
-    .footer-bottom-links a:hover { color: var(--gold); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .sk-nav__links, .sk-nav__right { display: none; }
-      .sk-nav__hamburger { display: flex; }
-      .membres-filtres { grid-template-columns: 1fr 1fr; }
-      .membres-filtres .filtre-btn { grid-column: 1 / -1; padding: 15px; }
-      .membres-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
-    }
-    @media (max-width: 600px) {
-      .container { padding: 0 20px; }
-      .membres-hero { padding: 48px 0; }
-      .membres-filtres { grid-template-columns: 1fr; }
-      .filtre-input, .filtre-select { border-right: 1px solid var(--border); border-bottom: none; }
-      .membre-card { flex-direction: column; gap: 16px; }
-      .membre-top { flex-direction: column; gap: 8px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-    }
+    @media(max-width:960px){.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.membres-filtres{grid-template-columns:1fr 1fr;}.membres-filtres .filtre-btn{grid-column:1/-1;padding:15px;}.membres-grid{grid-template-columns:1fr;}.directory-note{flex-direction:column;align-items:flex-start;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
+    @media(max-width:600px){.container{padding:0 20px;}.membres-hero{padding:48px 0;}.membres-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.membre-card{flex-direction:column;gap:16px;}.membre-top{flex-direction:column;gap:8px;}.membre-footer{flex-direction:column;align-items:flex-start;}.membre-actions{justify-content:flex-start;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
   </style>
 </head>
 <body>
-
-  <!-- BANDEAU -->
-<div class="sk-banner" id="sk-banner">
-  <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
-  <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
-  <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
-</div>
-
-<!-- NAV -->
-<nav class="sk-nav">
-  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
-
-  <ul class="sk-nav__links">
-    <li><a href="https://app.strakara.fr/index.html" class="">Accueil</a></li>
-    <li><a href="https://app.strakara.fr/annonces.html" class="">Annonces</a></li>
-    <li><a href="https://app.strakara.fr/membres.html" class="active">Membres</a></li>
-    <li class="sk-nav__dropdown">
-      <a href="#" class="sk-nav__dropdown-toggle {{active_secteurs}}">
-        Secteurs
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
-      <div class="sk-nav__dropdown-menu">
-        <a href="https://app.strakara.fr/reseau/immobilier.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Immobilier Pro
-        </a>
-        <a href="https://app.strakara.fr/reseau/btp.html">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          BTP &amp; Artisans
-        </a>
-        <a href="https://app.strakara.fr/reseau/transport.html">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Transport &amp; Logistique
-        </a>
-        <a href="https://app.strakara.fr/reseau/prestataires.html">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Prestataires &amp; Services
-        </a>
-        <a href="https://app.strakara.fr/reseau/saisonnier.html">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          Jobs saisonniers
-        </a>
-        <a href="https://app.strakara.fr/reseau/humanite.html">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Humanit&eacute; &amp; &Eacute;v&eacute;nements
-        </a>
-      </div>
-    </li>
-    <li><a href="https://app.strakara.fr/blog/index.html" class="">Blog</a></li>
-    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
-  </ul>
-
-  <div class="sk-nav__right">
-    <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-    <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+  <div class="sk-banner" id="sk-banner">
+    <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
+    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+    <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
-  <button class="sk-nav__hamburger" id="sk-hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <nav class="sk-nav">
+    <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+      <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+      <li><a href="https://app.strakara.fr/membres.html" class="active">Membres</a></li>
+      <li><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier</a></li>
+      <li><a href="https://app.strakara.fr/reseau/btp.html">BTP</a></li>
+      <li><a href="https://app.strakara.fr/reseau/transport.html">Transport</a></li>
+      <li><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a></li>
+      <li><a href="https://app.strakara.fr/blog/index.html">Blog</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
+    </ul>
+    <div class="sk-nav__right">
+      <div class="sk-nav__sep"></div>
+      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+    </div>
+    <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 
-<!-- MENU MOBILE -->
-<div class="sk-nav__mobile" id="sk-mobile">
-  <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
-  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
-  <a href="https://app.strakara.fr/membres.html">Membres</a>
-  <span class="sk-nav__mobile-sep">Secteurs</span>
-  <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-  <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
-  <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
-  <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
-  <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
-  <a href="https://app.strakara.fr/blog/index.html">Blog</a>
-  <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
-  <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-    <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+  <div class="sk-nav__mobile" id="sk-mobile">
+    <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
+    <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+    <a href="https://app.strakara.fr/membres.html">Membres</a>
+    <span class="sk-nav__mobile-sep">Secteurs</span>
+    <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
+    <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+    <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
+    <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
+    <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
+    <a href="https://app.strakara.fr/blog/index.html">Blog</a>
+    <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
+    <div class="sk-nav__mobile-btns">
+      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+    </div>
   </div>
-</div>
 
-    <!-- HERO -->
   <section class="membres-hero">
     <div class="container">
       <div class="membres-hero-inner">
-        <span class="label">Annuaire du r&eacute;seau</span>
-        <h1>Les <em>membres</em><br>STRAKARA.</h1>
-        <p>D&eacute;couvrez les professionnels v&eacute;rifi&eacute;s du r&eacute;seau &mdash; h&eacute;bergeurs, artisans, TPE, transporteurs, prestataires. Chaque membre est contr&ocirc;l&eacute; avant activation.</p>
+        <span class="label">Annuaire public &amp; r&eacute;seau pro</span>
+        <h1>Des professionnels visibles,<br><em>recommand&eacute;s et trouvables.</em></h1>
+        <p>STRAKARA permet aux clients de trouver des professionnels v&eacute;rifi&eacute;s, et aux pros de se recommander, s&apos;entraider et trouver plus facilement les contacts dont ils ont besoin.</p>
+        <div class="hero-actions">
+          <a href="https://app.strakara.fr/rejoindre.html" class="btn-dark">Cr&eacute;er mon profil gratuitement</a>
+          <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les annonces</a>
+        </div>
         <div class="membres-hero-stats">
-          <div>
-            <span class="hero-stat-num">100</span>
-            <span class="hero-stat-label">Places fondateurs</span>
-          </div>
-          <div>
-            <span class="hero-stat-num">100%</span>
-            <span class="hero-stat-label">V&eacute;rifi&eacute;s SIRET</span>
-          </div>
-          <div>
-            <span class="hero-stat-num">5</span>
-            <span class="hero-stat-label">Secteurs repr&eacute;sent&eacute;s</span>
-          </div>
+          <div><span class="hero-stat-num">Visibilit&eacute;</span><span class="hero-stat-label">Profil public consultable</span></div>
+          <div><span class="hero-stat-num">R&eacute;seau</span><span class="hero-stat-label">Recommandations entre pros</span></div>
+          <div><span class="hero-stat-num">Confiance</span><span class="hero-stat-label">Membres v&eacute;rifi&eacute;s</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FILTRES -->
   <div class="membres-filtres-wrap">
     <div class="container">
       <div class="membres-filtres">
         <input class="filtre-input" type="text" placeholder="Nom, m&eacute;tier, ville ou entreprise...">
-        <select class="filtre-select">
-          <option>Tous les profils</option>
-          <option>H&eacute;bergeur</option>
-          <option>Client professionnel</option>
-          <option>Prestataire</option>
-          <option>Partenaire</option>
-        </select>
-        <select class="filtre-select">
-          <option>Toutes les r&eacute;gions</option>
-          <option>Bretagne</option>
-          <option>Pays de la Loire</option>
-          <option>&Icirc;le-de-France</option>
-          <option>Nouvelle-Aquitaine</option>
-          <option>Auvergne-Rh&ocirc;ne-Alpes</option>
-          <option>Hauts-de-France</option>
-        </select>
-        <select class="filtre-select">
-          <option>Tous les secteurs</option>
-          <option>Immobilier Pro</option>
-          <option>BTP &amp; Artisans</option>
-          <option>Transport</option>
-          <option>Prestataires</option>
-          <option>E-commerce</option>
-        </select>
-        <button class="filtre-btn">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Rechercher
-        </button>
+        <select class="filtre-select"><option>Tous les profils</option><option>Artisan</option><option>Transporteur</option><option>Prestataire</option><option>H&eacute;bergeur d&apos;espace</option><option>Entreprise locale</option></select>
+        <select class="filtre-select"><option>Toutes les r&eacute;gions</option><option>Bretagne</option><option>Pays de la Loire</option><option>&Icirc;le-de-France</option><option>Nouvelle-Aquitaine</option><option>Auvergne-Rh&ocirc;ne-Alpes</option><option>Hauts-de-France</option></select>
+        <select class="filtre-select"><option>Tous les secteurs</option><option>BTP &amp; Artisans</option><option>Transport</option><option>Prestataires</option><option>Immobilier Pro</option><option>E-commerce</option></select>
+        <button class="filtre-btn">Rechercher</button>
       </div>
     </div>
   </div>
 
-  <!-- TABS -->
   <div class="membres-tabs">
     <div class="container">
       <div class="membres-tabs-inner">
-        <button class="tab-btn active">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Tous <span class="tab-count">18</span>
-        </button>
-        <button class="tab-btn">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          H&eacute;bergeurs <span class="tab-count">6</span>
-        </button>
-        <button class="tab-btn">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          Artisans &amp; BTP <span class="tab-count">4</span>
-        </button>
-        <button class="tab-btn">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Transport <span class="tab-count">3</span>
-        </button>
-        <button class="tab-btn">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Prestataires <span class="tab-count">5</span>
-        </button>
+        <button class="tab-btn active">Tous <span class="tab-count">Bient&ocirc;t</span></button>
+        <button class="tab-btn">Artisans &amp; BTP</button>
+        <button class="tab-btn">Transport</button>
+        <button class="tab-btn">Prestataires</button>
+        <button class="tab-btn">H&eacute;bergeurs</button>
       </div>
     </div>
   </div>
 
-  <!-- BODY -->
   <section class="membres-body">
     <div class="container">
+      <div class="directory-note">
+        <p><strong>Vous cherchez un professionnel fiable ?</strong><br>Consultez les profils publics du r&eacute;seau STRAKARA. Chaque membre choisit les informations qu&apos;il souhaite rendre visibles : t&eacute;l&eacute;phone, site, zone d&apos;intervention ou demande de contact.</p>
+        <a href="https://app.strakara.fr/rejoindre.html" class="btn-outline">&Ecirc;tre visible dans l&apos;annuaire</a>
+      </div>
 
       <div class="membres-results-header">
-        <p class="membres-count"><strong>18 membres</strong> dans le r&eacute;seau &mdash; ouverture le 21 septembre</p>
-        <div class="membres-sort">
-          <span>Trier par</span>
-          <select>
-            <option>Les plus r&eacute;cents</option>
-            <option>Nom A&ndash;Z</option>
-            <option>R&eacute;gion</option>
-            <option>Secteur</option>
-          </select>
-        </div>
+        <p class="membres-count"><strong>Premiers profils fondateurs</strong> &mdash; ouverture progressive du r&eacute;seau</p>
+        <div class="membres-sort"><span>Trier par</span><select><option>Les plus r&eacute;cents</option><option>Nom A&ndash;Z</option><option>R&eacute;gion</option><option>Secteur</option></select></div>
       </div>
 
       <div class="membres-grid">
-
-        <!-- LAURA — FONDATRICE -->
         <article class="membre-card">
-          <div class="membre-avatar fondateur">LC</div>
+          <div class="membre-avatar gold">LC</div>
           <div class="membre-content">
-            <div class="membre-top">
-              <span class="membre-role-badge badge-fondateur">
-                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                Fondatrice
-              </span>
-              <span class="membre-verified">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                V&eacute;rifi&eacute;e
-              </span>
-            </div>
+            <div class="membre-top"><span class="membre-role-badge">Fondatrice</span><span class="membre-verified">V&eacute;rifi&eacute;e</span></div>
             <h3>Laura Charron</h3>
-            <p>Fondatrice de STRAKARA &mdash; coordination du r&eacute;seau, d&eacute;veloppement des espaces professionnels flexibles et mise en relation entre h&eacute;bergeurs et entreprises.</p>
-            <div class="membre-tags">
-              <span class="membre-tag">R&eacute;seau pro</span>
-              <span class="membre-tag">Espaces flexibles</span>
-              <span class="membre-tag">Gestion</span>
-            </div>
-            <div class="membre-footer">
-              <span class="membre-localisation">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Bretagne
-              </span>
-              <a href="#" class="membre-link">
-                Voir le profil
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
+            <p>Fondatrice de STRAKARA. Coordination du r&eacute;seau, d&eacute;veloppement des espaces professionnels flexibles et mise en relation entre h&eacute;bergeurs, entreprises et prestataires.</p>
+            <div class="membre-tags"><span class="membre-tag">R&eacute;seau pro</span><span class="membre-tag">Espaces flexibles</span><span class="membre-tag">Mise en relation</span></div>
+            <div class="membre-footer"><span class="membre-localisation">Bretagne</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a></div></div>
           </div>
         </article>
 
-        <!-- HEBERGEUR 1 -->
         <article class="membre-card">
-          <div class="membre-avatar hebergeur">HB</div>
+          <div class="membre-avatar">HB</div>
           <div class="membre-content">
-            <div class="membre-top">
-              <span class="membre-role-badge badge-hebergeur">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                H&eacute;bergeur
-              </span>
-              <span class="membre-verified">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                V&eacute;rifi&eacute;
-              </span>
-            </div>
+            <div class="membre-top"><span class="membre-role-badge">H&eacute;bergeur d&apos;espace</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
             <h3>Entreprise partenaire</h3>
-            <p>Propose des surfaces professionnelles pour du stockage, bureau ou activit&eacute; sans accueil public. Espace s&eacute;curis&eacute;, acc&egrave;s autonome, hauteur sous plafond optimis&eacute;e.</p>
-            <div class="membre-tags">
-              <span class="membre-tag">Stockage</span>
-              <span class="membre-tag">Entrep&ocirc;t</span>
-              <span class="membre-tag">Acc&egrave;s PL</span>
-            </div>
-            <div class="membre-footer">
-              <span class="membre-localisation">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Pontivy (56)
-              </span>
-              <a href="#" class="membre-link">
-                Voir le profil
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
+            <p>Propose des surfaces professionnelles pour du stockage, bureau ou activit&eacute; sans accueil public. Espace s&eacute;curis&eacute;, acc&egrave;s autonome et environnement professionnel.</p>
+            <div class="membre-tags"><span class="membre-tag">Stockage</span><span class="membre-tag">Entrep&ocirc;t</span><span class="membre-tag">Acc&egrave;s PL</span></div>
+            <div class="membre-footer"><span class="membre-localisation">Pontivy (56)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Demander un contact</a></div></div>
           </div>
         </article>
 
-        <!-- CLIENT PRO -->
         <article class="membre-card">
-          <div class="membre-avatar client">CP</div>
+          <div class="membre-avatar light">AR</div>
           <div class="membre-content">
-            <div class="membre-top">
-              <span class="membre-role-badge badge-client">
-                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                Client pro
-              </span>
-              <span class="membre-verified">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                V&eacute;rifi&eacute;
-              </span>
-            </div>
-            <h3>Professionnel en activit&eacute;</h3>
-            <p>Artisan cherchant des solutions flexibles pour stocker son mat&eacute;riel de chantier et d&eacute;velopper son activit&eacute; sans bail commercial classique.</p>
-            <div class="membre-tags">
-              <span class="membre-tag">Artisan</span>
-              <span class="membre-tag">BTP</span>
-              <span class="membre-tag">Flexible</span>
-            </div>
-            <div class="membre-footer">
-              <span class="membre-localisation">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                &Icirc;le-de-France
-              </span>
-              <a href="#" class="membre-link">
-                Voir le profil
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
+            <div class="membre-top"><span class="membre-role-badge">Artisan</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
+            <h3>Artisan r&eacute;seau STRAKARA</h3>
+            <p>Professionnel du terrain disponible pour des chantiers, recommandations entre pros et demandes clients selon sa zone d&apos;intervention.</p>
+            <div class="membre-tags"><span class="membre-tag">BTP</span><span class="membre-tag">Chantier</span><span class="membre-tag">Recommandation</span></div>
+            <div class="membre-footer"><span class="membre-localisation">&Icirc;le-de-France</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Appeler</a></div></div>
           </div>
         </article>
 
-        <!-- PRESTATAIRE -->
         <article class="membre-card">
-          <div class="membre-avatar prestataire">PS</div>
+          <div class="membre-avatar soft">PS</div>
           <div class="membre-content">
-            <div class="membre-top">
-              <span class="membre-role-badge badge-prestataire">
-                <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                Prestataire
-              </span>
-              <span class="membre-verified">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                V&eacute;rifi&eacute;
-              </span>
-            </div>
+            <div class="membre-top"><span class="membre-role-badge">Prestataire</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
             <h3>Partenaire service</h3>
-            <p>Apporte une solution compl&eacute;mentaire au r&eacute;seau&nbsp;: logistique, am&eacute;nagement, s&eacute;curit&eacute;, transport ou accompagnement des membres dans leur activit&eacute;.</p>
-            <div class="membre-tags">
-              <span class="membre-tag">Service</span>
-              <span class="membre-tag">Logistique</span>
-              <span class="membre-tag">Partenaire</span>
-            </div>
-            <div class="membre-footer">
-              <span class="membre-localisation">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Nantes (44)
-              </span>
-              <a href="#" class="membre-link">
-                Voir le profil
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
+            <p>Apporte une solution compl&eacute;mentaire au r&eacute;seau : logistique, am&eacute;nagement, s&eacute;curit&eacute;, transport ou accompagnement des membres dans leur activit&eacute;.</p>
+            <div class="membre-tags"><span class="membre-tag">Service</span><span class="membre-tag">Logistique</span><span class="membre-tag">Partenaire</span></div>
+            <div class="membre-footer"><span class="membre-localisation">Nantes (44)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Demander un contact</a></div></div>
           </div>
         </article>
 
-        <!-- HEBERGEUR 2 -->
         <article class="membre-card">
-          <div class="membre-avatar hebergeur">EB</div>
+          <div class="membre-avatar">EB</div>
           <div class="membre-content">
-            <div class="membre-top">
-              <span class="membre-role-badge badge-hebergeur">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                H&eacute;bergeur
-              </span>
-              <span class="membre-verified">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                V&eacute;rifi&eacute;
-              </span>
-            </div>
+            <div class="membre-top"><span class="membre-role-badge">H&eacute;bergeur d&apos;espace</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
             <h3>Espace Brest Ouest</h3>
-            <p>Boxes de stockage s&eacute;curis&eacute;s de 12 &agrave; 56 m&sup2;. Acc&egrave;s 24h/24, espace privatif, id&eacute;al artisan ou PME cherchant une solution flexible imm&eacute;diate.</p>
-            <div class="membre-tags">
-              <span class="membre-tag">Box stockage</span>
-              <span class="membre-tag">Privatif</span>
-              <span class="membre-tag">S&eacute;curis&eacute;</span>
-            </div>
-            <div class="membre-footer">
-              <span class="membre-localisation">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Brest (29)
-              </span>
-              <a href="#" class="membre-link">
-                Voir le profil
-                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
+            <p>Boxes de stockage s&eacute;curis&eacute;s de 12 &agrave; 56 m&sup2;. Solution flexible pour artisans, TPE et entreprises cherchant une surface professionnelle disponible rapidement.</p>
+            <div class="membre-tags"><span class="membre-tag">Box stockage</span><span class="membre-tag">Privatif</span><span class="membre-tag">S&eacute;curis&eacute;</span></div>
+            <div class="membre-footer"><span class="membre-localisation">Brest (29)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="https://strakara.netlify.app/espaces.html" class="membre-call">Voir les espaces</a></div></div>
           </div>
         </article>
 
-        <!-- CTA REJOINDRE -->
         <article class="membre-card-cta">
           <div class="membre-card-cta-inner">
-            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-            <p>Vous &ecirc;tes professionnel v&eacute;rifi&eacute;&nbsp;?</p>
-            <h3>Rejoignez le r&eacute;seau<br><em>gratuitement.</em></h3>
-            <a href="https://app.strakara.fr/rejoindre" class="btn-gold-sm">R&eacute;server ma place &rarr;</a>
+            <p>Vous &ecirc;tes professionnel v&eacute;rifi&eacute; ?</p>
+            <h3>Rendez votre activit&eacute;<br><em>visible gratuitement.</em></h3>
+            <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold-sm">Cr&eacute;er mon profil &rarr;</a>
           </div>
         </article>
-
       </div>
 
-      <!-- PAGINATION -->
-      <div class="pagination">
-        <button class="page-btn">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="page-btn active">1</button>
-        <button class="page-btn">2</button>
-        <button class="page-btn">3</button>
-        <button class="page-btn">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
+      <div class="pagination"><button class="page-btn">&larr;</button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">&rarr;</button></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <!-- ============================================================
-     FOOTER APP.STRAKARA.FR — identique sur toutes les pages
-     ============================================================ -->
-<footer class="sk-footer">
-  <div class="container">
-    <div class="sk-footer-inner">
-      <div class="sk-footer-brand">
-        <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-        <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
-        <p>Le r&eacute;seau gratuit des pros du terrain &mdash; annonces, entraide, achats group&eacute;s et &eacute;v&eacute;nements pour artisans, TPE, PME et transporteurs.</p>
-        <a href="https://www.strakara.fr" class="sk-footer-strakara-link">
-          Voir aussi strakara.fr &mdash; location d&apos;espaces
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+  <footer class="sk-footer">
+    <div class="container">
+      <div class="sk-footer-inner">
+        <div class="sk-footer-brand">
+          <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
+          <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
+          <p>Le r&eacute;seau gratuit des pros du terrain : annuaire, annonces, entraide, recommandations et espaces professionnels flexibles.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr &mdash; location d&apos;espaces &rarr;</a>
+        </div>
+        <div class="sk-footer-col"><h4>R&eacute;seau</h4><a href="https://app.strakara.fr/annonces.html">Annonces</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/publier.html">Publier une annonce</a><a href="https://app.strakara.fr/rejoindre.html">Rejoindre &mdash; Gratuit</a></div>
+        <div class="sk-footer-col"><h4>Secteurs</h4><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a><a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a><a href="https://app.strakara.fr/reseau/transport.html">Transport</a><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a><a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a></div>
+        <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://app.strakara.fr/blog/index.html">Blog &amp; Conseils</a><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d&apos;espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir h&eacute;bergeur</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
       </div>
-
-      <div class="sk-footer-col">
-        <h4>R&eacute;seau</h4>
-        <a href="https://app.strakara.fr/annonces.html">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          Annonces
-        </a>
-        <a href="https://app.strakara.fr/membres.html">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          Membres
-        </a>
-        <a href="https://app.strakara.fr/publier.html">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Publier une annonce
-        </a>
-        <a href="https://app.strakara.fr/rejoindre.html">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-          Rejoindre &mdash; Gratuit
-        </a>
-      </div>
-
-      <div class="sk-footer-col">
-        <h4>Secteurs</h4>
-        <a href="https://app.strakara.fr/reseau/immobilier.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          Immobilier Pro
-        </a>
-        <a href="https://app.strakara.fr/reseau/btp.html">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
-          BTP &amp; Artisans
-        </a>
-        <a href="https://app.strakara.fr/reseau/transport.html">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/></svg>
-          Transport
-        </a>
-        <a href="https://app.strakara.fr/reseau/prestataires.html">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
-          Prestataires
-        </a>
-        <a href="https://app.strakara.fr/reseau/saisonnier.html">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-          Jobs saisonniers
-        </a>
-      </div>
-
-      <div class="sk-footer-col">
-        <h4>STRAKARA</h4>
-        <a href="https://app.strakara.fr/blog/index.html">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Blog &amp; Conseils
-        </a>
-        <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          Location d&apos;espaces
-        </a>
-        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Devenir h&eacute;bergeur
-        </a>
-        <a href="https://www.strakara.fr/contact.html">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Contact
-        </a>
-      </div>
+      <div class="sk-footer-bottom"><p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p><div class="sk-footer-bottom-links"><a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a></div></div>
     </div>
-
-    <div class="sk-footer-bottom">
-      <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p>
-      <div class="sk-footer-bottom-links">
-        <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
-        <a href="https://www.strakara.fr/cgv.html">CGV</a>
-        <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
+  </footer>
 </body>
 </html>
