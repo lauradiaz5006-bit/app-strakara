@@ -25,36 +25,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --brand:#1E1F23;
-      --gold:#C8A96A;
-      --gold-dark:#A8894A;
-      --gold-light:#D4B97A;
-      --light:#F6F5F0;
-      --text:#1E1F23;
-      --muted:#6E7175;
-      --border:#E8E0D0;
-      --white:#FFFFFF;
-    }
-
+    :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;overflow-x:hidden;}
     body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;}
     a{text-decoration:none;}
     .container{max-width:1280px;margin:0 auto;padding:0 48px;}
-
     .label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
     .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:background .2s;}
     .btn-dark:hover{background:#2E2F35;}
     .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;}
     .btn-outline:hover{border-color:var(--brand);}
+    .btn-gold-outline{display:inline-block;background:transparent;color:var(--gold);padding:12px 24px;font-weight:600;font-size:13px;letter-spacing:.03em;border:1px solid rgba(200,169,106,.4);transition:border-color .2s,color .2s;}
+    .btn-gold-outline:hover{border-color:var(--gold);}
 
     .sk-banner{background:var(--brand);padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
     .sk-banner__text{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold);}
     .sk-banner__btn{background:var(--gold);color:var(--brand);font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
     .sk-banner__btn:hover{opacity:.85;}
     .sk-banner__close{position:absolute;right:16px;background:none;border:none;color:#777;font-size:18px;cursor:pointer;}
-
     .sk-nav{background:var(--white);border-bottom:.5px solid var(--border);padding:0 24px;display:flex;align-items:center;height:58px;position:sticky;top:0;z-index:100;}
     .sk-nav__logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-right:36px;white-space:nowrap;flex-shrink:0;}
     .sk-nav__logo span{color:var(--gold);}
@@ -76,14 +65,26 @@
     .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
     .sk-nav__mobile-btns .sk-btn-publier,.sk-nav__mobile-btns .sk-btn-connexion{justify-content:center;text-align:center;font-size:13px;padding:10px 16px;}
 
-    .annonces-hero{padding:72px 0 64px;background:var(--white);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .annonces-hero{padding:76px 0 66px;background:var(--white);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
     .annonces-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.035) 79px,rgba(200,169,106,.035) 80px);pointer-events:none;}
-    .annonces-hero-inner{position:relative;max-width:760px;}
-    .annonces-hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,56px);line-height:1.1;color:var(--brand);margin-bottom:18px;font-weight:400;}
+    .annonces-hero-inner{position:relative;max-width:820px;}
+    .annonces-hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,4.2vw,58px);line-height:1.08;color:var(--brand);margin-bottom:18px;font-weight:400;}
     .annonces-hero h1 em{color:var(--gold);font-style:italic;}
-    .annonces-hero p{font-size:17px;color:var(--muted);line-height:1.75;font-weight:300;max-width:560px;}
+    .annonces-hero p{font-size:17px;color:var(--muted);line-height:1.75;font-weight:300;max-width:620px;margin-bottom:30px;}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
 
-    .annonces-filtres-wrap{background:var(--light);border-bottom:1px solid var(--border);padding:28px 0;position:sticky;top:58px;z-index:90;}
+    .category-strip{background:var(--light);border-bottom:1px solid var(--border);padding:36px 0;}
+    .category-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);}
+    .category-card{background:var(--white);padding:28px 24px;display:block;min-height:150px;transition:background .2s, transform .2s;position:relative;}
+    .category-card:hover{background:#FDFCF8;transform:translateY(-2px);}
+    .category-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);opacity:0;transition:opacity .2s;}
+    .category-card:hover::before{opacity:1;}
+    .category-card strong{display:block;font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--brand);margin-bottom:8px;}
+    .category-card span{display:block;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+    .category-card small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;}
+
+    .annonces-filtres-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:24px 0;position:sticky;top:58px;z-index:90;}
+    .filter-note{font-size:12px;color:var(--muted);margin-bottom:14px;}
     .annonces-filtres{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:0;}
     .filtre-input,.filtre-select{padding:15px 18px;border:1px solid var(--border);border-right:none;background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
     .filtre-input::placeholder{color:var(--muted);}
@@ -91,7 +92,6 @@
     .filtre-select{cursor:pointer;}
     .filtre-btn{background:var(--brand);color:var(--white);border:none;padding:0 32px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;letter-spacing:.03em;transition:background .2s;white-space:nowrap;}
     .filtre-btn:hover{background:#2E2F35;}
-
     .annonces-tabs{border-bottom:1px solid var(--border);background:var(--white);}
     .annonces-tabs-inner{display:flex;gap:0;overflow-x:auto;}
     .tab-btn{padding:18px 24px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;display:flex;align-items:center;gap:8px;}
@@ -99,11 +99,9 @@
     .tab-btn.active{color:var(--brand);border-bottom-color:var(--gold);font-weight:600;}
     .tab-count{display:inline-block;background:var(--light);color:var(--muted);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;}
     .tab-btn.active .tab-count{background:rgba(200,169,106,.15);color:var(--gold-dark);}
-
     .annonces-body{padding:56px 0 88px;background:var(--light);min-height:60vh;}
     .annonces-body-inner{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start;}
-
-    .sidebar{background:var(--white);border:1px solid var(--border);padding:28px;}
+    .sidebar{background:var(--white);border:1px solid var(--border);padding:28px;position:sticky;top:170px;}
     .sidebar-title{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:20px;display:block;}
     .sidebar-section{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
     .sidebar-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
@@ -112,21 +110,20 @@
     .checkbox-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
     .checkbox-item span{font-size:13px;color:var(--muted);transition:color .15s;}
     .checkbox-item:hover span{color:var(--brand);}
+    .sidebar-help{font-size:11px;line-height:1.6;color:var(--muted);background:var(--light);padding:12px;margin-top:10px;}
     .sidebar-range{width:100%;accent-color:var(--gold);margin:8px 0;}
     .sidebar-range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
     .sidebar-reset{width:100%;padding:12px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Outfit',sans-serif;font-size:13px;cursor:pointer;transition:border-color .2s,color .2s;margin-top:4px;}
     .sidebar-reset:hover{border-color:var(--brand);color:var(--brand);}
-
     .annonces-results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
     .annonces-count{font-size:13px;color:var(--muted);}
     .annonces-count strong{color:var(--brand);font-weight:600;}
     .annonces-sort{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
     .annonces-sort select{padding:8px 12px;border:1px solid var(--border);background:var(--white);font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);outline:none;}
     .annonces-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);}
-
     .annonce-card{background:var(--white);overflow:hidden;transition:background .2s;position:relative;display:flex;flex-direction:column;}
     .annonce-card:hover{background:#FDFCF8;}
-    .annonce-card-img{width:100%;height:200px;background:linear-gradient(135deg,#F6F5F0,#E8E0D0);overflow:hidden;position:relative;}
+    .annonce-card-img{width:100%;height:170px;background:linear-gradient(135deg,#F6F5F0,#E8E0D0);overflow:hidden;position:relative;}
     .annonce-card-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
     .annonce-card-img-placeholder::after{content:'STRAKARA';font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.22em;color:rgba(30,31,35,.22);}
     .annonce-card-badge{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;}
@@ -143,7 +140,13 @@
     .annonce-card-prix span{font-family:'Outfit',sans-serif;font-size:11px;color:var(--muted);font-weight:300;margin-left:3px;}
     .annonce-card-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .2s,border-color .2s;align-self:flex-start;}
     .annonce-card-link:hover{color:var(--gold-dark);border-color:var(--gold);}
-
+    .network-cta{grid-column:1/-1;background:var(--brand);padding:42px;text-align:center;position:relative;overflow:hidden;}
+    .network-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
+    .network-cta-inner{position:relative;max-width:680px;margin:0 auto;}
+    .network-cta .label{color:var(--gold);}
+    .network-cta h3{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:12px;}
+    .network-cta h3 em{color:var(--gold);font-style:italic;}
+    .network-cta p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:22px;}
     .publier-cta{background:var(--brand);border:none;padding:40px 28px;text-align:center;position:relative;overflow:hidden;}
     .publier-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
     .publier-cta-inner{position:relative;}
@@ -151,14 +154,10 @@
     .publier-cta p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:6px;}
     .publier-cta h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:20px;font-weight:400;}
     .publier-cta h3 em{color:var(--gold);font-style:italic;}
-    .btn-gold-outline{display:inline-block;background:transparent;color:var(--gold);padding:12px 24px;font-weight:600;font-size:13px;letter-spacing:.03em;border:1px solid rgba(200,169,106,.4);transition:border-color .2s,color .2s;}
-    .btn-gold-outline:hover{border-color:var(--gold);}
-
     .pagination{display:flex;justify-content:center;gap:4px;margin-top:40px;}
     .page-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--white);font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
     .page-btn:hover{border-color:var(--brand);color:var(--brand);}
     .page-btn.active{background:var(--brand);color:var(--white);border-color:var(--brand);}
-
     .sk-footer{background:#111214;padding:56px 0 32px;}
     .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
     .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
@@ -174,10 +173,9 @@
     .sk-footer-bottom-links{display:flex;gap:20px;}
     .sk-footer-bottom-links a{font-size:12px;color:rgba(255,255,255,.25);}
     .sk-footer-bottom-links a:hover{color:var(--gold);}
-
-    @media(max-width:1100px){.annonces-body-inner{grid-template-columns:1fr;}.sidebar{display:none;}}
+    @media(max-width:1100px){.category-grid{grid-template-columns:repeat(2,1fr);}.annonces-body-inner{grid-template-columns:1fr;}.sidebar{position:static;}}
     @media(max-width:960px){.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.annonces-filtres{grid-template-columns:1fr 1fr;}.annonces-filtres .filtre-btn{grid-column:1/-1;padding:15px;}.annonces-grid{grid-template-columns:1fr;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
-    @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
+    @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.hero-actions{flex-direction:column;}.category-grid{grid-template-columns:1fr;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.annonce-card-img{height:140px;}.network-cta{padding:36px 24px;}.network-cta h3{font-size:24px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
   </style>
 </head>
 <body>
@@ -233,54 +231,49 @@
     <div class="container">
       <div class="annonces-hero-inner">
         <span class="label">Annonces du r&eacute;seau</span>
-        <h1>Toutes les <em>opportunit&eacute;s</em><br>disponibles.</h1>
-        <p>Espaces professionnels, missions, prestataires, mat&eacute;riel &mdash; publi&eacute;es gratuitement par les membres v&eacute;rifi&eacute;s du r&eacute;seau STRAKARA partout en France.</p>
+        <h1>Trouvez une <em>opportunit&eacute;</em><br>utile &agrave; votre activit&eacute;.</h1>
+        <p>Espaces professionnels, prestataires, missions, transport et besoins ponctuels. Les annonces sont pens&eacute;es pour les pros du terrain, sans m&eacute;langer les crit&egrave;res qui ne concernent pas votre recherche.</p>
+        <div class="hero-actions">
+          <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier gratuitement</a>
+          <a href="https://app.strakara.fr/rejoindre.html" class="btn-outline">Rejoindre le r&eacute;seau</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-strip">
+    <div class="container">
+      <div class="category-grid">
+        <a href="#espaces" class="category-card"><strong>Espaces professionnels</strong><span>Stockage, bureau, atelier, activit&eacute;. Ici les filtres surface et budget sont pertinents.</span><small>Voir les espaces</small></a>
+        <a href="#prestataires" class="category-card"><strong>Prestataires</strong><span>Artisans, services, logistique, accompagnement, ind&eacute;pendants disponibles.</span><small>Voir les profils</small></a>
+        <a href="#missions" class="category-card"><strong>Missions</strong><span>Sous-traitance, chantier ponctuel, renfort temporaire, besoin urgent.</span><small>Voir les missions</small></a>
+        <a href="#transport" class="category-card"><strong>Transport</strong><span>Livraison, fret, tourn&eacute;e, dernier kilom&egrave;tre, capacit&eacute; disponible.</span><small>Voir le transport</small></a>
+        <a href="#emploi" class="category-card"><strong>Emploi et saisonnier</strong><span>Disponibilit&eacute;s, missions courtes, besoins ponctuels ou saisonniers.</span><small>Voir les besoins</small></a>
       </div>
     </div>
   </section>
 
   <div class="annonces-filtres-wrap">
     <div class="container">
+      <p class="filter-note">Les filtres de surface concernent uniquement les espaces professionnels. Pour les autres annonces, utilisez le secteur, la zone et le type d&apos;annonce.</p>
       <div class="annonces-filtres">
-        <input class="filtre-input" type="text" placeholder="Ville, d&eacute;partement ou r&eacute;gion...">
-        <select class="filtre-select">
-          <option>Tous les secteurs</option>
-          <option>Immobilier Pro</option>
-          <option>BTP &amp; Artisans</option>
-          <option>Transport &amp; Logistique</option>
-          <option>Prestataires</option>
-          <option>Jobs saisonniers</option>
-        </select>
-        <select class="filtre-select">
-          <option>Toutes les surfaces</option>
-          <option>0 &agrave; 50 m&sup2;</option>
-          <option>50 &agrave; 100 m&sup2;</option>
-          <option>100 &agrave; 250 m&sup2;</option>
-          <option>250 m&sup2; et +</option>
-        </select>
-        <select class="filtre-select">
-          <option>Offres &amp; demandes</option>
-          <option>Offres uniquement</option>
-          <option>Demandes uniquement</option>
-          <option>Espaces STRAKARA</option>
-        </select>
+        <input class="filtre-input" type="text" placeholder="Ville, d&eacute;partement, r&eacute;gion ou mot-cl&eacute;...">
+        <select class="filtre-select"><option>Toutes les cat&eacute;gories</option><option>Espaces professionnels</option><option>Prestataires</option><option>Missions</option><option>Transport</option><option>Emploi et saisonnier</option></select>
+        <select class="filtre-select"><option>Tous les secteurs</option><option>Immobilier Pro</option><option>BTP &amp; Artisans</option><option>Transport &amp; Logistique</option><option>Prestataires</option><option>E-commerce</option></select>
+        <select class="filtre-select"><option>Type d&apos;annonce</option><option>Offre</option><option>Besoin</option><option>Espace STRAKARA</option></select>
         <button class="filtre-btn">Rechercher</button>
       </div>
     </div>
   </div>
 
-  <div class="annonces-tabs">
-    <div class="container">
-      <div class="annonces-tabs-inner">
-        <button class="tab-btn active">Toutes <span class="tab-count">24</span></button>
-        <button class="tab-btn">Immobilier <span class="tab-count">8</span></button>
-        <button class="tab-btn">BTP <span class="tab-count">6</span></button>
-        <button class="tab-btn">Transport <span class="tab-count">4</span></button>
-        <button class="tab-btn">Prestataires <span class="tab-count">4</span></button>
-        <button class="tab-btn">Saisonniers <span class="tab-count">2</span></button>
-      </div>
-    </div>
-  </div>
+  <div class="annonces-tabs"><div class="container"><div class="annonces-tabs-inner">
+    <button class="tab-btn active">Toutes <span class="tab-count">24</span></button>
+    <button class="tab-btn">Espaces <span class="tab-count">8</span></button>
+    <button class="tab-btn">Prestataires <span class="tab-count">5</span></button>
+    <button class="tab-btn">Missions <span class="tab-count">4</span></button>
+    <button class="tab-btn">Transport <span class="tab-count">4</span></button>
+    <button class="tab-btn">Saisonniers <span class="tab-count">3</span></button>
+  </div></div></div>
 
   <section class="annonces-body">
     <div class="container">
@@ -288,105 +281,122 @@
         <aside class="sidebar">
           <span class="sidebar-title">Affiner</span>
           <div class="sidebar-section">
+            <div class="sidebar-section-title">Cat&eacute;gorie</div>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Espaces professionnels</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Prestataires</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Missions et sous-traitance</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>Transport et logistique</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Emploi et saisonnier</span></label>
+          </div>
+          <div class="sidebar-section">
             <div class="sidebar-section-title">R&eacute;gion</div>
             <label class="checkbox-item"><input type="checkbox" checked><span>&Icirc;le-de-France</span></label>
             <label class="checkbox-item"><input type="checkbox"><span>Bretagne</span></label>
-            <label class="checkbox-item"><input type="checkbox"><span>Auvergne-Rh&ocirc;ne-Alpes</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Pays de la Loire</span></label>
             <label class="checkbox-item"><input type="checkbox"><span>Nouvelle-Aquitaine</span></label>
-            <label class="checkbox-item"><input type="checkbox"><span>Occitanie</span></label>
-            <label class="checkbox-item"><input type="checkbox"><span>Hauts-de-France</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>Auvergne-Rh&ocirc;ne-Alpes</span></label>
           </div>
           <div class="sidebar-section">
-            <div class="sidebar-section-title">Type d&apos;annonce</div>
-            <label class="checkbox-item"><input type="checkbox" checked><span>Espaces STRAKARA</span></label>
-            <label class="checkbox-item"><input type="checkbox" checked><span>Offres membres</span></label>
-            <label class="checkbox-item"><input type="checkbox" checked><span>Demandes membres</span></label>
-          </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-title">Budget mensuel max</div>
-            <input type="range" class="sidebar-range" min="0" max="3000" value="2000">
-            <div class="sidebar-range-labels"><span>0 &euro;</span><span>3 000 &euro; HT</span></div>
-          </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-title">Surface</div>
+            <div class="sidebar-section-title">Filtres espaces uniquement</div>
             <label class="checkbox-item"><input type="checkbox"><span>Moins de 50 m&sup2;</span></label>
             <label class="checkbox-item"><input type="checkbox" checked><span>50 &agrave; 200 m&sup2;</span></label>
             <label class="checkbox-item"><input type="checkbox"><span>200 &agrave; 500 m&sup2;</span></label>
-            <label class="checkbox-item"><input type="checkbox"><span>500 m&sup2; et +</span></label>
+            <label class="checkbox-item"><input type="checkbox"><span>500 m&sup2; et plus</span></label>
+            <div class="sidebar-help">Ces filtres ne s&apos;appliquent pas aux prestataires, missions ou annonces transport.</div>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">Budget espace maximum</div>
+            <input type="range" class="sidebar-range" min="0" max="3000" value="2000">
+            <div class="sidebar-range-labels"><span>0 &euro;</span><span>3 000 &euro; HT</span></div>
           </div>
           <button class="sidebar-reset">Effacer les filtres</button>
         </aside>
 
         <div>
           <div class="annonces-results-header">
-            <p class="annonces-count"><strong>24 annonces</strong> correspondent &agrave; votre recherche</p>
-            <div class="annonces-sort">
-              <span>Trier par</span>
-              <select>
-                <option>Les plus r&eacute;centes</option>
-                <option>Prix croissant</option>
-                <option>Prix d&eacute;croissant</option>
-                <option>Surface croissante</option>
-              </select>
-            </div>
+            <p class="annonces-count"><strong>24 annonces</strong> dans le r&eacute;seau STRAKARA</p>
+            <div class="annonces-sort"><span>Trier par</span><select><option>Les plus r&eacute;centes</option><option>Espaces disponibles</option><option>Prestataires disponibles</option><option>Budget croissant</option></select></div>
           </div>
 
           <div class="annonces-grid">
-            <article class="annonce-card">
+            <article class="annonce-card" id="espaces">
               <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-strakara-card">Espace STRAKARA</span></div>
               <div class="annonce-card-body">
                 <span class="annonce-card-ville">Champigny-sur-Marne (94)</span>
                 <h3>Activit&eacute; &amp; Stockage &mdash; 91 m&sup2;</h3>
-                <p>Espace flexible sans bail, op&eacute;rationnel sous 72h. Acc&egrave;s 24h/24, espace partag&eacute; possible. Id&eacute;al logistique ou artisan.</p>
+                <p>Espace flexible sans bail, op&eacute;rationnel sous 72h. Acc&egrave;s autonome, espace partag&eacute; possible. Id&eacute;al logistique, artisan ou stockage professionnel.</p>
                 <div class="annonce-card-infos"><span class="annonce-card-surface">91 m&sup2;</span><span class="annonce-card-prix">726 &euro; <span>HT/mois</span></span></div>
                 <a href="https://strakara.netlify.app/espaces.html" class="annonce-card-link">Voir l&apos;espace &rarr;</a>
               </div>
             </article>
-
-            <article class="annonce-card">
-              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-offre-card">Offre</span></div>
+            <article class="annonce-card" id="prestataires">
+              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-offre-card">Prestataire disponible</span></div>
               <div class="annonce-card-body">
                 <span class="annonce-card-ville">Paris &amp; IDF</span>
-                <h3>&Eacute;lectricien qualifi&eacute; RGE &mdash; disponible</h3>
-                <p>Artisan &eacute;lectricien 15 ans d&apos;exp&eacute;rience, disponible pour sous-traitance chantiers IDF. Qualifi&eacute; RGE, assurance d&eacute;cennale en cours.</p>
+                <h3>&Eacute;lectricien qualifi&eacute; RGE &mdash; chantiers IDF</h3>
+                <p>Artisan &eacute;lectricien disponible pour sous-traitance, d&eacute;pannage professionnel et chantiers ponctuels. Assurance d&eacute;cennale en cours.</p>
                 <div class="annonce-card-infos"><span class="annonce-card-surface">BTP &amp; Artisans</span><span class="annonce-card-prix">Sur devis</span></div>
                 <a href="#" class="annonce-card-link">Contacter &rarr;</a>
               </div>
             </article>
-
-            <article class="annonce-card">
-              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-demande-card">Besoin</span></div>
+            <article class="annonce-card" id="transport">
+              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-demande-card">Besoin transport</span></div>
               <div class="annonce-card-body">
                 <span class="annonce-card-ville">Paris &amp; IDF</span>
-                <h3>Cherche transporteur &mdash; livraisons dernier km</h3>
-                <p>E-commer&ccedil;ant cherche partenaire transport pour livraisons J+1 en r&eacute;gion parisienne. Volume&nbsp;: 50&ndash;80 colis/semaine.</p>
+                <h3>Cherche transporteur &mdash; livraisons dernier kilom&egrave;tre</h3>
+                <p>E-commer&ccedil;ant cherche partenaire transport pour livraisons J+1 en r&eacute;gion parisienne. Volume estim&eacute; : 50 &agrave; 80 colis par semaine.</p>
                 <div class="annonce-card-infos"><span class="annonce-card-surface">Transport</span><span class="annonce-card-prix">Budget ouvert</span></div>
                 <a href="#" class="annonce-card-link">R&eacute;pondre &rarr;</a>
               </div>
             </article>
-
             <article class="annonce-card">
               <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-strakara-card">Espace STRAKARA</span></div>
               <div class="annonce-card-body">
                 <span class="annonce-card-ville">Brest (29)</span>
                 <h3>Box de stockage 12&ndash;24 m&sup2;</h3>
-                <p>Boxes s&eacute;curis&eacute;s disponibles imm&eacute;diatement. Acc&egrave;s 24h/24, espace privatif. Id&eacute;al artisan ou PME cherchant flexibilit&eacute;.</p>
+                <p>Boxes s&eacute;curis&eacute;s disponibles rapidement. Acc&egrave;s privatif, solution simple pour artisan, PME ou besoin de stockage ponctuel.</p>
                 <div class="annonce-card-infos"><span class="annonce-card-surface">12&ndash;24 m&sup2;</span><span class="annonce-card-prix">230 &euro; <span>HT/mois</span></span></div>
                 <a href="https://strakara.netlify.app/espaces.html" class="annonce-card-link">Voir l&apos;espace &rarr;</a>
               </div>
             </article>
-
-            <article class="annonce-card">
-              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-offre-card">Offre</span></div>
+            <div class="network-cta">
+              <div class="network-cta-inner">
+                <span class="label">Besoin d&apos;un espace professionnel ?</span>
+                <h3>Les annonces du r&eacute;seau peuvent devenir une <em>solution STRAKARA.</em></h3>
+                <p>Un chantier loin de votre base, un surplus de stock, un prestataire qui manque de place : les espaces STRAKARA restent visibles naturellement au bon moment.</p>
+                <a href="https://strakara.netlify.app/espaces.html" class="btn-gold-outline">Voir les espaces disponibles &rarr;</a>
+              </div>
+            </div>
+            <article class="annonce-card" id="missions">
+              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-demande-card">Mission</span></div>
               <div class="annonce-card-body">
-                <span class="annonce-card-ville">Lyon &amp; Remote</span>
+                <span class="annonce-card-ville">Bordeaux (33)</span>
+                <h3>Recherche renfort chantier &mdash; 3 semaines</h3>
+                <p>Entreprise du b&acirc;timent recherche un artisan disponible pour renforcer une &eacute;quipe sur un chantier court. D&eacute;marrage rapide souhait&eacute;.</p>
+                <div class="annonce-card-infos"><span class="annonce-card-surface">Sous-traitance</span><span class="annonce-card-prix">Budget &agrave; d&eacute;finir</span></div>
+                <a href="#" class="annonce-card-link">R&eacute;pondre &rarr;</a>
+              </div>
+            </article>
+            <article class="annonce-card">
+              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-offre-card">Prestataire disponible</span></div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">Lyon &amp; remote</span>
                 <h3>D&eacute;veloppeur web freelance &mdash; disponible</h3>
-                <p>D&eacute;veloppeur fullstack 8 ans d&apos;exp&eacute;rience. Sp&eacute;cialis&eacute; sites PME, e-commerce, applications m&eacute;tier. Devis gratuit sous 48h.</p>
+                <p>D&eacute;veloppeur fullstack sp&eacute;cialis&eacute; sites PME, e-commerce et outils m&eacute;tier. Intervention possible &agrave; distance ou en accompagnement ponctuel.</p>
                 <div class="annonce-card-infos"><span class="annonce-card-surface">Prestataires</span><span class="annonce-card-prix">Sur devis</span></div>
                 <a href="#" class="annonce-card-link">Contacter &rarr;</a>
               </div>
             </article>
-
+            <article class="annonce-card" id="emploi">
+              <div class="annonce-card-img"><div class="annonce-card-img-placeholder"></div><span class="annonce-card-badge badge-offre-card">Saisonnier</span></div>
+              <div class="annonce-card-body">
+                <span class="annonce-card-ville">Bretagne</span>
+                <h3>Disponibilit&eacute; courte dur&eacute;e &mdash; manutention et aide logistique</h3>
+                <p>Profil disponible pour missions ponctuelles : manutention, pr&eacute;paration, aide au rangement ou renfort temporaire sur site professionnel.</p>
+                <div class="annonce-card-infos"><span class="annonce-card-surface">Emploi &amp; saisonnier</span><span class="annonce-card-prix">Selon mission</span></div>
+                <a href="#" class="annonce-card-link">Contacter &rarr;</a>
+              </div>
+            </article>
             <article class="annonce-card publier-cta">
               <div class="publier-cta-inner">
                 <span class="publier-plus">+</span>
@@ -396,15 +406,7 @@
               </div>
             </article>
           </div>
-
-          <div class="pagination">
-            <button class="page-btn">&larr;</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn">&hellip;</button>
-            <button class="page-btn">&rarr;</button>
-          </div>
+          <div class="pagination"><button class="page-btn">&larr;</button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">&hellip;</button><button class="page-btn">&rarr;</button></div>
         </div>
       </div>
     </div>
@@ -452,6 +454,5 @@
       </div>
     </div>
   </footer>
-
 </body>
 </html>
