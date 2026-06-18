@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avis clients — STRAKARA Réseau Pro</title>
+  <meta name="description" content="Consultez ou déposez un avis client sur les professionnels du réseau STRAKARA. Des retours d'expérience utiles pour aider les bons professionnels à être visibles.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://app.strakara.fr/avis.html">
+  <meta property="og:title" content="Avis clients — STRAKARA Réseau Pro">
+  <meta property="og:description" content="Des avis clients et retours d'expérience publiés sur les profils des professionnels STRAKARA.">
+  <meta property="og:url" content="https://app.strakara.fr/avis.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Avis clients STRAKARA",
+    "url": "https://app.strakara.fr/avis.html",
+    "description": "Avis clients et retours d’expérience sur les professionnels du réseau STRAKARA.",
+    "isPartOf": { "@type": "WebSite", "name": "STRAKARA Réseau Pro", "url": "https://app.strakara.fr" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;}
+    .container{max-width:1280px;margin:0 auto;padding:0 48px;}
+    .label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:background .2s;}
+    .btn-dark:hover{background:#2E2F35;}
+    .btn-gold{display:inline-block;background:var(--gold);color:var(--brand);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:opacity .2s;}
+    .btn-gold:hover{opacity:.88;}
+    .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;}
+    .btn-outline:hover{border-color:var(--brand);}
+
+    /* NAV */
+    .sk-banner{background:var(--brand);padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
+    .sk-banner__text{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold);}
+    .sk-banner__btn{background:var(--gold);color:var(--brand);font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
+    .sk-banner__btn:hover{opacity:.85;}
+    .sk-banner__close{position:absolute;right:16px;background:none;border:none;color:#777;font-size:18px;cursor:pointer;}
+    .sk-nav{background:var(--white);border-bottom:.5px solid var(--border);padding:0 24px;display:flex;align-items:center;height:58px;position:sticky;top:0;z-index:100;}
+    .sk-nav__logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-right:36px;white-space:nowrap;flex-shrink:0;}
+    .sk-nav__logo span{color:var(--gold);}
+    .sk-nav__links{display:flex;align-items:center;gap:0;flex:1;list-style:none;}
+    .sk-nav__links>li>a{display:block;padding:0 16px;height:58px;line-height:58px;font-size:13px;color:var(--muted);white-space:nowrap;transition:color .15s;}
+    .sk-nav__links>li>a:hover,.sk-nav__links>li>a.active{color:var(--brand);font-weight:500;}
+    .sk-nav__links>li>a.active{border-bottom:2px solid var(--gold);}
+    .sk-nav__dropdown{position:relative;}
+    .sk-nav__dropdown-menu{position:absolute;top:100%;left:0;background:var(--white);border:1px solid var(--border);min-width:220px;display:none;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+    .sk-nav__dropdown:hover .sk-nav__dropdown-menu{display:block;}
+    .sk-nav__dropdown-menu a{display:block;padding:12px 18px;font-size:13px;color:var(--muted);border-bottom:.5px solid var(--border);transition:background .15s,color .15s;}
+    .sk-nav__dropdown-menu a:last-child{border-bottom:none;}
+    .sk-nav__dropdown-menu a:hover{background:var(--light);color:var(--brand);}
+    .sk-nav__right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0;}
+    .sk-nav__sep{width:.5px;height:18px;background:var(--border);}
+    .sk-btn-publier{background:var(--gold);color:var(--brand);font-size:12px;font-weight:700;padding:8px 16px;white-space:nowrap;transition:opacity .15s;letter-spacing:.02em;}
+    .sk-btn-publier:hover{opacity:.88;}
+    .sk-btn-connexion{background:var(--brand);color:var(--white);font-size:12px;font-weight:500;padding:7px 16px;border-radius:20px;white-space:nowrap;transition:opacity .15s;}
+    .sk-btn-connexion:hover{opacity:.85;}
+    .sk-nav__hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto;flex-direction:column;gap:5px;}
+    .sk-nav__hamburger span{display:block;width:22px;height:1.5px;background:var(--brand);}
+    .sk-nav__mobile{display:none;flex-direction:column;background:var(--white);border-bottom:.5px solid var(--border);padding:16px 24px 20px;}
+    .sk-nav__mobile.sk-open{display:flex;}
+    .sk-nav__mobile a{font-size:14px;color:var(--muted);padding:11px 0;border-bottom:.5px solid var(--border);display:block;}
+    .sk-nav__mobile-sep{display:block;font-size:11px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.12em;margin-top:12px;padding-top:12px;}
+    .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+    .sk-nav__mobile-btns .sk-btn-publier,.sk-nav__mobile-btns .sk-btn-connexion{text-align:center;padding:12px 16px;font-size:13px;display:block;}
+
+    /* HERO */
+    .reco-hero{padding:72px 0 64px;background:var(--brand);border-bottom:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
+    .reco-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
+    .reco-hero-inner{position:relative;max-width:900px;}
+    .reco-hero .label{color:var(--gold);}
+    .reco-hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,62px);line-height:1.05;color:var(--white);margin-bottom:20px;font-weight:400;}
+    .reco-hero h1 em{color:var(--gold);font-style:italic;}
+    .reco-hero-sub{font-size:18px;color:rgba(255,255,255,.6);line-height:1.78;font-weight:300;max-width:640px;margin-bottom:36px;}
+    .reco-hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px;}
+    .btn-gold-outline{display:inline-block;background:transparent;color:var(--gold);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid rgba(200,169,106,.4);transition:border-color .2s,color .2s;}
+    .btn-gold-outline:hover{border-color:var(--gold);}
+    .reco-hero-why{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);}
+    .why-card{background:rgba(255,255,255,.03);padding:28px 24px;}
+    .why-card-num{font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:10px;display:block;}
+    .why-card h3{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;letter-spacing:.02em;}
+    .why-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;}
+
+    /* DIFFÉRENCE */
+    .reco-diff{padding:72px 0;background:var(--light);border-bottom:1px solid var(--border);}
+    .reco-diff-inner{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+    .diff-card{background:var(--white);padding:44px 40px;}
+    .diff-card.dark{background:var(--brand);}
+    .diff-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;display:block;}
+    .diff-card .diff-label{color:var(--muted);}
+    .diff-card.dark .diff-label{color:var(--gold);}
+    .diff-card h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin-bottom:16px;line-height:1.2;}
+    .diff-card h3 em{font-style:italic;color:var(--gold);}
+    .diff-card .text{color:var(--white);}
+    .diff-item{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;}
+    .diff-icon{width:28px;height:28px;min-width:28px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;}
+    .diff-icon.bad{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);}
+    .diff-icon.good{background:rgba(200,169,106,.15);color:var(--gold-dark);}
+    .diff-icon.good-dark{background:rgba(200,169,106,.2);color:var(--gold);}
+    .diff-item p{font-size:14px;line-height:1.65;}
+    .diff-card p{color:var(--muted);}
+    .diff-card.dark p{color:rgba(255,255,255,.55);}
+    .diff-card strong{color:var(--brand);}
+    .diff-card.dark strong{color:var(--white);}
+
+    /* BODY */
+    .reco-body{padding:56px 0 88px;background:var(--light);}
+    .reco-layout{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;}
+
+    /* FIL RECOMMANDATIONS */
+    .reco-feed-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+    .reco-feed-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--brand);font-weight:400;}
+    .reco-feed-title em{font-style:italic;color:var(--gold);}
+    .reco-sort select{padding:8px 12px;border:1px solid var(--border);background:var(--white);font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);outline:none;}
+    .reco-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+
+    /* CARTE RECOMMANDATION */
+    .reco-card{background:var(--white);padding:32px;position:relative;transition:background .2s;}
+    .reco-card:hover{background:#FDFCF8;}
+    .reco-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--gold);opacity:0;transition:opacity .2s;}
+    .reco-card:hover::before{opacity:1;}
+    .reco-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:16px;}
+    .reco-card-auteur{display:flex;align-items:center;gap:14px;}
+    .reco-avatar{width:44px;height:44px;min-width:44px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:600;flex-shrink:0;}
+    .reco-avatar.gold{background:var(--gold);color:var(--brand);}
+    .reco-avatar.light{background:var(--light);color:var(--brand);border:1px solid var(--border);}
+    .reco-auteur-name{font-size:14px;font-weight:600;color:var(--brand);display:block;margin-bottom:2px;}
+    .reco-auteur-role{font-size:11px;color:var(--muted);font-weight:400;text-transform:uppercase;letter-spacing:.06em;}
+    .reco-stars{display:flex;gap:3px;}
+    .reco-star{color:var(--gold);font-size:16px;}
+    .reco-star.empty{color:var(--border);}
+    .reco-cible{background:var(--light);border:1px solid var(--border);padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;}
+    .reco-cible-avatar{width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:600;}
+    .reco-cible-info{flex:1;}
+    .reco-cible-name{font-size:13px;font-weight:600;color:var(--brand);display:block;}
+    .reco-cible-role{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+    .reco-cible-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dark);background:rgba(200,169,106,.12);padding:4px 10px;white-space:nowrap;}
+    .reco-texte{font-family:'Playfair Display',serif;font-size:16px;color:var(--text);line-height:1.75;font-style:italic;margin-bottom:16px;position:relative;padding-left:20px;}
+    .reco-texte::before{content:'\201C';position:absolute;left:0;top:-4px;font-size:28px;color:var(--gold);line-height:1;}
+    .reco-card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px;}
+    .reco-date{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;}
+    .reco-tags{display:flex;gap:6px;flex-wrap:wrap;}
+    .reco-tag{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);background:var(--light);border:1px solid var(--border);padding:3px 8px;}
+    .reco-verified-badge{font-size:10px;font-weight:700;color:var(--gold-dark);letter-spacing:.06em;text-transform:uppercase;}
+
+    /* SIDEBAR */
+    .reco-sidebar{display:flex;flex-direction:column;gap:16px;}
+    .sidebar-card{background:var(--white);border:1px solid var(--border);padding:24px;}
+    .sidebar-card-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:16px;display:block;}
+    .sidebar-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:10px;}
+    .sidebar-card p:last-child{margin-bottom:0;}
+    .sidebar-stat{text-align:center;padding:20px;background:var(--light);border:1px solid var(--border);margin-bottom:12px;}
+    .sidebar-stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--brand);font-weight:600;display:block;line-height:1;}
+    .sidebar-stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;display:block;}
+    .sidebar-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:16px;}
+    .sidebar-stat-cell{background:var(--white);padding:16px;text-align:center;}
+    .sidebar-stat-cell .num{font-family:'Playfair Display',serif;font-size:24px;color:var(--brand);font-weight:600;display:block;}
+    .sidebar-stat-cell .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+    .sidebar-rule{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
+    .sidebar-rule-num{width:20px;height:20px;min-width:20px;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+    .sidebar-rule p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:0;}
+    .sidebar-dark{background:var(--brand);border:none;padding:28px;text-align:center;}
+    .sidebar-dark p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:8px;}
+    .sidebar-dark h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:20px;font-weight:400;line-height:1.3;}
+    .sidebar-dark h3 em{color:var(--gold);font-style:italic;}
+
+    /* FORMULAIRE */
+    .reco-form-section{padding:72px 0;background:var(--white);border-top:1px solid var(--border);}
+    .reco-form-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+    .reco-form-intro h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);color:var(--brand);font-weight:400;line-height:1.2;margin-bottom:16px;}
+    .reco-form-intro h2 em{font-style:italic;color:var(--gold);}
+    .reco-form-intro p{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:24px;}
+    .reco-form-intro-rules{display:flex;flex-direction:column;gap:12px;}
+    .reco-rule{display:flex;gap:12px;align-items:flex-start;}
+    .reco-rule-icon{width:28px;height:28px;min-width:28px;background:rgba(200,169,106,.12);border:1px solid rgba(200,169,106,.2);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold-dark);font-weight:700;flex-shrink:0;margin-top:2px;}
+    .reco-rule p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:0;}
+    .reco-rule strong{color:var(--brand);}
+    .reco-form-wrap{background:var(--light);border:1px solid var(--border);padding:36px;}
+    .form-label{display:block;font-size:12px;font-weight:600;color:var(--brand);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;}
+    .form-label .req{color:var(--gold-dark);margin-left:3px;}
+    .form-input,.form-select,.form-textarea{width:100%;padding:14px 16px;border:1px solid var(--border);background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+    .form-input::placeholder,.form-textarea::placeholder{color:var(--muted);font-weight:300;}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+    .form-select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px;}
+    .form-textarea{resize:vertical;min-height:100px;line-height:1.6;}
+    .form-row{margin-bottom:20px;}
+    .form-row:last-of-type{margin-bottom:0;}
+    .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+    .stars-input{display:flex;gap:6px;margin-bottom:4px;}
+    .star-btn{background:none;border:none;font-size:28px;cursor:pointer;color:var(--border);transition:color .15s;padding:0;}
+    .star-btn.active,.star-btn:hover{color:var(--gold);}
+    .form-hint{font-size:12px;color:var(--muted);margin-top:6px;font-weight:300;}
+    .form-submit-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+    .form-note{font-size:12px;color:var(--muted);font-weight:300;}
+    .btn-submit{background:var(--brand);color:var(--white);padding:14px 32px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;letter-spacing:.02em;transition:background .2s;}
+    .btn-submit:hover{background:#2E2F35;}
+
+    /* CONFIRMATION */
+    .reco-confirm{display:none;text-align:center;padding:48px 0;}
+    .reco-confirm-icon{width:64px;height:64px;background:rgba(200,169,106,.12);border:1px solid rgba(200,169,106,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:var(--gold-dark);}
+    .reco-confirm h3{font-family:'Playfair Display',serif;font-size:28px;color:var(--brand);margin-bottom:10px;font-weight:400;}
+    .reco-confirm h3 em{color:var(--gold);font-style:italic;}
+    .reco-confirm p{font-size:15px;color:var(--muted);max-width:400px;margin:0 auto 24px;}
+
+    /* FOOTER */
+    .sk-footer{background:#111214;padding:56px 0 32px;}
+    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
+    .sk-footer-logo span{color:var(--gold);}
+    .sk-footer-logo-sub{display:block;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
+    .sk-footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:280px;margin-bottom:18px;}
+    .sk-footer-strakara-link{display:inline-block;font-size:12px;color:var(--gold);border-bottom:1px solid rgba(200,169,106,.3);padding-bottom:2px;}
+    .sk-footer-col h4{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
+    .sk-footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px;transition:color .18s;}
+    .sk-footer-col a:hover{color:var(--gold);}
+    .sk-footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .sk-footer-bottom p{font-size:12px;color:rgba(255,255,255,.25);}
+    .sk-footer-bottom-links{display:flex;gap:20px;}
+    .sk-footer-bottom-links a{font-size:12px;color:rgba(255,255,255,.25);}
+    .sk-footer-bottom-links a:hover{color:var(--gold);}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .sk-nav__links,.sk-nav__right{display:none;}
+      .sk-nav__hamburger{display:flex;}
+      .reco-hero-why{grid-template-columns:1fr;}
+      .reco-diff-inner{grid-template-columns:1fr;}
+      .reco-layout{grid-template-columns:1fr;}
+      .reco-sidebar{order:-1;}
+      .reco-form-inner{grid-template-columns:1fr;}
+      .sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}
+    }
+    @media(max-width:600px){
+      .container{padding:0 20px;}
+      .reco-hero{padding:48px 0;}
+      .form-row-2{grid-template-columns:1fr;}
+      .reco-form-wrap{padding:24px 20px;}
+      .sk-footer-inner{grid-template-columns:1fr;gap:28px;}
+      .sk-footer-bottom{flex-direction:column;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU -->
+  <div class="sk-banner" id="sk-banner">
+    <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
+    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+    <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
+  </div>
+
+  <!-- NAV -->
+  <nav class="sk-nav">
+    <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+      <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+      <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+      <li><a href="https://app.strakara.fr/avis.html" class="active">Avis clients</a></li>
+      <li class="sk-nav__dropdown">
+        <a href="#" style="display:flex;align-items:center;gap:4px;">Secteurs &#8964;</a>
+        <div class="sk-nav__dropdown-menu">
+          <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
+          <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+          <a href="https://app.strakara.fr/reseau/transport.html">Transport &amp; Logistique</a>
+          <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires &amp; Services</a>
+          <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
+          <a href="https://app.strakara.fr/reseau/humanite.html">Humanit&eacute; &amp; &Eacute;v&eacute;nements</a>
+        </div>
+      </li>
+      <li><a href="https://app.strakara.fr/blog/index.html">Blog</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &rarr;</a></li>
+    </ul>
+    <div class="sk-nav__right">
+      <div class="sk-nav__sep"></div>
+      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+    </div>
+    <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="sk-nav__mobile" id="sk-mobile">
+    <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
+    <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+    <a href="https://app.strakara.fr/membres.html">Membres</a>
+    <a href="https://app.strakara.fr/avis.html">Avis clients</a>
+    <span class="sk-nav__mobile-sep">Secteurs</span>
+    <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
+    <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+    <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
+    <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
+    <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
+    <a href="https://app.strakara.fr/blog/index.html">Blog</a>
+    <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
+    <div class="sk-nav__mobile-btns">
+      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="reco-hero">
+    <div class="container">
+      <div class="reco-hero-inner">
+        <span class="label">Avis &amp; avis clients</span>
+        <h1>Les bons professionnels<br>m&eacute;ritent d&apos;&ecirc;tre <em>visibles.</em></h1>
+        <p class="reco-hero-sub">Les avis publi&eacute;s sur STRAKARA permettent aux clients et aux entreprises de partager leur exp&eacute;rience, de rassurer les futurs clients et d&apos;aider les professionnels s&eacute;rieux &agrave; &ecirc;tre trouv&eacute;s plus facilement.</p>
+        <div class="reco-hero-actions">
+          <a href="#recommander" class="btn-gold">Laisser un avis &darr;</a>
+          <a href="https://app.strakara.fr/membres.html" class="btn-gold-outline">Voir les professionnels &rarr;</a>
+        </div>
+        <div class="reco-hero-why">
+          <div class="why-card">
+            <span class="why-card-num">01</span>
+            <h3>Exp&eacute;rience r&eacute;elle</h3>
+            <p>Chaque avis doit &ecirc;tre bas&eacute; sur une prestation, une collaboration ou une utilisation r&eacute;elle d&apos;un service.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-num">02</span>
+            <h3>Profil public</h3>
+            <p>Les avis valorisent directement le profil du professionnel et aident les clients &agrave; faire le bon choix.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-card-num">03</span>
+            <h3>Validation</h3>
+            <p>Chaque avis est relu avant publication afin de garder un annuaire propre, fiable et utile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFÉRENCE -->
+  <section class="reco-diff">
+    <div class="container">
+      <div class="reco-diff-inner">
+        <div class="diff-card">
+          <span class="diff-label">Les avis classiques</span>
+          <h3>Des retours parfois<br>difficiles <em>&agrave; v&eacute;rifier.</em></h3>
+          <div class="diff-item">
+            <div class="diff-icon bad">&#10005;</div>
+            <p>Auteur parfois difficile &agrave; identifier</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon bad">&#10005;</div>
+            <p>Peu de contexte sur l&apos;exp&eacute;rience r&eacute;elle</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon bad">&#10005;</div>
+            <p>Impossible de savoir si la prestation a vraiment eu lieu</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon bad">&#10005;</div>
+            <p>Avis parfois noy&eacute;s dans des plateformes trop g&eacute;n&eacute;ralistes</p>
+          </div>
+        </div>
+        <div class="diff-card dark">
+          <span class="diff-label">STRAKARA</span>
+          <h3 class="text">Des avis clients<br><em>qui rassurent.</em></h3>
+          <div class="diff-item">
+            <div class="diff-icon good-dark">&#10003;</div>
+            <p>Avis associ&eacute; &agrave; un profil professionnel visible</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon good-dark">&#10003;</div>
+            <p>Contexte de la prestation ou de la collaboration indiqu&eacute;</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon good-dark">&#10003;</div>
+            <p>Publication relue avant mise en ligne</p>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon good-dark">&#10003;</div>
+            <p>Avis utile pour aider les futurs clients &agrave; choisir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="reco-body">
+    <div class="container">
+      <div class="reco-layout">
+
+        <!-- FIL -->
+        <div>
+          <div class="reco-feed-header">
+            <h2 class="reco-feed-title">Derniers <em>avis publi&eacute;s</em></h2>
+            <div class="reco-sort">
+              <select>
+                <option>Les plus r&eacute;cents</option>
+                <option>Les mieux not&eacute;s</option>
+                <option>Par secteur</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="reco-grid">
+
+            <!-- RECO 1 -->
+            <div class="reco-card">
+              <div class="reco-card-top">
+                <div class="reco-card-auteur">
+                  <div class="reco-avatar gold">LC</div>
+                  <div>
+                    <span class="reco-auteur-name">Entreprise de r&eacute;novation</span>
+                    <span class="reco-auteur-role">Client professionnel &middot; Brest</span>
+                  </div>
+                </div>
+                <div class="reco-stars">
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                </div>
+              </div>
+              <div class="reco-cible">
+                <div class="reco-cible-avatar">HB</div>
+                <div class="reco-cible-info">
+                  <span class="reco-cible-name">Espace professionnel &mdash; Pontivy</span>
+                  <span class="reco-cible-role">Stockage professionnel &middot; Bretagne</span>
+                </div>
+                <span class="reco-cible-badge">Profil v&eacute;rifi&eacute;</span>
+              </div>
+              <p class="reco-texte">Nous avons utilis&eacute; cet espace pendant plusieurs mois pour stocker du mat&eacute;riel de chantier. Acc&egrave;s simple, interlocuteur r&eacute;actif et environnement s&eacute;rieux. Une solution pratique quand on manque de place rapidement.</p>
+              <div class="reco-card-footer">
+                <span class="reco-date">Juin 2026</span>
+                <div class="reco-tags">
+                  <span class="reco-tag">Stockage</span>
+                  <span class="reco-tag">Bretagne</span>
+                </div>
+                <span class="reco-verified-badge">&#10003; V&eacute;rifi&eacute;e</span>
+              </div>
+            </div>
+
+            <!-- RECO 2 -->
+            <div class="reco-card">
+              <div class="reco-card-top">
+                <div class="reco-card-auteur">
+                  <div class="reco-avatar">EB</div>
+                  <div>
+                    <span class="reco-auteur-name">Client e-commerce</span>
+                    <span class="reco-auteur-role">Client professionnel &middot; Bretagne</span>
+                  </div>
+                </div>
+                <div class="reco-stars">
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                </div>
+              </div>
+              <div class="reco-cible">
+                <div class="reco-cible-avatar light" style="background:var(--light);color:var(--brand);border:1px solid var(--border);">AR</div>
+                <div class="reco-cible-info">
+                  <span class="reco-cible-name">Prestataire logistique</span>
+                  <span class="reco-cible-role">Transport &amp; logistique &middot; Nantes</span>
+                </div>
+                <span class="reco-cible-badge">Profil v&eacute;rifi&eacute;</span>
+              </div>
+              <p class="reco-texte">Nous avons fait appel &agrave; ce prestataire pour organiser une livraison urgente. Communication claire, d&eacute;lais respect&eacute;s et suivi propre. Une entreprise fiable que nous pourrions recontacter.</p>
+              <div class="reco-card-footer">
+                <span class="reco-date">Mai 2026</span>
+                <div class="reco-tags">
+                  <span class="reco-tag">BTP</span>
+                  <span class="reco-tag">Artisan</span>
+                </div>
+                <span class="reco-verified-badge">&#10003; V&eacute;rifi&eacute;e</span>
+              </div>
+            </div>
+
+            <!-- RECO 3 -->
+            <div class="reco-card">
+              <div class="reco-card-top">
+                <div class="reco-card-auteur">
+                  <div class="reco-avatar light">PS</div>
+                  <div>
+                    <span class="reco-auteur-name">Responsable travaux</span>
+                    <span class="reco-auteur-role">Client professionnel &middot; Pays de la Loire</span>
+                  </div>
+                </div>
+                <div class="reco-stars">
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star">&#9733;</span>
+                  <span class="reco-star empty">&#9733;</span>
+                </div>
+              </div>
+              <div class="reco-cible">
+                <div class="reco-cible-avatar">HB</div>
+                <div class="reco-cible-info">
+                  <span class="reco-cible-name">Espace professionnel &mdash; Pontivy</span>
+                  <span class="reco-cible-role">Stockage professionnel &middot; Bretagne</span>
+                </div>
+                <span class="reco-cible-badge">Profil v&eacute;rifi&eacute;</span>
+              </div>
+              <p class="reco-texte">Bon contact et prestation conforme &agrave; ce qui avait &eacute;t&eacute; annonc&eacute;. Le professionnel a &eacute;t&eacute; clair sur les d&eacute;lais et les conditions. Exp&eacute;rience positive dans l&apos;ensemble.</p>
+              <div class="reco-card-footer">
+                <span class="reco-date">Avril 2026</span>
+                <div class="reco-tags">
+                  <span class="reco-tag">Logistique</span>
+                  <span class="reco-tag">Bretagne</span>
+                </div>
+                <span class="reco-verified-badge">&#10003; V&eacute;rifi&eacute;e</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="reco-sidebar">
+
+          <div class="sidebar-stat-row">
+            <div class="sidebar-stat-cell">
+              <span class="num">3</span>
+              <span class="lbl">Avis</span>
+            </div>
+            <div class="sidebar-stat-cell">
+              <span class="num">4.8</span>
+              <span class="lbl">Note moyenne</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <span class="sidebar-card-title">Pourquoi laisser un avis ?</span>
+            <div class="sidebar-rule">
+              <div class="sidebar-rule-num">1</div>
+              <p><strong>Aidez d&apos;autres clients</strong> &agrave; choisir un professionnel fiable.</p>
+            </div>
+            <div class="sidebar-rule">
+              <div class="sidebar-rule-num">2</div>
+              <p><strong>Mettez en avant</strong> les entreprises s&eacute;rieuses avec lesquelles vous avez travaill&eacute;.</p>
+            </div>
+            <div class="sidebar-rule">
+              <div class="sidebar-rule-num">3</div>
+              <p><strong>Valorisez une exp&eacute;rience positive</strong> et aidez les bons professionnels &agrave; &ecirc;tre visibles.</p>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <span class="sidebar-card-title">R&egrave;gles de publication</span>
+            <p>&#8227; Bas&eacute; sur une exp&eacute;rience r&eacute;elle</p>
+            <p>&#8227; Un avis par prestation ou collaboration</p>
+            <p>&#8227; Relu par STRAKARA avant publication</p>
+            <p>&#8227; Bas&eacute;e sur une exp&eacute;rience r&eacute;elle</p>
+            <p>&#8227; Pas d&apos;avis anonyme ou insultant</p>
+          </div>
+
+          <div class="sidebar-dark">
+            <p>Pas encore membre ?</p>
+            <h3>Rejoignez le r&eacute;seau<br><em>gratuitement.</em></h3>
+            <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold" style="font-size:13px;padding:10px 22px;">R&eacute;server ma place &rarr;</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE RECOMMANDER -->
+  <section class="reco-form-section" id="recommander">
+    <div class="container">
+      <div class="reco-form-inner">
+
+        <div class="reco-form-intro">
+          <span class="label">Laisser un avis</span>
+          <h2>Vous avez fait appel<br>&agrave; un professionnel&nbsp;?<br><em>Partagez votre exp&eacute;rience.</em></h2>
+          <p>Votre avis aide d&apos;autres clients &agrave; faire le bon choix et permet aux professionnels s&eacute;rieux d&apos;&ecirc;tre plus visibles.</p>
+          <div class="reco-form-intro-rules">
+            <div class="reco-rule">
+              <div class="reco-rule-icon">&#10003;</div>
+              <p><strong>Votre avis doit correspondre</strong> &agrave; une exp&eacute;rience r&eacute;elle avec ce professionnel.</p>
+            </div>
+            <div class="reco-rule">
+              <div class="reco-rule-icon">&#10003;</div>
+              <p><strong>Expliquez le contexte</strong> : prestation, location d&apos;espace, transport, chantier ou service.</p>
+            </div>
+            <div class="reco-rule">
+              <div class="reco-rule-icon">&#10003;</div>
+              <p><strong>STRAKARA relit</strong> chaque avis avant publication afin de garder un annuaire fiable.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="reco-form-wrap">
+          <div class="reco-form-wrap">
+            <form id="reco-form" onsubmit="handleRecoSubmit(event)">
+
+              <div class="form-row">
+                <label class="form-label">Note globale <span class="req">*</span></label>
+                <div class="stars-input" id="stars-container">
+                  <button type="button" class="star-btn" data-val="1" onclick="setStars(1)">&#9733;</button>
+                  <button type="button" class="star-btn" data-val="2" onclick="setStars(2)">&#9733;</button>
+                  <button type="button" class="star-btn" data-val="3" onclick="setStars(3)">&#9733;</button>
+                  <button type="button" class="star-btn" data-val="4" onclick="setStars(4)">&#9733;</button>
+                  <button type="button" class="star-btn" data-val="5" onclick="setStars(5)">&#9733;</button>
+                </div>
+                <input type="hidden" id="note-value" name="note" value="0">
+                <p class="form-hint">Cliquez sur les &eacute;toiles pour noter</p>
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="reco-cible">Professionnel concern&eacute; <span class="req">*</span></label>
+                <select class="form-select" id="reco-cible" name="cible" required>
+                  <option value="">S&eacute;lectionnez le professionnel concern&eacute;</option>
+                  <option>Entreprise de r&eacute;novation &mdash; Fondatrice STRAKARA</option>
+                  <option>Espace professionnel &mdash; Pontivy (H&eacute;bergeur)</option>
+                  <option>Prestataire logistique &mdash; IDF</option>
+                  <option>Responsable travaux &mdash; Nantes</option>
+                  <option>Client e-commerce &mdash; Brest</option>
+                </select>
+                <p class="form-hint">Seuls les professionnels ayant un profil public peuvent recevoir un avis.</p>
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="reco-contexte">Contexte de la collaboration <span class="req">*</span></label>
+                <select class="form-select" id="reco-contexte" name="contexte" required>
+                  <option value="">Type de collaboration</option>
+                  <option>Location d&apos;espace professionnel</option>
+                  <option>Sous-traitance chantier</option>
+                  <option>Prestation de service</option>
+                  <option>Transport &amp; livraison</option>
+                  <option>Mission courte terme</option>
+                  <option>Partenariat commercial</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="reco-texte">Votre avis <span class="req">*</span></label>
+                <textarea class="form-textarea" id="reco-texte" name="texte" placeholder="D&eacute;crivez votre exp&eacute;rience : prestation r&eacute;alis&eacute;e, qualit&eacute; du contact, respect des d&eacute;lais, points positifs, pourquoi vous le recommanderiez..." required rows="4" minlength="80"></textarea>
+                <p class="form-hint">Minimum 80 caract&egrave;res &mdash; un avis d&eacute;taill&eacute;e a beaucoup plus d&apos;impact.</p>
+              </div>
+
+              <div class="form-row-2">
+                <div>
+                  <label class="form-label" for="reco-prenom">Votre pr&eacute;nom <span class="req">*</span></label>
+                  <input class="form-input" type="text" id="reco-prenom" name="prenom" placeholder="Pr&eacute;nom" required>
+                </div>
+                <div>
+                  <label class="form-label" for="reco-entreprise">Votre entreprise ou nom <span class="req">*</span></label>
+                  <input class="form-input" type="text" id="reco-entreprise" name="entreprise" placeholder="Nom de votre entreprise" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="reco-email">Email de contact <span class="req">*</span></label>
+                <input class="form-input" type="email" id="reco-email" name="email" placeholder="vous@votreentreprise.fr" required>
+                <p class="form-hint">Utilis&eacute; uniquement pour v&eacute;rification si besoin &mdash; non publi&eacute;.</p>
+              </div>
+
+              <div class="form-submit-row">
+                <p class="form-note">Relu par STRAKARA avant publication &mdash; Gratuit</p>
+                <button type="submit" class="btn-submit">Envoyer mon avis &rarr;</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- CONFIRMATION -->
+        <div class="reco-confirm" id="reco-confirm">
+          <div class="reco-confirm-icon">&#10003;</div>
+          <h3>Avis re&ccedil;u.<br><em>Merci !</em></h3>
+          <p>Votre avis est en cours de validation par STRAKARA. Il sera publi&eacute; apr&egrave;s relecture.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://app.strakara.fr/membres.html" class="btn-dark">Voir les membres</a>
+            <a href="https://app.strakara.fr/avis.html" class="btn-outline">Voir les avis</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="sk-footer">
+    <div class="container">
+      <div class="sk-footer-inner">
+        <div class="sk-footer-brand">
+          <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
+          <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
+          <p>Le r&eacute;seau gratuit des pros du terrain : annuaire, annonces, avis clients et espaces professionnels flexibles.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr &mdash; location d&apos;espaces &rarr;</a>
+        </div>
+        <div class="sk-footer-col">
+          <h4>R&eacute;seau</h4>
+          <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+          <a href="https://app.strakara.fr/membres.html">Membres</a>
+          <a href="https://app.strakara.fr/avis.html">Avis clients</a>
+          <a href="https://app.strakara.fr/publier.html">Publier une annonce</a>
+          <a href="https://app.strakara.fr/rejoindre.html">Rejoindre &mdash; Gratuit</a>
+        </div>
+        <div class="sk-footer-col">
+          <h4>Secteurs</h4>
+          <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
+          <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+          <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
+          <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
+          <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
+        </div>
+        <div class="sk-footer-col">
+          <h4>STRAKARA</h4>
+          <a href="https://app.strakara.fr/blog/index.html">Blog &amp; Conseils</a>
+          <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d&apos;espaces</a>
+          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir h&eacute;bergeur</a>
+          <a href="https://www.strakara.fr/contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="sk-footer-bottom">
+        <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p>
+        <div class="sk-footer-bottom-links">
+          <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
+          <a href="https://www.strakara.fr/cgv.html">CGV</a>
+          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentStars = 0;
+    function setStars(n) {
+      currentStars = n;
+      document.getElementById('note-value').value = n;
+      document.querySelectorAll('.star-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i < n);
+      });
+    }
+
+    function handleRecoSubmit(e) {
+      e.preventDefault();
+      if (currentStars === 0) {
+        alert('Merci de donner une note avant d\'envoyer.');
+        return;
+      }
+      document.getElementById('reco-form-wrap').style.display = 'none';
+      document.getElementById('reco-confirm').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('recommander').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
