@@ -250,50 +250,88 @@
 </head>
 <body>
 
-  <!-- BANDEAU -->
-  <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">Réseau d'entraide pour les pros — Ouverture le 21 septembre 2026</span>
-    <a href="https://app.strakara.fr/rejoindre" class="sk-banner__btn">100 places fondateurs &rarr;</a>
-    <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
-  </div>
 
-  <!-- NAV -->
-  <nav class="sk-nav">
-    <a href="https://www.strakara.fr" class="sk-nav__logo">STRA<span>KARA</span></a>
-    <ul class="sk-nav__links">
-      <li><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a></li>
-      <li><a href="https://strakara.netlify.app/espaces.html">Nos espaces</a></li>
-      <li><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a></li>
-      <li><a href="https://app.strakara.fr/" class="active">Réseau Pro</a></li>
-      <li><a href="https://www.strakara.fr/modele-stockage-professionnel.html">À propos</a></li>
-      <li><a href="https://www.strakara.fr/contact.html">Contact</a></li>
-    </ul>
-    <div class="sk-nav__right">
-      <a href="tel:0759647754" class="sk-nav__phone" style="font-size:12.5px;color:var(--muted);">07 59 64 77 54</a>
-      <div class="sk-nav__sep"></div>
-      <a href="https://app.strakara.fr/rejoindre" class="sk-btn-reseau">
-        <span class="sk-btn-reseau__dot"></span>Rejoindre &mdash; Gratuit
+<!-- BANDEAU -->
+<div class="sk-banner" id="sk-banner">
+  <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
+  <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+  <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
+</div>
+
+<!-- NAV -->
+<nav class="sk-nav">
+  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+
+  <ul class="sk-nav__links">
+    <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html" class="">Annonces</a></li>
+    <li><a href="https://app.strakara.fr/membres.html" class="">Membres</a></li>
+    <li class="sk-nav__dropdown">
+      <a href="#" class="sk-nav__dropdown-toggle {{active_secteurs}}">
+        Secteurs
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
-      <a href="https://strakara.netlify.app/login-client" class="sk-btn-espace">Connexion</a>
-    </div>
-    <button class="sk-nav__hamburger" onclick="this.nextElementSibling.classList.toggle('sk-open')" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <div class="sk-nav__mobile">
-    <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a>
-    <a href="https://strakara.netlify.app/espaces.html">Nos espaces</a>
-    <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a>
-    <a href="https://app.strakara.fr/">Réseau Pro</a>
-    <a href="https://www.strakara.fr/modele-stockage-professionnel.html">&Agrave; propos</a>
-    <a href="https://www.strakara.fr/contact.html">Contact</a>
-    <div class="sk-nav__mobile-btns">
-      <a href="https://app.strakara.fr/rejoindre" class="sk-btn-reseau"><span class="sk-btn-reseau__dot"></span>Rejoindre &mdash; Gratuit</a>
-      <a href="https://strakara.netlify.app/login-client" class="sk-btn-espace">Connexion membre</a>
-    </div>
+      <div class="sk-nav__dropdown-menu">
+        <a href="https://app.strakara.fr/reseau/immobilier.html">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Immobilier Pro
+        </a>
+        <a href="https://app.strakara.fr/reseau/btp.html">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          BTP &amp; Artisans
+        </a>
+        <a href="https://app.strakara.fr/reseau/transport.html">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Transport &amp; Logistique
+        </a>
+        <a href="https://app.strakara.fr/reseau/prestataires.html">
+          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Prestataires &amp; Services
+        </a>
+        <a href="https://app.strakara.fr/reseau/saisonnier.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Jobs saisonniers
+        </a>
+        <a href="https://app.strakara.fr/reseau/humanite.html">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Humanit&eacute; &amp; &Eacute;v&eacute;nements
+        </a>
+      </div>
+    </li>
+    <li><a href="https://app.strakara.fr/blog/index.html" class="">Blog</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
+  </ul>
+
+  <div class="sk-nav__right">
+    <div class="sk-nav__sep"></div>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
   </div>
 
-  <!-- HERO -->
+  <button class="sk-nav__hamburger" id="sk-hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="sk-nav__mobile" id="sk-mobile">
+  <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
+  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <span class="sk-nav__mobile-sep">Secteurs</span>
+  <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
+  <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+  <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
+  <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
+  <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
+  <a href="https://app.strakara.fr/blog/index.html">Blog</a>
+  <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
+  <div class="sk-nav__mobile-btns">
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
+  </div>
+
+    <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
@@ -767,47 +805,99 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="https://www.strakara.fr" class="footer-logo">STRA<span>KARA</span></a>
-          <p>Le r&eacute;seau professionnel d&apos;espaces partag&eacute;s et d&apos;entraide pro en France. Sans bail, sans gestion, sans friction.</p>
-        </div>
-        <div class="footer-col">
-          <h4>R&eacute;seau Pro</h4>
-          <a href="reseau/immobilier.html">Immobilier Pro</a>
-          <a href="reseau/btp.html">BTP &amp; Artisans</a>
-          <a href="reseau/transport.html">Transport</a>
-          <a href="reseau/prestataires.html">Prestataires</a>
-          <a href="reseau/saisonnier.html">Jobs saisonniers</a>
-        </div>
-        <div class="footer-col">
-          <h4>STRAKARA</h4>
-          <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Clients</a>
-          <a href="https://strakara.netlify.app/espaces.html">Nos espaces</a>
-          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir partenaire</a>
-          <a href="https://www.strakara.fr/modele-stockage-professionnel.html">&Agrave; propos</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <a href="https://www.strakara.fr/contact.html">Nous contacter</a>
-          <a href="tel:0759647754">07 59 64 77 54</a>
-          <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
-          <a href="https://app.strakara.fr/rejoindre">Rejoindre le r&eacute;seau</a>
-        </div>
+
+  <!-- ============================================================
+     FOOTER APP.STRAKARA.FR — identique sur toutes les pages
+     ============================================================ -->
+<footer class="sk-footer">
+  <div class="container">
+    <div class="sk-footer-inner">
+      <div class="sk-footer-brand">
+        <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
+        <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
+        <p>Le r&eacute;seau gratuit des pros du terrain &mdash; annonces, entraide, achats group&eacute;s et &eacute;v&eacute;nements pour artisans, TPE, PME et transporteurs.</p>
+        <a href="https://www.strakara.fr" class="sk-footer-strakara-link">
+          Voir aussi strakara.fr &mdash; location d&apos;espaces
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s</p>
-        <div class="footer-bottom-links">
-          <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
-          <a href="https://www.strakara.fr/cgv.html">CGV</a>
-          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
-        </div>
+
+      <div class="sk-footer-col">
+        <h4>R&eacute;seau</h4>
+        <a href="https://app.strakara.fr/annonces.html">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          Annonces
+        </a>
+        <a href="https://app.strakara.fr/membres.html">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Membres
+        </a>
+        <a href="https://app.strakara.fr/publier.html">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Publier une annonce
+        </a>
+        <a href="https://app.strakara.fr/rejoindre.html">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          Rejoindre &mdash; Gratuit
+        </a>
+      </div>
+
+      <div class="sk-footer-col">
+        <h4>Secteurs</h4>
+        <a href="https://app.strakara.fr/reseau/immobilier.html">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Immobilier Pro
+        </a>
+        <a href="https://app.strakara.fr/reseau/btp.html">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+          BTP &amp; Artisans
+        </a>
+        <a href="https://app.strakara.fr/reseau/transport.html">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/></svg>
+          Transport
+        </a>
+        <a href="https://app.strakara.fr/reseau/prestataires.html">
+          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          Prestataires
+        </a>
+        <a href="https://app.strakara.fr/reseau/saisonnier.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          Jobs saisonniers
+        </a>
+      </div>
+
+      <div class="sk-footer-col">
+        <h4>STRAKARA</h4>
+        <a href="https://app.strakara.fr/blog/index.html">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Blog &amp; Conseils
+        </a>
+        <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Location d&apos;espaces
+        </a>
+        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Devenir h&eacute;bergeur
+        </a>
+        <a href="https://www.strakara.fr/contact.html">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Contact
+        </a>
       </div>
     </div>
-  </footer>
+
+    <div class="sk-footer-bottom">
+      <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p>
+      <div class="sk-footer-bottom-links">
+        <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="https://www.strakara.fr/cgv.html">CGV</a>
+        <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 </body>
 </html>
