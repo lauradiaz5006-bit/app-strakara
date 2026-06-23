@@ -332,6 +332,17 @@
                   <label class="form-label" for="surface">Surface (si applicable)</label>
                   <input class="form-input" type="text" id="surface" name="surface" placeholder="Ex : 80 m², 200 à 500 m²...">
                 </div>
+
+                <div class="form-row">
+                  <label class="form-label">Photo de l'annonce</label>
+                  <label class="upload-zone" for="photo">
+                    <div class="upload-zone-icon">📷</div>
+                    <p>Ajouter une photo</p>
+                    <span>JPG, PNG ou WEBP — 5 Mo maximum</span>
+                    <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp">
+                  </label>
+                  <p class="form-hint">Ajoutez une photo claire du lieu, du matériel ou du service proposé.</p>
+                </div>
               </div>
 
               <!-- SECTION 3 : COORDONNÉES -->
@@ -478,21 +489,66 @@
       statusEl.style.display = 'block';
       statusEl.textContent = 'Publication en cours...';
 
-      const data = {
-        titre: document.getElementById('titre').value.trim(),
-        description: document.getElementById('description').value.trim(),
-        categorie: document.getElementById('categorie').value,
-        secteur: document.getElementById('secteur').value,
-        ville: document.getElementById('ville').value.trim(),
-        type_annonce: document.querySelector('input[name="type"]:checked').value,
-        nom_entreprise: document.getElementById('entreprise').value.trim(),
-        telephone: document.getElementById('telephone').value.trim(),
-        contact_email: document.getElementById('email').value.trim(),
-        siret: document.getElementById('siret').value.replace(/\s/g,''),
-        statut: 'actif'
-      };
-
       try {
+        let imageUrl = null;
+        const photo = document.getElementById('photo')?.files?.[0];
+
+        if (photo) {
+          const maxSize = 5 * 1024 * 1024; // 5 Mo
+          const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+          if (!allowedTypes.includes(photo.type)) {
+            throw new Error('Format image non accepté. Utilisez JPG, PNG ou WEBP.');
+          }
+
+          if (photo.size > maxSize) {
+            throw new Error('Image trop lourde. Taille maximum : 5 Mo.');
+          }
+
+          statusEl.textContent = 'Envoi de la photo...';
+
+          const extension = photo.name.split('.').pop().toLowerCase();
+          const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${extension}`;
+
+          const uploadRes = await fetch(
+            `${SUPABASE_URL}/storage/v1/object/annonces-images/${fileName}`,
+            {
+              method: 'POST',
+              headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': photo.type,
+                'x-upsert': 'true'
+              },
+              body: photo
+            }
+          );
+
+          if (!uploadRes.ok) {
+            const uploadErr = await uploadRes.text();
+            throw new Error(uploadErr || 'Erreur upload image');
+          }
+
+          imageUrl = `${SUPABASE_URL}/storage/v1/object/public/annonces-images/${fileName}`;
+        }
+
+        statusEl.textContent = 'Enregistrement de l’annonce...';
+
+        const data = {
+          titre: document.getElementById('titre').value.trim(),
+          description: document.getElementById('description').value.trim(),
+          categorie: document.getElementById('categorie').value,
+          secteur: document.getElementById('secteur').value,
+          ville: document.getElementById('ville').value.trim(),
+          type_annonce: document.querySelector('input[name="type"]:checked').value,
+          nom_entreprise: document.getElementById('entreprise').value.trim(),
+          telephone: document.getElementById('telephone').value.trim(),
+          contact_email: document.getElementById('email').value.trim(),
+          siret: document.getElementById('siret').value.replace(/\s/g,''),
+          image_url: imageUrl,
+          statut: 'actif'
+        };
+
         const res = await fetch(`${SUPABASE_URL}/rest/v1/annonces`, {
           method: 'POST',
           headers: {
@@ -517,7 +573,7 @@
       } catch (err) {
         console.error(err);
         statusEl.className = 'form-status error';
-        statusEl.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+        statusEl.textContent = err.message || 'Une erreur est survenue. Veuillez réessayer.';
         btn.disabled = false;
         btn.textContent = 'Publier mon annonce →';
       }
@@ -534,6 +590,20 @@
     typeInputs.forEach(input => {
       input.addEventListener('change', () => { descTextarea.placeholder = placeholders[input.value]; });
     });
+
+
+    // Affichage du nom de la photo sélectionnée
+    const photoInput = document.getElementById('photo');
+    if (photoInput) {
+      photoInput.addEventListener('change', function() {
+        const zone = document.querySelector('label[for="photo"]');
+        const file = this.files && this.files[0];
+        if (zone && file) {
+          zone.querySelector('p').textContent = file.name;
+          zone.querySelector('span').textContent = 'Photo prête à être envoyée';
+        }
+      });
+    }
 
     // Format SIRET
     document.getElementById('siret').addEventListener('input', function() {
