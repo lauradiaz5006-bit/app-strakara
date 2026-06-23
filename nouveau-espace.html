@@ -102,13 +102,7 @@ const SUPABASE_TABLE = "espaces_hebergeurs";
 const SUPABASE_BUCKET = "espaces";
 
 /* Important : ne jamais déclarer "supabase" plusieurs fois sur la même page */
-let sb = null;
-function isSupabaseConfigured(){
-  return SUPABASE_URL && SUPABASE_ANON_KEY && !SUPABASE_URL.includes("TON-PROJET") && !SUPABASE_ANON_KEY.includes("TON-ANON-KEY");
-}
-if(isSupabaseConfigured()){
-  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-}
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* ========================================================= */
 const SAVE_KEY = "strakara_proposer_espace_supabase_v1";
@@ -132,8 +126,6 @@ const state = {
     lots: []
   },
   responsable: { type: "moi", nom: "", telephone: "", email: "", fonction: "" },
-  autorisation: false,
-  cgh: { accepte: false, version: "CGH STRAKARA en vigueur", url: "https://www.strakara.fr/cgh.html", accepted_at: "", user_agent: "" },
   consentement: false
 };
 
@@ -155,8 +147,6 @@ function loadDraft(){
     Object.assign(state.responsable, saved.responsable || {});
     state.email_compte = saved.email_compte || state.email_compte;
     state.hebergeur_id = saved.hebergeur_id || state.hebergeur_id;
-    state.autorisation = !!saved.autorisation || !!saved.consentement;
-    Object.assign(state.cgh, saved.cgh || {});
     state.consentement = !!saved.consentement;
   }catch(e){}
 }
@@ -173,10 +163,6 @@ function setDeep(path, value){
   obj[parts[0]] = value;
   schedSave();
   renderSteps();
-}
-function setDeepAndRender(path, value){
-  setDeep(path, value);
-  render();
 }
 function toggleArray(path, value, checked){
   const parts = path.split(".");
@@ -217,7 +203,7 @@ function field(path,label,type="text",placeholder="",full=false,attrs=""){
 }
 function select(path,label,options,full=false){
   const val = path.split(".").reduce((o,k)=>o?.[k], state) || "";
-  return `<div class="field ${full?'full':''}"><label>${label}</label><select onchange="setDeepAndRender('${path}',this.value)">${options.map(o=>`<option value="${esc(o)}" ${val===o?'selected':''}>${esc(o)}</option>`).join("")}</select></div>`;
+  return `<div class="field ${full?'full':''}"><label>${label}</label><select onchange="setDeep('${path}',this.value)">${options.map(o=>`<option value="${esc(o)}" ${val===o?'selected':''}>${esc(o)}</option>`).join("")}</select></div>`;
 }
 function checkGrid(path, options){
   const arr = path.split(".").reduce((o,k)=>o?.[k], state) || [];
@@ -253,8 +239,7 @@ function cardEspace(){
       ${field("espace.longueur","Longueur approx. m","number","Ex. 20")}
       ${field("espace.largeur","Largeur approx. m","number","Ex. 6")}
       ${field("espace.revenu_souhaite_ht","Revenu souhaité HT / mois","number","Ex. 1200")}
-      ${field("espace.date_disponibilite","Date de disponibilité","date")}
-      <div class="field full"><span class="hint"><strong>Simple :</strong> laisse vide si disponible immédiatement. Sinon, indique directement la date.</span></div>
+      ${field("espace.date_disponibilite","Date de disponibilité *","date","",false)}
     </div>` + actions(false,"Caractéristiques");
 }
 
@@ -324,20 +309,22 @@ function cardPhotos(){
       ${field("entreprise.ville_facturation","Ville","text","Paris")}
     </div>
     <div class="section-title">Responsable sur place</div>
-    <div class="check-grid">
-      <label class="check"><input type="radio" name="resp_type" ${state.responsable.type==='moi'?'checked':''} onchange="setDeepAndRender('responsable.type','moi')"><span>Moi — notifications envoyées à l’email / téléphone entreprise</span></label>
-      <label class="check"><input type="radio" name="resp_type" ${state.responsable.type==='autre'?'checked':''} onchange="setDeepAndRender('responsable.type','autre')"><span>Autre responsable — ajouter nom, email et téléphone</span></label>
-    </div>
-    ${state.responsable.type==="autre" ? `<div class="fg" style="margin-top:14px">
-      ${field("responsable.nom","Nom responsable *","text","Nom prénom")}
-      ${field("responsable.telephone","Téléphone responsable *","tel","06 12 34 56 78")}
-      ${field("responsable.email","Email responsable *","email","responsable@entreprise.fr")}
-      ${field("responsable.fonction","Fonction","text","Responsable logistique")}
-      <div class="field full"><span class="hint">Ce contact servira aux notifications opérationnelles du site : visite, validation, accès, informations terrain.</span></div>
-    </div>` : `<div class="alert ok" style="display:block;margin-top:14px">Les notifications du site seront envoyées au contact entreprise renseigné ci-dessus.</div>`}` + actions(true,"Récapitulatif");
+    <div class="fg">
+      ${select("responsable.type","Qui gère le site ?",["moi","autre"])}
+      ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
+    </div>` + actions(true,"Récapitulatif");
 }
 function fileList(arr){ return arr && arr.length ? arr.map(f=>`• ${esc(f.name)} (${Math.round(f.size/1024)} Ko)`).join("<br>") : "Aucun fichier sélectionné."; }
-function renderFileList(type){ $("#"+type+"List").innerHTML = fileList(files[type]); }
+function renderFileList(type){
+  $("#"+type+"List").innerHTML = fileList(files[type]);
+  updateFileCounters();
+}
+function updateFileCounters(){
+  const p = document.getElementById("recapPhotosCount");
+  const d = document.getElementById("recapDocsCount");
+  if(p) p.textContent = files.photos.length + " photo(s)";
+  if(d) d.textContent = files.documents.length + " document(s)";
+}
 
 function cardRecap(){
   const e=state.espace, ent=state.entreprise;
@@ -346,10 +333,9 @@ function cardRecap(){
       <div class="recap-box"><b>Espace</b><span>${esc(e.type)} — ${esc(e.titre || e.nom)}<br>${esc(e.localisation_publique)}<br>${esc(e.surface_totale)} m²</span></div>
       <div class="recap-box"><b>Revenu souhaité</b><span>${e.revenu_souhaite_ht ? esc(e.revenu_souhaite_ht)+" € HT/mois" : "À définir avec STRAKARA"}</span></div>
       <div class="recap-box"><b>Entreprise</b><span>${esc(ent.nom)}<br>SIRET : ${esc(ent.siret)}<br>${esc(ent.email)}</span></div>
-      <div class="recap-box"><b>Fichiers</b><span>${files.photos.length} photo(s)<br>${files.documents.length} document(s)</span></div>
+      <div class="recap-box"><b>Fichiers</b><span id="recapPhotosCount">${files.photos.length} photo(s)</span><br><span id="recapDocsCount">${files.documents.length} document(s)</span></div>
     </div>
-    <label class="check" style="margin-top:18px"><input type="checkbox" ${state.autorisation?'checked':''} onchange="state.autorisation=this.checked;state.consentement=this.checked;schedSave()"><span>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire pour proposer cet espace sur STRAKARA.</span></label>
-    <label class="check" style="margin-top:10px"><input type="checkbox" ${state.cgh.accepte?'checked':''} onchange="state.cgh.accepte=this.checked;state.cgh.accepted_at=this.checked?new Date().toISOString():'';state.cgh.user_agent=this.checked?navigator.userAgent:'';schedSave()"><span>J’ai lu et j’accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener" style="color:var(--gold-2);font-weight:900;text-decoration:underline">Conditions Générales Hébergeur STRAKARA</a>. Cette acceptation sera enregistrée comme preuve avec la date, la version, l’URL et le navigateur.</span></label>
+    <label class="check" style="margin-top:18px"><input type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave()"><span>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire, et j’accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">Conditions Générales Hébergeur STRAKARA</a>.</span></label>
     <div class="actions">
       <button type="button" class="btn btn-prev" onclick="prev()">Retour</button>
       <button type="submit" class="btn btn-gold" id="submitBtn">Envoyer à STRAKARA</button>
@@ -362,9 +348,7 @@ function validateStep(s, visible){
   if(s===0 && (!e.nom || !e.titre || !e.ville || !e.code_postal || !e.localisation_publique || !e.surface_totale)) msg="Complétez au minimum le nom, le titre, la ville, le code postal, la localisation et la surface.";
   if(s===1 && (!e.description_batiment || !e.description_espace || !e.situation_acces)) msg="Ajoutez les descriptions principales avant de continuer.";
   if(s===2 && (!ent.nom || !ent.siret || !ent.email || !ent.telephone)) msg="Complétez les informations entreprise obligatoires.";
-  if(s===2 && state.responsable.type==='autre' && (!state.responsable.nom || !state.responsable.telephone || !state.responsable.email)) msg="Complétez le nom, le téléphone et l’email du responsable sur place.";
-  if(s===3 && !state.autorisation) msg="Vous devez confirmer l’autorisation de proposer cet espace.";
-  if(s===3 && !state.cgh.accepte) msg="Vous devez accepter les CGH STRAKARA avant l’envoi.";
+  if(s===3 && !state.consentement) msg="Vous devez accepter les Conditions Générales Hébergeur STRAKARA avant l’envoi.";
   if(msg && visible) showAlert("err",msg);
   return !msg;
 }
@@ -379,40 +363,91 @@ async function uploadOne(file, folder){
   return { name:file.name, path, url:data.publicUrl, size:file.size, type:file.type };
 }
 
+async function uploadFiles(){
+  const photoUploads = [];
+  const docUploads = [];
+  for(const f of files.photos) photoUploads.push(await uploadOne(f, "photos"));
+  for(const f of files.documents) docUploads.push(await uploadOne(f, "documents"));
+  return { photos: photoUploads, documents: docUploads };
+}
+
 async function submitForm(){
   if(!validateStep(3,true)) return;
-  if(!isSupabaseConfigured() || !sb){
-    showAlert("err", "Connexion Supabase non configurée : remplace <strong>SUPABASE_URL</strong> et <strong>SUPABASE_ANON_KEY</strong> dans le fichier. L’erreur actuelle vient très probablement de <code>https://TON-PROJET.supabase.co</code>, qui n’existe pas.");
-    return;
-  }
   const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Envoi en cours...";
   try{
     showAlert("warn","Envoi du dossier en cours…");
-    const photoUploads = [];
-    const docUploads = [];
-    for(const f of files.photos) photoUploads.push(await uploadOne(f, "photos"));
-    for(const f of files.documents) docUploads.push(await uploadOne(f, "documents"));
+    const uploaded = await uploadFiles();
+    const photoUploads = uploaded.photos;
+    const docUploads = uploaded.documents;
+    const e = state.espace;
+    const ent = state.entreprise;
+    const resp = state.responsable;
 
     const payload = {
+      statut: "en_attente",
       hebergeur_id: state.hebergeur_id,
-      email_compte: state.email_compte || state.entreprise.email,
-      entreprise: state.entreprise,
-      espace: state.espace,
-      responsable: state.responsable,
-      photos: photoUploads,
+      email_compte: state.email_compte || ent.email,
+
+      validation_nom: ent.nom,
+      validation_email: ent.email,
+      accepted_cgh: true,
+      accepted_cgh_date: new Date().toISOString(),
+      accepted_cgh_version: "CGH-2026-06",
+      accepted_cgh_user_agent: navigator.userAgent,
+
+      nom_facturation: ent.nom,
+      siret: ent.siret,
+      tva: ent.tva,
+      telephone: ent.telephone,
+      email_facturation: ent.email,
+      adresse_facturation: ent.adresse_facturation,
+      code_postal_facturation: ent.code_postal_facturation,
+      ville_facturation: ent.ville_facturation,
+
+      responsable_sur_place: resp.type,
+      nom_responsable: resp.nom,
+      telephone_responsable: resp.telephone,
+      email_responsable: resp.email,
+      fonction_responsable: resp.fonction,
+
+      nom_site: e.nom,
+      type_espace: e.type,
+      adresse: e.adresse_confidentielle,
+      ville: e.ville,
+      code_postal: e.code_postal,
+      surface_totale: e.surface_totale || null,
+      longueur: e.longueur || null,
+      largeur: e.largeur || null,
+      hauteur: e.hauteur || null,
+      revenu_souhaite: e.revenu_souhaite_ht || null,
+      disponibilite: e.date_disponibilite ? "Disponible à partir du " + e.date_disponibilite : "Disponible immédiatement",
+      date_disponibilite: e.date_disponibilite || null,
+      titre_annonce: e.titre,
+      localisation: e.localisation_publique,
+      acces_routiers: e.situation_acces,
+
+      description_batiment: e.description_batiment,
+      description_espace: e.description_espace,
+      description_situation: e.situation_acces,
+      a_savoir: e.a_savoir,
+      informations_complementaires: e.autres_equipements,
+
+      activites: e.activites,
+      acces: e.acces,
+      securite: e.securite,
+      equipements: e.equipements,
+      vehicules: e.vehicules,
+      portes: e.portes,
+      manutention: e.manutention,
+      autres_equipements: e.autres_equipements,
+      site_entier: false,
+      surface_circulation: null,
+      lots: e.lots,
+
+      photos_site: photoUploads,
+      photos_espace: [],
       documents: docUploads,
-      autorisation_proposer_espace: state.autorisation,
-      cgh_acceptation: {
-        accepte: !!state.cgh.accepte,
-        accepted_at: state.cgh.accepted_at || new Date().toISOString(),
-        version: state.cgh.version,
-        url: state.cgh.url,
-        user_agent: state.cgh.user_agent || navigator.userAgent,
-        ip: null
-      },
-      statut: "nouveau",
-      source: "app.strakara.fr/nouveau-espace.html",
-      created_at: new Date().toISOString()
+      plans: []
     };
 
     const { error } = await sb.from(SUPABASE_TABLE).insert(payload);
