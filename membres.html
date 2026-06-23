@@ -161,7 +161,7 @@
 <body>
   <div class="sk-banner" id="sk-banner">
     <span class="sk-banner__text">Réseau d'entraide pour les pros — Ouverture le 21 septembre 2026</span>
-    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs →</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">100 places fondateurs →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
@@ -312,6 +312,10 @@
       return String(value || '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
     }
 
+    function normalize(value){
+      return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    }
+
     function initials(name){
       const clean = String(name || 'SK').trim();
       const words = clean.split(/\s+/).filter(Boolean);
@@ -319,32 +323,41 @@
       return (words[0][0] + words[1][0]).toUpperCase();
     }
 
-    function normalize(value){
-      return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    function getEntreprise(membre){
+      return membre.entreprise || membre.nom_entreprise || `${membre.prenom || ''} ${membre.nom || ''}`.trim() || 'Membre STRAKARA';
+    }
+
+    function getVille(membre){
+      return [membre.ville, membre.departement, membre.region].filter(Boolean).join(' · ') || 'France';
     }
 
     function getTags(membre){
       const tags = [];
       if(membre.secteur) tags.push(membre.secteur);
-      if(membre.zone_intervention) tags.push(membre.zone_intervention);
+      if(membre.sous_secteur) tags.push(membre.sous_secteur);
       if(membre.ville) tags.push(membre.ville);
+      if(!membre.ville && membre.region) tags.push(membre.region);
       return tags.slice(0,3);
     }
 
     function renderCard(membre){
-      const name = escapeHtml(membre.nom_entreprise || 'Membre STRAKARA');
-      const description = escapeHtml(membre.description || 'Profil professionnel vérifié du réseau STRAKARA.');
-      const secteur = escapeHtml(membre.secteur || 'Professionnel');
-      const ville = escapeHtml(membre.ville || membre.zone_intervention || 'France');
+      const nameRaw = getEntreprise(membre);
+      const name = escapeHtml(nameRaw);
+      const description = escapeHtml(membre.description || 'Profil professionnel du réseau STRAKARA.');
+      const secteur = escapeHtml(membre.secteur || membre.sous_secteur || 'Professionnel');
+      const ville = escapeHtml(getVille(membre));
       const profileUrl = `profil-membre.html?id=${encodeURIComponent(membre.id)}`;
       const phone = membre.telephone ? `<a href="tel:${escapeHtml(membre.telephone)}" class="membre-call">Appeler</a>` : '';
-      const logo = membre.logo_url ? `<img src="${escapeHtml(membre.logo_url)}" alt="${name}" loading="lazy">` : initials(name);
-      const verified = membre.badge_verifie ? 'Vérifiée' : 'Profil public';
+      const logo = membre.logo_url
+        ? `<img src="${escapeHtml(membre.logo_url)}" alt="${name}" loading="lazy" onerror="this.remove();this.parentElement.textContent='${initials(nameRaw)}';">`
+        : initials(nameRaw);
+      const isVerified = membre.verifie === true || membre.verifie === 'true' || membre.badge_verifie === true;
+      const verified = isVerified ? 'Vérifiée' : 'Profil public';
       const tags = getTags(membre).map(t => `<span class="membre-tag">${escapeHtml(t)}</span>`).join('');
 
       return `
         <article class="membre-card">
-          <div class="membre-avatar ${membre.badge_verifie ? 'gold' : ''}">${logo}</div>
+          <div class="membre-avatar ${isVerified ? 'gold' : ''}">${logo}</div>
           <div class="membre-content">
             <div class="membre-top"><span class="membre-role-badge">${secteur}</span><span class="membre-verified">${verified}</span></div>
             <h3>${name}</h3>
@@ -375,14 +388,26 @@
       const sort = document.getElementById('sort-select').value;
 
       filtered = membres.filter(m => {
-        const haystack = normalize([m.nom_entreprise, m.description, m.secteur, m.ville, m.zone_intervention, m.site_web].join(' '));
+        const haystack = normalize([
+          m.entreprise,
+          m.prenom,
+          m.nom,
+          m.description,
+          m.secteur,
+          m.sous_secteur,
+          m.ville,
+          m.departement,
+          m.region,
+          m.site_web,
+          m.linkedin
+        ].join(' '));
         const okSearch = !search || haystack.includes(search);
         const okProfil = !profil || haystack.includes(profil);
         const okSecteur = !secteurSelect || haystack.includes(secteurSelect);
         return okSearch && okProfil && okSecteur;
       });
 
-      if(sort === 'az') filtered.sort((a,b) => String(a.nom_entreprise || '').localeCompare(String(b.nom_entreprise || '')));
+      if(sort === 'az') filtered.sort((a,b) => String(getEntreprise(a)).localeCompare(String(getEntreprise(b))));
       if(sort === 'ville') filtered.sort((a,b) => String(a.ville || '').localeCompare(String(b.ville || '')));
       if(sort === 'secteur') filtered.sort((a,b) => String(a.secteur || '').localeCompare(String(b.secteur || '')));
       if(sort === 'recent') filtered.sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
@@ -396,7 +421,7 @@
       countAll.textContent = membres.length;
 
       if(!filtered.length){
-        grid.innerHTML = `<div class="membre-empty"><h3>Aucun profil trouvé.</h3><p>Essayez une autre ville, un autre secteur ou revenez prochainement.</p></div>${renderCTA()}`;
+        grid.innerHTML = `<div class="membre-empty"><h3>Aucun profil trouvé.</h3><p>Vérifiez que le champ statut vaut bien actif dans Supabase, ou essayez une autre recherche.</p></div>${renderCTA()}`;
         return;
       }
 
@@ -405,7 +430,8 @@
 
     async function chargerMembres(){
       try{
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/membres?select=*&statut=eq.actif&order=created_at.desc`,{
+        const url = `${SUPABASE_URL}/rest/v1/membres?select=id,entreprise,siret,prenom,nom,email,telephone,secteur,sous_secteur,ville,departement,region,description,site_web,linkedin,logo_url,photo_couverture,verifie,statut,created_at&statut=eq.actif&order=created_at.desc`;
+        const res = await fetch(url,{
           headers:{
             'apikey': SUPABASE_KEY,
             'Authorization': `Bearer ${SUPABASE_KEY}`,
@@ -422,9 +448,11 @@
         filtered = [...membres];
         applyFilters();
       }catch(error){
-        console.error(error);
+        console.error('Erreur chargement membres:', error);
         resultCount.textContent = '0 profil';
-        grid.innerHTML = `<div class="membre-empty"><h3>Impossible de charger les membres.</h3><p>Vérifiez que la table Supabase “membres” existe et que la lecture publique est autorisée.</p></div>${renderCTA()}`;
+        statTotal.textContent = '0';
+        countAll.textContent = '0';
+        grid.innerHTML = `<div class="membre-empty"><h3>Impossible de charger les membres.</h3><p>Vérifiez la policy RLS de lecture publique sur la table Supabase membres.</p></div>${renderCTA()}`;
       }
     }
 
