@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposer un espace professionnel — STRAKARA</title>
+  <meta name="description" content="Proposez un espace professionnel sur STRAKARA : entrepôt, atelier, bureau, stockage ou surface sous-utilisée. Dossier connecté à Supabase." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{
+      --brand:#1E1F23; --brand-2:#292B31; --gold:#C8A96A; --gold-2:#A98745;
+      --light:#F6F5F0; --white:#fff; --text:#1E1F23; --muted:#737373;
+      --border:#E7E2D7; --green:#15803D; --red:#B42318; --orange:#B45309;
+      --r:18px; --shadow:0 18px 60px rgba(30,31,35,.12);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Outfit,system-ui,sans-serif;background:var(--light);color:var(--text)}
+    a{color:inherit}.topbar{position:sticky;top:0;z-index:20;background:rgba(30,31,35,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{max-width:1120px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .logo{font-weight:800;letter-spacing:.12em;color:#fff;text-decoration:none}.logo span{color:var(--gold)}
+    .nav-actions{display:flex;gap:10px;flex-wrap:wrap}.nav-actions a,.nav-actions button{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;border-radius:999px;padding:10px 14px;font-weight:700;font-size:13px;text-decoration:none;cursor:pointer}
+    .wrap{max-width:1120px;margin:auto;padding:34px 20px 70px}.hero{background:linear-gradient(135deg,var(--brand),#34363D);border-radius:30px;padding:38px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(200,169,106,.16)}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,106,.12);border:1px solid rgba(200,169,106,.32);color:var(--gold);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:800;margin-bottom:18px}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(34px,6vw,62px);line-height:.98;margin:0 0 14px}.hero p{max-width:720px;color:rgba(255,255,255,.74);font-size:18px;line-height:1.6;margin:0}
+    .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px 18px;min-width:140px}.kpi b{display:block;color:var(--gold);font-size:26px}.kpi span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.62)}
+    .grid{display:grid;grid-template-columns:310px 1fr;gap:22px;margin-top:22px}.side{align-self:start;position:sticky;top:82px;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:0 10px 30px rgba(30,31,35,.06)}
+    .step{display:flex;gap:11px;align-items:center;padding:13px;border-radius:14px;color:var(--muted);font-weight:700;cursor:pointer}.step.active{background:var(--brand);color:#fff}.step.done{color:var(--green)}
+    .num{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#F1EEE7;font-size:12px}.active .num{background:var(--gold);color:var(--brand)}.done .num{background:#DCFCE7;color:var(--green)}
+    .card{display:none;background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.card.active{display:block}.card-head{padding:24px 26px;background:#fff;border-bottom:1px solid var(--border)}.card-head h2{font-family:"Playfair Display",serif;font-size:32px;margin:0 0 5px}.card-head p{margin:0;color:var(--muted);line-height:1.5}.card-body{padding:26px}
+    .section-title{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);margin:26px 0 12px}.section-title:first-child{margin-top:0}
+    .fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;color:#444}
+    input,select,textarea{width:100%;border:1.5px solid var(--border);border-radius:14px;padding:13px 14px;font:500 15px Outfit,sans-serif;background:#fff;outline:none;color:var(--text)}textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(200,169,106,.12)}
+    .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.4}.type-grid,.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.type-card,.check{border:1.5px solid var(--border);border-radius:16px;padding:15px;background:#fff;cursor:pointer;transition:.15s}.type-card.selected,.check:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+    .type-card b{display:block;margin-bottom:4px}.type-card span{color:var(--muted);font-size:13px}.check{display:flex;gap:10px;align-items:flex-start;font-weight:700}.check input{width:auto;margin-top:2px;accent-color:var(--gold)}
+    .lot{display:grid;grid-template-columns:1.4fr .7fr .8fr 42px;gap:10px;align-items:end;border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px;background:#FAFAF8}.btn-mini{border:none;border-radius:12px;background:#FEE2E2;color:var(--red);height:46px;cursor:pointer;font-weight:900}
+    .uploads{display:grid;grid-template-columns:1fr 1fr;gap:16px}.drop{border:1.5px dashed #D6C8A9;border-radius:18px;background:#FFFCF4;padding:18px}.drop input{background:white}.file-list{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+    .alert{display:none;margin:16px 0;border-radius:16px;padding:14px 16px;font-weight:700}.alert.ok{display:block;background:#DCFCE7;color:var(--green);border:1px solid #86EFAC}.alert.err{display:block;background:#FEE2E2;color:var(--red);border:1px solid #FCA5A5}.alert.warn{display:block;background:#FEF3C7;color:var(--orange);border:1px solid #FCD34D}
+    .actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{border:none;border-radius:999px;padding:14px 20px;font:800 14px Outfit,sans-serif;cursor:pointer}.btn-next{background:var(--brand);color:#fff}.btn-prev{background:#EEEAE0;color:var(--brand)}.btn-gold{background:var(--gold);color:var(--brand)}.btn-line{background:white;border:1px solid var(--border);color:var(--brand)}
+    .recap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.recap-box{background:#FAFAF8;border:1px solid var(--border);border-radius:16px;padding:16px}.recap-box b{display:block;margin-bottom:5px}.recap-box span{color:var(--muted);font-size:14px;line-height:1.5}
+    .success{display:none;text-align:center;background:#fff;border:1px solid var(--border);border-radius:26px;padding:44px;box-shadow:var(--shadow);margin-top:22px}.success.show{display:block}.success .icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#DCFCE7;color:var(--green);font-size:32px}.success h2{font-family:"Playfair Display",serif;font-size:38px;margin:0 0 10px}.success p{color:var(--muted);font-size:17px;line-height:1.6}
+    .hidden{display:none!important}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <a class="logo" href="/index.html">STRA<span>KARA</span></a>
+      <div class="nav-actions">
+        <button type="button" onclick="saveDraft(true)">Sauvegarder</button>
+        <a href="/espace-hebergeur.html">Mon espace</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <section class="hero" id="hero">
+      <div class="badge">Nouveau partenariat hébergeur</div>
+      <h1>Référencez vos espaces professionnels</h1>
+      <p>Proposez un entrepôt, atelier, bureau, zone de stockage ou surface sous-utilisée. Votre dossier est enregistré dans Supabase et transmis à STRAKARA pour validation.</p>
+      <div class="kpis">
+        <div class="kpi"><b>48h</b><span>vérification</span></div>
+        <div class="kpi"><b>0 €</b><span>frais d’entrée</span></div>
+        <div class="kpi"><b>B2B</b><span>pros vérifiés</span></div>
+      </div>
+    </section>
+
+    <div id="alert" class="alert"></div>
+
+    <section class="grid" id="formArea">
+      <aside class="side" id="steps"></aside>
+      <form id="form" onsubmit="event.preventDefault(); submitForm();">
+        <section class="card active" data-card="0"></section>
+        <section class="card" data-card="1"></section>
+        <section class="card" data-card="2"></section>
+        <section class="card" data-card="3"></section>
+      </form>
+    </section>
+
+    <section class="success" id="success">
+      <div class="icon">✓</div>
+      <h2>Demande envoyée</h2>
+      <p>Votre dossier a bien été enregistré. STRAKARA vérifie les informations, puis revient vers vous pour la mise en ligne et l’activation des paiements.</p>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-gold" onclick="resetAll()">Proposer un autre espace</button>
+        <a class="btn btn-line" href="/espace-hebergeur.html" style="text-decoration:none">Retour à mon espace</a>
+      </div>
+    </section>
+  </main>
+
+<script>
+/* =========================================================
+   CONFIG SUPABASE — À REMPLACER UNE SEULE FOIS
+   ========================================================= */
+const SUPABASE_URL = "https://TON-PROJET.supabase.co";
+const SUPABASE_ANON_KEY = "TON-ANON-KEY";
+const SUPABASE_TABLE = "demandes_espaces";
+const SUPABASE_BUCKET = "espaces";
+
+/* Important : ne jamais déclarer "supabase" plusieurs fois sur la même page */
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ========================================================= */
+const SAVE_KEY = "strakara_proposer_espace_supabase_v1";
+const stepsConfig = ["Espace", "Caractéristiques", "Photos & docs", "Récapitulatif"];
+let step = 0;
+
+const state = {
+  hebergeur_id: localStorage.getItem("strakara_hebergeur_id") || null,
+  email_compte: localStorage.getItem("strakara_client_email") || "",
+  entreprise: {
+    nom: "", siret: "", tva: "", email: "", telephone: "",
+    adresse_facturation: "", code_postal_facturation: "", ville_facturation: ""
+  },
+  espace: {
+    type: "Entrepôt", nom: "", titre: "", ville: "", code_postal: "", adresse_confidentielle: "",
+    localisation_publique: "", surface_totale: "", hauteur: "", longueur: "", largeur: "",
+    revenu_souhaite_ht: "", disponibilite: "Disponible immédiatement", date_disponibilite: "",
+    description_batiment: "", description_espace: "", situation_acces: "", a_savoir: "",
+    horaires: "8h-18h lun-ven", activites: [], acces: [], securite: [], equipements: [],
+    vehicules: [], portes: [], manutention: [], autres_equipements: "",
+    lots: []
+  },
+  responsable: { type: "moi", nom: "", telephone: "", email: "", fonction: "" },
+  consentement: false
+};
+
+const files = { photos: [], documents: [] };
+
+function $(q){ return document.querySelector(q); }
+function $all(q){ return Array.from(document.querySelectorAll(q)); }
+function esc(v){ return String(v ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+function showAlert(type,msg){ const a=$("#alert"); a.className="alert "+type; a.innerHTML=msg; a.scrollIntoView({behavior:"smooth",block:"center"}); }
+function hideAlert(){ $("#alert").className="alert"; $("#alert").innerHTML=""; }
+
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return;
+    const saved = JSON.parse(raw);
+    Object.assign(state.entreprise, saved.entreprise || {});
+    Object.assign(state.espace, saved.espace || {});
+    Object.assign(state.responsable, saved.responsable || {});
+    state.email_compte = saved.email_compte || state.email_compte;
+    state.hebergeur_id = saved.hebergeur_id || state.hebergeur_id;
+    state.consentement = !!saved.consentement;
+  }catch(e){}
+}
+function saveDraft(manual=false){
+  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  if(manual) showAlert("ok","Brouillon sauvegardé sur cet appareil.");
+}
+function schedSave(){ clearTimeout(window.__saveTimer); window.__saveTimer=setTimeout(saveDraft,400); }
+
+function setDeep(path, value){
+  const parts = path.split(".");
+  let obj = state;
+  while(parts.length>1) obj = obj[parts.shift()];
+  obj[parts[0]] = value;
+  schedSave();
+  renderSteps();
+}
+function toggleArray(path, value, checked){
+  const parts = path.split(".");
+  let obj = state;
+  while(parts.length>1) obj = obj[parts.shift()];
+  const key = parts[0];
+  obj[key] = Array.isArray(obj[key]) ? obj[key] : [];
+  if(checked && !obj[key].includes(value)) obj[key].push(value);
+  if(!checked) obj[key] = obj[key].filter(x => x !== value);
+  schedSave();
+}
+
+function renderSteps(){
+  $("#steps").innerHTML = stepsConfig.map((s,i)=>`<div class="step ${i===step?'active':''} ${i<step?'done':''}" onclick="goStep(${i})"><span class="num">${i<step?'✓':i+1}</span>${s}</div>`).join("");
+}
+function render(){
+  renderSteps();
+  $("[data-card='0']").innerHTML = cardEspace();
+  $("[data-card='1']").innerHTML = cardCaracteristiques();
+  $("[data-card='2']").innerHTML = cardPhotos();
+  $("[data-card='3']").innerHTML = cardRecap();
+  updateCards();
+}
+function updateCards(){
+  $all(".card").forEach(c => c.classList.toggle("active", Number(c.dataset.card)===step));
+  hideAlert();
+}
+function goStep(i){ if(i<=step || validateStep(step,false)){ step=i; updateCards(); renderSteps(); window.scrollTo({top:0,behavior:"smooth"}); } }
+function next(){ if(validateStep(step,true)){ step=Math.min(step+1,3); render(); window.scrollTo({top:0,behavior:"smooth"}); } }
+function prev(){ step=Math.max(step-1,0); updateCards(); renderSteps(); }
+
+function field(path,label,type="text",placeholder="",full=false,attrs=""){
+  const val = path.split(".").reduce((o,k)=>o?.[k], state) || "";
+  const tag = type==="textarea"
+    ? `<textarea placeholder="${esc(placeholder)}" oninput="setDeep('${path}',this.value)" ${attrs}>${esc(val)}</textarea>`
+    : `<input type="${type}" value="${esc(val)}" placeholder="${esc(placeholder)}" oninput="setDeep('${path}',this.value)" ${attrs}>`;
+  return `<div class="field ${full?'full':''}"><label>${label}</label>${tag}</div>`;
+}
+function select(path,label,options,full=false){
+  const val = path.split(".").reduce((o,k)=>o?.[k], state) || "";
+  return `<div class="field ${full?'full':''}"><label>${label}</label><select onchange="setDeep('${path}',this.value)">${options.map(o=>`<option value="${esc(o)}" ${val===o?'selected':''}>${esc(o)}</option>`).join("")}</select></div>`;
+}
+function checkGrid(path, options){
+  const arr = path.split(".").reduce((o,k)=>o?.[k], state) || [];
+  return `<div class="check-grid">${options.map(o=>`<label class="check"><input type="checkbox" ${arr.includes(o)?'checked':''} onchange="toggleArray('${path}','${esc(o)}',this.checked)"><span>${esc(o)}</span></label>`).join("")}</div>`;
+}
+
+function cardHead(n,t,p){ return `<div class="card-head"><h2>${t}</h2><p>${p}</p></div><div class="card-body">`; }
+function actions(back=true,nextLabel="Continuer"){ return `<div class="actions">${back?`<button type="button" class="btn btn-prev" onclick="prev()">Retour</button>`:"<span></span>"}<button type="button" class="btn btn-next" onclick="next()">${nextLabel}</button></div></div>`; }
+
+function cardEspace(){
+  const types = [
+    ["Entrepôt","Stockage, logistique, palettes"],
+    ["Atelier","Production légère, artisanat"],
+    ["Bureau / Coworking","Postes, bureaux, open-space"],
+    ["Self-stockage","Box ou petites surfaces"],
+    ["Dépôt / Showroom","Marchandises ou exposition"],
+    ["Mixte","Bureau + stockage"],
+    ["Zone extérieure","Cour, parking, terrain"]
+  ];
+  return cardHead(1,"Votre espace","Indiquez le type d’espace, la localisation et les surfaces principales.")
+  + `<div class="section-title">Type d'espace</div>
+    <div class="type-grid">${types.map(t=>`<div class="type-card ${state.espace.type===t[0]?'selected':''}" onclick="setDeep('espace.type','${t[0]}');render()"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("")}</div>
+    <div class="section-title">Localisation & surface</div>
+    <div class="fg">
+      ${field("espace.nom","Nom interne de l’espace *","text","Ex. Entrepôt Nantes Nord",true)}
+      ${field("espace.titre","Titre public de l’annonce *","text","Ex. Entrepôt 120 m² — accès PL — Nantes",true)}
+      ${field("espace.ville","Ville *","text","Ex. Nantes")}
+      ${field("espace.code_postal","Code postal *","text","Ex. 44000")}
+      ${field("espace.adresse_confidentielle","Adresse exacte confidentielle","text","Non affichée publiquement",true)}
+      ${field("espace.localisation_publique","Localisation approximative publique *","text","Ex. Nantes Nord / accès N137",true)}
+      ${field("espace.surface_totale","Surface totale disponible m² *","number","Ex. 120","","min='1'")}
+      ${field("espace.hauteur","Hauteur sous plafond m","number","Ex. 5","","step='0.1'")}
+      ${field("espace.longueur","Longueur approx. m","number","Ex. 20")}
+      ${field("espace.largeur","Largeur approx. m","number","Ex. 6")}
+      ${field("espace.revenu_souhaite_ht","Revenu souhaité HT / mois","number","Ex. 1200")}
+      ${select("espace.disponibilite","Disponibilité",["Disponible immédiatement","Disponible à partir du…","Ouverture prochaine","Réorganisation en cours"])}
+      ${state.espace.disponibilite !== "Disponible immédiatement" ? field("espace.date_disponibilite","Date de disponibilité","date") : ""}
+    </div>` + actions(false,"Caractéristiques");
+}
+
+function cardCaracteristiques(){
+  return cardHead(2,"Caractéristiques","Décrivez ce que le client pourra réellement utiliser.")
+  + `<div class="section-title">Descriptions visibles dans l’annonce</div>
+    <div class="fg">
+      ${field("espace.description_batiment","Description du bâtiment *","textarea","État général, accès, environnement, sécurité…",true)}
+      ${field("espace.description_espace","Description des espaces *","textarea","Lots, surfaces, séparation, équipements, contraintes…",true)}
+      ${field("espace.situation_acces","Situation géographique & accès *","textarea","Axes routiers, accès utilitaires/PL, zone d’activité…",true)}
+      ${field("espace.a_savoir","À savoir","textarea","Règles du site, contraintes, informations importantes…",true)}
+    </div>
+    <div class="section-title">Activités autorisées</div>${checkGrid("espace.activites",["Stockage palettes","E-commerce","Archivage","Artisanat léger","Atelier","Logistique","Bureaux","Stockage matériel","Préparation commandes"])}
+    <div class="section-title">Accès & horaires</div>
+    <div class="fg">${select("espace.horaires","Horaires d’accès",["24h/7j","6h-22h 7j/7","7h-20h lun-sam","8h-18h lun-ven","Horaires sur demande"])}</div>
+    ${checkGrid("espace.acces",["Accès autonome","Accès accompagné","Badge / RFID","Code portail","Clés","Accueil transporteur possible"])}
+    <div class="section-title">Sécurité</div>${checkGrid("espace.securite",["Caméras intérieures","Caméras extérieures","Alarme","Clôture complète","Éclairage automatique","Présence humaine"])}
+    <div class="section-title">Équipements</div>${checkGrid("espace.equipements",["Électricité","Éclairage LED","Racks / palettiers","Sanitaires","WiFi / 4G correct","Chauffage / isolation"])}
+    ${field("espace.autres_equipements","Autres équipements","textarea","Pont roulant, froid, quai, fosse, douche, 36 kVA, etc.",true)}
+    <div class="section-title">Véhicules, portes & manutention</div>
+    ${checkGrid("espace.vehicules",["Accès VL","Accès utilitaire","Accès PL court","Accès semi-remorque","Parking dédié","Rampe d’accès"])}
+    ${checkGrid("espace.portes",["Porte sectionnelle","Rideau métallique","Porte de quai","Portail coulissant","Porte piétonne","Porte battante"])}
+    ${checkGrid("espace.manutention",["Transpalette manuel","Transpalette électrique","Chariot élévateur","Gerbeur électrique"])}
+    <div class="section-title">Découpage en lots</div>
+    <div id="lots">${state.espace.lots.map((l,i)=>lotRow(l,i)).join("")}</div>
+    <button type="button" class="btn btn-line" onclick="addLot()">+ Ajouter un lot</button>`
+  + actions(true,"Photos & documents");
+}
+
+function lotRow(l,i){
+  return `<div class="lot">
+    <div class="field"><label>Nom du lot</label><input value="${esc(l.nom||"")}" placeholder="Ex. Lot A" oninput="state.espace.lots[${i}].nom=this.value;schedSave()"></div>
+    <div class="field"><label>Surface m²</label><input type="number" value="${esc(l.surface||"")}" placeholder="50" oninput="state.espace.lots[${i}].surface=this.value;schedSave()"></div>
+    <div class="field"><label>Prix HT/mois</label><input type="number" value="${esc(l.prix_ht||"")}" placeholder="500" oninput="state.espace.lots[${i}].prix_ht=this.value;schedSave()"></div>
+    <button type="button" class="btn-mini" onclick="removeLot(${i})">×</button>
+  </div>`;
+}
+function addLot(){ state.espace.lots.push({nom:"",surface:"",prix_ht:""}); saveDraft(); render(); }
+function removeLot(i){ state.espace.lots.splice(i,1); saveDraft(); render(); }
+
+function cardPhotos(){
+  return cardHead(3,"Photos & documents","Ajoutez les éléments nécessaires pour vérifier et publier le dossier.")
+  + `<div class="uploads">
+      <div class="drop">
+        <b>Photos du site *</b>
+        <p class="hint">Façade, intérieur, accès, zones disponibles. Minimum conseillé : 3 photos.</p>
+        <input type="file" multiple accept="image/*" onchange="files.photos=Array.from(this.files);renderFileList('photos')">
+        <div class="file-list" id="photosList">${fileList(files.photos)}</div>
+      </div>
+      <div class="drop">
+        <b>Documents</b>
+        <p class="hint">KBIS, assurance, plan, mandat/autorisation si nécessaire.</p>
+        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp" onchange="files.documents=Array.from(this.files);renderFileList('documents')">
+        <div class="file-list" id="documentsList">${fileList(files.documents)}</div>
+      </div>
+    </div>
+    <div class="section-title">Entreprise & facturation</div>
+    <div class="fg">
+      ${field("email_compte","Email du compte","email","contact@entreprise.fr",true)}
+      ${field("entreprise.nom","Nom de facturation *","text","Ex. SAS Exemple",true)}
+      ${field("entreprise.siret","SIRET *","text","12345678900012")}
+      ${field("entreprise.tva","TVA intracommunautaire","text","FR...")}
+      ${field("entreprise.email","Email de facturation *","email","compta@entreprise.fr")}
+      ${field("entreprise.telephone","Téléphone *","tel","06 12 34 56 78")}
+      ${field("entreprise.adresse_facturation","Adresse de facturation","text","Adresse complète",true)}
+      ${field("entreprise.code_postal_facturation","Code postal","text","75000")}
+      ${field("entreprise.ville_facturation","Ville","text","Paris")}
+    </div>
+    <div class="section-title">Responsable sur place</div>
+    <div class="fg">
+      ${select("responsable.type","Qui gère le site ?",["moi","autre"])}
+      ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
+    </div>` + actions(true,"Récapitulatif");
+}
+function fileList(arr){ return arr && arr.length ? arr.map(f=>`• ${esc(f.name)} (${Math.round(f.size/1024)} Ko)`).join("<br>") : "Aucun fichier sélectionné."; }
+function renderFileList(type){ $("#"+type+"List").innerHTML = fileList(files[type]); }
+
+function cardRecap(){
+  const e=state.espace, ent=state.entreprise;
+  return cardHead(4,"Récapitulatif","Vérifiez les informations avant envoi.")
+  + `<div class="recap">
+      <div class="recap-box"><b>Espace</b><span>${esc(e.type)} — ${esc(e.titre || e.nom)}<br>${esc(e.localisation_publique)}<br>${esc(e.surface_totale)} m²</span></div>
+      <div class="recap-box"><b>Revenu souhaité</b><span>${e.revenu_souhaite_ht ? esc(e.revenu_souhaite_ht)+" € HT/mois" : "À définir avec STRAKARA"}</span></div>
+      <div class="recap-box"><b>Entreprise</b><span>${esc(ent.nom)}<br>SIRET : ${esc(ent.siret)}<br>${esc(ent.email)}</span></div>
+      <div class="recap-box"><b>Fichiers</b><span>${files.photos.length} photo(s)<br>${files.documents.length} document(s)</span></div>
+    </div>
+    <label class="check" style="margin-top:18px"><input type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave()"><span>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire pour proposer cet espace sur STRAKARA.</span></label>
+    <div class="actions">
+      <button type="button" class="btn btn-prev" onclick="prev()">Retour</button>
+      <button type="submit" class="btn btn-gold" id="submitBtn">Envoyer à STRAKARA</button>
+    </div></div>`;
+}
+
+function validateStep(s, visible){
+  const e=state.espace, ent=state.entreprise;
+  let msg="";
+  if(s===0 && (!e.nom || !e.titre || !e.ville || !e.code_postal || !e.localisation_publique || !e.surface_totale)) msg="Complétez au minimum le nom, le titre, la ville, le code postal, la localisation et la surface.";
+  if(s===1 && (!e.description_batiment || !e.description_espace || !e.situation_acces)) msg="Ajoutez les descriptions principales avant de continuer.";
+  if(s===2 && (!ent.nom || !ent.siret || !ent.email || !ent.telephone)) msg="Complétez les informations entreprise obligatoires.";
+  if(s===3 && !state.consentement) msg="Vous devez confirmer l’autorisation de proposer cet espace.";
+  if(msg && visible) showAlert("err",msg);
+  return !msg;
+}
+
+async function uploadOne(file, folder){
+  const ext = file.name.split(".").pop();
+  const safeName = file.name.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9._-]/g,"-");
+  const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}-${safeName}`;
+  const { error } = await sb.storage.from(SUPABASE_BUCKET).upload(path, file, { upsert:false, contentType:file.type });
+  if(error) throw error;
+  const { data } = sb.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
+  return { name:file.name, path, url:data.publicUrl, size:file.size, type:file.type };
+}
+
+async function submitForm(){
+  if(!validateStep(3,true)) return;
+  const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Envoi en cours...";
+  try{
+    showAlert("warn","Envoi du dossier en cours…");
+    const photoUploads = [];
+    const docUploads = [];
+    for(const f of files.photos) photoUploads.push(await uploadOne(f, "photos"));
+    for(const f of files.documents) docUploads.push(await uploadOne(f, "documents"));
+
+    const payload = {
+      hebergeur_id: state.hebergeur_id,
+      email_compte: state.email_compte || state.entreprise.email,
+      entreprise: state.entreprise,
+      espace: state.espace,
+      responsable: state.responsable,
+      photos: photoUploads,
+      documents: docUploads,
+      statut: "nouveau",
+      source: "app.strakara.fr/proposer-espace",
+      created_at: new Date().toISOString()
+    };
+
+    const { error } = await sb.from(SUPABASE_TABLE).insert(payload);
+    if(error) throw error;
+
+    localStorage.removeItem(SAVE_KEY);
+    $("#formArea").classList.add("hidden");
+    $("#hero").classList.add("hidden");
+    $("#alert").className="alert";
+    $("#success").classList.add("show");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }catch(err){
+    console.error(err);
+    showAlert("err","Erreur Supabase : " + esc(err.message || err));
+  }finally{
+    btn.disabled=false; btn.textContent="Envoyer à STRAKARA";
+  }
+}
+function resetAll(){ localStorage.removeItem(SAVE_KEY); location.reload(); }
+
+loadDraft();
+render();
+</script>
+</body>
+</html>
