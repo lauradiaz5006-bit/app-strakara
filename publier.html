@@ -99,12 +99,21 @@
     .type-card-icon{font-size:18px;color:var(--gold);}
     .type-card-title{font-size:13px;font-weight:600;color:var(--brand);}
     .type-card-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;}
-    .upload-zone{border:2px dashed var(--border);padding:32px;text-align:center;cursor:pointer;transition:border-color .2s;}
-    .upload-zone:hover{border-color:var(--gold);}
-    .upload-zone-icon{font-size:28px;color:var(--muted);margin-bottom:10px;}
-    .upload-zone p{font-size:14px;color:var(--brand);font-weight:500;margin-bottom:6px;}
-    .upload-zone span{font-size:12px;color:var(--muted);}
+    .upload-zone{border:1.5px dashed var(--border);background:#FFFDF9;padding:0;cursor:pointer;transition:border-color .2s,background .2s;display:block;overflow:hidden;}
+    .upload-zone:hover{border-color:var(--gold);background:#FFF9EE;}
     .upload-zone input[type=file]{display:none;}
+    .upload-placeholder{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px;}
+    .upload-icon{width:46px;height:46px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative;background:var(--white);}
+    .upload-icon::before{content:'';width:20px;height:14px;border:2px solid var(--gold-dark);display:block;}
+    .upload-icon::after{content:'';width:6px;height:6px;border:2px solid var(--gold-dark);border-radius:50%;position:absolute;top:18px;left:19px;background:transparent;}
+    .upload-placeholder strong{font-size:14px;color:var(--brand);font-weight:600;margin-bottom:5px;}
+    .upload-placeholder span{font-size:12px;color:var(--muted);}
+    .upload-preview-wrap{display:none;position:relative;background:var(--brand);}
+    .upload-preview-wrap.is-visible{display:block;}
+    .upload-preview{width:100%;height:280px;object-fit:cover;display:block;}
+    .upload-preview-info{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--white);border-top:1px solid var(--border);}
+    .upload-preview-info span{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .upload-preview-info strong{font-size:12px;color:var(--gold-dark);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
     .form-submit{display:flex;align-items:center;gap:24px;padding:28px 36px;background:var(--light);border-top:1px solid var(--border);flex-wrap:wrap;}
     .form-submit-text p{font-size:12px;color:var(--muted);}
     .form-submit-text strong{font-family:'Playfair Display',serif;font-size:22px;color:var(--brand);}
@@ -332,6 +341,26 @@
                   <label class="form-label" for="surface">Surface (si applicable)</label>
                   <input class="form-input" type="text" id="surface" name="surface" placeholder="Ex : 80 m², 200 à 500 m²...">
                 </div>
+
+                <div class="form-row">
+                  <label class="form-label" for="photo">Photo principale de l'annonce</label>
+                  <label class="upload-zone" for="photo">
+                    <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp">
+                    <div class="upload-placeholder" id="upload-placeholder">
+                      <div class="upload-icon" aria-hidden="true"></div>
+                      <strong>Ajouter une photo</strong>
+                      <span>Format JPG, PNG ou WEBP — 5 Mo maximum</span>
+                    </div>
+                    <div class="upload-preview-wrap" id="upload-preview-wrap">
+                      <img id="upload-preview" class="upload-preview" alt="Aperçu de la photo">
+                      <div class="upload-preview-info">
+                        <span id="upload-file-name">Photo sélectionnée</span>
+                        <strong>Changer la photo</strong>
+                      </div>
+                    </div>
+                  </label>
+                  <p class="form-hint">Ajoutez une photo nette du lieu, du matériel ou du service proposé.</p>
+                </div>
               </div>
 
               <!-- SECTION 3 : COORDONNÉES -->
@@ -478,21 +507,69 @@
       statusEl.style.display = 'block';
       statusEl.textContent = 'Publication en cours...';
 
-      const data = {
-        titre: document.getElementById('titre').value.trim(),
-        description: document.getElementById('description').value.trim(),
-        categorie: document.getElementById('categorie').value,
-        secteur: document.getElementById('secteur').value,
-        ville: document.getElementById('ville').value.trim(),
-        type_annonce: document.querySelector('input[name="type"]:checked').value,
-        nom_entreprise: document.getElementById('entreprise').value.trim(),
-        telephone: document.getElementById('telephone').value.trim(),
-        contact_email: document.getElementById('email').value.trim(),
-        siret: document.getElementById('siret').value.replace(/\s/g,''),
-        statut: 'actif'
-      };
+      let imageUrl = null;
+
+      const photoInput = document.getElementById('photo');
+      const photo = photoInput && photoInput.files && photoInput.files[0] ? photoInput.files[0] : null;
 
       try {
+        if (photo) {
+          const formatsAutorises = ['image/jpeg', 'image/png', 'image/webp'];
+          const tailleMax = 5 * 1024 * 1024;
+
+          if (!formatsAutorises.includes(photo.type)) {
+            throw new Error('FORMAT_IMAGE_INVALIDE');
+          }
+
+          if (photo.size > tailleMax) {
+            throw new Error('IMAGE_TROP_LOURDE');
+          }
+
+          statusEl.textContent = 'Envoi de la photo...';
+
+          const extension = photo.name.split('.').pop().toLowerCase();
+          const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${extension}`;
+
+          const uploadRes = await fetch(
+            `${SUPABASE_URL}/storage/v1/object/annonces-images/${fileName}`,
+            {
+              method: 'POST',
+              headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': photo.type,
+                'x-upsert': 'true'
+              },
+              body: photo
+            }
+          );
+
+          if (!uploadRes.ok) {
+            const uploadError = await uploadRes.text();
+            throw new Error(uploadError);
+          }
+
+          imageUrl = `${SUPABASE_URL}/storage/v1/object/public/annonces-images/${fileName}`;
+        }
+
+        statusEl.textContent = 'Enregistrement de l’annonce...';
+
+        const data = {
+          titre: document.getElementById('titre').value.trim(),
+          description: document.getElementById('description').value.trim(),
+          categorie: document.getElementById('categorie').value,
+          secteur: document.getElementById('secteur').value,
+          ville: document.getElementById('ville').value.trim(),
+          type_annonce: document.querySelector('input[name="type"]:checked').value,
+          nom_entreprise: document.getElementById('entreprise').value.trim(),
+          telephone: document.getElementById('telephone').value.trim(),
+          contact_email: document.getElementById('email').value.trim(),
+          siret: document.getElementById('siret').value.replace(/\s/g,''),
+          prix: document.getElementById('prix').value.trim(),
+          surface: document.getElementById('surface').value.trim(),
+          image_url: imageUrl,
+          statut: 'actif'
+        };
         const res = await fetch(`${SUPABASE_URL}/rest/v1/annonces`, {
           method: 'POST',
           headers: {
@@ -517,10 +594,44 @@
       } catch (err) {
         console.error(err);
         statusEl.className = 'form-status error';
-        statusEl.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+
+        if (err.message === 'FORMAT_IMAGE_INVALIDE') {
+          statusEl.textContent = 'Le format de l’image n’est pas accepté. Utilisez JPG, PNG ou WEBP.';
+        } else if (err.message === 'IMAGE_TROP_LOURDE') {
+          statusEl.textContent = 'L’image est trop lourde. Merci d’utiliser une photo de 5 Mo maximum.';
+        } else {
+          statusEl.textContent = 'Une erreur est survenue. Veuillez vérifier Supabase puis réessayer.';
+        }
+
         btn.disabled = false;
         btn.textContent = 'Publier mon annonce →';
       }
+    }
+
+    // Aperçu propre de la photo
+    const photoInputPreview = document.getElementById('photo');
+    const uploadPlaceholder = document.getElementById('upload-placeholder');
+    const uploadPreviewWrap = document.getElementById('upload-preview-wrap');
+    const uploadPreview = document.getElementById('upload-preview');
+    const uploadFileName = document.getElementById('upload-file-name');
+
+    if (photoInputPreview) {
+      photoInputPreview.addEventListener('change', function() {
+        const file = this.files && this.files[0] ? this.files[0] : null;
+
+        if (!file) {
+          uploadPlaceholder.style.display = 'flex';
+          uploadPreviewWrap.classList.remove('is-visible');
+          uploadPreview.removeAttribute('src');
+          uploadFileName.textContent = 'Photo sélectionnée';
+          return;
+        }
+
+        uploadPlaceholder.style.display = 'none';
+        uploadPreviewWrap.classList.add('is-visible');
+        uploadPreview.src = URL.createObjectURL(file);
+        uploadFileName.textContent = file.name;
+      });
     }
 
     // Placeholder dynamique selon type
