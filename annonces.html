@@ -216,6 +216,7 @@
 
   <nav class="sk-nav">
   <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
     <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
@@ -223,35 +224,36 @@
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
     <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
     <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
-    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;opacity:.7;">strakara.fr →</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
   </ul>
-    <div class="sk-nav__right">
-      <div class="sk-nav__sep"></div>
-      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
-    </div>
-    <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
 
-  <div class="sk-nav__mobile" id="sk-mobile">
-    <a href="https://app.strakara.fr/index.html">Accueil réseau</a>
-    <a href="https://app.strakara.fr/annonces.html">Annonces</a>
-    <a href="https://app.strakara.fr/membres.html">Membres</a>
-    <span class="sk-nav__mobile-sep">Secteurs</span>
-    <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-    <a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a>
-    <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
-    <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
-    <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
-    <a href="https://app.strakara.fr/blog/index.html">Blog</a>
-    <a href="https://www.strakara.fr">strakara.fr →</a>
-    <div class="sk-nav__mobile-btns">
-      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
-    </div>
+  <div class="sk-nav__right">
+    <div class="sk-nav__sep"></div>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
+
+  <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="sk-nav__mobile" id="sk-mobile">
+  <a href="https://app.strakara.fr/index.html">Accueil</a>
+  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
+  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
+  <a href="https://app.strakara.fr/evenements.html">Événements</a>
+  <a href="https://www.strakara.fr">strakara.fr →</a>
+
+  <div class="sk-nav__mobile-btns">
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+  </div>
+</div>
 
   <section class="annonces-hero">
     <div class="container">
