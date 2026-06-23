@@ -42,6 +42,13 @@
     .actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{border:none;border-radius:999px;padding:14px 20px;font:800 14px Outfit,sans-serif;cursor:pointer}.btn-next{background:var(--brand);color:#fff}.btn-prev{background:#EEEAE0;color:var(--brand)}.btn-gold{background:var(--gold);color:var(--brand)}.btn-line{background:white;border:1px solid var(--border);color:var(--brand)}
     .recap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.recap-box{background:#FAFAF8;border:1px solid var(--border);border-radius:16px;padding:16px}.recap-box b{display:block;margin-bottom:5px}.recap-box span{color:var(--muted);font-size:14px;line-height:1.5}
     .success{display:none;text-align:center;background:#fff;border:1px solid var(--border);border-radius:26px;padding:44px;box-shadow:var(--shadow);margin-top:22px}.success.show{display:block}.success .icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#DCFCE7;color:var(--green);font-size:32px}.success h2{font-family:"Playfair Display",serif;font-size:38px;margin:0 0 10px}.success p{color:var(--muted);font-size:17px;line-height:1.6}
+
+    .file-counter{margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900;color:var(--brand)}
+    .cgh-box{margin-top:18px;border:2px solid var(--gold);background:#FFFCF4;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+    .cgh-box input{width:20px;height:20px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+    .cgh-box strong{display:block;margin-bottom:4px;color:var(--brand)}
+    .cgh-box a{color:var(--gold-2);font-weight:900;text-decoration:underline}
+    .cgh-proof{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.4}
     .hidden{display:none!important}
     @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}}
   </style>
@@ -97,11 +104,8 @@
    CONFIG SUPABASE — À REMPLACER UNE SEULE FOIS
    ========================================================= */
 const SUPABASE_URL = "https://dsckgwjbserojugrhzpp.supabase.co";
-
 const SUPABASE_ANON_KEY = "sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa";
-
 const SUPABASE_TABLE = "espaces_hebergeurs";
-
 const SUPABASE_BUCKET = "espaces";
 
 /* Important : ne jamais déclarer "supabase" plusieurs fois sur la même page */
@@ -132,7 +136,7 @@ const state = {
   consentement: false
 };
 
-const files = { photos: [], documents: [] };
+const files = window.strakaraFiles = { photos: [], documents: [] };
 
 function $(q){ return document.querySelector(q); }
 function $all(q){ return Array.from(document.querySelectorAll(q)); }
@@ -289,13 +293,15 @@ function cardPhotos(){
       <div class="drop">
         <b>Photos du site *</b>
         <p class="hint">Façade, intérieur, accès, zones disponibles. Minimum conseillé : 3 photos.</p>
-        <input type="file" multiple accept="image/*" onchange="files.photos=Array.from(this.files);renderFileList('photos')">
+        <input type="file" multiple accept="image/*" onchange="setFiles('photos', this.files)">
+        <div class="file-counter" id="photosCounter">${files.photos.length} photo(s) sélectionnée(s)</div>
         <div class="file-list" id="photosList">${fileList(files.photos)}</div>
       </div>
       <div class="drop">
         <b>Documents</b>
         <p class="hint">KBIS, assurance, plan, mandat/autorisation si nécessaire.</p>
-        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp" onchange="files.documents=Array.from(this.files);renderFileList('documents')">
+        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp" onchange="setFiles('documents', this.files)">
+        <div class="file-counter" id="documentsCounter">${files.documents.length} document(s) sélectionné(s)</div>
         <div class="file-list" id="documentsList">${fileList(files.documents)}</div>
       </div>
     </div>
@@ -318,15 +324,29 @@ function cardPhotos(){
     </div>` + actions(true,"Récapitulatif");
 }
 function fileList(arr){ return arr && arr.length ? arr.map(f=>`• ${esc(f.name)} (${Math.round(f.size/1024)} Ko)`).join("<br>") : "Aucun fichier sélectionné."; }
+function setFiles(type, fileListInput){
+  files[type] = Array.from(fileListInput || []);
+  renderFileList(type);
+  updateFileCounters();
+}
 function renderFileList(type){
-  $("#"+type+"List").innerHTML = fileList(files[type]);
+  const list = document.getElementById(type + "List");
+  const counter = document.getElementById(type + "Counter");
+  if(list) list.innerHTML = fileList(files[type]);
+  if(counter){
+    counter.textContent = type === "photos"
+      ? files.photos.length + " photo(s) sélectionnée(s)"
+      : files.documents.length + " document(s) sélectionné(s)";
+  }
   updateFileCounters();
 }
 function updateFileCounters(){
   const p = document.getElementById("recapPhotosCount");
   const d = document.getElementById("recapDocsCount");
+  const total = document.getElementById("recapTotalFilesCount");
   if(p) p.textContent = files.photos.length + " photo(s)";
   if(d) d.textContent = files.documents.length + " document(s)";
+  if(total) total.textContent = (files.photos.length + files.documents.length) + " fichier(s) au total";
 }
 
 function cardRecap(){
@@ -336,13 +356,28 @@ function cardRecap(){
       <div class="recap-box"><b>Espace</b><span>${esc(e.type)} — ${esc(e.titre || e.nom)}<br>${esc(e.localisation_publique)}<br>${esc(e.surface_totale)} m²</span></div>
       <div class="recap-box"><b>Revenu souhaité</b><span>${e.revenu_souhaite_ht ? esc(e.revenu_souhaite_ht)+" € HT/mois" : "À définir avec STRAKARA"}</span></div>
       <div class="recap-box"><b>Entreprise</b><span>${esc(ent.nom)}<br>SIRET : ${esc(ent.siret)}<br>${esc(ent.email)}</span></div>
-      <div class="recap-box"><b>Fichiers</b><span id="recapPhotosCount">${files.photos.length} photo(s)</span><br><span id="recapDocsCount">${files.documents.length} document(s)</span></div>
+      <div class="recap-box"><b>Fichiers</b><span id="recapPhotosCount">${files.photos.length} photo(s)</span><br><span id="recapDocsCount">${files.documents.length} document(s)</span><br><span id="recapTotalFilesCount">${files.photos.length + files.documents.length} fichier(s) au total</span></div>
     </div>
-    <label class="check" style="margin-top:18px"><input type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave()"><span>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire, et j’accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">Conditions Générales Hébergeur STRAKARA</a>.</span></label>
+    <div class="cgh-box">
+      <input id="acceptCGH" type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave();renderCGHStatus()">
+      <div>
+        <strong>Acceptation obligatoire des CGH STRAKARA</strong>
+        <div>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire, et j’accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">Conditions Générales Hébergeur STRAKARA</a>.</div>
+        <div class="cgh-proof" id="cghStatus">${state.consentement ? 'CGH cochées : la preuve sera enregistrée à l’envoi.' : 'Cochez la case pour continuer. La date, la version et le navigateur seront enregistrés.'}</div>
+      </div>
+    </div>
     <div class="actions">
       <button type="button" class="btn btn-prev" onclick="prev()">Retour</button>
       <button type="submit" class="btn btn-gold" id="submitBtn">Envoyer à STRAKARA</button>
     </div></div>`;
+}
+
+function renderCGHStatus(){
+  const el = document.getElementById("cghStatus");
+  if(!el) return;
+  el.textContent = state.consentement
+    ? "CGH cochées : la preuve sera enregistrée à l’envoi."
+    : "Cochez la case pour continuer. La date, la version et le navigateur seront enregistrés.";
 }
 
 function validateStep(s, visible){
@@ -351,6 +386,7 @@ function validateStep(s, visible){
   if(s===0 && (!e.nom || !e.titre || !e.ville || !e.code_postal || !e.localisation_publique || !e.surface_totale)) msg="Complétez au minimum le nom, le titre, la ville, le code postal, la localisation et la surface.";
   if(s===1 && (!e.description_batiment || !e.description_espace || !e.situation_acces)) msg="Ajoutez les descriptions principales avant de continuer.";
   if(s===2 && (!ent.nom || !ent.siret || !ent.email || !ent.telephone)) msg="Complétez les informations entreprise obligatoires.";
+  if(s===2 && files.photos.length === 0) msg="Ajoutez au moins une photo du site avant de continuer.";
   if(s===3 && !state.consentement) msg="Vous devez accepter les Conditions Générales Hébergeur STRAKARA avant l’envoi.";
   if(msg && visible) showAlert("err",msg);
   return !msg;
