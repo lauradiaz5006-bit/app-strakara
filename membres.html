@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Annuaire des professionnels — STRAKARA Réseau Pro</title>
-  <meta name="description" content="Trouvez des professionnels vérifiés du réseau STRAKARA : artisans, transporteurs, prestataires, hébergeurs d'espaces et entreprises locales. Annuaire public et réseau d'entraide entre pros.">
+  <meta name="description" content="Trouvez des professionnels vérifiés du réseau STRAKARA : artisans, transporteurs, prestataires, hébergeurs d'espaces et entreprises locales.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://app.strakara.fr/membres.html">
   <meta property="og:title" content="Annuaire des professionnels — STRAKARA Réseau Pro">
@@ -29,12 +29,12 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;overflow-x:hidden;}
     body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;}
-    a{text-decoration:none;}
+    a{text-decoration:none;color:inherit;}
     .container{max-width:1280px;margin:0 auto;padding:0 48px;}
     .label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
-    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:background .2s;}
+    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:background .2s;text-align:center;}
     .btn-dark:hover{background:#2E2F35;}
-    .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;}
+    .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;text-align:center;}
     .btn-outline:hover{border-color:var(--brand);}
 
     .sk-banner{background:var(--brand);padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
@@ -62,7 +62,7 @@
     .sk-nav__mobile a{font-size:14px;color:var(--muted);padding:11px 0;border-bottom:.5px solid var(--border);display:block;}
     .sk-nav__mobile-sep{display:block;font-size:11px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.12em;margin-top:12px;padding-top:12px;}
     .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
-    .sk-nav__mobile-btns .sk-btn-publier,.sk-nav__mobile-btns .sk-btn-connexion{justify-content:center;text-align:center;font-size:13px;padding:10px 16px;}
+    .sk-nav__mobile-btns .sk-btn-publier,.sk-nav__mobile-btns .sk-btn-connexion{text-align:center;font-size:13px;padding:10px 16px;}
 
     .membres-hero{padding:76px 0 64px;background:var(--white);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
     .membres-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.035) 79px,rgba(200,169,106,.035) 80px);pointer-events:none;}
@@ -76,7 +76,7 @@
     .hero-stat-label{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em;text-transform:uppercase;}
 
     .membres-filtres-wrap{background:var(--light);border-bottom:1px solid var(--border);padding:24px 0;position:sticky;top:58px;z-index:90;}
-    .membres-filtres{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:0;}
+    .membres-filtres{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:0;}
     .filtre-input,.filtre-select{padding:15px 18px;border:1px solid var(--border);border-right:none;background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
     .filtre-input::placeholder{color:var(--muted);}
     .filtre-input:focus,.filtre-select:focus{border-color:var(--gold);z-index:1;position:relative;}
@@ -107,10 +107,9 @@
     .membre-card::after{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--gold);opacity:0;transition:opacity .2s;}
     .membre-card:hover{background:#FDFCF8;}
     .membre-card:hover::after{opacity:1;}
-    .membre-avatar{width:64px;height:64px;min-width:64px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:.04em;flex-shrink:0;}
+    .membre-avatar{width:64px;height:64px;min-width:64px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:.04em;flex-shrink:0;overflow:hidden;}
+    .membre-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
     .membre-avatar.gold{background:var(--gold);color:var(--brand);}
-    .membre-avatar.light{background:var(--light);color:var(--brand);border:1px solid var(--border);}
-    .membre-avatar.soft{background:rgba(200,169,106,.12);color:var(--gold-dark);border:1px solid rgba(200,169,106,.3);}
     .membre-content{flex:1;min-width:0;}
     .membre-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:12px;}
     .membre-role-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;background:rgba(200,169,106,.12);color:var(--gold-dark);}
@@ -126,6 +125,9 @@
     .membre-link{color:var(--brand);}
     .membre-call{color:var(--gold-dark);}
     .membre-link:hover,.membre-call:hover{color:var(--gold-dark);border-color:var(--gold);}
+    .membre-empty{grid-column:1/-1;background:var(--white);padding:46px;text-align:center;border:1px solid var(--border);}
+    .membre-empty h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin-bottom:8px;color:var(--brand);}
+    .membre-empty p{font-size:14px;color:var(--muted);}
 
     .membre-card-cta{background:var(--brand);padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;min-height:240px;}
     .membre-card-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
@@ -135,11 +137,6 @@
     .membre-card-cta h3 em{color:var(--gold);font-style:italic;}
     .btn-gold-sm{display:inline-block;background:var(--gold);color:var(--brand);padding:10px 22px;font-weight:700;font-size:12px;letter-spacing:.03em;transition:opacity .2s;}
     .btn-gold-sm:hover{opacity:.88;}
-
-    .pagination{display:flex;justify-content:center;gap:4px;margin-top:40px;}
-    .page-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--white);font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
-    .page-btn:hover{border-color:var(--brand);color:var(--brand);}
-    .page-btn.active{background:var(--brand);color:var(--white);border-color:var(--brand);}
 
     .sk-footer{background:#111214;padding:56px 0 32px;}
     .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
@@ -163,8 +160,8 @@
 </head>
 <body>
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
-    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+    <span class="sk-banner__text">Réseau d'entraide pour les pros — Ouverture le 21 septembre 2026</span>
+    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
@@ -179,7 +176,7 @@
       <li><a href="https://app.strakara.fr/reseau/transport.html">Transport</a></li>
       <li><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a></li>
       <li><a href="https://app.strakara.fr/blog/index.html">Blog</a></li>
-      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
     </ul>
     <div class="sk-nav__right">
       <div class="sk-nav__sep"></div>
@@ -190,17 +187,17 @@
   </nav>
 
   <div class="sk-nav__mobile" id="sk-mobile">
-    <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
+    <a href="https://app.strakara.fr/index.html">Accueil réseau</a>
     <a href="https://app.strakara.fr/annonces.html">Annonces</a>
     <a href="https://app.strakara.fr/membres.html">Membres</a>
     <span class="sk-nav__mobile-sep">Secteurs</span>
     <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-    <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+    <a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a>
     <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
     <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
     <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
     <a href="https://app.strakara.fr/blog/index.html">Blog</a>
-    <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
+    <a href="https://www.strakara.fr">strakara.fr →</a>
     <div class="sk-nav__mobile-btns">
       <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
       <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
@@ -210,17 +207,17 @@
   <section class="membres-hero">
     <div class="container">
       <div class="membres-hero-inner">
-        <span class="label">Annuaire public &amp; r&eacute;seau pro</span>
-        <h1>Des professionnels visibles,<br><em>recommand&eacute;s et trouvables.</em></h1>
-        <p>STRAKARA permet aux clients de trouver des professionnels v&eacute;rifi&eacute;s, et aux pros de se recommander, s&apos;entraider et trouver plus facilement les contacts dont ils ont besoin.</p>
+        <span class="label">Annuaire public & réseau pro</span>
+        <h1>Des professionnels visibles,<br><em>recommandés et trouvables.</em></h1>
+        <p>STRAKARA permet aux clients de trouver des professionnels vérifiés, et aux pros de se recommander, s'entraider et trouver plus facilement les contacts dont ils ont besoin.</p>
         <div class="hero-actions">
-          <a href="https://app.strakara.fr/rejoindre.html" class="btn-dark">Cr&eacute;er mon profil gratuitement</a>
+          <a href="https://app.strakara.fr/rejoindre.html" class="btn-dark">Créer mon profil gratuitement</a>
           <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les annonces</a>
         </div>
         <div class="membres-hero-stats">
-          <div><span class="hero-stat-num">Visibilit&eacute;</span><span class="hero-stat-label">Profil public consultable</span></div>
-          <div><span class="hero-stat-num">R&eacute;seau</span><span class="hero-stat-label">Recommandations entre pros</span></div>
-          <div><span class="hero-stat-num">Confiance</span><span class="hero-stat-label">Membres v&eacute;rifi&eacute;s</span></div>
+          <div><span class="hero-stat-num" id="stat-total">0</span><span class="hero-stat-label">Profils publics</span></div>
+          <div><span class="hero-stat-num">Réseau</span><span class="hero-stat-label">Recommandations entre pros</span></div>
+          <div><span class="hero-stat-num">Confiance</span><span class="hero-stat-label">Membres vérifiés</span></div>
         </div>
       </div>
     </div>
@@ -228,24 +225,37 @@
 
   <div class="membres-filtres-wrap">
     <div class="container">
-      <div class="membres-filtres">
-        <input class="filtre-input" type="text" placeholder="Nom, m&eacute;tier, ville ou entreprise...">
-        <select class="filtre-select"><option>Tous les profils</option><option>Artisan</option><option>Transporteur</option><option>Prestataire</option><option>H&eacute;bergeur d&apos;espace</option><option>Entreprise locale</option></select>
-        <select class="filtre-select"><option>Toutes les r&eacute;gions</option><option>Bretagne</option><option>Pays de la Loire</option><option>&Icirc;le-de-France</option><option>Nouvelle-Aquitaine</option><option>Auvergne-Rh&ocirc;ne-Alpes</option><option>Hauts-de-France</option></select>
-        <select class="filtre-select"><option>Tous les secteurs</option><option>BTP &amp; Artisans</option><option>Transport</option><option>Prestataires</option><option>Immobilier Pro</option><option>E-commerce</option></select>
-        <button class="filtre-btn">Rechercher</button>
-      </div>
+      <form class="membres-filtres" id="membres-filtres">
+        <input class="filtre-input" id="filtre-search" type="text" placeholder="Nom, métier, ville ou entreprise...">
+        <select class="filtre-select" id="filtre-profil">
+          <option value="">Tous les profils</option>
+          <option value="artisan">Artisan</option>
+          <option value="transport">Transporteur</option>
+          <option value="prestataire">Prestataire</option>
+          <option value="hébergeur">Hébergeur d'espace</option>
+          <option value="immobilier">Immobilier Pro</option>
+        </select>
+        <select class="filtre-select" id="filtre-secteur">
+          <option value="">Tous les secteurs</option>
+          <option value="BTP">BTP & Artisans</option>
+          <option value="Transport">Transport</option>
+          <option value="Prestataires">Prestataires</option>
+          <option value="Immobilier">Immobilier Pro</option>
+          <option value="E-commerce">E-commerce</option>
+        </select>
+        <button class="filtre-btn" type="submit">Rechercher</button>
+      </form>
     </div>
   </div>
 
   <div class="membres-tabs">
     <div class="container">
       <div class="membres-tabs-inner">
-        <button class="tab-btn active">Tous <span class="tab-count">Bient&ocirc;t</span></button>
-        <button class="tab-btn">Artisans &amp; BTP</button>
-        <button class="tab-btn">Transport</button>
-        <button class="tab-btn">Prestataires</button>
-        <button class="tab-btn">H&eacute;bergeurs</button>
+        <button class="tab-btn active" data-tab="">Tous <span class="tab-count" id="count-all">0</span></button>
+        <button class="tab-btn" data-tab="BTP">Artisans & BTP</button>
+        <button class="tab-btn" data-tab="Transport">Transport</button>
+        <button class="tab-btn" data-tab="Prestataires">Prestataires</button>
+        <button class="tab-btn" data-tab="Immobilier">Hébergeurs</button>
       </div>
     </div>
   </div>
@@ -253,81 +263,18 @@
   <section class="membres-body">
     <div class="container">
       <div class="directory-note">
-        <p><strong>Vous cherchez un professionnel fiable ?</strong><br>Consultez les profils publics du r&eacute;seau STRAKARA. Chaque membre choisit les informations qu&apos;il souhaite rendre visibles : t&eacute;l&eacute;phone, site, zone d&apos;intervention ou demande de contact.</p>
-        <a href="https://app.strakara.fr/rejoindre.html" class="btn-outline">&Ecirc;tre visible dans l&apos;annuaire</a>
+        <p><strong>Vous cherchez un professionnel fiable ?</strong><br>Consultez les profils publics du réseau STRAKARA. Chaque membre choisit les informations qu'il souhaite rendre visibles : téléphone, site, zone d'intervention ou demande de contact.</p>
+        <a href="https://app.strakara.fr/rejoindre.html" class="btn-outline">Être visible dans l'annuaire</a>
       </div>
 
       <div class="membres-results-header">
-        <p class="membres-count"><strong>Premiers profils fondateurs</strong> &mdash; ouverture progressive du r&eacute;seau</p>
-        <div class="membres-sort"><span>Trier par</span><select><option>Les plus r&eacute;cents</option><option>Nom A&ndash;Z</option><option>R&eacute;gion</option><option>Secteur</option></select></div>
+        <p class="membres-count"><strong id="result-count">Chargement</strong> — profils publics STRAKARA</p>
+        <div class="membres-sort"><span>Trier par</span><select id="sort-select"><option value="recent">Les plus récents</option><option value="az">Nom A–Z</option><option value="ville">Ville</option><option value="secteur">Secteur</option></select></div>
       </div>
 
-      <div class="membres-grid">
-        <article class="membre-card">
-          <div class="membre-avatar gold">LC</div>
-          <div class="membre-content">
-            <div class="membre-top"><span class="membre-role-badge">Fondatrice</span><span class="membre-verified">V&eacute;rifi&eacute;e</span></div>
-            <h3>Laura Charron</h3>
-            <p>Fondatrice de STRAKARA. Coordination du r&eacute;seau, d&eacute;veloppement des espaces professionnels flexibles et mise en relation entre h&eacute;bergeurs, entreprises et prestataires.</p>
-            <div class="membre-tags"><span class="membre-tag">R&eacute;seau pro</span><span class="membre-tag">Espaces flexibles</span><span class="membre-tag">Mise en relation</span></div>
-            <div class="membre-footer"><span class="membre-localisation">Bretagne</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a></div></div>
-          </div>
-        </article>
-
-        <article class="membre-card">
-          <div class="membre-avatar">HB</div>
-          <div class="membre-content">
-            <div class="membre-top"><span class="membre-role-badge">H&eacute;bergeur d&apos;espace</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
-            <h3>Entreprise partenaire</h3>
-            <p>Propose des surfaces professionnelles pour du stockage, bureau ou activit&eacute; sans accueil public. Espace s&eacute;curis&eacute;, acc&egrave;s autonome et environnement professionnel.</p>
-            <div class="membre-tags"><span class="membre-tag">Stockage</span><span class="membre-tag">Entrep&ocirc;t</span><span class="membre-tag">Acc&egrave;s PL</span></div>
-            <div class="membre-footer"><span class="membre-localisation">Pontivy (56)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Demander un contact</a></div></div>
-          </div>
-        </article>
-
-        <article class="membre-card">
-          <div class="membre-avatar light">AR</div>
-          <div class="membre-content">
-            <div class="membre-top"><span class="membre-role-badge">Artisan</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
-            <h3>Artisan r&eacute;seau STRAKARA</h3>
-            <p>Professionnel du terrain disponible pour des chantiers, recommandations entre pros et demandes clients selon sa zone d&apos;intervention.</p>
-            <div class="membre-tags"><span class="membre-tag">BTP</span><span class="membre-tag">Chantier</span><span class="membre-tag">Recommandation</span></div>
-            <div class="membre-footer"><span class="membre-localisation">&Icirc;le-de-France</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Appeler</a></div></div>
-          </div>
-        </article>
-
-        <article class="membre-card">
-          <div class="membre-avatar soft">PS</div>
-          <div class="membre-content">
-            <div class="membre-top"><span class="membre-role-badge">Prestataire</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
-            <h3>Partenaire service</h3>
-            <p>Apporte une solution compl&eacute;mentaire au r&eacute;seau : logistique, am&eacute;nagement, s&eacute;curit&eacute;, transport ou accompagnement des membres dans leur activit&eacute;.</p>
-            <div class="membre-tags"><span class="membre-tag">Service</span><span class="membre-tag">Logistique</span><span class="membre-tag">Partenaire</span></div>
-            <div class="membre-footer"><span class="membre-localisation">Nantes (44)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="#" class="membre-call">Demander un contact</a></div></div>
-          </div>
-        </article>
-
-        <article class="membre-card">
-          <div class="membre-avatar">EB</div>
-          <div class="membre-content">
-            <div class="membre-top"><span class="membre-role-badge">H&eacute;bergeur d&apos;espace</span><span class="membre-verified">V&eacute;rifi&eacute;</span></div>
-            <h3>Espace Brest Ouest</h3>
-            <p>Boxes de stockage s&eacute;curis&eacute;s de 12 &agrave; 56 m&sup2;. Solution flexible pour artisans, TPE et entreprises cherchant une surface professionnelle disponible rapidement.</p>
-            <div class="membre-tags"><span class="membre-tag">Box stockage</span><span class="membre-tag">Privatif</span><span class="membre-tag">S&eacute;curis&eacute;</span></div>
-            <div class="membre-footer"><span class="membre-localisation">Brest (29)</span><div class="membre-actions"><a href="#" class="membre-link">Voir le profil &rarr;</a><a href="https://strakara.netlify.app/espaces.html" class="membre-call">Voir les espaces</a></div></div>
-          </div>
-        </article>
-
-        <article class="membre-card-cta">
-          <div class="membre-card-cta-inner">
-            <p>Vous &ecirc;tes professionnel v&eacute;rifi&eacute; ?</p>
-            <h3>Rendez votre activit&eacute;<br><em>visible gratuitement.</em></h3>
-            <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold-sm">Cr&eacute;er mon profil &rarr;</a>
-          </div>
-        </article>
+      <div class="membres-grid" id="membres-grid">
+        <div class="membre-empty"><h3>Chargement des membres...</h3><p>Merci de patienter quelques instants.</p></div>
       </div>
-
-      <div class="pagination"><button class="page-btn">&larr;</button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">&rarr;</button></div>
     </div>
   </section>
 
@@ -336,16 +283,177 @@
       <div class="sk-footer-inner">
         <div class="sk-footer-brand">
           <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-          <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
-          <p>Le r&eacute;seau gratuit des pros du terrain : annuaire, annonces, entraide, recommandations et espaces professionnels flexibles.</p>
-          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr &mdash; location d&apos;espaces &rarr;</a>
+          <span class="sk-footer-logo-sub">Réseau Pro</span>
+          <p>Le réseau gratuit des pros du terrain : annuaire, annonces, entraide, recommandations et espaces professionnels flexibles.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — location d'espaces →</a>
         </div>
-        <div class="sk-footer-col"><h4>R&eacute;seau</h4><a href="https://app.strakara.fr/annonces.html">Annonces</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/publier.html">Publier une annonce</a><a href="https://app.strakara.fr/rejoindre.html">Rejoindre &mdash; Gratuit</a></div>
-        <div class="sk-footer-col"><h4>Secteurs</h4><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a><a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a><a href="https://app.strakara.fr/reseau/transport.html">Transport</a><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a><a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a></div>
-        <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://app.strakara.fr/blog/index.html">Blog &amp; Conseils</a><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d&apos;espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir h&eacute;bergeur</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
+        <div class="sk-footer-col"><h4>Réseau</h4><a href="https://app.strakara.fr/annonces.html">Annonces</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/publier.html">Publier une annonce</a><a href="https://app.strakara.fr/rejoindre.html">Rejoindre — Gratuit</a></div>
+        <div class="sk-footer-col"><h4>Secteurs</h4><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a><a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a><a href="https://app.strakara.fr/reseau/transport.html">Transport</a><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a><a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a></div>
+        <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d'espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
       </div>
-      <div class="sk-footer-bottom"><p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p><div class="sk-footer-bottom-links"><a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a></div></div>
+      <div class="sk-footer-bottom"><p>&copy; 2026 STRAKARA SASU — Tous droits réservés · Réseau Pro</p><div class="sk-footer-bottom-links"><a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a></div></div>
     </div>
   </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+
+    let membres = [];
+    let filtered = [];
+    let activeTab = '';
+
+    const grid = document.getElementById('membres-grid');
+    const resultCount = document.getElementById('result-count');
+    const statTotal = document.getElementById('stat-total');
+    const countAll = document.getElementById('count-all');
+
+    function escapeHtml(value){
+      return String(value || '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+    }
+
+    function initials(name){
+      const clean = String(name || 'SK').trim();
+      const words = clean.split(/\s+/).filter(Boolean);
+      if(words.length === 1) return words[0].slice(0,2).toUpperCase();
+      return (words[0][0] + words[1][0]).toUpperCase();
+    }
+
+    function normalize(value){
+      return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    }
+
+    function getTags(membre){
+      const tags = [];
+      if(membre.secteur) tags.push(membre.secteur);
+      if(membre.zone_intervention) tags.push(membre.zone_intervention);
+      if(membre.ville) tags.push(membre.ville);
+      return tags.slice(0,3);
+    }
+
+    function renderCard(membre){
+      const name = escapeHtml(membre.nom_entreprise || 'Membre STRAKARA');
+      const description = escapeHtml(membre.description || 'Profil professionnel vérifié du réseau STRAKARA.');
+      const secteur = escapeHtml(membre.secteur || 'Professionnel');
+      const ville = escapeHtml(membre.ville || membre.zone_intervention || 'France');
+      const profileUrl = `profil-membre.html?id=${encodeURIComponent(membre.id)}`;
+      const phone = membre.telephone ? `<a href="tel:${escapeHtml(membre.telephone)}" class="membre-call">Appeler</a>` : '';
+      const logo = membre.logo_url ? `<img src="${escapeHtml(membre.logo_url)}" alt="${name}" loading="lazy">` : initials(name);
+      const verified = membre.badge_verifie ? 'Vérifiée' : 'Profil public';
+      const tags = getTags(membre).map(t => `<span class="membre-tag">${escapeHtml(t)}</span>`).join('');
+
+      return `
+        <article class="membre-card">
+          <div class="membre-avatar ${membre.badge_verifie ? 'gold' : ''}">${logo}</div>
+          <div class="membre-content">
+            <div class="membre-top"><span class="membre-role-badge">${secteur}</span><span class="membre-verified">${verified}</span></div>
+            <h3>${name}</h3>
+            <p>${description}</p>
+            <div class="membre-tags">${tags}</div>
+            <div class="membre-footer"><span class="membre-localisation">${ville}</span><div class="membre-actions"><a href="${profileUrl}" class="membre-link">Voir le profil →</a>${phone}</div></div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderCTA(){
+      return `
+        <article class="membre-card-cta">
+          <div class="membre-card-cta-inner">
+            <p>Vous êtes professionnel vérifié ?</p>
+            <h3>Rendez votre activité<br><em>visible gratuitement.</em></h3>
+            <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold-sm">Créer mon profil →</a>
+          </div>
+        </article>
+      `;
+    }
+
+    function applyFilters(){
+      const search = normalize(document.getElementById('filtre-search').value);
+      const profil = normalize(document.getElementById('filtre-profil').value);
+      const secteurSelect = normalize(document.getElementById('filtre-secteur').value || activeTab);
+      const sort = document.getElementById('sort-select').value;
+
+      filtered = membres.filter(m => {
+        const haystack = normalize([m.nom_entreprise, m.description, m.secteur, m.ville, m.zone_intervention, m.site_web].join(' '));
+        const okSearch = !search || haystack.includes(search);
+        const okProfil = !profil || haystack.includes(profil);
+        const okSecteur = !secteurSelect || haystack.includes(secteurSelect);
+        return okSearch && okProfil && okSecteur;
+      });
+
+      if(sort === 'az') filtered.sort((a,b) => String(a.nom_entreprise || '').localeCompare(String(b.nom_entreprise || '')));
+      if(sort === 'ville') filtered.sort((a,b) => String(a.ville || '').localeCompare(String(b.ville || '')));
+      if(sort === 'secteur') filtered.sort((a,b) => String(a.secteur || '').localeCompare(String(b.secteur || '')));
+      if(sort === 'recent') filtered.sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+
+      renderMembres();
+    }
+
+    function renderMembres(){
+      resultCount.textContent = `${filtered.length} profil${filtered.length > 1 ? 's' : ''}`;
+      statTotal.textContent = membres.length;
+      countAll.textContent = membres.length;
+
+      if(!filtered.length){
+        grid.innerHTML = `<div class="membre-empty"><h3>Aucun profil trouvé.</h3><p>Essayez une autre ville, un autre secteur ou revenez prochainement.</p></div>${renderCTA()}`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(renderCard).join('') + renderCTA();
+    }
+
+    async function chargerMembres(){
+      try{
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/membres?select=*&statut=eq.actif&order=created_at.desc`,{
+          headers:{
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if(!res.ok){
+          const errorText = await res.text();
+          throw new Error(errorText);
+        }
+
+        membres = await res.json();
+        filtered = [...membres];
+        applyFilters();
+      }catch(error){
+        console.error(error);
+        resultCount.textContent = '0 profil';
+        grid.innerHTML = `<div class="membre-empty"><h3>Impossible de charger les membres.</h3><p>Vérifiez que la table Supabase “membres” existe et que la lecture publique est autorisée.</p></div>${renderCTA()}`;
+      }
+    }
+
+    document.getElementById('membres-filtres').addEventListener('submit', function(e){
+      e.preventDefault();
+      applyFilters();
+    });
+
+    document.getElementById('filtre-search').addEventListener('input', applyFilters);
+    document.getElementById('filtre-profil').addEventListener('change', applyFilters);
+    document.getElementById('filtre-secteur').addEventListener('change', function(){
+      activeTab = '';
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.tab-btn[data-tab=""]').classList.add('active');
+      applyFilters();
+    });
+    document.getElementById('sort-select').addEventListener('change', applyFilters);
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeTab = this.dataset.tab || '';
+        document.getElementById('filtre-secteur').value = '';
+        applyFilters();
+      });
+    });
+
+    chargerMembres();
+  </script>
 </body>
 </html>
