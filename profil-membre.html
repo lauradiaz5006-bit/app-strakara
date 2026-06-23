@@ -7,6 +7,10 @@
   <meta name="description" content="Profil public d'un professionnel vérifié du réseau STRAKARA. Activité, zone d'intervention, recommandations et contact.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://app.strakara.fr/profil-membre.html">
+  <meta property="og:title" content="Profil membre — STRAKARA Réseau Pro">
+  <meta property="og:description" content="Découvrez un professionnel vérifié du réseau STRAKARA : activité, zone, annonces et contact.">
+  <meta property="og:url" content="https://app.strakara.fr/profil-membre.html">
+  <meta property="og:type" content="profile">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,12 +22,13 @@
     a{text-decoration:none;color:inherit;}
     .container{max-width:1280px;margin:0 auto;padding:0 48px;}
     .label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
-    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:600;font-size:14px;letter-spacing:.03em;transition:background .2s;text-align:center;}
+    .btn-dark{display:inline-block;background:var(--brand);color:var(--white);padding:14px 30px;font-weight:600;font-size:14px;letter-spacing:.03em;transition:background .2s;text-align:center;border:none;cursor:pointer;font-family:'Outfit',sans-serif;}
     .btn-dark:hover{background:#2E2F35;}
-    .btn-gold{display:inline-block;background:var(--gold);color:var(--brand);padding:14px 30px;font-weight:700;font-size:14px;letter-spacing:.03em;transition:opacity .2s;text-align:center;}
+    .btn-gold{display:inline-block;background:var(--gold);color:var(--brand);padding:14px 30px;font-weight:700;font-size:14px;letter-spacing:.03em;transition:opacity .2s;text-align:center;border:none;cursor:pointer;font-family:'Outfit',sans-serif;}
     .btn-gold:hover{opacity:.88;}
     .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;text-align:center;}
     .btn-outline:hover{border-color:var(--brand);}
+    .is-hidden{display:none!important;}
 
     .sk-banner{background:var(--brand);padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
     .sk-banner__text{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold);}
@@ -55,7 +60,8 @@
     .breadcrumb{font-size:12px;color:var(--muted);margin-bottom:28px;}
     .breadcrumb a{color:var(--gold-dark);}
     .profile-heading{display:flex;gap:24px;align-items:flex-start;}
-    .profile-avatar{width:86px;height:86px;min-width:86px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:600;letter-spacing:.04em;}
+    .profile-avatar{width:92px;height:92px;min-width:92px;border-radius:50%;background:var(--brand);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:600;letter-spacing:.04em;overflow:hidden;border:1px solid var(--border);}
+    .profile-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
     .profile-title h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,58px);line-height:1.05;color:var(--brand);font-weight:400;margin-bottom:12px;}
     .profile-title h1 em{font-style:italic;color:var(--gold);}
     .profile-sub{font-size:17px;color:var(--muted);line-height:1.75;max-width:650px;font-weight:300;margin-bottom:24px;}
@@ -69,7 +75,7 @@
     .contact-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;}
     .contact-list{border-top:1px solid var(--border);margin-top:20px;padding-top:20px;display:grid;gap:14px;}
     .contact-item span{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;margin-bottom:2px;}
-    .contact-item strong{font-size:14px;color:var(--brand);font-weight:600;}
+    .contact-item strong{font-size:14px;color:var(--brand);font-weight:600;word-break:break-word;}
 
     .profile-body{padding:64px 0 88px;background:var(--light);}
     .profile-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;}
@@ -83,6 +89,16 @@
     .info-box strong{font-size:15px;font-weight:600;color:var(--brand);}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
     .tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--light);border:1px solid var(--border);padding:6px 10px;color:var(--brand);}
+
+    .member-annonces{display:grid;gap:14px;margin-top:18px;}
+    .member-annonce{display:grid;grid-template-columns:110px 1fr;gap:16px;border:1px solid var(--border);background:var(--white);overflow:hidden;}
+    .member-annonce-img{height:92px;background:linear-gradient(135deg,#F6F5F0,#E8E0D0);}
+    .member-annonce-img img{width:100%;height:100%;object-fit:cover;display:block;}
+    .member-annonce-body{padding:14px 14px 14px 0;}
+    .member-annonce-body small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;margin-bottom:4px;}
+    .member-annonce-body strong{display:block;font-size:15px;color:var(--brand);line-height:1.3;margin-bottom:4px;}
+    .member-annonce-body p{font-size:12px;line-height:1.5;margin:0;color:var(--muted);}
+
     .reco{border-top:1px solid var(--border);padding-top:18px;margin-top:18px;}
     .reco:first-of-type{border-top:none;padding-top:0;margin-top:0;}
     .reco strong{display:block;font-size:14px;color:var(--brand);margin-bottom:6px;}
@@ -98,6 +114,9 @@
     .claim-card>*{position:relative;}
     .claim-card h3{color:var(--white);}
     .claim-card p{color:rgba(255,255,255,.55);}
+
+    .loading-box{background:var(--light);border:1px solid var(--border);padding:22px;color:var(--muted);font-size:14px;margin-top:18px;}
+    .error-box{background:#fff5f5;border:1px solid #f1c7c7;color:#8a2424;padding:20px;font-size:14px;}
 
     .sk-footer{background:#111214;padding:56px 0 32px;}
     .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
@@ -115,14 +134,14 @@
     .sk-footer-bottom-links a{font-size:12px;color:rgba(255,255,255,.25);}
 
     @media(max-width:1050px){.profile-hero-inner,.profile-grid{grid-template-columns:1fr;}.contact-card{max-width:520px;}.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
-    @media(max-width:650px){.container{padding:0 20px;}.profile-hero{padding:48px 0;}.profile-heading{flex-direction:column;}.profile-avatar{width:74px;height:74px;min-width:74px;font-size:24px;}.profile-actions{flex-direction:column;}.profile-actions a{width:100%;}.info-grid{grid-template-columns:1fr;}.panel{padding:26px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
+    @media(max-width:650px){.container{padding:0 20px;}.profile-hero{padding:48px 0;}.profile-heading{flex-direction:column;}.profile-avatar{width:74px;height:74px;min-width:74px;font-size:24px;}.profile-actions{flex-direction:column;}.profile-actions a,.profile-actions button{width:100%;}.info-grid{grid-template-columns:1fr;}.panel{padding:26px;}.member-annonce{grid-template-columns:1fr;}.member-annonce-img{height:180px;}.member-annonce-body{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
   </style>
 </head>
 <body>
 
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">R&eacute;seau d&apos;entraide pour les pros &mdash; Ouverture le 21 septembre 2026</span>
-    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs &rarr;</a>
+    <span class="sk-banner__text">Réseau d'entraide pour les pros — Ouverture le 21 septembre 2026</span>
+    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">100 places fondateurs →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
@@ -137,7 +156,7 @@
       <li><a href="https://app.strakara.fr/reseau/transport.html">Transport</a></li>
       <li><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a></li>
       <li><a href="https://app.strakara.fr/blog/index.html">Blog</a></li>
-      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;&rarr;</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr &nbsp;→</a></li>
     </ul>
     <div class="sk-nav__right">
       <div class="sk-nav__sep"></div>
@@ -150,17 +169,17 @@
   </nav>
 
   <div class="sk-nav__mobile" id="sk-mobile">
-    <a href="https://app.strakara.fr/index.html">Accueil r&eacute;seau</a>
+    <a href="https://app.strakara.fr/index.html">Accueil réseau</a>
     <a href="https://app.strakara.fr/annonces.html">Annonces</a>
     <a href="https://app.strakara.fr/membres.html">Membres</a>
     <span class="sk-nav__mobile-sep">Secteurs</span>
     <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-    <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+    <a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a>
     <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
     <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
     <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
     <a href="https://app.strakara.fr/blog/index.html">Blog</a>
-    <a href="https://www.strakara.fr">strakara.fr &rarr;</a>
+    <a href="https://www.strakara.fr">strakara.fr →</a>
     <div class="sk-nav__mobile-btns">
       <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
       <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
@@ -169,37 +188,33 @@
 
   <section class="profile-hero">
     <div class="container">
+      <div id="page-error" class="error-box is-hidden"></div>
       <div class="profile-hero-inner">
         <div>
           <div class="breadcrumb"><a href="membres.html">Annuaire</a> / Profil membre</div>
           <div class="profile-heading">
-            <div class="profile-avatar">EB</div>
+            <div class="profile-avatar" id="avatar">SK</div>
             <div class="profile-title">
-              <span class="label">Professionnel v&eacute;rifi&eacute; STRAKARA</span>
-              <h1>Espace Brest <em>Ouest.</em></h1>
-              <p class="profile-sub">Espaces professionnels flexibles pour artisans, TPE et entreprises ayant besoin de stockage, d&apos;un bureau ou d&apos;une solution temporaire sans bail classique.</p>
-              <div class="profile-badges">
-                <span class="profile-badge gold">H&eacute;bergeur d&apos;espace</span>
-                <span class="profile-badge">Brest (29)</span>
-                <span class="profile-badge">SIRET v&eacute;rifi&eacute;</span>
-                <span class="profile-badge">Profil public</span>
-              </div>
+              <span class="label" id="verification-label">Professionnel STRAKARA</span>
+              <h1 id="member-name">Chargement du profil...</h1>
+              <p class="profile-sub" id="member-description">Nous récupérons les informations publiques de ce membre.</p>
+              <div class="profile-badges" id="badges"></div>
               <div class="profile-actions">
-                <a href="tel:+33759647754" class="btn-gold">Appeler</a>
-                <a href="mailto:contact@strakara.fr" class="btn-dark">Demander un contact</a>
-                <a href="annonces.html" class="btn-outline">Voir ses annonces</a>
+                <a href="#" class="btn-gold is-hidden" id="phone-btn">Appeler</a>
+                <a href="#" class="btn-dark is-hidden" id="email-btn">Demander un contact</a>
+                <a href="#annonces-membre" class="btn-outline">Voir ses annonces</a>
               </div>
             </div>
           </div>
         </div>
         <aside class="contact-card">
-          <h2>Coordonn&eacute;es publiques</h2>
+          <h2>Coordonnées publiques</h2>
           <p>Les informations ci-dessous sont visibles uniquement si le membre accepte de les rendre publiques.</p>
           <div class="contact-list">
-            <div class="contact-item"><span>T&eacute;l&eacute;phone</span><strong>07 59 64 77 54</strong></div>
-            <div class="contact-item"><span>Email</span><strong>contact@strakara.fr</strong></div>
-            <div class="contact-item"><span>Zone</span><strong>Brest et Finist&egrave;re</strong></div>
-            <div class="contact-item"><span>D&eacute;lai de r&eacute;ponse</span><strong>Sous 24h ouvr&eacute;es</strong></div>
+            <div class="contact-item"><span>Téléphone</span><strong id="member-phone">Non renseigné</strong></div>
+            <div class="contact-item"><span>Email</span><strong id="member-email">Non renseigné</strong></div>
+            <div class="contact-item"><span>Zone</span><strong id="member-zone">Non renseignée</strong></div>
+            <div class="contact-item"><span>Site web</span><strong id="member-site">Non renseigné</strong></div>
           </div>
         </aside>
       </div>
@@ -211,39 +226,38 @@
       <div class="profile-grid">
         <div>
           <section class="panel">
-            <h2>Pr&eacute;sentation du <em>membre.</em></h2>
-            <p>Espace Brest Ouest propose des solutions professionnelles flexibles pour les entreprises qui recherchent un espace rapidement, sans bail commercial classique et sans immobiliser une caution.</p>
-            <p>Le site s&apos;adresse aux artisans, TPE, commer&ccedil;ants, e-commer&ccedil;ants et structures en d&eacute;veloppement ayant besoin de stocker du mat&eacute;riel, d&apos;organiser une activit&eacute; ou de disposer d&apos;un espace temporaire.</p>
+            <h2>Présentation du <em>membre.</em></h2>
+            <p id="presentation-main">Chargement...</p>
+            <p id="presentation-extra"></p>
             <div class="info-grid">
-              <div class="info-box"><span>M&eacute;tier</span><strong>H&eacute;bergeur d&apos;espaces professionnels</strong></div>
-              <div class="info-box"><span>Secteur</span><strong>Immobilier professionnel flexible</strong></div>
-              <div class="info-box"><span>Zone</span><strong>Brest Ouest, Finist&egrave;re</strong></div>
-              <div class="info-box"><span>Public</span><strong>Professionnels sans ERP</strong></div>
+              <div class="info-box"><span>Métier</span><strong id="info-metier">Non renseigné</strong></div>
+              <div class="info-box"><span>Secteur</span><strong id="info-secteur">Non renseigné</strong></div>
+              <div class="info-box"><span>Ville</span><strong id="info-ville">Non renseignée</strong></div>
+              <div class="info-box"><span>Statut</span><strong id="info-statut">Profil public</strong></div>
             </div>
           </section>
 
           <section class="panel">
             <h2>Services et <em>besoins.</em></h2>
-            <p>Ce membre peut &ecirc;tre utile aux professionnels qui cherchent un espace de stockage, une surface d&apos;activit&eacute;, un bureau ou une solution ponctuelle pour absorber un pic d&apos;activit&eacute;.</p>
-            <div class="tags">
-              <span class="tag">Stockage professionnel</span>
-              <span class="tag">Bureau</span>
-              <span class="tag">Activit&eacute; sans ERP</span>
-              <span class="tag">Solution temporaire</span>
-              <span class="tag">Acc&egrave;s s&eacute;curis&eacute;</span>
-              <span class="tag">Brest</span>
+            <p id="services-text">Les services et spécialités du membre seront affichés ici.</p>
+            <div class="tags" id="tags"></div>
+          </section>
+
+          <section class="panel" id="annonces-membre">
+            <h2>Annonces publiées.</h2>
+            <p>Les annonces actives publiées par ce membre apparaissent ici.</p>
+            <div class="member-annonces" id="member-annonces">
+              <div class="loading-box">Chargement des annonces...</div>
             </div>
           </section>
 
           <section class="panel">
             <h2>Recommandations.</h2>
-            <div class="reco">
-              <strong>Recommandation membre STRAKARA</strong>
-              <p>Professionnel s&eacute;rieux, r&eacute;actif et clair dans les informations transmises. Profil utile pour les entreprises qui cherchent une solution d&apos;espace flexible.</p>
-            </div>
-            <div class="reco">
-              <strong>Pourquoi le contacter</strong>
-              <p>Pour obtenir rapidement une solution d&apos;espace, comparer les disponibilit&eacute;s ou &ecirc;tre orient&eacute; vers une alternative professionnelle adapt&eacute;e.</p>
+            <div id="recommendations">
+              <div class="reco">
+                <strong>Recommandation STRAKARA</strong>
+                <p>Profil membre vérifié ou en cours de vérification. Les recommandations professionnelles pourront être ajoutées ici progressivement.</p>
+              </div>
             </div>
           </section>
         </div>
@@ -252,20 +266,20 @@
           <div class="side-card">
             <h3>Informations utiles</h3>
             <ul>
-              <li>Profil contr&ocirc;l&eacute; avant publication</li>
-              <li>Coordonn&eacute;es publiques choisies par le membre</li>
-              <li>Contact possible par t&eacute;l&eacute;phone ou demande &eacute;crite</li>
+              <li>Profil contrôlé avant publication</li>
+              <li>Coordonnées publiques choisies par le membre</li>
+              <li>Contact possible par téléphone ou demande écrite</li>
               <li>Recommandations entre professionnels</li>
             </ul>
           </div>
           <div class="side-card">
             <h3>Vous cherchez un pro ?</h3>
-            <p>Consultez l&apos;annuaire STRAKARA pour trouver un artisan, un prestataire, un transporteur, un h&eacute;bergeur d&apos;espace ou une entreprise locale v&eacute;rifi&eacute;e.</p>
-            <a href="membres.html" class="btn-outline" style="margin-top:16px;width:100%;">Retour &agrave; l&apos;annuaire</a>
+            <p>Consultez l'annuaire STRAKARA pour trouver un artisan, un prestataire, un transporteur, un hébergeur d'espace ou une entreprise locale vérifiée.</p>
+            <a href="membres.html" class="btn-outline" style="margin-top:16px;width:100%;">Retour à l'annuaire</a>
           </div>
           <div class="side-card claim-card">
-            <h3>Vous &ecirc;tes professionnel ?</h3>
-            <p>Cr&eacute;ez votre profil public pour &ecirc;tre trouv&eacute;, recommand&eacute; et contact&eacute; plus facilement par les clients et les autres professionnels.</p>
+            <h3>Vous êtes professionnel ?</h3>
+            <p>Créez votre profil public pour être trouvé, recommandé et contacté plus facilement par les clients et les autres professionnels.</p>
             <a href="rejoindre.html" class="btn-gold" style="margin-top:16px;width:100%;">Créer mon profil</a>
           </div>
         </aside>
@@ -278,43 +292,237 @@
       <div class="sk-footer-inner">
         <div class="sk-footer-brand">
           <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-          <span class="sk-footer-logo-sub">R&eacute;seau Pro</span>
-          <p>Le r&eacute;seau gratuit des pros du terrain &mdash; annonces, entraide, achats group&eacute;s et &eacute;v&eacute;nements pour artisans, TPE, PME et transporteurs.</p>
-          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr &mdash; location d&apos;espaces &rarr;</a>
+          <span class="sk-footer-logo-sub">Réseau Pro</span>
+          <p>Le réseau gratuit des pros du terrain — annonces, entraide, achats groupés et événements pour artisans, TPE, PME et transporteurs.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — location d'espaces →</a>
         </div>
         <div class="sk-footer-col">
-          <h4>R&eacute;seau</h4>
+          <h4>Réseau</h4>
           <a href="https://app.strakara.fr/annonces.html">Annonces</a>
           <a href="https://app.strakara.fr/membres.html">Membres</a>
           <a href="https://app.strakara.fr/publier.html">Publier une annonce</a>
-          <a href="https://app.strakara.fr/rejoindre.html">Rejoindre &mdash; Gratuit</a>
+          <a href="https://app.strakara.fr/rejoindre.html">Rejoindre — Gratuit</a>
         </div>
         <div class="sk-footer-col">
           <h4>Secteurs</h4>
           <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-          <a href="https://app.strakara.fr/reseau/btp.html">BTP &amp; Artisans</a>
+          <a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a>
           <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
           <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
           <a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a>
         </div>
         <div class="sk-footer-col">
           <h4>STRAKARA</h4>
-          <a href="https://app.strakara.fr/blog/index.html">Blog &amp; Conseils</a>
-          <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d&apos;espaces</a>
-          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir h&eacute;bergeur</a>
+          <a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a>
+          <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d'espaces</a>
+          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a>
           <a href="https://www.strakara.fr/contact.html">Contact</a>
         </div>
       </div>
       <div class="sk-footer-bottom">
-        <p>&copy; 2026 STRAKARA SASU &mdash; Tous droits r&eacute;serv&eacute;s &middot; R&eacute;seau Pro</p>
+        <p>&copy; 2026 STRAKARA SASU — Tous droits réservés · Réseau Pro</p>
         <div class="sk-footer-bottom-links">
-          <a href="https://www.strakara.fr/mentions-legales.html">Mentions l&eacute;gales</a>
+          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
           <a href="https://www.strakara.fr/cgv.html">CGV</a>
-          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialit&eacute;</a>
+          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const $ = (id) => document.getElementById(id);
+
+    function text(value, fallback = 'Non renseigné') {
+      return value && String(value).trim() ? String(value).trim() : fallback;
+    }
+
+    function initials(name) {
+      const clean = text(name, 'SK').replace(/[^\p{L}\p{N}\s-]/gu, ' ').trim();
+      const parts = clean.split(/\s+/).filter(Boolean);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
+    function cleanUrl(url) {
+      if (!url) return '';
+      const u = String(url).trim();
+      if (!u) return '';
+      return /^https?:\/\//i.test(u) ? u : `https://${u}`;
+    }
+
+    function setBadge(container, textValue, gold = false) {
+      if (!textValue) return;
+      const span = document.createElement('span');
+      span.className = gold ? 'profile-badge gold' : 'profile-badge';
+      span.textContent = textValue;
+      container.appendChild(span);
+    }
+
+    function setTag(container, textValue) {
+      if (!textValue) return;
+      const span = document.createElement('span');
+      span.className = 'tag';
+      span.textContent = textValue;
+      container.appendChild(span);
+    }
+
+    function short(textValue, limit = 130) {
+      const t = text(textValue, '').replace(/\s+/g, ' ').trim();
+      return t.length > limit ? t.slice(0, limit).trim() + '...' : t;
+    }
+
+    async function chargerProfil() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!id) {
+        afficherErreur("Aucun identifiant membre n'est présent dans l'URL. Exemple attendu : profil-membre.html?id=xxxx");
+        return;
+      }
+
+      const { data: membre, error } = await supabase
+        .from('membres')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error || !membre) {
+        console.error(error);
+        afficherErreur("Impossible de charger ce profil membre. Vérifiez que l'ID existe dans Supabase et que le statut est actif.");
+        return;
+      }
+
+      remplirProfil(membre);
+      chargerAnnoncesMembre(membre);
+    }
+
+    function afficherErreur(message) {
+      $('page-error').textContent = message;
+      $('page-error').classList.remove('is-hidden');
+      $('member-name').textContent = 'Profil introuvable';
+      $('member-description').textContent = 'Ce profil n’est pas disponible pour le moment.';
+      $('member-annonces').innerHTML = '<div class="loading-box">Aucune annonce à afficher.</div>';
+    }
+
+    function remplirProfil(m) {
+      const nom = text(m.nom_entreprise || m.entreprise || m.nom, 'Membre STRAKARA');
+      const secteur = text(m.secteur, '');
+      const ville = text(m.ville, '');
+      const zone = text(m.zone_intervention || m.zone, ville || 'France');
+      const metier = text(m.metier || m.activite || m.categorie, secteur || 'Professionnel');
+      const description = text(m.description, "Ce membre n'a pas encore ajouté de présentation détaillée.");
+      const logo = m.logo_url || m.photo_url || m.image_url || '';
+
+      document.title = `${nom} — Profil membre STRAKARA`;
+      $('member-name').innerHTML = `${nom} <em>.</em>`;
+      $('member-description').textContent = description;
+      $('presentation-main').textContent = description;
+      $('presentation-extra').textContent = text(m.presentation_longue || m.presentation || '', '');
+      $('verification-label').textContent = m.badge_verifie ? 'Professionnel vérifié STRAKARA' : 'Professionnel STRAKARA';
+
+      if (logo) {
+        $('avatar').innerHTML = `<img src="${logo}" alt="${nom}">`;
+      } else {
+        $('avatar').textContent = initials(nom);
+      }
+
+      const badges = $('badges');
+      badges.innerHTML = '';
+      setBadge(badges, m.badge_verifie ? 'Entreprise vérifiée' : 'Profil public', true);
+      setBadge(badges, secteur);
+      setBadge(badges, ville);
+      if (m.siret) setBadge(badges, 'SIRET renseigné');
+
+      $('member-phone').textContent = text(m.telephone);
+      $('member-email').textContent = text(m.email || m.contact_email);
+      $('member-zone').textContent = text(zone);
+      const site = cleanUrl(m.site_web || m.website);
+      $('member-site').innerHTML = site ? `<a href="${site}" target="_blank" rel="noopener">Voir le site</a>` : 'Non renseigné';
+
+      const phoneBtn = $('phone-btn');
+      if (m.telephone) {
+        phoneBtn.href = `tel:${String(m.telephone).replace(/\s/g, '')}`;
+        phoneBtn.classList.remove('is-hidden');
+      }
+
+      const emailBtn = $('email-btn');
+      const email = m.email || m.contact_email;
+      if (email) {
+        emailBtn.href = `mailto:${email}?subject=Contact via STRAKARA Réseau Pro`;
+        emailBtn.classList.remove('is-hidden');
+      }
+
+      $('info-metier').textContent = metier;
+      $('info-secteur').textContent = text(secteur);
+      $('info-ville').textContent = text(ville);
+      $('info-statut').textContent = m.badge_verifie ? 'Entreprise vérifiée' : 'Profil public';
+
+      $('services-text').textContent = text(
+        m.services || m.specialites || m.besoins,
+        'Ce membre peut être contacté dans le cadre du réseau professionnel STRAKARA.'
+      );
+
+      const tags = $('tags');
+      tags.innerHTML = '';
+      const rawTags = [
+        ...(m.tags ? String(m.tags).split(',') : []),
+        ...(m.specialites ? String(m.specialites).split(',') : []),
+        secteur,
+        ville
+      ];
+      [...new Set(rawTags.map(t => t.trim()).filter(Boolean))].slice(0, 10).forEach(t => setTag(tags, t));
+    }
+
+    async function chargerAnnoncesMembre(membre) {
+      const container = $('member-annonces');
+      const nom = membre.nom_entreprise || membre.entreprise || membre.nom || '';
+
+      if (!nom) {
+        container.innerHTML = '<div class="loading-box">Aucune annonce liée à ce membre pour le moment.</div>';
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('annonces')
+        .select('id,titre,description,categorie,secteur,ville,type_annonce,image_url,created_at,nom_entreprise,statut')
+        .eq('statut', 'actif')
+        .eq('nom_entreprise', nom)
+        .order('created_at', { ascending: false })
+        .limit(6);
+
+      if (error) {
+        console.error(error);
+        container.innerHTML = '<div class="loading-box">Impossible de charger les annonces de ce membre.</div>';
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        container.innerHTML = '<div class="loading-box">Aucune annonce active publiée par ce membre pour le moment.</div>';
+        return;
+      }
+
+      container.innerHTML = data.map(a => `
+        <a class="member-annonce" href="annonces.html">
+          <div class="member-annonce-img">
+            ${a.image_url ? `<img src="${a.image_url}" alt="${a.titre || 'Annonce STRAKARA'}" loading="lazy">` : ''}
+          </div>
+          <div class="member-annonce-body">
+            <small>${text(a.ville, '')}${a.ville && a.secteur ? ' · ' : ''}${text(a.secteur, '')}</small>
+            <strong>${text(a.titre, 'Annonce STRAKARA')}</strong>
+            <p>${short(a.description, 115)}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    chargerProfil();
+  </script>
 
 </body>
 </html>
