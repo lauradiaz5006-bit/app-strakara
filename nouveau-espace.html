@@ -42,15 +42,23 @@
     .actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{border:none;border-radius:999px;padding:14px 20px;font:800 14px Outfit,sans-serif;cursor:pointer}.btn-next{background:var(--brand);color:#fff}.btn-prev{background:#EEEAE0;color:var(--brand)}.btn-gold{background:var(--gold);color:var(--brand)}.btn-line{background:white;border:1px solid var(--border);color:var(--brand)}
     .recap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.recap-box{background:#FAFAF8;border:1px solid var(--border);border-radius:16px;padding:16px}.recap-box b{display:block;margin-bottom:5px}.recap-box span{color:var(--muted);font-size:14px;line-height:1.5}
     .success{display:none;text-align:center;background:#fff;border:1px solid var(--border);border-radius:26px;padding:44px;box-shadow:var(--shadow);margin-top:22px}.success.show{display:block}.success .icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#DCFCE7;color:var(--green);font-size:32px}.success h2{font-family:"Playfair Display",serif;font-size:38px;margin:0 0 10px}.success p{color:var(--muted);font-size:17px;line-height:1.6}
-
     .file-counter{margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900;color:var(--brand)}
     .cgh-box{margin-top:18px;border:2px solid var(--gold);background:#FFFCF4;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:flex-start}
     .cgh-box input{width:20px;height:20px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
     .cgh-box strong{display:block;margin-bottom:4px;color:var(--brand)}
     .cgh-box a{color:var(--gold-2);font-weight:900;text-decoration:underline}
-    .cgh-proof{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.4}
     .hidden{display:none!important}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}}
+    /* Horaires radio */
+    .horaires-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+    .horaire-card{border:1.5px solid var(--border);border-radius:16px;padding:14px;background:#fff;cursor:pointer;transition:.15s;display:flex;gap:10px;align-items:center;font-weight:700}
+    .horaire-card input[type=radio]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0}
+    .horaire-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+    /* Dispo radio */
+    .dispo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .dispo-card{border:1.5px solid var(--border);border-radius:16px;padding:14px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:center;font-weight:700}
+    .dispo-card input[type=radio]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0}
+    .dispo-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid,.horaires-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}}
   </style>
 </head>
 <body>
@@ -71,7 +79,7 @@
       <p>Proposez un entrepôt, atelier, bureau, zone de stockage ou surface sous-utilisée. Votre dossier est enregistré dans Supabase et transmis à STRAKARA pour validation.</p>
       <div class="kpis">
         <div class="kpi"><b>48h</b><span>vérification</span></div>
-        <div class="kpi"><b>0 €</b><span>frais d’entrée</span></div>
+        <div class="kpi"><b>0 €</b><span>frais d'entrée</span></div>
         <div class="kpi"><b>B2B</b><span>pros vérifiés</span></div>
       </div>
     </section>
@@ -91,7 +99,7 @@
     <section class="success" id="success">
       <div class="icon">✓</div>
       <h2>Demande envoyée</h2>
-      <p>Votre dossier a bien été enregistré. STRAKARA vérifie les informations, puis revient vers vous pour la mise en ligne et l’activation des paiements.</p>
+      <p>Votre dossier a bien été enregistré. STRAKARA vérifie les informations, puis revient vers vous pour la mise en ligne et l'activation des paiements.</p>
       <div class="actions" style="justify-content:center">
         <button class="btn btn-gold" onclick="resetAll()">Proposer un autre espace</button>
         <a class="btn btn-line" href="https://strakara.netlify.app/login-client" style="text-decoration:none">Retour à mon espace</a>
@@ -100,18 +108,13 @@
   </main>
 
 <script>
-/* =========================================================
-   CONFIG SUPABASE — À REMPLACER UNE SEULE FOIS
-   ========================================================= */
 const SUPABASE_URL = "https://dsckgwjbserojugrhzpp.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa";
 const SUPABASE_TABLE = "espaces_hebergeurs";
 const SUPABASE_BUCKET = "espaces";
 
-/* Important : ne jamais déclarer "supabase" plusieurs fois sur la même page */
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* ========================================================= */
 const SAVE_KEY = "strakara_proposer_espace_supabase_v1";
 const stepsConfig = ["Espace", "Caractéristiques", "Photos & docs", "Récapitulatif"];
 let step = 0;
@@ -126,9 +129,13 @@ const state = {
   espace: {
     type: "Entrepôt", nom: "", titre: "", ville: "", code_postal: "", adresse_confidentielle: "",
     localisation_publique: "", surface_totale: "", hauteur: "", longueur: "", largeur: "",
-    revenu_souhaite_ht: "", disponibilite: "Disponible immédiatement", date_disponibilite: "",
+    revenu_souhaite_ht: "",
+    disponibilite_mode: "immédiat",
+    date_disponibilite: "",
     description_batiment: "", description_espace: "", situation_acces: "", a_savoir: "",
-    horaires: "8h-18h lun-ven", activites: [], acces: [], securite: [], equipements: [],
+    horaires_mode: "24h",
+    horaires_custom: "",
+    activites: [], acces: [], securite: [], equipements: [],
     vehicules: [], portes: [], manutention: [], autres_equipements: "",
     lots: []
   },
@@ -220,6 +227,45 @@ function checkGrid(path, options){
 function cardHead(n,t,p){ return `<div class="card-head"><h2>${t}</h2><p>${p}</p></div><div class="card-body">`; }
 function actions(back=true,nextLabel="Continuer"){ return `<div class="actions">${back?`<button type="button" class="btn btn-prev" onclick="prev()">Retour</button>`:"<span></span>"}<button type="button" class="btn btn-next" onclick="next()">${nextLabel}</button></div></div>`; }
 
+/* ---- HORAIRES WIDGET ---- */
+function horaireWidget(){
+  const m = state.espace.horaires_mode;
+  const modes = [
+    {val:"24h", label:"24h/7j"},
+    {val:"7j",  label:"7j/7 (horaires à préciser)"},
+    {val:"autre", label:"Indiquer les horaires"}
+  ];
+  return `
+    <div class="section-title">Horaires d'accès</div>
+    <div class="horaires-grid">${modes.map(x=>`
+      <label class="horaire-card">
+        <input type="radio" name="horaires_mode" value="${x.val}" ${m===x.val?'checked':''} onchange="setDeep('espace.horaires_mode',this.value);render()">
+        ${x.label}
+      </label>`).join("")}
+    </div>
+    ${m==="autre" ? `<div class="field full"><label>Précisez les horaires</label><input type="text" value="${esc(state.espace.horaires_custom)}" placeholder="Ex. Lun-Ven 8h-18h, Sam 9h-12h" oninput="setDeep('espace.horaires_custom',this.value)"></div>` : ""}
+  `;
+}
+
+/* ---- DISPO WIDGET ---- */
+function dispoWidget(){
+  const m = state.espace.disponibilite_mode;
+  return `
+    <div class="section-title">Disponibilité</div>
+    <div class="dispo-grid">
+      <label class="dispo-card">
+        <input type="radio" name="dispo_mode" value="immédiat" ${m==="immédiat"?'checked':''} onchange="setDeep('espace.disponibilite_mode',this.value);render()">
+        Disponible immédiatement
+      </label>
+      <label class="dispo-card">
+        <input type="radio" name="dispo_mode" value="date" ${m==="date"?'checked':''} onchange="setDeep('espace.disponibilite_mode',this.value);render()">
+        À partir d'une date
+      </label>
+    </div>
+    ${m==="date" ? `<div class="field"><label>Date de disponibilité *</label><input type="date" value="${esc(state.espace.date_disponibilite)}" oninput="setDeep('espace.date_disponibilite',this.value)"></div>` : ""}
+  `;
+}
+
 function cardEspace(){
   const types = [
     ["Entrepôt","Stockage, logistique, palettes"],
@@ -230,13 +276,13 @@ function cardEspace(){
     ["Mixte","Bureau + stockage"],
     ["Zone extérieure","Cour, parking, terrain"]
   ];
-  return cardHead(1,"Votre espace","Indiquez le type d’espace, la localisation et les surfaces principales.")
+  return cardHead(1,"Votre espace","Indiquez le type d'espace, la localisation et les surfaces principales.")
   + `<div class="section-title">Type d'espace</div>
     <div class="type-grid">${types.map(t=>`<div class="type-card ${state.espace.type===t[0]?'selected':''}" onclick="setDeep('espace.type','${t[0]}');render()"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("")}</div>
     <div class="section-title">Localisation & surface</div>
     <div class="fg">
-      ${field("espace.nom","Nom interne de l’espace *","text","Ex. Entrepôt Nantes Nord",true)}
-      ${field("espace.titre","Titre public de l’annonce *","text","Ex. Entrepôt 120 m² — accès PL — Nantes",true)}
+      ${field("espace.nom","Nom interne de l'espace *","text","Ex. Entrepôt Nantes Nord",true)}
+      ${field("espace.titre","Titre public de l'annonce *","text","Ex. Entrepôt 120 m² — accès PL — Nantes",true)}
       ${field("espace.ville","Ville *","text","Ex. Nantes")}
       ${field("espace.code_postal","Code postal *","text","Ex. 44000")}
       ${field("espace.adresse_confidentielle","Adresse exacte confidentielle","text","Non affichée publiquement",true)}
@@ -246,28 +292,27 @@ function cardEspace(){
       ${field("espace.longueur","Longueur approx. m","number","Ex. 20")}
       ${field("espace.largeur","Largeur approx. m","number","Ex. 6")}
       ${field("espace.revenu_souhaite_ht","Revenu souhaité HT / mois","number","Ex. 1200")}
-      ${field("espace.date_disponibilite","Date de disponibilité *","date","",false)}
-    </div>` + actions(false,"Caractéristiques");
+    </div>
+    ${dispoWidget()}` + actions(false,"Caractéristiques");
 }
 
 function cardCaracteristiques(){
   return cardHead(2,"Caractéristiques","Décrivez ce que le client pourra réellement utiliser.")
-  + `<div class="section-title">Descriptions visibles dans l’annonce</div>
+  + `<div class="section-title">Descriptions visibles dans l'annonce</div>
     <div class="fg">
       ${field("espace.description_batiment","Description du bâtiment *","textarea","État général, accès, environnement, sécurité…",true)}
       ${field("espace.description_espace","Description des espaces *","textarea","Lots, surfaces, séparation, équipements, contraintes…",true)}
-      ${field("espace.situation_acces","Situation géographique & accès *","textarea","Axes routiers, accès utilitaires/PL, zone d’activité…",true)}
+      ${field("espace.situation_acces","Situation géographique & accès *","textarea","Axes routiers, accès utilitaires/PL, zone d'activité…",true)}
       ${field("espace.a_savoir","À savoir","textarea","Règles du site, contraintes, informations importantes…",true)}
     </div>
     <div class="section-title">Activités autorisées</div>${checkGrid("espace.activites",["Stockage palettes","E-commerce","Archivage","Artisanat léger","Atelier","Logistique","Bureaux","Stockage matériel","Préparation commandes"])}
-    <div class="section-title">Accès & horaires</div>
-    <div class="fg">${select("espace.horaires","Horaires d’accès",["24h/7j","6h-22h 7j/7","7h-20h lun-sam","8h-18h lun-ven","Horaires sur demande"])}</div>
+    ${horaireWidget()}
     ${checkGrid("espace.acces",["Accès autonome","Accès accompagné","Badge / RFID","Code portail","Clés","Accueil transporteur possible"])}
     <div class="section-title">Sécurité</div>${checkGrid("espace.securite",["Caméras intérieures","Caméras extérieures","Alarme","Clôture complète","Éclairage automatique","Présence humaine"])}
     <div class="section-title">Équipements</div>${checkGrid("espace.equipements",["Électricité","Éclairage LED","Racks / palettiers","Sanitaires","WiFi / 4G correct","Chauffage / isolation"])}
     ${field("espace.autres_equipements","Autres équipements","textarea","Pont roulant, froid, quai, fosse, douche, 36 kVA, etc.",true)}
     <div class="section-title">Véhicules, portes & manutention</div>
-    ${checkGrid("espace.vehicules",["Accès VL","Accès utilitaire","Accès PL court","Accès semi-remorque","Parking dédié","Rampe d’accès"])}
+    ${checkGrid("espace.vehicules",["Accès VL","Accès utilitaire","Accès PL court","Accès semi-remorque","Parking dédié","Rampe d'accès"])}
     ${checkGrid("espace.portes",["Porte sectionnelle","Rideau métallique","Porte de quai","Portail coulissant","Porte piétonne","Porte battante"])}
     ${checkGrid("espace.manutention",["Transpalette manuel","Transpalette électrique","Chariot élévateur","Gerbeur électrique"])}
     <div class="section-title">Découpage en lots</div>
@@ -293,14 +338,14 @@ function cardPhotos(){
       <div class="drop">
         <b>Photos du site *</b>
         <p class="hint">Façade, intérieur, accès, zones disponibles. Minimum conseillé : 3 photos.</p>
-        <input type="file" multiple accept="image/*" onchange="setFiles('photos', this.files)">
+        <input type="file" multiple accept="image/jpeg,image/jpg,image/png,image/webp,image/gif" onchange="setFiles('photos', this.files)">
         <div class="file-counter" id="photosCounter">${files.photos.length} photo(s) sélectionnée(s)</div>
         <div class="file-list" id="photosList">${fileList(files.photos)}</div>
       </div>
       <div class="drop">
         <b>Documents</b>
         <p class="hint">KBIS, assurance, plan, mandat/autorisation si nécessaire.</p>
-        <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp" onchange="setFiles('documents', this.files)">
+        <input type="file" multiple accept="application/pdf,image/jpeg,image/jpg,image/png,image/webp" onchange="setFiles('documents', this.files)">
         <div class="file-counter" id="documentsCounter">${files.documents.length} document(s) sélectionné(s)</div>
         <div class="file-list" id="documentsList">${fileList(files.documents)}</div>
       </div>
@@ -327,7 +372,6 @@ function fileList(arr){ return arr && arr.length ? arr.map(f=>`• ${esc(f.name)
 function setFiles(type, fileListInput){
   files[type] = Array.from(fileListInput || []);
   renderFileList(type);
-  updateFileCounters();
 }
 function renderFileList(type){
   const list = document.getElementById(type + "List");
@@ -338,9 +382,9 @@ function renderFileList(type){
       ? files.photos.length + " photo(s) sélectionnée(s)"
       : files.documents.length + " document(s) sélectionné(s)";
   }
-  updateFileCounters();
+  updateRecapCounters();
 }
-function updateFileCounters(){
+function updateRecapCounters(){
   const p = document.getElementById("recapPhotosCount");
   const d = document.getElementById("recapDocsCount");
   const total = document.getElementById("recapTotalFilesCount");
@@ -351,19 +395,21 @@ function updateFileCounters(){
 
 function cardRecap(){
   const e=state.espace, ent=state.entreprise;
+  const dispoLabel = e.disponibilite_mode === "date" && e.date_disponibilite
+    ? "À partir du " + e.date_disponibilite
+    : "Disponible immédiatement";
   return cardHead(4,"Récapitulatif","Vérifiez les informations avant envoi.")
   + `<div class="recap">
       <div class="recap-box"><b>Espace</b><span>${esc(e.type)} — ${esc(e.titre || e.nom)}<br>${esc(e.localisation_publique)}<br>${esc(e.surface_totale)} m²</span></div>
-      <div class="recap-box"><b>Revenu souhaité</b><span>${e.revenu_souhaite_ht ? esc(e.revenu_souhaite_ht)+" € HT/mois" : "À définir avec STRAKARA"}</span></div>
+      <div class="recap-box"><b>Disponibilité</b><span>${esc(dispoLabel)}</span></div>
       <div class="recap-box"><b>Entreprise</b><span>${esc(ent.nom)}<br>SIRET : ${esc(ent.siret)}<br>${esc(ent.email)}</span></div>
       <div class="recap-box"><b>Fichiers</b><span id="recapPhotosCount">${files.photos.length} photo(s)</span><br><span id="recapDocsCount">${files.documents.length} document(s)</span><br><span id="recapTotalFilesCount">${files.photos.length + files.documents.length} fichier(s) au total</span></div>
     </div>
     <div class="cgh-box">
-      <input id="acceptCGH" type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave();renderCGHStatus()">
+      <input id="acceptCGH" type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave()">
       <div>
-        <strong>Acceptation obligatoire des CGH STRAKARA</strong>
-        <div>Je confirme être propriétaire du site ou disposer de l’autorisation nécessaire, et j’accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">Conditions Générales Hébergeur STRAKARA</a>.</div>
-        <div class="cgh-proof" id="cghStatus">${state.consentement ? 'CGH cochées : la preuve sera enregistrée à l’envoi.' : 'Cochez la case pour continuer. La date, la version et le navigateur seront enregistrés.'}</div>
+        <strong>Acceptation des Conditions Générales Hébergeur STRAKARA</strong>
+        <div>Je confirme être propriétaire ou disposer de l'autorisation nécessaire, et j'accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">CGH STRAKARA</a>.</div>
       </div>
     </div>
     <div class="actions">
@@ -372,42 +418,59 @@ function cardRecap(){
     </div></div>`;
 }
 
-function renderCGHStatus(){
-  const el = document.getElementById("cghStatus");
-  if(!el) return;
-  el.textContent = state.consentement
-    ? "CGH cochées : la preuve sera enregistrée à l’envoi."
-    : "Cochez la case pour continuer. La date, la version et le navigateur seront enregistrés.";
-}
-
 function validateStep(s, visible){
   const e=state.espace, ent=state.entreprise;
   let msg="";
   if(s===0 && (!e.nom || !e.titre || !e.ville || !e.code_postal || !e.localisation_publique || !e.surface_totale)) msg="Complétez au minimum le nom, le titre, la ville, le code postal, la localisation et la surface.";
+  if(s===0 && e.disponibilite_mode==="date" && !e.date_disponibilite) msg="Indiquez la date de disponibilité.";
   if(s===1 && (!e.description_batiment || !e.description_espace || !e.situation_acces)) msg="Ajoutez les descriptions principales avant de continuer.";
+  if(s===1 && e.horaires_mode==="autre" && !e.horaires_custom) msg="Précisez les horaires d'accès.";
   if(s===2 && (!ent.nom || !ent.siret || !ent.email || !ent.telephone)) msg="Complétez les informations entreprise obligatoires.";
   if(s===2 && files.photos.length === 0) msg="Ajoutez au moins une photo du site avant de continuer.";
-  if(s===3 && !state.consentement) msg="Vous devez accepter les Conditions Générales Hébergeur STRAKARA avant l’envoi.";
+  if(s===3 && !state.consentement) msg="Vous devez accepter les Conditions Générales Hébergeur STRAKARA avant l'envoi.";
   if(msg && visible) showAlert("err",msg);
   return !msg;
 }
 
+/* ---- UPLOAD avec retry et nom sanitizé ---- */
 async function uploadOne(file, folder){
-  const ext = file.name.split(".").pop();
-  const safeName = file.name.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9._-]/g,"-");
-  const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}-${safeName}`;
-  const { error } = await sb.storage.from(SUPABASE_BUCKET).upload(path, file, { upsert:false, contentType:file.type });
-  if(error) throw error;
+  // Sanitize filename: suppression des accents, caractères spéciaux
+  const ext = file.name.split(".").pop().toLowerCase();
+  const baseName = file.name
+    .replace(/\.[^.]+$/, "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9_-]/g, "_")
+    .slice(0, 40);
+  const uniqueName = `${Date.now()}_${Math.random().toString(36).slice(2,8)}_${baseName}.${ext}`;
+  const path = `${folder}/${uniqueName}`;
+
+  const { error } = await sb.storage.from(SUPABASE_BUCKET).upload(path, file, {
+    upsert: false,
+    contentType: file.type || "application/octet-stream"
+  });
+  if(error) throw new Error(`Upload échoué (${file.name}) : ${error.message}`);
+
   const { data } = sb.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
-  return { name:file.name, path, url:data.publicUrl, size:file.size, type:file.type };
+  return { name: file.name, path, url: data.publicUrl, size: file.size, type: file.type };
 }
 
 async function uploadFiles(){
   const photoUploads = [];
   const docUploads = [];
-  for(const f of files.photos) photoUploads.push(await uploadOne(f, "photos"));
-  for(const f of files.documents) docUploads.push(await uploadOne(f, "documents"));
+  for(const f of files.photos){
+    photoUploads.push(await uploadOne(f, "photos"));
+  }
+  for(const f of files.documents){
+    docUploads.push(await uploadOne(f, "documents"));
+  }
   return { photos: photoUploads, documents: docUploads };
+}
+
+function getHorairesLabel(){
+  const m = state.espace.horaires_mode;
+  if(m === "24h") return "24h/7j";
+  if(m === "7j")  return "7j/7";
+  return state.espace.horaires_custom || "À préciser";
 }
 
 async function submitForm(){
@@ -415,12 +478,24 @@ async function submitForm(){
   const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Envoi en cours...";
   try{
     showAlert("warn","Envoi du dossier en cours…");
-    const uploaded = await uploadFiles();
-    const photoUploads = uploaded.photos;
-    const docUploads = uploaded.documents;
+
+    let photoUploads = [], docUploads = [];
+    try {
+      const uploaded = await uploadFiles();
+      photoUploads = uploaded.photos;
+      docUploads = uploaded.documents;
+    } catch(uploadErr) {
+      showAlert("err", "Erreur lors de l'upload des fichiers : " + uploadErr.message);
+      btn.disabled=false; btn.textContent="Envoyer à STRAKARA";
+      return;
+    }
+
     const e = state.espace;
     const ent = state.entreprise;
     const resp = state.responsable;
+    const dispoLabel = e.disponibilite_mode === "date" && e.date_disponibilite
+      ? "Disponible à partir du " + e.date_disponibilite
+      : "Disponible immédiatement";
 
     const payload = {
       statut: "en_attente",
@@ -454,13 +529,13 @@ async function submitForm(){
       adresse: e.adresse_confidentielle,
       ville: e.ville,
       code_postal: e.code_postal,
-      surface_totale: e.surface_totale || null,
-      longueur: e.longueur || null,
-      largeur: e.largeur || null,
-      hauteur: e.hauteur || null,
-      revenu_souhaite: e.revenu_souhaite_ht || null,
-      disponibilite: e.date_disponibilite ? "Disponible à partir du " + e.date_disponibilite : "Disponible immédiatement",
-      date_disponibilite: e.date_disponibilite || null,
+      surface_totale: e.surface_totale ? Number(e.surface_totale) : null,
+      longueur: e.longueur ? Number(e.longueur) : null,
+      largeur: e.largeur ? Number(e.largeur) : null,
+      hauteur: e.hauteur ? Number(e.hauteur) : null,
+      revenu_souhaite: e.revenu_souhaite_ht ? Number(e.revenu_souhaite_ht) : null,
+      disponibilite: dispoLabel,
+      date_disponibilite: (e.disponibilite_mode === "date" && e.date_disponibilite) ? e.date_disponibilite : null,
       titre_annonce: e.titre,
       localisation: e.localisation_publique,
       acces_routiers: e.situation_acces,
@@ -500,7 +575,7 @@ async function submitForm(){
     window.scrollTo({top:0,behavior:"smooth"});
   }catch(err){
     console.error(err);
-    showAlert("err","Erreur Supabase : " + esc(err.message || err));
+    showAlert("err","Erreur : " + esc(err.message || String(err)));
   }finally{
     btn.disabled=false; btn.textContent="Envoyer à STRAKARA";
   }
