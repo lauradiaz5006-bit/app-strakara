@@ -368,15 +368,32 @@ function cardPhotos(){
       ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
     </div>` + actions(true,"Récapitulatif");
 }
-function fileList(arr){ return arr && arr.length ? arr.map(f=>`• ${esc(f.name)} (${Math.round(f.size/1024)} Ko)`).join("<br>") : "Aucun fichier sélectionné."; }
+function fileList(arr, type){
+  if(!arr || !arr.length) return `<span style="color:var(--muted)">Aucun fichier sélectionné.</span>`;
+  return arr.map((f,i)=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <span>📎 ${esc(f.name)} <span style="color:var(--muted);font-size:11px">(${Math.round(f.size/1024)} Ko)</span></span>
+      <button type="button" onclick="removeFile('${type}',${i})" style="border:none;background:#FEE2E2;color:var(--red);border-radius:8px;padding:3px 9px;cursor:pointer;font-weight:900;font-size:13px">×</button>
+    </div>`).join("");
+}
+function removeFile(type, index){
+  files[type].splice(index, 1);
+  renderFileList(type);
+}
 function setFiles(type, fileListInput){
-  files[type] = Array.from(fileListInput || []);
+  // Accumulate — deduplicate by name+size
+  const newFiles = Array.from(fileListInput || []);
+  const existing = files[type];
+  for(const f of newFiles){
+    const isDuplicate = existing.some(e => e.name === f.name && e.size === f.size);
+    if(!isDuplicate) existing.push(f);
+  }
   renderFileList(type);
 }
 function renderFileList(type){
   const list = document.getElementById(type + "List");
   const counter = document.getElementById(type + "Counter");
-  if(list) list.innerHTML = fileList(files[type]);
+  if(list) list.innerHTML = fileList(files[type], type);
   if(counter){
     counter.textContent = type === "photos"
       ? files.photos.length + " photo(s) sélectionnée(s)"
