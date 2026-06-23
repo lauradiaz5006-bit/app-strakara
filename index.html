@@ -231,7 +231,7 @@
   <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
 
   <ul class="sk-nav__links">
-    <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+    <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
     <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
     <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
@@ -242,11 +242,17 @@
 
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
+
+  <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
-  
+
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
   <a href="https://app.strakara.fr/annonces.html">Annonces</a>
@@ -257,7 +263,7 @@
   <a href="https://www.strakara.fr">strakara.fr →</a>
 
   <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
 </div>
