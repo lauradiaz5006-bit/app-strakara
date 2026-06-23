@@ -332,9 +332,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-   const supabaseClient URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
-const supabaseClient_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     const $ = (id) => document.getElementById(id);
 
@@ -386,7 +386,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         return;
       }
 
-      const { data: membre, error } = await supabaseClient.
+      const { data: membre, error } = await supabaseClient
         .from('membres')
         .select('*')
         .eq('id', id)
@@ -411,20 +411,20 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     }
 
     function remplirProfil(m) {
-      const nom = text(m.nom_entreprise || m.entreprise || m.nom, 'Membre STRAKARA');
+      const nom = text(m.entreprise || [m.prenom, m.nom].filter(Boolean).join(' '), 'Membre STRAKARA');
       const secteur = text(m.secteur, '');
       const ville = text(m.ville, '');
-      const zone = text(m.zone_intervention || m.zone, ville || 'France');
-      const metier = text(m.metier || m.activite || m.categorie, secteur || 'Professionnel');
+      const zone = text([m.ville, m.departement, m.region].filter(Boolean).join(' · '), ville || 'France');
+      const metier = text(m.sous_secteur || m.secteur, secteur || 'Professionnel');
       const description = text(m.description, "Ce membre n'a pas encore ajouté de présentation détaillée.");
-      const logo = m.logo_url || m.photo_url || m.image_url || '';
+      const logo = m.logo_url || '';
 
       document.title = `${nom} — Profil membre STRAKARA`;
       $('member-name').innerHTML = `${nom} <em>.</em>`;
       $('member-description').textContent = description;
       $('presentation-main').textContent = description;
       $('presentation-extra').textContent = text(m.presentation_longue || m.presentation || '', '');
-      $('verification-label').textContent = m.badge_verifie ? 'Professionnel vérifié STRAKARA' : 'Professionnel STRAKARA';
+      $('verification-label').textContent = m.verifie ? 'Professionnel vérifié STRAKARA' : 'Professionnel STRAKARA';
 
       if (logo) {
         $('avatar').innerHTML = `<img src="${logo}" alt="${nom}">`;
@@ -434,10 +434,11 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
       const badges = $('badges');
       badges.innerHTML = '';
-      setBadge(badges, m.badge_verifie ? 'Entreprise vérifiée' : 'Profil public', true);
+      setBadge(badges, m.verifie ? 'Entreprise vérifiée' : 'Profil public', true);
       setBadge(badges, secteur);
       setBadge(badges, ville);
       if (m.siret) setBadge(badges, 'SIRET renseigné');
+      if (m.region) setBadge(badges, m.region);
 
       $('member-phone').textContent = text(m.telephone);
       $('member-email').textContent = text(m.email || m.contact_email);
@@ -461,34 +462,35 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       $('info-metier').textContent = metier;
       $('info-secteur').textContent = text(secteur);
       $('info-ville').textContent = text(ville);
-      $('info-statut').textContent = m.badge_verifie ? 'Entreprise vérifiée' : 'Profil public';
+      $('info-statut').textContent = m.verifie ? 'Entreprise vérifiée' : 'Profil public';
 
       $('services-text').textContent = text(
-        m.services || m.specialites || m.besoins,
+        m.description,
         'Ce membre peut être contacté dans le cadre du réseau professionnel STRAKARA.'
       );
 
       const tags = $('tags');
       tags.innerHTML = '';
       const rawTags = [
-        ...(m.tags ? String(m.tags).split(',') : []),
-        ...(m.specialites ? String(m.specialites).split(',') : []),
         secteur,
-        ville
+        m.sous_secteur,
+        ville,
+        m.departement,
+        m.region
       ];
       [...new Set(rawTags.map(t => t.trim()).filter(Boolean))].slice(0, 10).forEach(t => setTag(tags, t));
     }
 
     async function chargerAnnoncesMembre(membre) {
       const container = $('member-annonces');
-      const nom = membre.nom_entreprise || membre.entreprise || membre.nom || '';
+      const nom = membre.entreprise || [membre.prenom, membre.nom].filter(Boolean).join(' ') || '';
 
       if (!nom) {
         container.innerHTML = '<div class="loading-box">Aucune annonce liée à ce membre pour le moment.</div>';
         return;
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('annonces')
         .select('id,titre,description,categorie,secteur,ville,type_annonce,image_url,created_at,nom_entreprise,statut')
         .eq('statut', 'actif')
