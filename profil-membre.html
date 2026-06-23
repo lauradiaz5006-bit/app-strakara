@@ -332,9 +332,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+   const supabaseClient URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+const supabaseClient_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     const $ = (id) => document.getElementById(id);
 
@@ -386,7 +386,7 @@
         return;
       }
 
-      const { data: membre, error } = await supabase
+      const { data: membre, error } = await supabaseClient.
         .from('membres')
         .select('*')
         .eq('id', id)
