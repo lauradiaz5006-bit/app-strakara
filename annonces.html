@@ -594,7 +594,9 @@
                 <span class="annonce-card-surface">${[a.categorie, a.surface, a.prix].filter(Boolean).join(' · ')}</span>
                 <span class="annonce-card-meta">${meta}</span>
               </div>
-              <a href="mailto:${a.contact_email || ''}" class="annonce-card-link">Contacter →</a>
+              <a href="annonce-detail.html?id=${a.id}" class="annonce-card-link">
+  Voir l'annonce →
+</a>
             </div>
           </article>`;
       });
