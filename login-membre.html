@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion membre — STRAKARA Réseau Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico">
+
+  <style>
+    body{font-family:Arial,sans-serif;background:#F6F5F0;color:#1E1F23;margin:0}
+    .box{max-width:430px;margin:80px auto;background:white;padding:34px;border:1px solid #E8E0D0}
+    h1{font-family:serif;font-size:34px;font-weight:400;margin-bottom:10px}
+    p{color:#6E7175;line-height:1.6}
+    label{display:block;margin-top:18px;font-size:12px;font-weight:bold;text-transform:uppercase}
+    input{width:100%;padding:14px;margin-top:7px;border:1px solid #E8E0D0;font-size:15px;box-sizing:border-box}
+    button{width:100%;margin-top:20px;padding:15px;background:#1E1F23;color:white;border:0;font-weight:bold;cursor:pointer}
+    .gold{color:#C8A96A}
+    .status{margin-top:16px;font-size:14px;color:#6E7175}
+    .hidden{display:none}
+    a{color:#A8894A;text-decoration:none}
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>Connexion <span class="gold">membre</span></h1>
+    <p>Entrez votre numéro de téléphone. Vous recevrez un code de connexion par SMS.</p>
+
+    <div id="step-phone">
+      <label for="phone">Numéro de téléphone</label>
+      <input id="phone" type="tel" placeholder="+33600000000">
+
+      <button onclick="sendCode()">Recevoir mon code</button>
+    </div>
+
+    <div id="step-code" class="hidden">
+      <label for="code">Code reçu par SMS</label>
+      <input id="code" type="text" placeholder="123456">
+
+      <button onclick="verifyCode()">Me connecter</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <p style="margin-top:24px;font-size:13px;">
+      Pas encore membre ?
+      <a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a>
+    </p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const statusBox = document.getElementById('status');
+
+    function setStatus(message) {
+      statusBox.textContent = message;
+    }
+
+    async function sendCode() {
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!phone.startsWith('+')) {
+        setStatus('Indiquez le numéro au format international, exemple : +33600000000');
+        return;
+      }
+
+      setStatus('Envoi du code en cours...');
+
+      const { error } = await supabase.auth.signInWithOtp({
+        phone: phone
+      });
+
+      if (error) {
+        console.error(error);
+        setStatus("Impossible d’envoyer le code. Vérifiez la configuration SMS Supabase.");
+        return;
+      }
+
+      document.getElementById('step-phone').classList.add('hidden');
+      document.getElementById('step-code').classList.remove('hidden');
+      setStatus('Code envoyé par SMS.');
+    }
+
+    async function verifyCode() {
+      const phone = document.getElementById('phone').value.trim();
+      const token = document.getElementById('code').value.trim();
+
+      if (!token) {
+        setStatus('Entrez le code reçu par SMS.');
+        return;
+      }
+
+      setStatus('Connexion en cours...');
+
+      const { data, error } = await supabase.auth.verifyOtp({
+        phone: phone,
+        token: token,
+        type: 'sms'
+      });
+
+      if (error) {
+        console.error(error);
+        setStatus('Code incorrect ou expiré.');
+        return;
+      }
+
+      setStatus('Connexion réussie. Redirection...');
+
+      window.location.href = 'espace-membre.html';
+    }
+  </script>
+
+</body>
+</html>
