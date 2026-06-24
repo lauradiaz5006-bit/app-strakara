@@ -452,12 +452,12 @@
         phoneBtn.classList.remove('is-hidden');
       }
 
-      const emailBtn = $('email-btn');
-      const email = m.email || m.contact_email;
-      if (email) {
-        emailBtn.href = `mailto:${email}?subject=Contact via STRAKARA Réseau Pro`;
-        emailBtn.classList.remove('is-hidden');
-      }
+     const emailBtn = $('email-btn');
+
+      if (m.id) {
+      emailBtn.href = `demande-contact.html?id=${m.id}`;
+     emailBtn.classList.remove('is-hidden');
+     }
 
       $('info-metier').textContent = metier;
       $('info-secteur').textContent = text(secteur);
