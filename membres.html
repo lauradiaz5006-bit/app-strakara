@@ -226,30 +226,44 @@
     </div>
   </section>
 
-  <div class="membres-filtres-wrap">
-    <div class="container">
-      <form class="membres-filtres" id="membres-filtres">
-        <input class="filtre-input" id="filtre-search" type="text" placeholder="Nom, métier, ville ou entreprise...">
-        <select class="filtre-select" id="filtre-profil">
-          <option value="">Tous les profils</option>
-          <option value="artisan">Artisan</option>
-          <option value="transport">Transporteur</option>
-          <option value="prestataire">Prestataire</option>
-          <option value="hébergeur">Hébergeur d'espace</option>
-          <option value="immobilier">Immobilier Pro</option>
-        </select>
-        <select class="filtre-select" id="filtre-secteur">
-          <option value="">Tous les secteurs</option>
-          <option value="BTP">BTP & Artisans</option>
-          <option value="Transport">Transport</option>
-          <option value="Prestataires">Prestataires</option>
-          <option value="Immobilier">Immobilier Pro</option>
-          <option value="E-commerce">E-commerce</option>
-        </select>
-        <button class="filtre-btn" type="submit">Rechercher</button>
-      </form>
-    </div>
+ <div class="membres-filtres-wrap">
+  <div class="container">
+    <form class="membres-filtres" id="membres-filtres">
+
+      <input
+        class="filtre-input"
+        id="filtre-search"
+        type="text"
+        placeholder="Nom, métier, ville ou entreprise..."
+      >
+
+      <select class="filtre-select" id="filtre-profil">
+        <option value="">Tous les profils</option>
+        <option value="artisan">Artisan</option>
+        <option value="transport">Transporteur</option>
+        <option value="prestataire">Prestataire</option>
+        <option value="hébergeur">Hébergeur d'espace</option>
+        <option value="immobilier">Immobilier Pro</option>
+      </select>
+
+      <select class="filtre-select" id="filtre-secteur">
+        <option value="">Tous les secteurs</option>
+        <option value="Immobilier Pro">Immobilier Pro</option>
+        <option value="BTP & Artisans">BTP & Artisans</option>
+        <option value="Transport & Logistique">Transport & Logistique</option>
+        <option value="Prestataires">Prestataires</option>
+        <option value="E-commerce">E-commerce</option>
+        <option value="Jobs saisonniers">Jobs saisonniers</option>
+        <option value="Matériel">Matériel</option>
+      </select>
+
+      <button class="filtre-btn" type="submit">
+        Rechercher
+      </button>
+
+    </form>
   </div>
+</div>
 
   <div class="membres-tabs">
     <div class="container">
@@ -406,9 +420,9 @@
         ].join(' '));
         const okSearch = !search || haystack.includes(search);
         const okProfil = !profil || haystack.includes(profil);
-        const okSecteur = !secteurSelect || haystack.includes(secteurSelect);
-        return okSearch && okProfil && okSecteur;
-      });
+        const okSecteur =
+  !secteurSelect ||
+  normalize(m.secteur || '') === secteurSelect;
 
       if(sort === 'az') filtered.sort((a,b) => String(getEntreprise(a)).localeCompare(String(getEntreprise(b))));
       if(sort === 'ville') filtered.sort((a,b) => String(a.ville || '').localeCompare(String(b.ville || '')));
