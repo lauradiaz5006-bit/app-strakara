@@ -582,8 +582,25 @@ async function submitForm(){
       plans: []
     };
 
-    const { error } = await sb.from(SUPABASE_TABLE).insert(payload);
-    if(error) throw error;
+const { error } = await sb.from(SUPABASE_TABLE).insert(payload);
+if(error) throw error;
+
+// ── WEBHOOK N8N → EMAIL CONFIRMATION HÉBERGEUR ──────────────
+try {
+  await fetch('https://strakara.app.n8n.cloud/webhook/nouveau-espace-strakara', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: ent.email || resp.email || '',
+      prenom_nom: resp.nom || ent.nom || '',
+      titre: e.titre || e.nom || '',
+      ville: e.ville || '',
+      type_espace: e.type || ''
+    })
+  });
+} catch(n8nErr) {
+  console.warn('Webhook N8N non atteint :', n8nErr);
+}
 
     localStorage.removeItem(SAVE_KEY);
     $("#formArea").classList.add("hidden");
