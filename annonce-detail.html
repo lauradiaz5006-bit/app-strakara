@@ -1,0 +1,504 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Détail de l'annonce — STRAKARA Réseau Pro</title>
+  <meta name="description" content="Consultez le détail d'une annonce publiée sur STRAKARA Réseau Pro.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#1E1F23;
+      --gold:#C8A96A;
+      --gold-dark:#A8894A;
+      --light:#F6F5F0;
+      --text:#1E1F23;
+      --muted:#6E7175;
+      --border:#E8E0D0;
+      --white:#FFFFFF;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Outfit',sans-serif;
+      color:var(--text);
+      background:var(--light);
+      line-height:1.65;
+    }
+
+    a{text-decoration:none;color:inherit;}
+    .container{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+    .sk-nav{
+      background:var(--white);
+      border-bottom:1px solid var(--border);
+      height:58px;
+      display:flex;
+      align-items:center;
+      padding:0 24px;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .sk-nav__logo{
+      font-family:'Playfair Display',serif;
+      font-size:15px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--brand);
+      margin-right:36px;
+      white-space:nowrap;
+    }
+
+    .sk-nav__logo span{color:var(--gold);}
+
+    .sk-nav__links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      list-style:none;
+      flex:1;
+    }
+
+    .sk-nav__links a{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .sk-nav__links a:hover,
+    .sk-nav__links a.active{
+      color:var(--brand);
+      font-weight:500;
+    }
+
+    .btn-dark{
+      display:inline-block;
+      background:var(--brand);
+      color:var(--white);
+      padding:14px 28px;
+      font-size:14px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-outline{
+      display:inline-block;
+      background:transparent;
+      color:var(--brand);
+      padding:13px 28px;
+      font-size:14px;
+      font-weight:600;
+      border:1px solid var(--border);
+    }
+
+    .detail-hero{
+      background:var(--white);
+      border-bottom:1px solid var(--border);
+      padding:52px 0 46px;
+    }
+
+    .breadcrumb{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .breadcrumb a{
+      color:var(--gold-dark);
+      font-weight:600;
+    }
+
+    .label{
+      display:inline-block;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:var(--gold-dark);
+      margin-bottom:14px;
+    }
+
+    .detail-hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(34px,4vw,56px);
+      line-height:1.1;
+      font-weight:400;
+      color:var(--brand);
+      max-width:820px;
+      margin-bottom:16px;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      background:var(--light);
+      border:1px solid var(--border);
+      color:var(--muted);
+      padding:7px 12px;
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .detail-body{
+      padding:44px 0 80px;
+    }
+
+    .detail-grid{
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .main-card,
+    .side-card{
+      background:var(--white);
+      border:1px solid var(--border);
+    }
+
+    .main-img{
+      width:100%;
+      height:390px;
+      background:linear-gradient(135deg,#F6F5F0,#E8E0D0);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .main-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .placeholder{
+      font-family:'Playfair Display',serif;
+      font-size:14px;
+      letter-spacing:.24em;
+      color:rgba(30,31,35,.25);
+    }
+
+    .main-content{
+      padding:34px;
+    }
+
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:28px;
+      font-weight:400;
+      color:var(--brand);
+      margin-bottom:14px;
+    }
+
+    .description{
+      font-size:15px;
+      color:var(--muted);
+      line-height:1.85;
+      white-space:pre-line;
+    }
+
+    .side-card{
+      padding:28px;
+      position:sticky;
+      top:82px;
+    }
+
+    .side-title{
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:var(--gold-dark);
+      margin-bottom:18px;
+      display:block;
+    }
+
+    .info-row{
+      border-bottom:1px solid var(--border);
+      padding:12px 0;
+    }
+
+    .info-row:last-child{border-bottom:none;}
+
+    .info-label{
+      display:block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--muted);
+      margin-bottom:3px;
+    }
+
+    .info-value{
+      display:block;
+      font-size:14px;
+      color:var(--brand);
+      font-weight:600;
+    }
+
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .empty{
+      background:var(--white);
+      border:1px solid var(--border);
+      text-align:center;
+      padding:70px 30px;
+    }
+
+    .empty h1{
+      font-family:'Playfair Display',serif;
+      font-size:34px;
+      font-weight:400;
+      margin-bottom:12px;
+    }
+
+    .empty p{
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+
+    @media(max-width:900px){
+      .sk-nav__links{display:none;}
+      .detail-grid{grid-template-columns:1fr;}
+      .side-card{position:static;}
+      .main-img{height:280px;}
+      .container{padding:0 20px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="sk-nav">
+    <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+      <li><a href="https://app.strakara.fr/annonces.html" class="active">Annonces</a></li>
+      <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+      <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
+      <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
+      <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
+    </ul>
+  </nav>
+
+  <div id="page-content">
+    <section class="detail-hero">
+      <div class="container">
+        <p class="breadcrumb">
+          <a href="annonces.html">← Retour aux annonces</a>
+        </p>
+        <span class="label">Annonce du réseau</span>
+        <h1 id="titre">Chargement de l'annonce...</h1>
+        <div class="hero-meta" id="hero-meta"></div>
+      </div>
+    </section>
+
+    <section class="detail-body">
+      <div class="container">
+        <div class="detail-grid">
+
+          <article class="main-card">
+            <div class="main-img" id="image-zone">
+              <span class="placeholder">STRAKARA</span>
+            </div>
+
+            <div class="main-content">
+              <h2 class="section-title">Description</h2>
+              <div class="description" id="description">
+                Chargement...
+              </div>
+            </div>
+          </article>
+
+          <aside class="side-card">
+            <span class="side-title">Informations</span>
+
+            <div class="info-row">
+              <span class="info-label">Catégorie</span>
+              <span class="info-value" id="categorie">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Type d'annonce</span>
+              <span class="info-value" id="type-annonce">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Ville</span>
+              <span class="info-value" id="ville">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Secteur</span>
+              <span class="info-value" id="secteur">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Entreprise</span>
+              <span class="info-value" id="entreprise">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Surface / prix</span>
+              <span class="info-value" id="surface-prix">—</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">Date de publication</span>
+              <span class="info-value" id="date">—</span>
+            </div>
+
+            <div class="actions">
+              <a href="#" id="contact-btn" class="btn-dark">Demander un contact</a>
+              <a href="annonces.html" class="btn-outline">Voir toutes les annonces</a>
+              <a href="#" id="profil-btn" class="btn-outline" style="display:none;">Voir le profil du membre</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    function txt(value, fallback = '—') {
+      return value && String(value).trim() !== '' ? value : fallback;
+    }
+
+    function typeLabel(type) {
+      const labels = {
+        offre: 'Offre',
+        demande: 'Besoin',
+        echange: 'Échange'
+      };
+      return labels[type] || type || 'Annonce';
+    }
+
+    function afficherErreur() {
+      document.getElementById('page-content').innerHTML = `
+        <section class="detail-body">
+          <div class="container">
+            <div class="empty">
+              <h1>Annonce introuvable</h1>
+              <p>Cette annonce n'existe pas ou n'est plus active.</p>
+              <a href="annonces.html" class="btn-dark">Retour aux annonces</a>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    async function chargerAnnonce() {
+      if (!id) {
+        afficherErreur();
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/annonces?id=eq.${encodeURIComponent(id)}&statut=eq.actif&select=*`,
+          {
+            headers: {
+              apikey: SUPABASE_KEY,
+              Authorization: `Bearer ${SUPABASE_KEY}`
+            }
+          }
+        );
+
+        if (!res.ok) throw new Error('Erreur Supabase');
+
+        const data = await res.json();
+        const annonce = data[0];
+
+        if (!annonce) {
+          afficherErreur();
+          return;
+        }
+
+        document.title = `${txt(annonce.titre, 'Annonce')} — STRAKARA Réseau Pro`;
+
+        document.getElementById('titre').textContent = txt(annonce.titre, 'Annonce STRAKARA');
+        document.getElementById('description').textContent = txt(annonce.description, 'Aucune description renseignée.');
+        document.getElementById('categorie').textContent = txt(annonce.categorie);
+        document.getElementById('type-annonce').textContent = typeLabel(annonce.type_annonce);
+        document.getElementById('ville').textContent = txt(annonce.ville);
+        document.getElementById('secteur').textContent = txt(annonce.secteur);
+        document.getElementById('entreprise').textContent = txt(annonce.nom_entreprise);
+
+        const surfacePrix = [annonce.surface, annonce.prix].filter(Boolean).join(' · ');
+        document.getElementById('surface-prix').textContent = surfacePrix || '—';
+
+        const date = annonce.created_at
+          ? new Date(annonce.created_at).toLocaleDateString('fr-FR', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            })
+          : '—';
+
+        document.getElementById('date').textContent = date;
+
+        document.getElementById('hero-meta').innerHTML = `
+          <span class="pill">${txt(annonce.categorie, 'Annonce')}</span>
+          <span class="pill">${typeLabel(annonce.type_annonce)}</span>
+          <span class="pill">${txt(annonce.ville, 'France')}</span>
+        `;
+
+        if (annonce.image_url) {
+          document.getElementById('image-zone').innerHTML = `
+            <img src="${annonce.image_url}" alt="${txt(annonce.titre, 'Annonce STRAKARA')}" loading="lazy">
+          `;
+        }
+
+        document.getElementById('contact-btn').href =
+          `demande-contact.html?id=${encodeURIComponent(annonce.id)}`;
+
+        const profilBtn = document.getElementById('profil-btn');
+
+        if (annonce.membre_id) {
+          profilBtn.href = `profil-membre.html?id=${encodeURIComponent(annonce.membre_id)}`;
+          profilBtn.style.display = 'inline-block';
+        }
+
+      } catch (error) {
+        console.error(error);
+        afficherErreur();
+      }
+    }
+
+    chargerAnnonce();
+  </script>
+
+</body>
+</html>
+```
