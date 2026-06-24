@@ -253,16 +253,12 @@
             </div>
           </section>
 
-          <section class="panel">
-            <h2>Recommandations.</h2>
-            <div id="recommendations">
-              <div class="reco">
-                <strong>Recommandation STRAKARA</strong>
-                <p>Profil membre vérifié ou en cours de vérification. Les recommandations professionnelles pourront être ajoutées ici progressivement.</p>
-              </div>
-            </div>
-          </section>
-        </div>
+       <section class="panel">
+  <h2>Recommandations <em>reçues.</em></h2>
+  <div id="recommendations">
+    <div class="loading-box">Chargement des recommandations...</div>
+  </div>
+</section>
 
         <aside>
           <div class="side-card">
@@ -403,6 +399,49 @@
       remplirProfil(membre);
       chargerAnnoncesMembre(membre);
     }
+    async function chargerRecosMembre(membreId) {
+  const container = document.getElementById('recommendations');
+  if (!container) return;
+
+  const { data, error } = await supabaseClient
+    .from('recommandations')
+    .select('id, auteur_nom, auteur_entreprise, note, message, created_at, contexte')
+    .eq('membre_id', membreId)
+    .eq('statut', 'actif')
+    .order('created_at', { ascending: false })
+    .limit(5);
+
+  if (error || !data || data.length === 0) {
+    container.innerHTML = `
+      <div class="reco">
+        <p style="color:#6E7175;font-size:13px;font-style:italic;">
+          Aucune recommandation pour ce membre pour le moment.
+        </p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(r => {
+    const note = Number(r.note || 0);
+    const stars = [1,2,3,4,5].map(i =>
+      `<span style="color:${i <= note ? '#C8A96A' : '#E8E0D0'};">★</span>`
+    ).join('');
+    const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
+    const date = r.created_at
+      ? new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+      : '';
+    return `
+      <div class="reco">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <strong>${auteur}</strong>
+          <span style="font-size:15px;letter-spacing:1px;">${stars}</span>
+        </div>
+        ${r.contexte ? `<p style="font-size:11px;color:#A8894A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">${r.contexte}</p>` : ''}
+        <p>${r.message || ''}</p>
+        ${date ? `<span style="font-size:11px;color:#6E7175;">${date}</span>` : ''}
+      </div>`;
+  }).join('');
+}
 
     function afficherErreur(message) {
       $('page-error').textContent = message;
@@ -526,6 +565,8 @@ if (emailBtn && m.id) {
     }
 
     chargerProfil();
+    chargerAnnoncesMembre(membre);
+chargerRecosMembre(membre.id); // ← ajouter cette ligne
   </script>
 
 </body>
