@@ -87,7 +87,12 @@
 
     .annonces-filtres-wrap{background:var(--white);border-bottom:1px solid var(--border);padding:24px 0;position:sticky;top:58px;z-index:90;}
     .filter-note{font-size:12px;color:var(--muted);margin-bottom:14px;}
-    .annonces-filtres{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:0;}
+    .annonces-filtres{
+ .annonces-filtres{
+  display:grid;
+  grid-template-columns:2fr 1.2fr 1fr 1fr 1fr auto;
+  gap:0;
+}
     .filtre-input,.filtre-select{padding:15px 18px;border:1px solid var(--border);border-right:none;background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
     .filtre-input::placeholder{color:var(--muted);}
     .filtre-input:focus,.filtre-select:focus{border-color:var(--gold);z-index:1;position:relative;}
@@ -303,37 +308,66 @@
     </div>
   </section>
 
-  <div class="annonces-filtres-wrap">
-    <div class="container">
-      <p class="filter-note">Les filtres de surface concernent uniquement les espaces professionnels. Pour les autres annonces, utilisez le secteur, la zone et le type d'annonce.</p>
-      <div class="annonces-filtres">
-        <input class="filtre-input" type="text" id="f-texte" placeholder="Ville, département, région ou mot-clé...">
-        <select class="filtre-select" id="f-categorie">
-          <option value="">Toutes les catégories</option>
-          <option value="Espaces professionnels">Espaces professionnels</option>
-          <option value="Prestataires">Prestataires</option>
-          <option value="Missions">Missions</option>
-          <option value="Transport">Transport</option>
-          <option value="Emploi et saisonnier">Emploi et saisonnier</option>
-        </select>
-        <select class="filtre-select" id="f-secteur">
-          <option value="">Tous les secteurs</option>
-          <option value="Immobilier Pro">Immobilier Pro</option>
-          <option value="BTP & Artisans">BTP & Artisans</option>
-          <option value="Transport & Logistique">Transport & Logistique</option>
-          <option value="Prestataires">Prestataires</option>
-          <option value="E-commerce">E-commerce</option>
-        </select>
-        <select class="filtre-select" id="f-type">
-          <option value="">Type d'annonce</option>
-          <option value="offre">Offre</option>
-          <option value="demande">Besoin</option>
-          <option value="echange">Échange</option>
-        </select>
-        <button class="filtre-btn" onclick="appliquerFiltres()">Rechercher</button>
-      </div>
+ <div class="annonces-filtres-wrap">
+  <div class="container">
+
+    <p class="filter-note">
+      Les filtres de surface concernent uniquement les espaces professionnels.
+      Pour les autres annonces, utilisez le secteur, la ville et le type d'annonce.
+    </p>
+
+    <div class="annonces-filtres">
+
+      <input
+        class="filtre-input"
+        type="text"
+        id="f-texte"
+        placeholder="Mot-clé, entreprise ou description..."
+      >
+
+      <input
+        class="filtre-input"
+        type="text"
+        id="f-ville"
+        placeholder="Ville..."
+      >
+
+      <select class="filtre-select" id="f-categorie">
+        <option value="">Toutes les catégories</option>
+        <option value="Espaces professionnels">Espaces professionnels</option>
+        <option value="Prestataires">Prestataires</option>
+        <option value="Missions">Missions</option>
+        <option value="Transport">Transport</option>
+        <option value="Emploi et saisonnier">Emploi et saisonnier</option>
+        <option value="Matériel">Matériel</option>
+      </select>
+
+      <select class="filtre-select" id="f-secteur">
+        <option value="">Tous les secteurs</option>
+        <option value="Immobilier Pro">Immobilier Pro</option>
+        <option value="BTP & Artisans">BTP & Artisans</option>
+        <option value="Transport & Logistique">Transport & Logistique</option>
+        <option value="Prestataires">Prestataires</option>
+        <option value="E-commerce">E-commerce</option>
+        <option value="Jobs saisonniers">Jobs saisonniers</option>
+        <option value="Matériel">Matériel</option>
+      </select>
+
+      <select class="filtre-select" id="f-type">
+        <option value="">Type d'annonce</option>
+        <option value="offre">Offre</option>
+        <option value="demande">Besoin</option>
+        <option value="echange">Échange</option>
+      </select>
+
+      <button class="filtre-btn" onclick="appliquerFiltres()">
+        Rechercher
+      </button>
+
     </div>
+
   </div>
+</div>
 
   <div class="annonces-tabs">
     <div class="container">
