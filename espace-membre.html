@@ -398,6 +398,14 @@
                   <label>Site web</label>
                   <span class="val" id="pv-site">—</span>
                 </div>
+                <div class="profil-field">
+                  <label>LinkedIn</label>
+                  <span class="val" id="pv-linkedin">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Région</label>
+                  <span class="val" id="pv-region">—</span>
+                </div>
               </div>
 
               <!-- FORMULAIRE ÉDITION -->
@@ -454,6 +462,16 @@
                   <div class="form-row">
                     <label>Département</label>
                     <input type="text" id="edit-departement" placeholder="75">
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-row">
+                    <label>LinkedIn</label>
+                    <input type="url" id="edit-linkedin" placeholder="https://linkedin.com/in/...">
+                  </div>
+                  <div class="form-row">
+                    <label>Région</label>
+                    <input type="text" id="edit-region" placeholder="Bretagne">
                   </div>
                 </div>
                 <div class="form-row">
@@ -660,6 +678,9 @@
     document.getElementById('pv-description').textContent = txt(m.description, 'Aucune présentation renseignée.');
     const site = cleanUrl(m.site_web || m.website);
     document.getElementById('pv-site').innerHTML = site ? `<a href="${esc(site)}" target="_blank" style="color:var(--gold-dark);">${esc(site)}</a>` : '<span class="muted" style="color:var(--muted);font-style:italic;">Non renseigné</span>';
+    const linkedin = cleanUrl(m.linkedin);
+    document.getElementById('pv-linkedin').innerHTML = linkedin ? `<a href="${esc(linkedin)}" target="_blank" style="color:var(--gold-dark);">Voir le profil →</a>` : '<span style="color:var(--muted);font-style:italic;">Non renseigné</span>';
+    document.getElementById('pv-region').textContent = txt(m.region);
     const statutEl = document.getElementById('pv-statut');
     statutEl.innerHTML = m.verifie
       ? `<span class="badge-verifie">✓ Entreprise vérifiée</span>`
@@ -671,9 +692,11 @@
     document.getElementById('edit-prenom').value = m.prenom || '';
     document.getElementById('edit-nom').value = m.nom || '';
     document.getElementById('edit-email').value = m.email || m.contact_email || '';
-    document.getElementById('edit-site').value = m.site_web || m.website || '';
+    document.getElementById('edit-site').value = m.site_web || '';
+    document.getElementById('edit-linkedin').value = m.linkedin || '';
     document.getElementById('edit-ville').value = m.ville || '';
     document.getElementById('edit-departement').value = m.departement || '';
+    document.getElementById('edit-region').value = m.region || '';
     document.getElementById('edit-description').value = m.description || '';
   }
 
@@ -722,7 +745,7 @@
 
     const { data, error } = await sb.from('recommandations')
       .select('id,auteur,texte,note,created_at,contexte')
-      .eq('cible_id', m.id)
+      .eq('membre_id', m.id)
       .order('created_at', { ascending: false })
       .limit(5);
 
@@ -737,11 +760,12 @@
     container.innerHTML = data.map(r => {
       const note = Number(r.note || 0);
       const stars = [1,2,3,4,5].map(i => `<span class="reco-star ${i <= note ? '' : 'empty'}">★</span>`).join('');
+      const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
       return `
         <div class="reco-item">
           <div class="reco-stars">${stars}</div>
-          <div class="reco-auteur">${esc(r.auteur || 'Professionnel STRAKARA')}</div>
-          <p class="reco-texte">${esc(r.texte || '')}</p>
+          <div class="reco-auteur">${esc(auteur)}</div>
+          <p class="reco-texte">${esc(r.message || '')}</p>
           <span class="reco-date">${r.contexte ? esc(r.contexte) + ' · ' : ''}${new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}</span>
         </div>
       `;
@@ -779,8 +803,10 @@
       nom: document.getElementById('edit-nom').value.trim(),
       email: document.getElementById('edit-email').value.trim(),
       site_web: document.getElementById('edit-site').value.trim(),
+      linkedin: document.getElementById('edit-linkedin').value.trim(),
       ville: document.getElementById('edit-ville').value.trim(),
       departement: document.getElementById('edit-departement').value.trim(),
+      region: document.getElementById('edit-region').value.trim(),
       description: document.getElementById('edit-description').value.trim(),
     };
 
