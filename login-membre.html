@@ -2,121 +2,394 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Connexion membre — STRAKARA Réseau Pro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion membre — STRAKARA Réseau Pro</title>
   <meta name="robots" content="noindex, follow">
-  <link rel="icon" href="https://www.strakara.fr/favicon.ico">
-
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    body{font-family:Arial,sans-serif;background:#F6F5F0;color:#1E1F23;margin:0}
-    .box{max-width:430px;margin:80px auto;background:white;padding:34px;border:1px solid #E8E0D0}
-    h1{font-family:serif;font-size:34px;font-weight:400;margin-bottom:10px}
-    p{color:#6E7175;line-height:1.6}
-    label{display:block;margin-top:18px;font-size:12px;font-weight:bold;text-transform:uppercase}
-    input{width:100%;padding:14px;margin-top:7px;border:1px solid #E8E0D0;font-size:15px;box-sizing:border-box}
-    button{width:100%;margin-top:20px;padding:15px;background:#1E1F23;color:white;border:0;font-weight:bold;cursor:pointer}
-    .gold{color:#C8A96A}
-    .status{margin-top:16px;font-size:14px;color:#6E7175}
-    .hidden{display:none}
-    a{color:#A8894A;text-decoration:none}
+    :root {
+      --brand: #1E1F23;
+      --gold: #C8A96A;
+      --gold-dark: #A8894A;
+      --light: #F6F5F0;
+      --white: #FFFFFF;
+      --text: #1E1F23;
+      --muted: #6E7175;
+      --border: #E8E0D0;
+      --green: #15803D;
+      --green-bg: #DCFCE7;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    .sk-nav {
+      background: var(--white);
+      border-bottom: .5px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      height: 58px;
+    }
+    .sk-nav__logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--brand);
+      text-decoration: none;
+    }
+    .sk-nav__logo span { color: var(--gold); }
+
+    /* PAGE */
+    .page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 440px;
+      padding: 48px 40px;
+    }
+
+    .card-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 32px;
+      display: block;
+    }
+    .card-logo span { color: var(--gold); }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    h1 em { color: var(--gold); font-style: italic; }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    /* STEPS */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color .15s;
+      margin-bottom: 6px;
+    }
+    input[type="email"]:focus { border-color: var(--gold); }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--brand);
+      color: var(--white);
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+      letter-spacing: .02em;
+    }
+    .btn:hover { background: #2E2F35; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* CONFIRMATION ENVOI */
+    .confirm-box {
+      background: var(--green-bg);
+      border: 1px solid #BBF7D0;
+      padding: 20px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .confirm-box.show { display: block; }
+    .confirm-box strong {
+      display: block;
+      font-size: 14px;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .confirm-box p {
+      font-size: 13px;
+      color: #166534;
+      line-height: 1.6;
+    }
+
+    /* STATUS */
+    .status {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+      min-height: 20px;
+      line-height: 1.5;
+    }
+    .status.error { color: #B42318; }
+    .status.loading { color: var(--gold-dark); }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: .5px;
+      background: var(--border);
+    }
+    .divider span { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+    /* FOOTER LINKS */
+    .card-footer {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: .5px solid var(--border);
+    }
+    .card-footer p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .card-footer a {
+      color: var(--gold-dark);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(168,137,74,.3);
+      padding-bottom: 1px;
+      transition: border-color .15s;
+    }
+    .card-footer a:hover { border-color: var(--gold); }
+
+    /* RESEND */
+    .resend-btn {
+      background: none;
+      border: none;
+      color: var(--gold-dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .resend-btn:disabled { opacity: .4; cursor: not-allowed; text-decoration: none; }
+
+    @media(max-width: 480px) {
+      .card { padding: 36px 24px; }
+    }
   </style>
 </head>
-
 <body>
 
-  <div class="box">
-    <h1>Connexion <span class="gold">membre</span></h1>
-    <p>Entrez votre numéro de téléphone. Vous recevrez un code de connexion par SMS.</p>
+<nav class="sk-nav">
+  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+</nav>
 
-    <div id="step-phone">
-      <label for="phone">Numéro de téléphone</label>
-      <input id="phone" type="tel" placeholder="+33600000000">
+<div class="page">
+  <div class="card">
 
-      <button onclick="sendCode()">Recevoir mon code</button>
+    <span class="card-logo">STRA<span>KARA</span> — Réseau Pro</span>
+
+    <!-- STEP 1 : saisie email -->
+    <div class="step active" id="step-email">
+      <h1>Connexion <em>membre</em></h1>
+      <p class="subtitle">Entrez votre adresse email. Vous recevrez un lien de connexion valable 1 heure.</p>
+
+      <label for="email">Adresse email</label>
+      <input type="email" id="email" placeholder="vous@entreprise.fr" autocomplete="email">
+      <p class="field-hint">L'email doit correspondre à celui de votre profil membre.</p>
+
+      <button class="btn" id="btn-send" onclick="envoyerLien()">Recevoir mon lien de connexion</button>
+      <div class="status" id="status-email"></div>
     </div>
 
-    <div id="step-code" class="hidden">
-      <label for="code">Code reçu par SMS</label>
-      <input id="code" type="text" placeholder="123456">
+    <!-- STEP 2 : confirmation envoi -->
+    <div class="step" id="step-sent">
+      <h1>Vérifiez <em>vos mails</em></h1>
+      <p class="subtitle">Un lien de connexion a été envoyé à <strong id="email-affiche" style="color:var(--brand);"></strong>. Cliquez dessus pour accéder à votre espace.</p>
 
-      <button onclick="verifyCode()">Me connecter</button>
+      <div class="confirm-box show">
+        <strong>✓ Email envoyé</strong>
+        <p>Le lien est valable <strong>1 heure</strong>. Pensez à vérifier vos spams si vous ne le recevez pas dans 2 minutes.</p>
+      </div>
+
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Vous n'avez pas reçu l'email ?</p>
+      <button class="resend-btn" id="btn-resend" onclick="renvoyerLien()">Renvoyer le lien</button>
+      <div class="status" id="status-resend"></div>
+
+      <button class="btn" style="margin-top:24px;" onclick="recommencer()">← Changer d'adresse email</button>
     </div>
 
-    <div class="status" id="status"></div>
+    <div class="card-footer">
+      <p>Pas encore membre ? <a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil gratuitement →</a></p>
+    </div>
 
-    <p style="margin-top:24px;font-size:13px;">
-      Pas encore membre ?
-      <a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a>
-    </p>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  <script>
-    const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+  // Si déjà connecté → redirect direct
+  sb.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = 'espace-membre.html';
+  });
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    const statusBox = document.getElementById('status');
-
-    function setStatus(message) {
-      statusBox.textContent = message;
-    }
-
-    async function sendCode() {
-      const phone = document.getElementById('phone').value.trim();
-
-      if (!phone.startsWith('+')) {
-        setStatus('Indiquez le numéro au format international, exemple : +33600000000');
-        return;
-      }
-
-      setStatus('Envoi du code en cours...');
-
-      const { error } = await supabase.auth.signInWithOtp({
-        phone: phone
-      });
-
-      if (error) {
-        console.error(error);
-        setStatus("Impossible d’envoyer le code. Vérifiez la configuration SMS Supabase.");
-        return;
-      }
-
-      document.getElementById('step-phone').classList.add('hidden');
-      document.getElementById('step-code').classList.remove('hidden');
-      setStatus('Code envoyé par SMS.');
-    }
-
-    async function verifyCode() {
-      const phone = document.getElementById('phone').value.trim();
-      const token = document.getElementById('code').value.trim();
-
-      if (!token) {
-        setStatus('Entrez le code reçu par SMS.');
-        return;
-      }
-
-      setStatus('Connexion en cours...');
-
-      const { data, error } = await supabase.auth.verifyOtp({
-        phone: phone,
-        token: token,
-        type: 'sms'
-      });
-
-      if (error) {
-        console.error(error);
-        setStatus('Code incorrect ou expiré.');
-        return;
-      }
-
-      setStatus('Connexion réussie. Redirection...');
-
+  // Gérer le retour du magic link (#access_token dans l'URL)
+  sb.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session) {
       window.location.href = 'espace-membre.html';
     }
-  </script>
+  });
+
+  let emailUtilise = '';
+
+  function setStatus(id, msg, type = '') {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+
+  async function envoyerLien() {
+    const email = document.getElementById('email').value.trim();
+    const btn = document.getElementById('btn-send');
+
+    if (!email || !email.includes('@')) {
+      setStatus('status-email', 'Entrez une adresse email valide.', 'error');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+    setStatus('status-email', '', 'loading');
+
+    const { error } = await sb.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: 'https://app.strakara.fr/espace-membre.html'
+      }
+    });
+
+    btn.disabled = false;
+    btn.textContent = 'Recevoir mon lien de connexion';
+
+    if (error) {
+      setStatus('status-email', 'Erreur : ' + error.message, 'error');
+      return;
+    }
+
+    emailUtilise = email;
+    document.getElementById('email-affiche').textContent = email;
+    document.getElementById('step-email').classList.remove('active');
+    document.getElementById('step-sent').classList.add('active');
+  }
+
+  async function renvoyerLien() {
+    const btn = document.getElementById('btn-resend');
+    btn.disabled = true;
+    setStatus('status-resend', 'Renvoi en cours...', 'loading');
+
+    const { error } = await sb.auth.signInWithOtp({
+      email: emailUtilise,
+      options: {
+        emailRedirectTo: 'https://app.strakara.fr/espace-membre.html'
+      }
+    });
+
+    if (error) {
+      setStatus('status-resend', 'Erreur : ' + error.message, 'error');
+      btn.disabled = false;
+      return;
+    }
+
+    setStatus('status-resend', '✓ Email renvoyé.', '');
+    // Bloquer le bouton 60s pour éviter le spam
+    let count = 60;
+    const interval = setInterval(() => {
+      count--;
+      btn.textContent = `Renvoyer (${count}s)`;
+      if (count <= 0) {
+        clearInterval(interval);
+        btn.disabled = false;
+        btn.textContent = 'Renvoyer le lien';
+        setStatus('status-resend', '', '');
+      }
+    }, 1000);
+  }
+
+  function recommencer() {
+    document.getElementById('step-sent').classList.remove('active');
+    document.getElementById('step-email').classList.add('active');
+    document.getElementById('email').value = emailUtilise;
+    setStatus('status-email', '', '');
+  }
+
+  // Entrée clavier
+  document.getElementById('email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') envoyerLien();
+  });
+</script>
 
 </body>
 </html>
