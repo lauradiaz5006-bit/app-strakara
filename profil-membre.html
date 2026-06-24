@@ -510,7 +510,7 @@
       }
 
       container.innerHTML = data.map(a => `
-        <a class="member-annonce" href="annonces.html">
+        <a class="member-annonce" href=`annonce-detail.html?id=${a.id}`>
           <div class="member-annonce-img">
             ${a.image_url ? `<img src="${a.image_url}" alt="${a.titre || 'Annonce STRAKARA'}" loading="lazy">` : ''}
           </div>
