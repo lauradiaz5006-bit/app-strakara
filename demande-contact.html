@@ -584,16 +584,16 @@
       <p>&copy; 2026 STRAKARA SASU — Réseau Pro</p>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
     const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+    const N8N_WEBHOOK = 'https://strakara.app.n8n.cloud/webhook/demande-contact-strakara';
+
     const skSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     const params = new URLSearchParams(window.location.search);
-
     const membreId = params.get('id') || params.get('membre');
     const annonceId = params.get('annonce');
 
@@ -616,13 +616,7 @@
 
     function initials(value) {
       const str = (value || 'SK').trim();
-      return str
-        .split(' ')
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(w => w[0])
-        .join('')
-        .toUpperCase() || 'SK';
+      return str.split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'SK';
     }
 
     function afficherErreur(message) {
@@ -643,19 +637,14 @@
         .single();
 
       if (error || !data) {
-        console.error(error);
         afficherErreur("Cette annonce est introuvable ou n'est plus active.");
         return;
       }
 
       annonceActuelle = data;
-
-      if (data.membre_id) {
-        cibleMembreId = data.membre_id;
-      }
+      if (data.membre_id) cibleMembreId = data.membre_id;
 
       const messageField = document.getElementById('message');
-
       if (data.titre && messageField) {
         messageField.placeholder =
           "Bonjour, je souhaite obtenir plus d'informations concernant l'annonce : " + data.titre;
@@ -666,7 +655,7 @@
       await chargerAnnonceSiBesoin();
 
       if (!cibleMembreId) {
-        afficherErreur("Aucun identifiant de membre n’a été fourni.");
+        afficherErreur("Aucun identifiant de membre n'a été fourni.");
         return;
       }
 
@@ -678,7 +667,6 @@
         .single();
 
       if (error || !data) {
-        console.error(error);
         afficherErreur('Ce profil est indisponible ou non actif.');
         return;
       }
@@ -691,19 +679,11 @@
         'Membre STRAKARA';
 
       memberName.textContent = nomEntreprise;
-
-      const meta = [
-        data.secteur,
-        data.ville,
-        data.departement,
-        data.region
-      ].filter(Boolean).join(' · ');
-
-      memberMeta.textContent = meta || 'Professionnel du réseau STRAKARA';
+      memberMeta.textContent = [data.secteur, data.ville, data.departement, data.region]
+        .filter(Boolean).join(' · ') || 'Professionnel du réseau STRAKARA';
 
       if (data.logo_url) {
-        memberLogo.innerHTML =
-          '<img src="' + data.logo_url + '" alt="' + nomEntreprise.replace(/"/g, '') + '">';
+        memberLogo.innerHTML = '<img src="' + data.logo_url + '" alt="' + nomEntreprise.replace(/"/g, '') + '">';
       } else {
         memberLogo.textContent = initials(nomEntreprise);
       }
@@ -713,7 +693,8 @@
       }
 
       if (annonceActuelle && annonceActuelle.titre) {
-        document.querySelector('.intro').textContent =
+        const intro = document.querySelector('.intro');
+        if (intro) intro.textContent =
           "Votre demande concerne l'annonce : « " + annonceActuelle.titre + " ». Elle sera transmise dans le cadre du réseau STRAKARA.";
       }
     }
@@ -722,21 +703,29 @@
       e.preventDefault();
 
       if (!cibleMembreId || !membreActuel) {
-        showStatus('error', 'Impossible d’envoyer la demande : membre introuvable.');
+        showStatus('error', "Impossible d'envoyer la demande : membre introuvable.");
         return;
       }
 
       btn.disabled = true;
       btn.textContent = 'Envoi en cours...';
+      showStatus('', '');
 
+      const nom = document.getElementById('nom').value.trim();
+      const entreprise = document.getElementById('entreprise').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telephone = document.getElementById('telephone').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // ── 1. INSERT SUPABASE ──────────────────────────────────────
       const payload = {
         membre_id: cibleMembreId,
         annonce_id: annonceId || null,
-        nom: document.getElementById('nom').value.trim(),
-        entreprise: document.getElementById('entreprise').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        telephone: document.getElementById('telephone').value.trim(),
-        message: document.getElementById('message').value.trim(),
+        nom,
+        entreprise,
+        email,
+        telephone,
+        message,
         statut: 'nouveau'
       };
 
@@ -746,20 +735,51 @@
 
       if (error) {
         console.error(error);
-        showStatus('error', 'La demande n’a pas pu être envoyée. Vérifiez la table demandes_contact et les policies Supabase.');
+        showStatus('error', "La demande n'a pas pu être envoyée. Veuillez réessayer.");
         btn.disabled = false;
         btn.textContent = 'Envoyer ma demande';
         return;
       }
 
-      showStatus('success', 'Votre demande a bien été envoyée. STRAKARA pourra assurer le suivi de cette mise en relation.');
+      // ── 2. WEBHOOK N8N → EMAIL AU MEMBRE ────────────────────────
+      const nomEntrepriseMembre =
+        membreActuel.entreprise ||
+        [membreActuel.prenom, membreActuel.nom].filter(Boolean).join(' ') ||
+        'Membre STRAKARA';
+
+      try {
+        await fetch(N8N_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            // Destinataire = le membre qui reçoit la demande
+            email_membre: membreActuel.email || membreActuel.contact_email || '',
+            nom_membre: nomEntrepriseMembre,
+            // Expéditeur = celui qui envoie la demande
+            nom,
+            entreprise,
+            email,
+            telephone,
+            message,
+            // Contexte
+            titre_annonce: annonceActuelle ? annonceActuelle.titre : '',
+            lien_profil: `https://app.strakara.fr/profil-membre.html?id=${cibleMembreId}`
+          })
+        });
+      } catch (n8nError) {
+        // On ne bloque pas l'utilisateur si N8N échoue
+        console.warn('Webhook N8N non atteint :', n8nError);
+      }
+
+      // ── 3. CONFIRMATION ─────────────────────────────────────────
+      showStatus('success', 'Votre demande a bien été envoyée. Le membre sera notifié par email.');
       form.reset();
       btn.textContent = 'Demande envoyée';
     });
 
     chargerMembre();
   </script>
-
+ 
 </body>
 </html>
 ```
