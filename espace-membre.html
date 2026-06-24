@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon espace — STRAKARA Réseau Pro</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --brand: #1E1F23;
+      --brand-2: #292B31;
+      --gold: #C8A96A;
+      --gold-dark: #A8894A;
+      --light: #F6F5F0;
+      --white: #FFFFFF;
+      --text: #1E1F23;
+      --muted: #6E7175;
+      --border: #E8E0D0;
+      --green: #15803D;
+      --green-bg: #DCFCE7;
+      --red: #B42318;
+      --red-bg: #FEE2E2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', sans-serif; background: var(--light); color: var(--text); min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+    /* NAV */
+    .sk-nav {
+      background: var(--white);
+      border-bottom: .5px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .sk-nav__logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-right: 36px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sk-nav__logo span { color: var(--gold); }
+    .sk-nav__links { display: flex; align-items: center; gap: 22px; flex: 1; list-style: none; }
+    .sk-nav__links a { font-size: 13px; color: var(--muted); white-space: nowrap; transition: color .15s; }
+    .sk-nav__links a:hover, .sk-nav__links a.active { color: var(--brand); font-weight: 500; }
+    .sk-nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
+    .sk-nav__sep { width: .5px; height: 18px; background: var(--border); }
+    .btn-nav-gold { background: var(--gold); color: var(--brand); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
+    .btn-nav-gold:hover { opacity: .88; }
+    .btn-nav-logout { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 20px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .15s; }
+    .btn-nav-logout:hover { border-color: var(--red); color: var(--red); }
+    .sk-nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; flex-direction: column; gap: 5px; }
+    .sk-nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--brand); }
+    .sk-nav__mobile { display: none; flex-direction: column; background: var(--white); border-bottom: .5px solid var(--border); padding: 16px 24px 20px; }
+    .sk-nav__mobile.sk-open { display: flex; }
+    .sk-nav__mobile a { font-size: 14px; color: var(--muted); padding: 11px 0; border-bottom: .5px solid var(--border); display: block; }
+    .sk-nav__mobile-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .sk-nav__mobile-btns button { width: 100%; text-align: center; font-size: 13px; padding: 10px 16px; }
+
+    /* LOADING / ACCESS */
+    .page-loading {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 60vh; flex-direction: column; gap: 16px;
+    }
+    .spinner {
+      width: 36px; height: 36px; border: 2px solid var(--border);
+      border-top-color: var(--gold); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .access-denied {
+      display: none; max-width: 440px; margin: 80px auto; background: var(--white);
+      border: 1px solid var(--border); padding: 40px; text-align: center;
+    }
+    .access-denied h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; }
+    .access-denied p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .btn-dark { display: inline-block; background: var(--brand); color: var(--white); padding: 13px 28px; font-size: 14px; font-weight: 600; border-radius: 6px; transition: background .15s; }
+    .btn-dark:hover { background: var(--brand-2); }
+
+    /* HERO */
+    .dash-hero {
+      background: var(--brand);
+      padding: 48px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,.04) 79px, rgba(200,169,106,.04) 80px);
+      pointer-events: none;
+    }
+    .dash-hero-inner { position: relative; display: flex; align-items: center; gap: 28px; }
+    .dash-avatar {
+      width: 72px; height: 72px; min-width: 72px; border-radius: 50%;
+      background: var(--gold); color: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600;
+      letter-spacing: .04em; flex-shrink: 0; overflow: hidden;
+      border: 2px solid rgba(200,169,106,.4);
+    }
+    .dash-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dash-welcome { color: var(--white); }
+    .dash-welcome .label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(200,169,106,.7); margin-bottom: 6px; display: block; }
+    .dash-welcome h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 400; line-height: 1.15; }
+    .dash-welcome h1 em { color: var(--gold); font-style: italic; }
+    .dash-welcome .sub { font-size: 14px; color: rgba(255,255,255,.5); margin-top: 6px; }
+    .dash-actions { margin-left: auto; flex-shrink: 0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-gold { display: inline-block; background: var(--gold); color: var(--brand); font-size: 13px; font-weight: 700; padding: 11px 20px; border-radius: 6px; transition: opacity .15s; white-space: nowrap; }
+    .btn-gold:hover { opacity: .88; }
+    .btn-outline-light { display: inline-block; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); font-size: 13px; font-weight: 500; padding: 11px 20px; border-radius: 6px; transition: all .15s; white-space: nowrap; }
+    .btn-outline-light:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--white); border-bottom: 1px solid var(--border); }
+    .stats-inner { display: flex; gap: 0; }
+    .stat-item { flex: 1; padding: 20px 24px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--brand); font-weight: 600; display: block; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-weight: 500; }
+
+    /* BODY */
+    .dash-body { padding: 40px 0 80px; }
+    .dash-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+
+    /* PANELS */
+    .panel { background: var(--white); border: 1px solid var(--border); margin-bottom: 24px; }
+    .panel-head { padding: 22px 28px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .panel-head h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: var(--brand); }
+    .panel-head h2 em { color: var(--gold); font-style: italic; }
+    .panel-body { padding: 24px 28px; }
+    .panel-link { font-size: 12px; font-weight: 600; color: var(--gold-dark); letter-spacing: .04em; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color .15s; white-space: nowrap; }
+    .panel-link:hover { border-color: var(--gold); }
+
+    /* PROFIL */
+    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .profil-field { }
+    .profil-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px; }
+    .profil-field .val { font-size: 14px; color: var(--brand); font-weight: 500; line-height: 1.5; }
+    .profil-field .val.muted { color: var(--muted); font-weight: 400; font-style: italic; }
+    .profil-field.full { grid-column: 1 / -1; }
+    .badge-verifie { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; background: var(--green-bg); color: var(--green); border-radius: 4px; }
+    .badge-public { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--light); color: var(--muted); border-radius: 4px; border: 1px solid var(--border); }
+
+    /* EDIT FORM */
+    .edit-section { display: none; border-top: 1px solid var(--border); padding-top: 24px; margin-top: 24px; }
+    .edit-section.open { display: block; }
+    .form-row { margin-bottom: 14px; }
+    .form-row label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+      font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text);
+      background: var(--white); outline: none; transition: border-color .15s;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--gold); }
+    .form-row textarea { resize: vertical; min-height: 90px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-save { background: var(--brand); color: var(--white); border: none; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; padding: 13px 28px; cursor: pointer; transition: background .15s; }
+    .btn-save:hover { background: var(--brand-2); }
+    .btn-save:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-cancel { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; padding: 12px 20px; cursor: pointer; margin-left: 10px; transition: all .15s; }
+    .btn-cancel:hover { border-color: var(--text); color: var(--text); }
+    .form-actions { display: flex; align-items: center; margin-top: 20px; }
+    .save-status { font-size: 13px; margin-left: 14px; }
+    .save-status.ok { color: var(--green); }
+    .save-status.err { color: var(--red); }
+
+    /* ANNONCES */
+    .annonce-item { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .annonce-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .annonce-img { width: 72px; height: 56px; min-width: 72px; background: var(--light); border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; }
+    .annonce-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .annonce-content { flex: 1; min-width: 0; }
+    .annonce-kicker { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 4px; display: block; }
+    .annonce-titre { font-size: 15px; font-weight: 600; color: var(--brand); line-height: 1.3; margin-bottom: 4px; display: block; }
+    .annonce-meta { font-size: 12px; color: var(--muted); }
+    .annonce-status { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; flex-shrink: 0; }
+    .annonce-status.actif { background: var(--green-bg); color: var(--green); }
+    .annonce-status.inactif { background: var(--light); color: var(--muted); border: 1px solid var(--border); }
+    .empty-state { text-align: center; padding: 36px 0; }
+    .empty-state p { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+
+    /* RECOS */
+    .reco-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .reco-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .reco-stars { color: var(--gold); font-size: 14px; margin-bottom: 6px; display: flex; gap: 2px; }
+    .reco-star.empty { color: var(--border); }
+    .reco-auteur { font-size: 13px; font-weight: 600; color: var(--brand); margin-bottom: 4px; }
+    .reco-texte { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .reco-date { font-size: 11px; color: var(--muted); margin-top: 6px; display: block; }
+
+    /* SIDEBAR */
+    .side-card { background: var(--white); border: 1px solid var(--border); padding: 24px; margin-bottom: 20px; }
+    .side-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; color: var(--brand); margin-bottom: 12px; }
+    .side-card h3 em { color: var(--gold); font-style: italic; }
+    .side-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .side-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .side-card ul li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .side-card ul li::before { content: '→'; color: var(--gold-dark); font-size: 12px; flex-shrink: 0; }
+    .side-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: .5px solid var(--border); font-size: 13px; color: var(--brand); font-weight: 500; transition: color .15s; }
+    .side-link:last-child { border-bottom: none; }
+    .side-link:hover { color: var(--gold-dark); }
+    .side-link span { font-size: 11px; color: var(--muted); }
+    .btn-danger { display: block; width: 100%; padding: 11px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-align: center; transition: all .15s; margin-top: 8px; }
+    .btn-danger:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .btn-full { display: block; width: 100%; padding: 12px; text-align: center; font-size: 13px; font-weight: 600; margin-top: 4px; }
+
+    /* PROFIL PUBLIC LINK */
+    .profil-public-bar { background: rgba(200,169,106,.08); border: 1px solid rgba(200,169,106,.25); padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .profil-public-bar p { font-size: 13px; color: var(--muted); }
+    .profil-public-bar p strong { color: var(--brand); }
+    .btn-view-profil { font-size: 12px; font-weight: 700; color: var(--gold-dark); border-bottom: 1px solid rgba(200,169,106,.4); padding-bottom: 2px; white-space: nowrap; flex-shrink: 0; }
+
+    @media(max-width: 960px) {
+      .sk-nav__links, .sk-nav__right { display: none; }
+      .sk-nav__hamburger { display: flex; }
+      .dash-grid { grid-template-columns: 1fr; }
+      .stats-inner { flex-wrap: wrap; }
+      .stat-item { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
+      .dash-actions { margin-left: 0; margin-top: 16px; }
+      .dash-hero-inner { flex-wrap: wrap; }
+    }
+    @media(max-width: 600px) {
+      .container { padding: 0 18px; }
+      .profil-grid, .form-row-2 { grid-template-columns: 1fr; }
+      .panel-body { padding: 18px; }
+      .panel-head { padding: 18px; }
+      .dash-hero { padding: 36px 0 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="sk-nav">
+  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
+  <ul class="sk-nav__links">
+    <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+    <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
+    <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
+    <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
+  </ul>
+  <div class="sk-nav__right">
+    <div class="sk-nav__sep"></div>
+    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold">+ Publier une annonce</a>
+    <button class="btn-nav-logout" onclick="logout()">Déconnexion</button>
+  </div>
+  <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="sk-nav__mobile" id="sk-mobile">
+  <a href="https://app.strakara.fr/index.html">Accueil</a>
+  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
+  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
+  <a href="https://app.strakara.fr/evenements.html">Événements</a>
+  <a href="https://www.strakara.fr">strakara.fr →</a>
+  <div class="sk-nav__mobile-btns">
+    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold btn-full">+ Publier une annonce</a>
+    <button class="btn-danger" onclick="logout()">Déconnexion</button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="page-loading" id="page-loading">
+  <div class="spinner"></div>
+  <p style="font-size:13px;color:var(--muted);">Chargement de votre espace...</p>
+</div>
+
+<!-- ACCÈS REFUSÉ -->
+<div class="access-denied" id="access-denied">
+  <h2>Accès <em style="color:var(--gold);font-style:italic;">réservé</em></h2>
+  <p>Vous devez être connecté pour accéder à votre espace membre. Connectez-vous avec votre numéro de téléphone.</p>
+  <a href="https://app.strakara.fr/login-membre.html" class="btn-dark">Se connecter</a>
+</div>
+
+<!-- CONTENU PRINCIPAL -->
+<div id="main-content" style="display:none;">
+
+  <!-- HERO -->
+  <section class="dash-hero">
+    <div class="container">
+      <div class="dash-hero-inner">
+        <div class="dash-avatar" id="hero-avatar">—</div>
+        <div class="dash-welcome">
+          <span class="label">Votre espace membre</span>
+          <h1 id="hero-nom">Bonjour <em>…</em></h1>
+          <p class="sub" id="hero-sub">Chargement du profil...</p>
+        </div>
+        <div class="dash-actions">
+          <a href="https://app.strakara.fr/publier.html" class="btn-gold">+ Publier une annonce</a>
+          <a href="#" id="lien-profil-public" class="btn-outline-light" target="_blank">Voir mon profil →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num" id="stat-annonces">—</span>
+          <span class="stat-label">Annonces actives</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-recos">—</span>
+          <span class="stat-label">Recommandations reçues</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-statut">—</span>
+          <span class="stat-label">Statut du profil</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-secteur">—</span>
+          <span class="stat-label">Secteur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <main class="dash-body">
+    <div class="container">
+
+      <!-- Lien profil public -->
+      <div class="profil-public-bar" id="profil-public-bar" style="display:none;">
+        <p><strong>Votre profil est visible par les membres.</strong> Partagez ce lien pour être contacté.</p>
+        <a href="#" id="profil-public-link" class="btn-view-profil" target="_blank">Voir mon profil public →</a>
+      </div>
+
+      <div class="dash-grid">
+        <!-- COLONNE GAUCHE -->
+        <div>
+
+          <!-- MON PROFIL -->
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Mon <em>profil</em></h2>
+              <a href="#" class="panel-link" id="btn-edit-toggle">Modifier</a>
+            </div>
+            <div class="panel-body">
+              <div class="profil-grid" id="profil-view">
+                <div class="profil-field">
+                  <label>Entreprise</label>
+                  <span class="val" id="pv-entreprise">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Secteur</label>
+                  <span class="val" id="pv-secteur">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Prénom / Nom</label>
+                  <span class="val" id="pv-nom">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Téléphone</label>
+                  <span class="val" id="pv-telephone">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Email</label>
+                  <span class="val" id="pv-email">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Ville</label>
+                  <span class="val" id="pv-ville">—</span>
+                </div>
+                <div class="profil-field full">
+                  <label>Présentation</label>
+                  <span class="val" id="pv-description">—</span>
+                </div>
+                <div class="profil-field">
+                  <label>Statut</label>
+                  <span id="pv-statut"></span>
+                </div>
+                <div class="profil-field">
+                  <label>Site web</label>
+                  <span class="val" id="pv-site">—</span>
+                </div>
+              </div>
+
+              <!-- FORMULAIRE ÉDITION -->
+              <div class="edit-section" id="edit-section">
+                <div class="form-row-2">
+                  <div class="form-row">
+                    <label>Nom de l'entreprise *</label>
+                    <input type="text" id="edit-entreprise" placeholder="Mon Entreprise">
+                  </div>
+                  <div class="form-row">
+                    <label>Secteur *</label>
+                    <select id="edit-secteur">
+                      <option value="">Choisir...</option>
+                      <option>Immobilier Pro</option>
+                      <option>BTP & Artisans</option>
+                      <option>Transport & Logistique</option>
+                      <option>Prestataires</option>
+                      <option>E-commerce</option>
+                      <option>Agriculture & Agroalimentaire</option>
+                      <option>Industrie & Fabrication</option>
+                      <option>Commerce & Distribution</option>
+                      <option>Services aux entreprises</option>
+                      <option>Numérique & Tech</option>
+                      <option>Santé & Bien-être</option>
+                      <option>Autre</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-row">
+                    <label>Prénom</label>
+                    <input type="text" id="edit-prenom" placeholder="Prénom">
+                  </div>
+                  <div class="form-row">
+                    <label>Nom</label>
+                    <input type="text" id="edit-nom" placeholder="Nom">
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-row">
+                    <label>Email</label>
+                    <input type="email" id="edit-email" placeholder="email@entreprise.fr">
+                  </div>
+                  <div class="form-row">
+                    <label>Site web</label>
+                    <input type="url" id="edit-site" placeholder="https://...">
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-row">
+                    <label>Ville</label>
+                    <input type="text" id="edit-ville" placeholder="Paris">
+                  </div>
+                  <div class="form-row">
+                    <label>Département</label>
+                    <input type="text" id="edit-departement" placeholder="75">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <label>Présentation (visible sur votre profil)</label>
+                  <textarea id="edit-description" placeholder="Décrivez votre activité, vos services, votre zone..."></textarea>
+                </div>
+                <div class="form-actions">
+                  <button class="btn-save" id="btn-save" onclick="sauvegarderProfil()">Enregistrer</button>
+                  <button class="btn-cancel" onclick="fermerEdit()">Annuler</button>
+                  <span class="save-status" id="save-status"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MES ANNONCES -->
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Mes <em>annonces</em></h2>
+              <a href="https://app.strakara.fr/publier.html" class="panel-link">+ Nouvelle annonce</a>
+            </div>
+            <div class="panel-body" id="annonces-container">
+              <div class="empty-state">
+                <p style="font-size:13px;color:var(--muted);">Chargement...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- MES RECOMMANDATIONS -->
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Recommandations <em>reçues</em></h2>
+              <a href="https://app.strakara.fr/recommandations.html" class="panel-link">Voir toutes →</a>
+            </div>
+            <div class="panel-body" id="recos-container">
+              <div class="empty-state">
+                <p style="font-size:13px;color:var(--muted);">Chargement...</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLONNE DROITE -->
+        <aside>
+
+          <!-- LIENS RAPIDES -->
+          <div class="side-card">
+            <h3>Accès <em>rapide</em></h3>
+            <div style="margin-top:8px;">
+              <a href="https://app.strakara.fr/publier.html" class="side-link">
+                Publier une annonce <span>→</span>
+              </a>
+              <a href="https://app.strakara.fr/membres.html" class="side-link">
+                Annuaire des membres <span>→</span>
+              </a>
+              <a href="https://app.strakara.fr/recommandations.html" class="side-link">
+                Laisser un avis <span>→</span>
+              </a>
+              <a href="https://app.strakara.fr/achats-groupes.html" class="side-link">
+                Achats groupés <span>→</span>
+              </a>
+              <a href="https://app.strakara.fr/evenements.html" class="side-link">
+                Événements réseau <span>→</span>
+              </a>
+              <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html" class="side-link">
+                Proposer un espace <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- RÉSEAU -->
+          <div class="side-card">
+            <h3>Le réseau</h3>
+            <ul>
+              <li>Profil visible dans l'annuaire</li>
+              <li>Contact via demande écrite</li>
+              <li>Annonces publiables gratuitement</li>
+              <li>Recommandations entre pros</li>
+            </ul>
+          </div>
+
+          <!-- DÉCONNEXION -->
+          <div class="side-card" style="text-align:center;">
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Vous êtes connecté à votre espace membre STRAKARA.</p>
+            <button class="btn-danger" onclick="logout()">Se déconnecter</button>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+</div><!-- /main-content -->
+
+<script>
+  const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let membreId = null;
+  let membreData = null;
+
+  function esc(v){ return String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+  function txt(v, fallback = 'Non renseigné') { return v && String(v).trim() ? String(v).trim() : fallback; }
+  function initiales(name) {
+    const parts = String(name || 'SK').trim().split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+    return String(name || 'SK').substring(0, 2).toUpperCase();
+  }
+  function cleanUrl(url) {
+    if (!url) return '';
+    const u = String(url).trim();
+    return /^https?:\/\//i.test(u) ? u : `https://${u}`;
+  }
+
+  async function init() {
+    const { data: { session } } = await sb.auth.getSession();
+
+    if (!session) {
+      document.getElementById('page-loading').style.display = 'none';
+      document.getElementById('access-denied').style.display = 'block';
+      return;
+    }
+
+    await chargerMembre(session.user);
+  }
+
+  async function chargerMembre(user) {
+    // Cherche le membre par téléphone ou email
+    const phone = user.phone ? user.phone.replace(/\s/g, '') : null;
+    const email = user.email || null;
+
+    let query = sb.from('membres').select('*');
+    if (phone) {
+      query = query.eq('telephone', phone);
+    } else if (email) {
+      query = query.eq('email', email);
+    }
+
+    const { data, error } = await query.maybeSingle();
+
+    document.getElementById('page-loading').style.display = 'none';
+
+    if (error || !data) {
+      // Connecté mais pas encore de profil membre
+      document.getElementById('main-content').style.display = 'block';
+      afficherSansProfil(user);
+      return;
+    }
+
+    membreId = data.id;
+    membreData = data;
+    afficherProfil(data);
+    await chargerAnnonces(data);
+    await chargerRecos(data);
+  }
+
+  function afficherSansProfil(user) {
+    document.getElementById('hero-avatar').textContent = '?';
+    document.getElementById('hero-nom').innerHTML = 'Bienvenue <em>sur le réseau</em>';
+    document.getElementById('hero-sub').textContent = 'Aucun profil membre trouvé pour ce compte.';
+    document.getElementById('stat-annonces').textContent = '0';
+    document.getElementById('stat-recos').textContent = '0';
+    document.getElementById('stat-statut').textContent = '—';
+    document.getElementById('stat-secteur').textContent = '—';
+    document.getElementById('annonces-container').innerHTML = `<div class="empty-state"><p>Vous n'avez pas encore de profil membre.</p><a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon profil</a></div>`;
+    document.getElementById('recos-container').innerHTML = `<div class="empty-state"><p>Pas encore de recommandations.</p></div>`;
+  }
+
+  function afficherProfil(m) {
+    const nomAffiche = m.entreprise || [m.prenom, m.nom].filter(Boolean).join(' ') || 'Membre';
+    const initAvatar = initiales(m.entreprise || [m.prenom, m.nom].filter(Boolean).join(' ') || 'SK');
+
+    // Avatar
+    const avatarEl = document.getElementById('hero-avatar');
+    if (m.logo_url) {
+      avatarEl.innerHTML = `<img src="${esc(m.logo_url)}" alt="">`;
+    } else {
+      avatarEl.textContent = initAvatar;
+    }
+
+    // Hero
+    document.getElementById('hero-nom').innerHTML = `Bonjour, <em>${esc(nomAffiche)}</em>`;
+    document.getElementById('hero-sub').textContent = [m.secteur, m.ville].filter(Boolean).join(' · ') || 'Profil membre STRAKARA';
+
+    // Lien profil public
+    const lienPub = `https://app.strakara.fr/profil-membre.html?id=${m.id}`;
+    document.getElementById('lien-profil-public').href = lienPub;
+    document.getElementById('profil-public-link').href = lienPub;
+    document.getElementById('profil-public-bar').style.display = 'flex';
+
+    // Stats
+    document.getElementById('stat-statut').textContent = m.verifie ? '✓ Vérifié' : 'Public';
+    document.getElementById('stat-secteur').textContent = m.secteur || '—';
+
+    // Vue profil
+    document.getElementById('pv-entreprise').textContent = txt(m.entreprise);
+    document.getElementById('pv-secteur').textContent = txt(m.secteur);
+    document.getElementById('pv-nom').textContent = txt([m.prenom, m.nom].filter(Boolean).join(' '));
+    document.getElementById('pv-telephone').textContent = txt(m.telephone);
+    document.getElementById('pv-email').textContent = txt(m.email || m.contact_email);
+    document.getElementById('pv-ville').textContent = txt([m.ville, m.departement].filter(Boolean).join(' — '));
+    document.getElementById('pv-description').textContent = txt(m.description, 'Aucune présentation renseignée.');
+    const site = cleanUrl(m.site_web || m.website);
+    document.getElementById('pv-site').innerHTML = site ? `<a href="${esc(site)}" target="_blank" style="color:var(--gold-dark);">${esc(site)}</a>` : '<span class="muted" style="color:var(--muted);font-style:italic;">Non renseigné</span>';
+    const statutEl = document.getElementById('pv-statut');
+    statutEl.innerHTML = m.verifie
+      ? `<span class="badge-verifie">✓ Entreprise vérifiée</span>`
+      : `<span class="badge-public">Profil public</span>`;
+
+    // Pré-remplir formulaire édition
+    document.getElementById('edit-entreprise').value = m.entreprise || '';
+    document.getElementById('edit-secteur').value = m.secteur || '';
+    document.getElementById('edit-prenom').value = m.prenom || '';
+    document.getElementById('edit-nom').value = m.nom || '';
+    document.getElementById('edit-email').value = m.email || m.contact_email || '';
+    document.getElementById('edit-site').value = m.site_web || m.website || '';
+    document.getElementById('edit-ville').value = m.ville || '';
+    document.getElementById('edit-departement').value = m.departement || '';
+    document.getElementById('edit-description').value = m.description || '';
+  }
+
+  async function chargerAnnonces(m) {
+    const nomEntreprise = m.entreprise || [m.prenom, m.nom].filter(Boolean).join(' ') || '';
+    const container = document.getElementById('annonces-container');
+
+    if (!nomEntreprise) {
+      container.innerHTML = `<div class="empty-state"><p>Aucune annonce publiée pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;">Publier une annonce</a></div>`;
+      document.getElementById('stat-annonces').textContent = '0';
+      return;
+    }
+
+    const { data, error } = await sb.from('annonces')
+      .select('id,titre,description,categorie,ville,statut,image_url,created_at')
+      .eq('nom_entreprise', nomEntreprise)
+      .order('created_at', { ascending: false })
+      .limit(10);
+
+    if (error || !data || data.length === 0) {
+      container.innerHTML = `<div class="empty-state"><p>Aucune annonce publiée pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;margin-top:8px;">Publier une annonce</a></div>`;
+      document.getElementById('stat-annonces').textContent = '0';
+      return;
+    }
+
+    const actives = data.filter(a => a.statut === 'actif').length;
+    document.getElementById('stat-annonces').textContent = actives;
+
+    container.innerHTML = data.map(a => `
+      <div class="annonce-item">
+        <div class="annonce-img">
+          ${a.image_url ? `<img src="${esc(a.image_url)}" alt="">` : ''}
+        </div>
+        <div class="annonce-content">
+          <span class="annonce-kicker">${esc(a.categorie || 'Annonce')}</span>
+          <a class="annonce-titre" href="https://app.strakara.fr/annonce-detail.html?id=${esc(a.id)}">${esc(a.titre)}</a>
+          <span class="annonce-meta">${esc(a.ville || '')} · ${new Date(a.created_at).toLocaleDateString('fr-FR')}</span>
+        </div>
+        <span class="annonce-status ${a.statut === 'actif' ? 'actif' : 'inactif'}">${esc(a.statut || 'inactif')}</span>
+      </div>
+    `).join('');
+  }
+
+  async function chargerRecos(m) {
+    const container = document.getElementById('recos-container');
+
+    const { data, error } = await sb.from('recommandations')
+      .select('id,auteur,texte,note,created_at,contexte')
+      .eq('cible_id', m.id)
+      .order('created_at', { ascending: false })
+      .limit(5);
+
+    if (error || !data || data.length === 0) {
+      container.innerHTML = `<div class="empty-state"><p>Aucune recommandation reçue pour le moment.</p></div>`;
+      document.getElementById('stat-recos').textContent = '0';
+      return;
+    }
+
+    document.getElementById('stat-recos').textContent = data.length;
+
+    container.innerHTML = data.map(r => {
+      const note = Number(r.note || 0);
+      const stars = [1,2,3,4,5].map(i => `<span class="reco-star ${i <= note ? '' : 'empty'}">★</span>`).join('');
+      return `
+        <div class="reco-item">
+          <div class="reco-stars">${stars}</div>
+          <div class="reco-auteur">${esc(r.auteur || 'Professionnel STRAKARA')}</div>
+          <p class="reco-texte">${esc(r.texte || '')}</p>
+          <span class="reco-date">${r.contexte ? esc(r.contexte) + ' · ' : ''}${new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ÉDITION PROFIL
+  document.getElementById('btn-edit-toggle').addEventListener('click', function(e) {
+    e.preventDefault();
+    const section = document.getElementById('edit-section');
+    const isOpen = section.classList.contains('open');
+    section.classList.toggle('open');
+    this.textContent = isOpen ? 'Modifier' : 'Annuler';
+  });
+
+  function fermerEdit() {
+    document.getElementById('edit-section').classList.remove('open');
+    document.getElementById('btn-edit-toggle').textContent = 'Modifier';
+    document.getElementById('save-status').textContent = '';
+  }
+
+  async function sauvegarderProfil() {
+    if (!membreId) return;
+    const btn = document.getElementById('btn-save');
+    const status = document.getElementById('save-status');
+    btn.disabled = true;
+    btn.textContent = 'Enregistrement...';
+    status.textContent = '';
+    status.className = 'save-status';
+
+    const updates = {
+      entreprise: document.getElementById('edit-entreprise').value.trim(),
+      secteur: document.getElementById('edit-secteur').value,
+      prenom: document.getElementById('edit-prenom').value.trim(),
+      nom: document.getElementById('edit-nom').value.trim(),
+      email: document.getElementById('edit-email').value.trim(),
+      site_web: document.getElementById('edit-site').value.trim(),
+      ville: document.getElementById('edit-ville').value.trim(),
+      departement: document.getElementById('edit-departement').value.trim(),
+      description: document.getElementById('edit-description').value.trim(),
+    };
+
+    const { error } = await sb.from('membres').update(updates).eq('id', membreId);
+
+    btn.disabled = false;
+    btn.textContent = 'Enregistrer';
+
+    if (error) {
+      status.textContent = 'Erreur lors de la sauvegarde.';
+      status.className = 'save-status err';
+      return;
+    }
+
+    // Mise à jour locale
+    Object.assign(membreData, updates);
+    afficherProfil(membreData);
+    status.textContent = '✓ Profil mis à jour.';
+    status.className = 'save-status ok';
+    setTimeout(() => {
+      fermerEdit();
+    }, 1200);
+  }
+
+  async function logout() {
+    await sb.auth.signOut();
+    window.location.href = 'https://app.strakara.fr/login-membre.html';
+  }
+
+  init();
+</script>
+</body>
+</html>
