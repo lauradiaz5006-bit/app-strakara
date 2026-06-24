@@ -201,7 +201,9 @@
               <div class="profile-badges" id="badges"></div>
               <div class="profile-actions">
                 <a href="#" class="btn-gold is-hidden" id="phone-btn">Appeler</a>
-                <a href="#" class="btn-dark is-hidden" id="email-btn">Demander un contact</a>
+                <a href="#" class="btn-dark is-hidden" id="email-btn">
+  Contacter ce membre
+</a>
                 <a href="#annonces-membre" class="btn-outline">Voir ses annonces</a>
               </div>
             </div>
@@ -452,12 +454,12 @@
         phoneBtn.classList.remove('is-hidden');
       }
 
-     const emailBtn = $('email-btn');
+    const emailBtn = $('email-btn');
 
-      if (m.id) {
-      emailBtn.href = `demande-contact.html?id=${m.id}`;
-     emailBtn.classList.remove('is-hidden');
-     }
+if (emailBtn && m.id) {
+  emailBtn.href = `demande-contact.html?id=${encodeURIComponent(m.id)}`;
+  emailBtn.classList.remove('is-hidden');
+}
 
       $('info-metier').textContent = metier;
       $('info-secteur').textContent = text(secteur);
