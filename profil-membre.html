@@ -327,8 +327,7 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
@@ -375,79 +374,11 @@
       return t.length > limit ? t.slice(0, limit).trim() + '...' : t;
     }
 
-    async function chargerProfil() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get('id');
-
-      if (!id) {
-        afficherErreur("Aucun identifiant membre n'est présent dans l'URL. Exemple attendu : profil-membre.html?id=xxxx");
-        return;
-      }
-
-      const { data: membre, error } = await supabaseClient
-        .from('membres')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-      if (error || !membre) {
-        console.error(error);
-        afficherErreur("Impossible de charger ce profil membre. Vérifiez que l'ID existe dans Supabase et que le statut est actif.");
-        return;
-      }
-
-      remplirProfil(membre);
-      chargerAnnoncesMembre(membre);
-    }
-    async function chargerRecosMembre(membreId) {
-  const container = document.getElementById('recommendations');
-  if (!container) return;
-
-  const { data, error } = await supabaseClient
-    .from('recommandations')
-    .select('id, auteur_nom, auteur_entreprise, note, message, created_at, contexte')
-    .eq('membre_id', membreId)
-    .eq('statut', 'actif')
-    .order('created_at', { ascending: false })
-    .limit(5);
-
-  if (error || !data || data.length === 0) {
-    container.innerHTML = `
-      <div class="reco">
-        <p style="color:#6E7175;font-size:13px;font-style:italic;">
-          Aucune recommandation pour ce membre pour le moment.
-        </p>
-      </div>`;
-    return;
-  }
-
-  container.innerHTML = data.map(r => {
-    const note = Number(r.note || 0);
-    const stars = [1,2,3,4,5].map(i =>
-      `<span style="color:${i <= note ? '#C8A96A' : '#E8E0D0'};">★</span>`
-    ).join('');
-    const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
-    const date = r.created_at
-      ? new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
-      : '';
-    return `
-      <div class="reco">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-          <strong>${auteur}</strong>
-          <span style="font-size:15px;letter-spacing:1px;">${stars}</span>
-        </div>
-        ${r.contexte ? `<p style="font-size:11px;color:#A8894A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">${r.contexte}</p>` : ''}
-        <p>${r.message || ''}</p>
-        ${date ? `<span style="font-size:11px;color:#6E7175;">${date}</span>` : ''}
-      </div>`;
-  }).join('');
-}
-
     function afficherErreur(message) {
       $('page-error').textContent = message;
       $('page-error').classList.remove('is-hidden');
       $('member-name').textContent = 'Profil introuvable';
-      $('member-description').textContent = 'Ce profil n’est pas disponible pour le moment.';
+      $('member-description').textContent = "Ce profil n'est pas disponible pour le moment.";
       $('member-annonces').innerHTML = '<div class="loading-box">Aucune annonce à afficher.</div>';
     }
 
@@ -493,12 +424,11 @@
         phoneBtn.classList.remove('is-hidden');
       }
 
-    const emailBtn = $('email-btn');
-
-if (emailBtn && m.id) {
-  emailBtn.href = `demande-contact.html?id=${encodeURIComponent(m.id)}`;
-  emailBtn.classList.remove('is-hidden');
-}
+      const emailBtn = $('email-btn');
+      if (emailBtn && m.id) {
+        emailBtn.href = `demande-contact.html?id=${encodeURIComponent(m.id)}`;
+        emailBtn.classList.remove('is-hidden');
+      }
 
       $('info-metier').textContent = metier;
       $('info-secteur').textContent = text(secteur);
@@ -512,14 +442,8 @@ if (emailBtn && m.id) {
 
       const tags = $('tags');
       tags.innerHTML = '';
-      const rawTags = [
-        secteur,
-        m.sous_secteur,
-        ville,
-        m.departement,
-        m.region
-      ];
-      [...new Set(rawTags.map(t => t.trim()).filter(Boolean))].slice(0, 10).forEach(t => setTag(tags, t));
+      const rawTags = [secteur, m.sous_secteur, ville, m.departement, m.region];
+      [...new Set(rawTags.map(t => (t || '').trim()).filter(Boolean))].slice(0, 10).forEach(t => setTag(tags, t));
     }
 
     async function chargerAnnoncesMembre(membre) {
@@ -551,7 +475,7 @@ if (emailBtn && m.id) {
       }
 
       container.innerHTML = data.map(a => `
-        <a class="member-annonce" href=`annonce-detail.html?id=${a.id}`>
+        <a class="member-annonce" href="annonce-detail.html?id=${a.id}">
           <div class="member-annonce-img">
             ${a.image_url ? `<img src="${a.image_url}" alt="${a.titre || 'Annonce STRAKARA'}" loading="lazy">` : ''}
           </div>
@@ -564,10 +488,78 @@ if (emailBtn && m.id) {
       `).join('');
     }
 
-    chargerProfil();
-    chargerAnnoncesMembre(membre);
-chargerRecosMembre(membre.id); // ← ajouter cette ligne
-  </script>
+    async function chargerRecosMembre(membreId) {
+      const container = $('recommendations');
+      if (!container) return;
 
+      const { data, error } = await supabaseClient
+        .from('recommandations')
+        .select('id, auteur_nom, auteur_entreprise, note, message, created_at, contexte')
+        .eq('membre_id', membreId)
+        .eq('statut', 'actif')
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      if (error || !data || data.length === 0) {
+        container.innerHTML = `
+          <div class="reco">
+            <p style="color:#6E7175;font-size:13px;font-style:italic;">
+              Aucune recommandation pour ce membre pour le moment.
+            </p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = data.map(r => {
+        const note = Number(r.note || 0);
+        const stars = [1,2,3,4,5].map(i =>
+          `<span style="color:${i <= note ? '#C8A96A' : '#E8E0D0'};">★</span>`
+        ).join('');
+        const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
+        const date = r.created_at
+          ? new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+          : '';
+        return `
+          <div class="reco">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+              <strong>${auteur}</strong>
+              <span style="font-size:15px;letter-spacing:1px;">${stars}</span>
+            </div>
+            ${r.contexte ? `<p style="font-size:11px;color:#A8894A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">${r.contexte}</p>` : ''}
+            <p>${r.message || ''}</p>
+            ${date ? `<span style="font-size:11px;color:#6E7175;">${date}</span>` : ''}
+          </div>`;
+      }).join('');
+    }
+
+    // ─── POINT D'ENTRÉE UNIQUE ────────────────────────────────────────
+    async function chargerProfil() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!id) {
+        afficherErreur("Aucun identifiant membre n'est présent dans l'URL. Exemple attendu : profil-membre.html?id=xxxx");
+        return;
+      }
+
+      const { data: membre, error } = await supabaseClient
+        .from('membres')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error || !membre) {
+        console.error(error);
+        afficherErreur("Impossible de charger ce profil membre.");
+        return;
+      }
+
+      remplirProfil(membre);
+      chargerAnnoncesMembre(membre);   // ✅ membre disponible ici
+      chargerRecosMembre(membre.id);   // ✅ membre.id disponible ici
+    }
+
+    chargerProfil(); // ← seul appel, tout part de là
+  </script>
 </body>
 </html>
