@@ -71,40 +71,46 @@
     <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">Créer mon profil</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
+<nav class="sk-nav">
+  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
 
-  <nav class="sk-nav">
-    <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
-    <ul class="sk-nav__links">
-      <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
-      <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
-      <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
-      <li><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier</a></li>
-      <li><a href="https://app.strakara.fr/reseau/btp.html">BTP</a></li>
-      <li><a href="https://app.strakara.fr/reseau/transport.html">Transport</a></li>
-      <li><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a></li>
-    </ul>
-    <div class="sk-nav__right">
-      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-      <a href="https://strakara.netlify.app/login-client" class="sk-btn-connexion">Connexion</a>
-    </div>
-  </nav>
+  <ul class="sk-nav__links">
+    <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+    <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
+    <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
+    <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
+  </ul>
 
-  <main class="page">
-    <div class="container">
-      <div class="layout">
-        <section class="hero-card">
-          <span class="label">Demande de contact</span>
-          <h1>Contacter un membre <em>du réseau.</em></h1>
-          <p class="intro">Votre demande sera transmise via STRAKARA. Les coordonnées du membre restent protégées et la demande est enregistrée pour assurer un suivi professionnel.</p>
+  <div class="sk-nav__right">
+    <div class="sk-nav__sep"></div>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+  </div>
 
-          <div class="member-box">
-            <div class="member-logo" id="memberLogo">SK</div>
-            <div class="member-info">
-              <strong id="memberName">Chargement du membre...</strong>
-              <span id="memberMeta">Veuillez patienter.</span>
-              <div id="memberVerified"></div>
-            </div>
-          </div>
+  <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="sk-nav__mobile" id="sk-mobile">
+  <a href="https://app.strakara.fr/index.html">Accueil</a>
+  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
+  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
+  <a href="https://app.strakara.fr/evenements.html">Événements</a>
+  <a href="https://www.strakara.fr">strakara.fr →</a>
+
+  <div class="sk-nav__mobile-btns">
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+  </div>
+</div>
 
           <a href="https://app.strakara.fr/membres.html" class="back-link">Retour à l'annuaire</a>
         </section>
