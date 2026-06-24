@@ -495,7 +495,7 @@ async function submitForm(){
   if(!validateStep(3,true)) return;
   const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Envoi en cours...";
   try{
-    showAlert("warn","Envoi du dossier en cours…");
+    showAlert("warn","Envoi du dossier en cours… ⏳ Ne fermez pas et ne rafraîchissez pas cette page, l'upload des fichiers peut prendre quelques minutes.");
 
     let photoUploads = [], docUploads = [];
     try {
