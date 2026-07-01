@@ -1,110 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- PAGES PRINCIPALES -->
+  <!-- Pages principales -->
   <url>
     <loc>https://app.strakara.fr/index.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/annonces.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/membres.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/recommandations.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/publier.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://app.strakara.fr/rejoindre.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://app.strakara.fr/nouveau-espace.html</loc>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://app.strakara.fr/achats-groupes.html</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://app.strakara.fr/evenements.html</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/profil-membre.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://app.strakara.fr/annonce-detail.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog -->
+
   <url>
-    <loc>https://app.strakara.fr/nouveau-espace.html</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://app.strakara.fr/blog/index.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-  <loc>https://app.strakara.fr/blog/index.html</loc>
-  <lastmod>2026-06-24</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+    <loc>https://app.strakara.fr/blog/sous-traitance-chantiers.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-<url>
-  <loc>https://app.strakara.fr/blog/sous-traitance-chantiers.html</loc>
-  <lastmod>2026-06-24</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
+  <url>
+    <loc>https://app.strakara.fr/blog/achats-groupes-pros.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-<url>
-  <loc>https://app.strakara.fr/blog/achats-groupes-pros.html</loc>
-  <lastmod>2026-06-24</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
-
-<url>
-  <loc>https://app.strakara.fr/blog/pourquoi-creer-profil-pro-artisan-transporteur.html</loc>
-  <lastmod>2026-06-24</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
+  <url>
+    <loc>https://app.strakara.fr/blog/pourquoi-creer-profil-pro-artisan-transporteur.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>
