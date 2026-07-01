@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon espace — STRAKARA Réseau Pro</title>
+  <title>Tableau de bord — STRAKARA</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,11 +25,13 @@
       --green-bg: #DCFCE7;
       --red: #B42318;
       --red-bg: #FEE2E2;
+      --radius: 14px;
+      --radius-sm: 10px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Outfit', sans-serif; background: var(--light); color: var(--text); min-height: 100vh; }
+    body { font-family: 'Outfit', sans-serif; background: var(--light); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
 
     /* NAV */
     .sk-nav {
@@ -38,7 +40,7 @@
       padding: 0 24px;
       display: flex;
       align-items: center;
-      height: 58px;
+      height: 60px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -55,14 +57,14 @@
       flex-shrink: 0;
     }
     .sk-nav__logo span { color: var(--gold); }
-    .sk-nav__links { display: flex; align-items: center; gap: 22px; flex: 1; list-style: none; }
+    .sk-nav__links { display: flex; align-items: center; gap: 24px; flex: 1; list-style: none; }
     .sk-nav__links a { font-size: 13px; color: var(--muted); white-space: nowrap; transition: color .15s; }
     .sk-nav__links a:hover, .sk-nav__links a.active { color: var(--brand); font-weight: 500; }
     .sk-nav__right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
     .sk-nav__sep { width: .5px; height: 18px; background: var(--border); }
-    .btn-nav-gold { background: var(--gold); color: var(--brand); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
+    .btn-nav-gold { background: var(--gold); color: var(--brand); font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 20px; white-space: nowrap; transition: opacity .15s; }
     .btn-nav-gold:hover { opacity: .88; }
-    .btn-nav-logout { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 20px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .15s; }
+    .btn-nav-logout { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .15s; }
     .btn-nav-logout:hover { border-color: var(--red); color: var(--red); }
     .sk-nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; flex-direction: column; gap: 5px; }
     .sk-nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--brand); }
@@ -70,7 +72,7 @@
     .sk-nav__mobile.sk-open { display: flex; }
     .sk-nav__mobile a { font-size: 14px; color: var(--muted); padding: 11px 0; border-bottom: .5px solid var(--border); display: block; }
     .sk-nav__mobile-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
-    .sk-nav__mobile-btns button { width: 100%; text-align: center; font-size: 13px; padding: 10px 16px; }
+    .sk-nav__mobile-btns button, .sk-nav__mobile-btns a { width: 100%; text-align: center; font-size: 13px; padding: 11px 16px; }
 
     /* LOADING / ACCESS */
     .page-loading {
@@ -84,18 +86,19 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .access-denied {
-      display: none; max-width: 440px; margin: 80px auto; background: var(--white);
-      border: 1px solid var(--border); padding: 40px; text-align: center;
+      display: none; max-width: 460px; margin: 100px auto; background: var(--white);
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 48px 40px; text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,.04);
     }
     .access-denied h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; }
-    .access-denied p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-    .btn-dark { display: inline-block; background: var(--brand); color: var(--white); padding: 13px 28px; font-size: 14px; font-weight: 600; border-radius: 6px; transition: background .15s; }
+    .access-denied p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .btn-dark { display: inline-block; background: var(--brand); color: var(--white); padding: 13px 28px; font-size: 14px; font-weight: 600; border-radius: 8px; transition: background .15s; }
     .btn-dark:hover { background: var(--brand-2); }
 
     /* HERO */
     .dash-hero {
       background: var(--brand);
-      padding: 48px 0 40px;
+      padding: 56px 0 44px;
       position: relative;
       overflow: hidden;
     }
@@ -105,123 +108,135 @@
       background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,.04) 79px, rgba(200,169,106,.04) 80px);
       pointer-events: none;
     }
-    .dash-hero-inner { position: relative; display: flex; align-items: center; gap: 28px; }
+    .dash-hero-inner { position: relative; display: flex; align-items: center; gap: 26px; }
     .dash-avatar {
-      width: 72px; height: 72px; min-width: 72px; border-radius: 50%;
+      width: 68px; height: 68px; min-width: 68px; border-radius: 50%;
       background: var(--gold); color: var(--brand);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600;
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600;
       letter-spacing: .04em; flex-shrink: 0; overflow: hidden;
       border: 2px solid rgba(200,169,106,.4);
     }
     .dash-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .dash-welcome { color: var(--white); }
-    .dash-welcome .label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(200,169,106,.7); margin-bottom: 6px; display: block; }
-    .dash-welcome h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 400; line-height: 1.15; }
+    .dash-welcome .label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(200,169,106,.7); margin-bottom: 8px; display: block; }
+    .dash-welcome h1 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 2.6vw, 32px); font-weight: 400; line-height: 1.2; }
     .dash-welcome h1 em { color: var(--gold); font-style: italic; }
     .dash-welcome .sub { font-size: 14px; color: rgba(255,255,255,.5); margin-top: 6px; }
     .dash-actions { margin-left: auto; flex-shrink: 0; display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-gold { display: inline-block; background: var(--gold); color: var(--brand); font-size: 13px; font-weight: 700; padding: 11px 20px; border-radius: 6px; transition: opacity .15s; white-space: nowrap; }
+    .btn-gold { display: inline-block; background: var(--gold); color: var(--brand); font-size: 13px; font-weight: 700; padding: 12px 22px; border-radius: 8px; transition: opacity .15s; white-space: nowrap; }
     .btn-gold:hover { opacity: .88; }
-    .btn-outline-light { display: inline-block; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); font-size: 13px; font-weight: 500; padding: 11px 20px; border-radius: 6px; transition: all .15s; white-space: nowrap; }
+    .btn-outline-light { display: inline-block; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); font-size: 13px; font-weight: 500; padding: 12px 22px; border-radius: 8px; transition: all .15s; white-space: nowrap; }
     .btn-outline-light:hover { border-color: rgba(255,255,255,.5); color: #fff; }
 
-    /* STATS BAR */
-    .stats-bar { background: var(--white); border-bottom: 1px solid var(--border); }
-    .stats-inner { display: flex; gap: 0; }
-    .stat-item { flex: 1; padding: 20px 24px; border-right: 1px solid var(--border); }
-    .stat-item:last-child { border-right: none; }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--brand); font-weight: 600; display: block; line-height: 1; margin-bottom: 4px; }
-    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-weight: 500; }
+    /* KPI CARDS */
+    .kpi-section { padding: 28px 0 8px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .kpi-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 26px; box-shadow: 0 2px 10px rgba(0,0,0,.02);
+    }
+    .kpi-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--brand); font-weight: 600; display: block; line-height: 1; margin-bottom: 6px; }
+    .kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 500; }
 
     /* BODY */
-    .dash-body { padding: 40px 0 80px; }
-    .dash-grid { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+    .dash-body { padding: 8px 0 88px; }
+    .dash-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; margin-top: 24px; }
 
     /* PANELS */
-    .panel { background: var(--white); border: 1px solid var(--border); margin-bottom: 24px; }
-    .panel-head { padding: 22px 28px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .panel { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.02); overflow: hidden; }
+    .panel-head { padding: 26px 30px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .panel-head h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: var(--brand); }
     .panel-head h2 em { color: var(--gold); font-style: italic; }
-    .panel-body { padding: 24px 28px; }
+    .panel-body { padding: 26px 30px; }
     .panel-link { font-size: 12px; font-weight: 600; color: var(--gold-dark); letter-spacing: .04em; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color .15s; white-space: nowrap; }
     .panel-link:hover { border-color: var(--gold); }
 
     /* PROFIL */
-    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-    .profil-field { }
+    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
     .profil-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 5px; }
     .profil-field .val { font-size: 14px; color: var(--brand); font-weight: 500; line-height: 1.5; }
     .profil-field .val.muted { color: var(--muted); font-weight: 400; font-style: italic; }
     .profil-field.full { grid-column: 1 / -1; }
-    .badge-verifie { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; background: var(--green-bg); color: var(--green); border-radius: 4px; }
-    .badge-public { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--light); color: var(--muted); border-radius: 4px; border: 1px solid var(--border); }
+    .badge-verifie { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; background: var(--green-bg); color: var(--green); border-radius: 6px; }
+    .badge-public { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 4px 10px; background: var(--light); color: var(--muted); border-radius: 6px; border: 1px solid var(--border); }
 
     /* EDIT FORM */
-    .edit-section { display: none; border-top: 1px solid var(--border); padding-top: 24px; margin-top: 24px; }
+    .edit-section { display: none; border-top: 1px solid var(--border); padding-top: 26px; margin-top: 26px; }
     .edit-section.open { display: block; }
     .form-row { margin-bottom: 14px; }
     .form-row label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
     .form-row input, .form-row select, .form-row textarea {
-      width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
       font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text);
       background: var(--white); outline: none; transition: border-color .15s;
     }
     .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--gold); }
     .form-row textarea { resize: vertical; min-height: 90px; }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .btn-save { background: var(--brand); color: var(--white); border: none; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; padding: 13px 28px; cursor: pointer; transition: background .15s; }
+    .btn-save { background: var(--brand); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600; padding: 13px 28px; cursor: pointer; transition: background .15s; }
     .btn-save:hover { background: var(--brand-2); }
     .btn-save:disabled { opacity: .5; cursor: not-allowed; }
-    .btn-cancel { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; padding: 12px 20px; cursor: pointer; margin-left: 10px; transition: all .15s; }
+    .btn-cancel { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; padding: 12px 20px; cursor: pointer; margin-left: 10px; transition: all .15s; }
     .btn-cancel:hover { border-color: var(--text); color: var(--text); }
-    .form-actions { display: flex; align-items: center; margin-top: 20px; }
+    .form-actions { display: flex; align-items: center; margin-top: 22px; }
     .save-status { font-size: 13px; margin-left: 14px; }
     .save-status.ok { color: var(--green); }
     .save-status.err { color: var(--red); }
 
-    /* ANNONCES */
+    /* PUBLICATIONS */
     .annonce-item { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
     .annonce-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .annonce-img { width: 72px; height: 56px; min-width: 72px; background: var(--light); border: 1px solid var(--border); overflow: hidden; flex-shrink: 0; }
+    .annonce-img { width: 72px; height: 56px; min-width: 72px; background: var(--light); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex-shrink: 0; }
     .annonce-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .annonce-content { flex: 1; min-width: 0; }
     .annonce-kicker { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 4px; display: block; }
     .annonce-titre { font-size: 15px; font-weight: 600; color: var(--brand); line-height: 1.3; margin-bottom: 4px; display: block; }
     .annonce-meta { font-size: 12px; color: var(--muted); }
-    .annonce-status { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; flex-shrink: 0; }
+    .annonce-status { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: .08em; flex-shrink: 0; }
     .annonce-status.actif { background: var(--green-bg); color: var(--green); }
     .annonce-status.inactif { background: var(--light); color: var(--muted); border: 1px solid var(--border); }
-    .empty-state { text-align: center; padding: 36px 0; }
+    .empty-state { text-align: center; padding: 40px 0; }
     .empty-state p { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
 
     /* RECOS */
     .reco-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
     .reco-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .reco-stars { color: var(--gold); font-size: 14px; margin-bottom: 6px; display: flex; gap: 2px; }
-    .reco-star.empty { color: var(--border); }
     .reco-auteur { font-size: 13px; font-weight: 600; color: var(--brand); margin-bottom: 4px; }
     .reco-texte { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .reco-date { font-size: 11px; color: var(--muted); margin-top: 6px; display: block; }
+    .reco-date { font-size: 11px; color: var(--gold-dark); margin-top: 8px; display: block; font-weight: 600; letter-spacing: .02em; }
 
     /* SIDEBAR */
-    .side-card { background: var(--white); border: 1px solid var(--border); padding: 24px; margin-bottom: 20px; }
+    .side-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.02); }
     .side-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; color: var(--brand); margin-bottom: 12px; }
     .side-card h3 em { color: var(--gold); font-style: italic; }
     .side-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
     .side-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .side-card ul li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
     .side-card ul li::before { content: '→'; color: var(--gold-dark); font-size: 12px; flex-shrink: 0; }
-    .side-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: .5px solid var(--border); font-size: 13px; color: var(--brand); font-weight: 500; transition: color .15s; }
+    .side-link { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-bottom: .5px solid var(--border); font-size: 13px; color: var(--brand); font-weight: 500; transition: color .15s; }
     .side-link:last-child { border-bottom: none; }
     .side-link:hover { color: var(--gold-dark); }
     .side-link span { font-size: 11px; color: var(--muted); }
-    .btn-danger { display: block; width: 100%; padding: 11px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-align: center; transition: all .15s; margin-top: 8px; }
+    .btn-danger { display: block; width: 100%; padding: 12px; background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--muted); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-align: center; transition: all .15s; margin-top: 8px; }
     .btn-danger:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
     .btn-full { display: block; width: 100%; padding: 12px; text-align: center; font-size: 13px; font-weight: 600; margin-top: 4px; }
 
+    /* CARTE STRAKARA ESPACES (mise en avant) */
+    .side-card-espaces { background: var(--brand); border: none; position: relative; overflow: hidden; }
+    .side-card-espaces::before {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,106,.05) 79px, rgba(200,169,106,.05) 80px);
+      pointer-events: none;
+    }
+    .side-card-espaces .inner { position: relative; }
+    .side-card-espaces .label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(200,169,106,.8); margin-bottom: 10px; display: block; }
+    .side-card-espaces h3 { color: var(--white); }
+    .side-card-espaces h3 em { color: var(--gold); }
+    .side-card-espaces p { color: rgba(255,255,255,.55); }
+
     /* PROFIL PUBLIC LINK */
-    .profil-public-bar { background: rgba(200,169,106,.08); border: 1px solid rgba(200,169,106,.25); padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .profil-public-bar { background: rgba(200,169,106,.08); border: 1px solid rgba(200,169,106,.25); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .profil-public-bar p { font-size: 13px; color: var(--muted); }
     .profil-public-bar p strong { color: var(--brand); }
     .btn-view-profil { font-size: 12px; font-weight: 700; color: var(--gold-dark); border-bottom: 1px solid rgba(200,169,106,.4); padding-bottom: 2px; white-space: nowrap; flex-shrink: 0; }
@@ -230,17 +245,17 @@
       .sk-nav__links, .sk-nav__right { display: none; }
       .sk-nav__hamburger { display: flex; }
       .dash-grid { grid-template-columns: 1fr; }
-      .stats-inner { flex-wrap: wrap; }
-      .stat-item { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
       .dash-actions { margin-left: 0; margin-top: 16px; }
       .dash-hero-inner { flex-wrap: wrap; }
     }
     @media(max-width: 600px) {
       .container { padding: 0 18px; }
       .profil-grid, .form-row-2 { grid-template-columns: 1fr; }
-      .panel-body { padding: 18px; }
-      .panel-head { padding: 18px; }
-      .dash-hero { padding: 36px 0 30px; }
+      .panel-body { padding: 20px; }
+      .panel-head { padding: 20px; }
+      .dash-hero { padding: 40px 0 32px; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -251,16 +266,14 @@
   <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
-    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
-    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a></li>
+    <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-    <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
-    <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
     <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
   </ul>
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold">+ Publier</a>
     <button class="btn-nav-logout" onclick="logout()">Déconnexion</button>
   </div>
   <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
@@ -270,14 +283,12 @@
 
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
-  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
-  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a>
+  <a href="https://app.strakara.fr/membres.html">Entreprises</a>
   <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
-  <a href="https://app.strakara.fr/evenements.html">Événements</a>
   <a href="https://www.strakara.fr">strakara.fr →</a>
   <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold btn-full">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="btn-nav-gold btn-full">+ Publier</a>
     <button class="btn-danger" onclick="logout()">Déconnexion</button>
   </div>
 </div>
@@ -285,13 +296,13 @@
 <!-- LOADING -->
 <div class="page-loading" id="page-loading">
   <div class="spinner"></div>
-  <p style="font-size:13px;color:var(--muted);">Chargement de votre espace...</p>
+  <p style="font-size:13px;color:var(--muted);">Chargement de votre tableau de bord...</p>
 </div>
 
 <!-- ACCÈS REFUSÉ -->
 <div class="access-denied" id="access-denied">
   <h2>Accès <em style="color:var(--gold);font-style:italic;">réservé</em></h2>
-  <p>Vous devez être connecté pour accéder à votre espace membre. Connectez-vous avec votre numéro de téléphone.</p>
+  <p>Vous devez être connecté pour accéder à votre tableau de bord. Connectez-vous avec votre numéro de téléphone.</p>
   <a href="https://app.strakara.fr/login-membre.html" class="btn-dark">Se connecter</a>
 </div>
 
@@ -304,41 +315,41 @@
       <div class="dash-hero-inner">
         <div class="dash-avatar" id="hero-avatar">—</div>
         <div class="dash-welcome">
-          <span class="label">Votre espace membre</span>
+          <span class="label">Tableau de bord</span>
           <h1 id="hero-nom">Bonjour <em>…</em></h1>
           <p class="sub" id="hero-sub">Chargement du profil...</p>
         </div>
         <div class="dash-actions">
-          <a href="https://app.strakara.fr/publier.html" class="btn-gold">+ Publier une annonce</a>
+          <a href="https://app.strakara.fr/publier.html" class="btn-gold">+ Publier</a>
           <a href="#" id="lien-profil-public" class="btn-outline-light" target="_blank">Voir mon profil →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <div class="stats-bar">
+  <!-- KPI -->
+  <section class="kpi-section">
     <div class="container">
-      <div class="stats-inner">
-        <div class="stat-item">
-          <span class="stat-num" id="stat-annonces">—</span>
-          <span class="stat-label">Annonces actives</span>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-num" id="stat-annonces">—</span>
+          <span class="kpi-label">Publications actives</span>
         </div>
-        <div class="stat-item">
-          <span class="stat-num" id="stat-recos">—</span>
-          <span class="stat-label">Recommandations reçues</span>
+        <div class="kpi-card">
+          <span class="kpi-num" id="stat-recos">—</span>
+          <span class="kpi-label">Recommandations reçues</span>
         </div>
-        <div class="stat-item">
-          <span class="stat-num" id="stat-statut">—</span>
-          <span class="stat-label">Statut du profil</span>
+        <div class="kpi-card">
+          <span class="kpi-num" id="stat-statut">—</span>
+          <span class="kpi-label">Statut du profil</span>
         </div>
-        <div class="stat-item">
-          <span class="stat-num" id="stat-secteur">—</span>
-          <span class="stat-label">Secteur</span>
+        <div class="kpi-card">
+          <span class="kpi-num" id="stat-secteur">—</span>
+          <span class="kpi-label">Secteur</span>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- BODY -->
   <main class="dash-body">
@@ -346,7 +357,7 @@
 
       <!-- Lien profil public -->
       <div class="profil-public-bar" id="profil-public-bar" style="display:none;">
-        <p><strong>Votre profil est visible par les membres.</strong> Partagez ce lien pour être contacté.</p>
+        <p><strong>Votre profil est visible par les entreprises du réseau.</strong> Partagez ce lien pour être contacté.</p>
         <a href="#" id="profil-public-link" class="btn-view-profil" target="_blank">Voir mon profil public →</a>
       </div>
 
@@ -354,10 +365,10 @@
         <!-- COLONNE GAUCHE -->
         <div>
 
-          <!-- MON PROFIL -->
+          <!-- MON ENTREPRISE -->
           <div class="panel">
             <div class="panel-head">
-              <h2>Mon <em>profil</em></h2>
+              <h2>Mon <em>entreprise</em></h2>
               <a href="#" class="panel-link" id="btn-edit-toggle">Modifier</a>
             </div>
             <div class="panel-body">
@@ -487,11 +498,11 @@
             </div>
           </div>
 
-          <!-- MES ANNONCES -->
+          <!-- MES PUBLICATIONS -->
           <div class="panel">
             <div class="panel-head">
-              <h2>Mes <em>annonces</em></h2>
-              <a href="https://app.strakara.fr/publier.html" class="panel-link">+ Nouvelle annonce</a>
+              <h2>Mes <em>publications</em></h2>
+              <a href="https://app.strakara.fr/publier.html" class="panel-link">+ Nouvelle publication</a>
             </div>
             <div class="panel-body" id="annonces-container">
               <div class="empty-state">
@@ -518,24 +529,35 @@
         <!-- COLONNE DROITE -->
         <aside>
 
+          <!-- ESPACES STRAKARA (mise en avant) -->
+          <div class="side-card side-card-espaces">
+            <div class="inner">
+              <span class="label">STRAKARA</span>
+              <h3>Espaces professionnels <em>disponibles.</em></h3>
+              <p>Stockage, atelier, bureau ou local flexible partout en France — découvrez les espaces actuellement disponibles sur STRAKARA.</p>
+              <a href="https://www.strakara.fr" target="_blank" class="btn-gold btn-full">Voir les espaces →</a>
+            </div>
+          </div>
+
+          <!-- OPPORTUNITÉS DU RÉSEAU -->
+          <div class="side-card">
+            <h3>Opportunités <em>du réseau</em></h3>
+            <p>Découvrez les besoins et ressources publiés par les autres entreprises du réseau STRAKARA.</p>
+            <a href="https://app.strakara.fr/annonces.html" class="btn-dark btn-full">Voir les besoins & ressources →</a>
+          </div>
+
           <!-- LIENS RAPIDES -->
           <div class="side-card">
             <h3>Accès <em>rapide</em></h3>
             <div style="margin-top:8px;">
               <a href="https://app.strakara.fr/publier.html" class="side-link">
-                Publier une annonce <span>→</span>
+                Publier un besoin ou une ressource <span>→</span>
               </a>
               <a href="https://app.strakara.fr/membres.html" class="side-link">
-                Annuaire des membres <span>→</span>
+                Découvrir les entreprises <span>→</span>
               </a>
               <a href="https://app.strakara.fr/recommandations.html" class="side-link">
-                Laisser un avis <span>→</span>
-              </a>
-              <a href="https://app.strakara.fr/achats-groupes.html" class="side-link">
-                Achats groupés <span>→</span>
-              </a>
-              <a href="https://app.strakara.fr/evenements.html" class="side-link">
-                Événements réseau <span>→</span>
+                Recommander une entreprise <span>→</span>
               </a>
               <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html" class="side-link">
                 Proposer un espace <span>→</span>
@@ -547,16 +569,16 @@
           <div class="side-card">
             <h3>Le réseau</h3>
             <ul>
-              <li>Profil visible dans l'annuaire</li>
+              <li>Profil visible par les entreprises du réseau</li>
               <li>Contact via demande écrite</li>
-              <li>Annonces publiables gratuitement</li>
-              <li>Recommandations entre pros</li>
+              <li>Publications gratuites et illimitées</li>
+              <li>Recommandations entre entreprises</li>
             </ul>
           </div>
 
           <!-- DÉCONNEXION -->
           <div class="side-card" style="text-align:center;">
-            <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Vous êtes connecté à votre espace membre STRAKARA.</p>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Vous êtes connecté à votre tableau de bord STRAKARA.</p>
             <button class="btn-danger" onclick="logout()">Se déconnecter</button>
           </div>
 
@@ -566,6 +588,16 @@
   </main>
 
 </div><!-- /main-content -->
+
+<footer style="background:#111214;padding:40px 0;margin-top:40px;">
+  <div class="container" style="text-align:center;">
+    <p style="font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:8px;">Le moteur des besoins B2B.</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.8;max-width:520px;margin:0 auto;">
+      Publiez un besoin. Proposez une ressource. Développez votre réseau.
+      <a href="https://www.strakara.fr" style="color:var(--gold);">Découvrez les espaces STRAKARA.</a>
+    </p>
+  </div>
+</footer>
 
 <script>
   const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
@@ -705,7 +737,7 @@
     const container = document.getElementById('annonces-container');
 
     if (!nomEntreprise) {
-      container.innerHTML = `<div class="empty-state"><p>Aucune annonce publiée pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;">Publier une annonce</a></div>`;
+      container.innerHTML = `<div class="empty-state"><p>Aucune publication pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;">Publier</a></div>`;
       document.getElementById('stat-annonces').textContent = '0';
       return;
     }
@@ -717,7 +749,7 @@
       .limit(10);
 
     if (error || !data || data.length === 0) {
-      container.innerHTML = `<div class="empty-state"><p>Aucune annonce publiée pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;margin-top:8px;">Publier une annonce</a></div>`;
+      container.innerHTML = `<div class="empty-state"><p>Aucune publication pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;margin-top:8px;">Publier</a></div>`;
       document.getElementById('stat-annonces').textContent = '0';
       return;
     }
@@ -731,7 +763,7 @@
           ${a.image_url ? `<img src="${esc(a.image_url)}" alt="">` : ''}
         </div>
         <div class="annonce-content">
-          <span class="annonce-kicker">${esc(a.categorie || 'Annonce')}</span>
+          <span class="annonce-kicker">${esc(a.categorie || 'Publication')}</span>
           <a class="annonce-titre" href="https://app.strakara.fr/annonce-detail.html?id=${esc(a.id)}">${esc(a.titre)}</a>
           <span class="annonce-meta">${esc(a.ville || '')} · ${new Date(a.created_at).toLocaleDateString('fr-FR')}</span>
         </div>
