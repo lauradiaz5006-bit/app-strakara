@@ -478,9 +478,8 @@
         }
 
         document.getElementById('contact-btn').href = annonce.membre_id
-          ? `demande-contact.html?id=${encodeURIComponent(annonce.membre_id)}&annonce=${encodeURIComponent(annonce.id)}`
-          : `demande-contact.html?annonce=${encodeURIComponent(annonce.id)}`;
-
+  ? `demande-contact.html?id=${encodeURIComponent(annonce.membre_id)}&annonce=${encodeURIComponent(annonce.id)}`
+  : `demande-contact.html?annonce=${encodeURIComponent(annonce.id)}`;
         const profilBtn = document.getElementById('profil-btn');
 
         if (annonce.membre_id) {
