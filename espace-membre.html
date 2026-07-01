@@ -767,7 +767,7 @@
   const container = document.getElementById('recos-container');
 
   const { data, error } = await sb.from('recommandations')
-    .select('id,auteur_nom,auteur_entreprise,message,created_at,contexte,statut')
+    .select('id,auteur_nom,auteur_entreprise,message,created_at,statut')
     .eq('membre_id', m.id)
     .eq('statut', 'actif')
     .order('created_at', { ascending: false })
