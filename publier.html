@@ -158,6 +158,82 @@
     .btn-outline{display:inline-block;background:transparent;color:var(--brand);padding:13px 30px;font-weight:500;font-size:14px;letter-spacing:.03em;border:1px solid var(--border);transition:border-color .2s;}
     .btn-outline:hover{border-color:var(--brand);}
 
+
+    /* MODAL CONNEXION */
+    .login-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(30,31,35,.72);
+      backdrop-filter:blur(6px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999999;
+      padding:24px;
+    }
+    .login-modal.open{display:flex;}
+    .login-box{
+      width:520px;
+      max-width:100%;
+      background:var(--white);
+      border:1px solid var(--border);
+      padding:42px;
+      text-align:center;
+      box-shadow:0 30px 90px rgba(0,0,0,.28);
+    }
+    .login-box .login-label{
+      display:block;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:var(--gold-dark);
+      margin-bottom:12px;
+    }
+    .login-box h2{
+      font-family:'Playfair Display',serif;
+      font-size:34px;
+      line-height:1.12;
+      font-weight:400;
+      color:var(--brand);
+      margin-bottom:14px;
+    }
+    .login-box h2 em{color:var(--gold);font-style:italic;}
+    .login-box p{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.75;
+      margin-bottom:28px;
+    }
+    .login-actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .btn-gold{
+      display:inline-block;
+      background:var(--gold);
+      color:var(--brand);
+      padding:14px 28px;
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.03em;
+      transition:opacity .2s;
+    }
+    .btn-gold:hover{opacity:.88;}
+    .close-modal{
+      background:none;
+      border:none;
+      color:var(--muted);
+      font-family:'Outfit',sans-serif;
+      font-size:13px;
+      cursor:pointer;
+      text-decoration:underline;
+    }
+    .close-modal:hover{color:var(--brand);}
+
     /* FOOTER */
     @media(max-width:900px){
       .container{padding:0 20px;}
@@ -412,7 +488,7 @@
                   <strong>100% <em>gratuite.</em></strong>
                 </div>
                 <button type="submit" class="btn-submit" id="submit-btn">Envoyer à STRAKARA →</button>
-                <p class="form-submit-note">En publiant vous acceptez nos CGV — votre besoin ou ressource est immédiatement visible dans le réseau.</p>
+                <p class="form-submit-note">En publiant vous acceptez nos CGV — votre besoin ou ressource sera vérifié avant publication dans le réseau.</p>
               </div>
 
             </div>
@@ -473,6 +549,31 @@
   SUPABASE_KEY
 );
 
+function ouvrirModalConnexion() {
+  const modal = document.getElementById('login-modal');
+  if (modal) modal.classList.add('open');
+}
+
+function fermerModalConnexion() {
+  const modal = document.getElementById('login-modal');
+  if (modal) modal.classList.remove('open');
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const closeBtn = document.getElementById('close-login-modal');
+  if (closeBtn) closeBtn.addEventListener('click', fermerModalConnexion);
+
+  const modal = document.getElementById('login-modal');
+  if (modal) {
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) fermerModalConnexion();
+    });
+  }
+
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) ouvrirModalConnexion();
+});
+
     // ─── SUBMIT ────────────────────────────────────────────────────
    async function handleSubmit(e) {
   e.preventDefault();
@@ -482,8 +583,7 @@
   } = await supabase.auth.getSession();
 
   if (!session) {
-    window.location.href =
-      "https://app.strakara.fr/login-membre.html?redirect=publier.html";
+    ouvrirModalConnexion();
     return;
   }
 
@@ -651,7 +751,24 @@ if (!res.ok) {
       this.value = f;
     });
   </script>
-<script src="https://app.strakara.fr/footer.js"></script>
-<script src="https://app.strakara.fr/cookie-banner.js"></script>
+
+<div id="login-modal" class="login-modal" aria-hidden="true">
+  <div class="login-box" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+    <span class="login-label">Connexion requise</span>
+    <h2 id="login-modal-title">Publier sur <em>STRAKARA.</em></h2>
+    <p>
+      Pour publier un besoin ou une ressource, vous devez être connecté à votre compte entreprise.
+      Cela permet de protéger le réseau et de limiter les publications anonymes.
+    </p>
+    <div class="login-actions">
+      <a href="login-membre.html?redirect=publier.html" class="btn-gold">Se connecter</a>
+      <a href="inscription-membre.html" class="btn-dark">Créer mon compte</a>
+    </div>
+    <button type="button" id="close-login-modal" class="close-modal">Continuer sans publier</button>
+  </div>
+</div>
+
+  <script src="https://app.strakara.fr/footer.js"></script>
+  <script src="https://app.strakara.fr/cookie-banner.js"></script>
 </body>
 </html>
