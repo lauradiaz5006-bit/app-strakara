@@ -25,6 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
   <style>
     :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -190,22 +191,6 @@
     .page-btn:hover{border-color:var(--brand);color:var(--brand);}
     .page-btn.active{background:var(--brand);color:var(--white);border-color:var(--brand);}
 
-    .sk-footer{background:#111214;padding:56px 0 32px;}
-    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-    .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
-    .sk-footer-logo span{color:var(--gold);}
-    .sk-footer-logo-sub{display:block;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
-    .sk-footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:280px;margin-bottom:18px;}
-    .sk-footer-strakara-link{display:inline-block;font-size:12px;color:var(--gold);border-bottom:1px solid rgba(200,169,106,.3);padding-bottom:2px;}
-    .sk-footer-col h4{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
-    .sk-footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px;transition:color .18s;}
-    .sk-footer-col a:hover{color:var(--gold);}
-    .sk-footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-    .sk-footer-bottom p{font-size:12px;color:rgba(255,255,255,.25);}
-    .sk-footer-bottom-links{display:flex;gap:20px;}
-    .sk-footer-bottom-links a{font-size:12px;color:rgba(255,255,255,.25);}
-    .sk-footer-bottom-links a:hover{color:var(--gold);}
-
     @media(max-width:1100px){.category-grid{grid-template-columns:repeat(2,1fr);}.annonces-body-inner{grid-template-columns:1fr;}.sidebar{position:static;}}
     @media(max-width:960px){.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.annonces-filtres{grid-template-columns:1fr 1fr;}.annonces-filtres .filtre-btn{grid-column:1/-1;padding:15px;}.annonces-grid{grid-template-columns:1fr;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
     @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.hero-actions{flex-direction:column;}.category-grid{grid-template-columns:1fr;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
@@ -225,15 +210,15 @@
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html">Accueil</a></li>
     <li><a href="https://app.strakara.fr/annonces.html" class="active">Besoins &amp; Ressources</a></li>
-    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+    <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">Espaces STRAKARA →</a></li>
   </ul>
 
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
     <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+    <a href="https://app.strakara.fr/login-membre.html" class="sk-btn-connexion">Connexion</a>
   </div>
 
   <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
@@ -246,13 +231,13 @@
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
   <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
-  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/membres.html">Entreprises</a>
   <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-  <a href="https://www.strakara.fr">strakara.fr →</a>
+  <a href="https://www.strakara.fr">Espaces STRAKARA →</a>
 
   <div class="sk-nav__mobile-btns">
     <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+    <a href="https://app.strakara.fr/login-membre.html" class="sk-btn-connexion">Connexion</a>
   </div>
 </div>
 
@@ -467,46 +452,8 @@
     </div>
   </section>
 
-  <footer class="sk-footer">
-    <div class="container">
-      <div class="sk-footer-inner">
-        <div class="sk-footer-brand">
-          <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-          <span class="sk-footer-logo-sub">Réseau Pro</span>
-          <p>Le moteur de mise en relation entre entreprises — besoins, ressources, services, compétences et opportunités professionnelles.</p>
-          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — location d'espaces →</a>
-        </div>
-        <div class="sk-footer-col">
-          <h4>Réseau</h4>
-          <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
-          <a href="https://app.strakara.fr/membres.html">Membres</a>
-          <a href="https://app.strakara.fr/publier.html">Publier une annonce</a>
-          <a href="https://app.strakara.fr/rejoindre.html">Rejoindre — Gratuit</a>
-        </div>
-        <div class="sk-footer-col">
-          <h4>Utiliser STRAKARA</h4>
-          <a href="https://app.strakara.fr/publier.html">Publier un besoin</a>
-          <a href="https://app.strakara.fr/publier.html">Publier une ressource</a>
-          <a href="https://app.strakara.fr/membres.html">Trouver une entreprise</a>
-          <a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a>
-        </div>
-        <div class="sk-footer-col">
-          <h4>STRAKARA</h4>
-          <a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a>
-          <a href="https://www.strakara.fr">Mise à disposition d'espaces</a>
-              <a href="https://www.strakara.fr/contact.html">Contact</a>
-        </div>
-      </div>
-      <div class="sk-footer-bottom">
-        <p>© 2026 STRAKARA SASU — Tous droits réservés · Réseau Pro</p>
-        <div class="sk-footer-bottom-links">
-          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
-          <a href="https://www.strakara.fr/cgv.html">CGV</a>
-          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <script src="https://app.strakara.fr/footer.js"></script>
+
 
   <script>
     // ── SUPABASE CONFIG ─────────────────────────────────────────────
@@ -663,7 +610,7 @@
                 <span class="label">Besoin d’une solution professionnelle ?</span>
                 <h3>Les besoins du réseau peuvent devenir une <em>mise en relation utile.</em></h3>
                 <p>Une entreprise publie un besoin, une autre propose une ressource : STRAKARA facilite la rencontre.</p>
-                <a href="https://www.strakara.fr/espaces.html" class="btn-gold-outline">Voir les espaces STRAKARA →</a>
+                <a href="https://www.strakara.fr" class="btn-gold-outline">Voir les espaces STRAKARA →</a>
               </div>
             </div>`;
         }
