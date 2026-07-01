@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
 
   <style>
     :root{
@@ -417,18 +417,7 @@
       border:1px solid #f0cbc7;
     }
 
-    .sk-footer{
-      background:#111214;
-      padding:38px 0;
-    }
-
-    .sk-footer p{
-      font-size:12px;
-      color:rgba(255,255,255,.32);
-      text-align:center;
-    }
-
-    @media(max-width:960px){
+@media(max-width:960px){
       .layout{grid-template-columns:1fr;}
       .sk-nav__links,
       .sk-nav__right{display:none;}
@@ -452,7 +441,7 @@
 <body>
 
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">Réseau d'entraide pour les pros — STRAKARA Le moteur des besoins B2B</span>
+    <span class="sk-banner__text">STRAKARA — Le moteur des besoins B2B</span>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Créer mon profil</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
@@ -465,7 +454,7 @@
       <li><a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a></li>
       <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
       <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">Espaces STRAKARA →</a></li>
     </ul>
 
     <div class="sk-nav__right">
@@ -492,7 +481,7 @@
     <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
     <a href="https://app.strakara.fr/membres.html">Entreprises</a>
     <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-    <a href="https://www.strakara.fr">strakara.fr →</a>
+    <a href="https://www.strakara.fr">Espaces STRAKARA →</a>
 
     <div class="sk-nav__mobile-btns">
   <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">
@@ -523,7 +512,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
             <div class="member-logo" id="memberLogo">SK</div>
 
             <div class="member-info">
-              <strong id="memberName">Chargement du membre...</strong>
+              <strong id="memberName">Chargement de l’entreprise...</strong>
               <span id="memberMeta">Veuillez patienter quelques secondes.</span>
               <div id="memberVerified"></div>
             </div>
@@ -576,12 +565,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
       </div>
     </div>
   </main>
-
-  <footer class="sk-footer">
-    <div class="container">
-      <p>&copy; 2026 STRAKARA SASU — Le moteur des besoins B2B.</p>
-    </div>
-  </footer>
+  <script src="https://app.strakara.fr/footer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
@@ -635,7 +619,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
         .single();
 
       if (error || !data) {
-        afficherErreur("Cette annonce est introuvable ou n'est plus active.");
+        afficherErreur("Cette publication est introuvable ou n’est plus active.");
         return;
       }
 
@@ -645,7 +629,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
       const messageField = document.getElementById('message');
       if (data.titre && messageField) {
         messageField.placeholder =
-          "Bonjour, je souhaite obtenir plus d'informations concernant l'annonce : " + data.titre;
+          "Bonjour, je souhaite obtenir plus d’informations concernant la publication : " + data.titre;
       }
     }
 
@@ -653,7 +637,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
       await chargerAnnonceSiBesoin();
 
       if (!cibleMembreId) {
-        afficherErreur("Aucun identifiant de membre n'a été fourni.");
+        afficherErreur("Aucun identifiant d’entreprise n’a été fourni.");
         return;
       }
 
@@ -694,7 +678,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
       if (annonceActuelle && annonceActuelle.titre) {
         const intro = document.querySelector('.intro');
         if (intro) intro.textContent =
-          "Votre demande concerne l'annonce : « " + annonceActuelle.titre + " ». Elle sera transmise dans le cadre du réseau STRAKARA.";
+          "Votre demande concerne la publication : « " + annonceActuelle.titre + " ». Elle sera transmise dans le cadre du réseau STRAKARA.";
       }
     }
 
@@ -702,7 +686,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
       e.preventDefault();
 
       if (!cibleMembreId || !membreActuel) {
-        showStatus('error', "Impossible d'envoyer la demande : membre introuvable.");
+        showStatus('error', "Impossible d’envoyer la demande : entreprise introuvable.");
         return;
       }
 
@@ -751,7 +735,7 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            // Destinataire = le membre qui reçoit la demande
+            // Destinataire = l’entreprise qui reçoit la demande
             email_membre: membreActuel.email || membreActuel.contact_email || '',
             nom_membre: nomEntrepriseMembre,
             // Expéditeur = celui qui envoie la demande
@@ -782,7 +766,6 @@ Votre message sera transmis directement à cette entreprise via STRAKARA afin de
 
     chargerMembre();
   </script>
- <script src="https://app.strakara.fr/cookie-banner.js"></script>
+  <script src="https://app.strakara.fr/cookie-banner.js"></script>
 </body>
 </html>
-```
