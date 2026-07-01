@@ -326,7 +326,7 @@
       <div id="publier-form-container">
         <div class="publier-layout">
 
-          <form id="publier-form" onsubmit="handleSubmit(event)">
+          <form id="publier-form" method="post" onsubmit="handleSubmit(event)">
             <div class="publier-form-wrap">
 
               <div id="form-status" class="form-status"></div>
@@ -528,7 +528,7 @@
       <div class="publier-confirm" id="publier-confirm">
         <div class="publier-confirm-icon">✓</div>
         <h2>C'est envoyé.<br><em>Merci !</em></h2>
-        <p>Votre besoin ou votre ressource est enregistré. Notre équipe recherche dès maintenant la meilleure correspondance et vous recontacte directement dès qu'une entreprise correspond.</p>
+        <p>Votre besoin ou votre ressource est enregistré et sera vérifié avant publication. Un email vient de vous être envoyé pour accéder à votre espace et suivre vos publications.</p>
         <div class="confirm-btns">
           <a href="https://app.strakara.fr/annonces.html" class="btn-dark">Voir les besoins &amp; ressources</a>
           <a href="https://app.strakara.fr/index.html" class="btn-outline">Retour à l'accueil</a>
@@ -541,10 +541,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    // ─── CONFIG SUPABASE ───────────────────────────────────────────
+  // ─── CONFIG SUPABASE ───────────────────────────────────────────
     const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
-    const supabase = window.supabase.createClient(
+    const skSupabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
@@ -559,33 +559,26 @@ function fermerModalConnexion() {
   if (modal) modal.classList.remove('open');
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
+
   const closeBtn = document.getElementById('close-login-modal');
-  if (closeBtn) closeBtn.addEventListener('click', fermerModalConnexion);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', fermerModalConnexion);
+  }
 
   const modal = document.getElementById('login-modal');
   if (modal) {
     modal.addEventListener('click', (event) => {
-      if (event.target === modal) fermerModalConnexion();
+      if (event.target === modal) {
+        fermerModalConnexion();
+      }
     });
   }
 
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) ouvrirModalConnexion();
 });
-
     // ─── SUBMIT ────────────────────────────────────────────────────
    async function handleSubmit(e) {
   e.preventDefault();
-
-  const {
-    data: { session }
-  } = await supabase.auth.getSession();
-
-  if (!session) {
-    ouvrirModalConnexion();
-    return;
-  }
 
       const btn = document.getElementById('submit-btn');
       const statusEl = document.getElementById('form-status');
@@ -625,7 +618,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               method: 'POST',
               headers: {
                 'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${session.access_token}`,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
                 'Content-Type': photo.type,
                 'x-upsert': 'true'
               },
@@ -657,29 +650,32 @@ document.addEventListener('DOMContentLoaded', async () => {
           prix: document.getElementById('prix').value.trim(),
           surface: document.getElementById('surface').value.trim(),
           image_url: imageUrl,
-          statut: 'actif'
+          statut: 'en_attente'
         };
 const res = await fetch(`${SUPABASE_URL}/rest/v1/annonces`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${session.access_token}`,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
             'Prefer': 'return=minimal'
           },
           body: JSON.stringify(data)
         });
-        console.log("STATUS :", res.status);
 
 const responseText = await res.text();
-
-console.log("REPONSE :", responseText);
 
 if (!res.ok) {
   throw new Error(responseText);
 }
 
-      
+        // Création automatique du compte / envoi du lien magique
+        // (on n'attend pas et on ne fait jamais échouer la publication à cause de ça)
+        skSupabaseClient.auth.signInWithOtp({
+          email: data.contact_email,
+          options: { emailRedirectTo: 'https://app.strakara.fr/espace-membre.html' }
+        }).catch(err => console.error('Erreur envoi lien de connexion :', err));
+
         // Succès
         document.getElementById('publier-form-container').style.display = 'none';
         document.getElementById('publier-confirm').style.display = 'block';
@@ -705,6 +701,7 @@ if (!res.ok) {
         btn.textContent = 'Envoyer à STRAKARA →';
       }
     }
+      
 
     // Aperçu propre de la photo
     const photoInputPreview = document.getElementById('photo');
@@ -761,8 +758,8 @@ if (!res.ok) {
       Cela permet de protéger le réseau et de limiter les publications anonymes.
     </p>
     <div class="login-actions">
-      <a href="login-membre.html?redirect=publier.html" class="btn-gold">Se connecter</a>
-      <a href="inscription-membre.html" class="btn-dark">Créer mon compte</a>
+      <a href="https://app.strakara.fr/login-membre.html?redirect=publier.html" class="btn-gold">Se connecter</a>
+      <a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon compte</a>
     </div>
     <button type="button" id="close-login-modal" class="close-modal">Continuer sans publier</button>
   </div>
