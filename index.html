@@ -1,55 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>STRAKARA Réseau Pro — Développez votre entreprise grâce à la force du collectif</title>
-
-  <meta name="description" content="Rejoignez gratuitement STRAKARA Réseau Pro : visibilité, recommandations, annonces, achats groupés, événements et opportunités entre professionnels partout en France.">
-
+  <title>STRAKARA — Le moteur des besoins B2B</title>
+  <meta name="description" content="STRAKARA connecte les entreprises qui ont un besoin avec celles qui peuvent y répondre : espaces, stockage, transport, logistique, services et ressources professionnelles.">
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="https://app.strakara.fr/">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="STRAKARA Réseau Pro — Le réseau des pros qui avancent ensemble">
-  <meta property="og:description" content="Développez votre entreprise grâce à la force du collectif. Réseau gratuit pour professionnels, opportunités, recommandations, événements et achats groupés.">
+  <meta property="og:title" content="STRAKARA — Le moteur des besoins B2B">
+  <meta property="og:description" content="J’ai un besoin ou je peux aider une entreprise : STRAKARA connecte les pros utiles entre eux.">
   <meta property="og:url" content="https://app.strakara.fr/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://app.strakara.fr/images/strakara-reseau-pro-cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:alt" content="STRAKARA Réseau Pro - Développez votre entreprise grâce à la force du collectif">
 
-  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="STRAKARA Réseau Pro">
-  <meta name="twitter:description" content="Développez votre entreprise grâce à la force du collectif.">
+  <meta name="twitter:title" content="STRAKARA — Le moteur des besoins B2B">
+  <meta name="twitter:description" content="Connecter les entreprises qui ont un besoin avec celles qui peuvent y répondre.">
   <meta name="twitter:image" content="https://app.strakara.fr/images/strakara-reseau-pro-cover.jpg">
 
-  <!-- SEO Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Organization",
-    "name":"STRAKARA Réseau Pro",
+    "name":"STRAKARA",
     "url":"https://app.strakara.fr",
-    "description":"Réseau professionnel gratuit pour artisans, TPE, PME, transporteurs, prestataires et entreprises du terrain.",
+    "description":"Moteur opérationnel de mise en relation B2B entre entreprises qui ont un besoin et entreprises qui peuvent y répondre.",
     "areaServed":"France"
   }
   </script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-
     :root{
       --brand:#1E1F23;
       --gold:#C8A96A;
@@ -61,421 +48,457 @@
       --border:#E8E0D0;
       --white:#FFFFFF;
       --green:#2E7D5B;
+      --red:#B84A3A;
     }
 
-    *,*::before,*::after{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
-
-    :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;--green:#2E7D5B;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;overflow-x:hidden;}
     body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;}
-    a{text-decoration:none;color:inherit;} img{max-width:100%;display:block;}
-    .container{max-width:1280px;margin:0 auto;padding:0 48px;}
-    .label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+    .container{max-width:1240px;margin:0 auto;padding:0 46px;}
+    .label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;}
     .h2{font-family:'Playfair Display',serif;font-size:clamp(30px,3.6vw,48px);line-height:1.12;color:var(--brand);font-weight:400;margin-bottom:18px;}
     .h2 em,.hero h1 em{font-style:italic;color:var(--gold);}
-    .lead{font-size:17px;color:var(--muted);line-height:1.75;font-weight:300;max-width:620px;}
-    .btn-dark,.btn-gold,.btn-outline,.btn-light{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;font-size:14px;font-weight:700;letter-spacing:.02em;transition:.18s ease;min-height:48px;}
+    .lead{font-size:17px;color:var(--muted);line-height:1.75;font-weight:300;max-width:680px;}
+    .btn-dark,.btn-gold,.btn-outline,.btn-white{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:14px 26px;font-size:14px;font-weight:800;letter-spacing:.02em;
+      min-height:48px;transition:.18s ease;border:1px solid transparent;
+    }
     .btn-dark{background:var(--brand);color:var(--white);}
     .btn-dark:hover{background:#2E2F35;transform:translateY(-1px);}
     .btn-gold{background:var(--gold);color:var(--brand);}
     .btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--brand);border:1px solid var(--border);}
+    .btn-outline{background:transparent;color:var(--brand);border-color:var(--border);}
     .btn-outline:hover{border-color:var(--brand);transform:translateY(-1px);}
-    .btn-light{background:var(--white);color:var(--brand);}
-    .btn-light:hover{background:var(--light);transform:translateY(-1px);}
+    .btn-white{background:var(--white);color:var(--brand);}
+    .btn-white:hover{background:var(--light);transform:translateY(-1px);}
 
-    .sk-banner{background:var(--brand);padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;}
-    .sk-banner__text{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--gold);}
-    .sk-banner__btn{background:var(--gold);color:var(--brand);font-size:11.5px;font-weight:800;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap;}
-    .sk-banner__close{position:absolute;right:16px;background:none;border:none;color:#777;font-size:18px;cursor:pointer;}
+    .top-banner{background:var(--brand);color:var(--white);padding:10px 22px;text-align:center;font-size:13px;}
+    .top-banner strong{color:var(--gold);}
 
-    .sk-nav{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:.5px solid var(--border);padding:0 24px;display:flex;align-items:center;height:58px;position:sticky;top:0;z-index:100;}
-    .sk-nav__logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--brand);margin-right:36px;white-space:nowrap;}
-    .sk-nav__logo span{color:var(--gold);}
-    .sk-nav__links{display:flex;align-items:center;gap:24px;flex:1;list-style:none;}
-    .sk-nav__links a{font-size:13px;color:var(--muted);white-space:nowrap;transition:color .15s;}
-    .sk-nav__links a:hover,.sk-nav__links a.active{color:var(--brand);font-weight:600;}
-    .sk-nav__right{display:flex;align-items:center;gap:10px;margin-left:auto;}
-    .sk-btn-publier{color:var(--brand);font-size:12px;font-weight:700;white-space:nowrap;padding:7px 12px;border-left:1px solid var(--border);}
-    .sk-btn-connexion{background:var(--brand);color:var(--white);font-size:12px;font-weight:600;padding:8px 16px;border-radius:20px;white-space:nowrap;}
-    .sk-nav__hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto;flex-direction:column;gap:5px;}
-    .sk-nav__hamburger span{display:block;width:22px;height:1.5px;background:var(--brand);}
-    .sk-nav__mobile{display:none;flex-direction:column;background:var(--white);border-bottom:.5px solid var(--border);padding:16px 24px 20px;}
-    .sk-nav__mobile.sk-open{display:flex;}
-    .sk-nav__mobile a{font-size:14px;color:var(--muted);padding:11px 0;border-bottom:.5px solid var(--border);display:block;}
-    .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+    .nav{
+      height:64px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);display:flex;align-items:center;
+      padding:0 24px;position:sticky;top:0;z-index:100;
+    }
+    .logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-right:34px;white-space:nowrap;}
+    .logo span{color:var(--gold);}
+    .nav-links{display:flex;align-items:center;gap:22px;list-style:none;flex:1;}
+    .nav-links a{font-size:13px;color:var(--muted);transition:.15s;white-space:nowrap;}
+    .nav-links a:hover,.nav-links a.active{color:var(--brand);font-weight:700;}
+    .nav-right{display:flex;align-items:center;gap:10px;}
+    .nav-cta{background:var(--brand);color:white;padding:9px 16px;border-radius:22px;font-size:12px;font-weight:800;}
+    .nav-secondary{font-size:12px;font-weight:800;color:var(--brand);padding:8px 10px;border-left:1px solid var(--border);}
+    .hamb{display:none;background:none;border:0;flex-direction:column;gap:5px;margin-left:auto;cursor:pointer;}
+    .hamb span{display:block;width:24px;height:2px;background:var(--brand);}
+    .mobile{display:none;background:white;border-bottom:1px solid var(--border);padding:18px 24px;}
+    .mobile.open{display:flex;flex-direction:column;}
+    .mobile a{padding:11px 0;border-bottom:1px solid var(--border);color:var(--muted);font-size:14px;}
+    .mobile .nav-cta{margin-top:14px;text-align:center;color:white;border:0;}
 
     .hero{position:relative;overflow:hidden;background:var(--white);border-bottom:1px solid var(--border);}
-    .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
-    .hero-wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:92px 0 84px;}
-    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,5.4vw,72px);line-height:1.03;font-weight:400;color:var(--brand);margin-bottom:24px;letter-spacing:-.02em;}
-    .hero-sub{font-size:19px;line-height:1.78;color:var(--muted);font-weight:300;max-width:720px;margin-bottom:26px;}
-    .hero-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:26px 0 34px;max-width:700px;}
-    .check{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--brand);font-weight:600;}
-    .check::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(200,169,106,.16);color:var(--gold-dark);border:1px solid rgba(200,169,106,.35);font-size:12px;font-weight:800;}
-    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+    .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
+    .hero-wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;padding:88px 0 76px;}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,5.2vw,70px);line-height:1.03;font-weight:400;color:var(--brand);letter-spacing:-.02em;margin-bottom:24px;}
+    .hero-sub{font-size:19px;line-height:1.75;color:var(--muted);font-weight:300;max-width:720px;margin-bottom:32px;}
+    .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 20px;max-width:760px;}
+    .action-card{display:block;background:var(--brand);color:white;padding:28px;border:1px solid rgba(200,169,106,.35);transition:.18s ease;min-height:168px;}
+    .action-card:hover{transform:translateY(-3px);background:#2b2c31;}
+    .action-card.gold{background:var(--gold);color:var(--brand);}
+    .action-card.gold:hover{background:var(--gold-light);}
+    .action-card strong{display:block;font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.15;margin-bottom:10px;}
+    .action-card span{display:block;font-size:14px;line-height:1.6;opacity:.78;}
     .micro{font-size:12px;color:var(--muted);}
-    .hero-card{background:var(--brand);color:var(--white);padding:36px;border:1px solid rgba(200,169,106,.26);position:relative;overflow:hidden;box-shadow:0 18px 60px rgba(30,31,35,.12);}
-    .hero-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
-    .hero-card>*{position:relative;}
-    .hero-card h2{font-family:'Playfair Display',serif;font-size:30px;line-height:1.18;font-weight:400;margin-bottom:18px;}
-    .hero-card h2 em{color:var(--gold);font-style:italic;}
-    .gain-list{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.08);margin:24px 0;}
-    .gain{background:rgba(255,255,255,.035);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;}
-    .gain-num{font-family:'Playfair Display',serif;color:var(--gold);font-size:22px;line-height:1;min-width:32px;}
-    .gain strong{display:block;font-size:14px;margin-bottom:2px;}
-    .gain span{display:block;font-size:12px;color:rgba(255,255,255,.55);line-height:1.55;}
-    .hero-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
-    .proof-cell{background:var(--white);padding:22px 20px;text-align:center;}
-    .proof-num{font-family:'Playfair Display',serif;font-size:28px;color:var(--brand);font-weight:600;display:block;}
-    .proof-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+
+    .hero-panel{background:var(--brand);color:white;padding:34px;border:1px solid rgba(200,169,106,.28);box-shadow:0 18px 60px rgba(30,31,35,.14);}
+    .hero-panel h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;line-height:1.2;margin-bottom:18px;}
+    .hero-panel h2 em{color:var(--gold);font-style:italic;}
+    .panel-list{display:grid;gap:1px;background:rgba(255,255,255,.08);margin:24px 0;}
+    .panel-item{background:rgba(255,255,255,.035);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;}
+    .panel-num{font-family:'Playfair Display',serif;color:var(--gold);font-size:24px;line-height:1;min-width:34px;}
+    .panel-item strong{display:block;font-size:14px;margin-bottom:2px;}
+    .panel-item span{display:block;font-size:12px;color:rgba(255,255,255,.58);line-height:1.55;}
 
     section{border-bottom:1px solid var(--border);}
-    .benefits{padding:86px 0;background:var(--light);}
-    .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;flex-wrap:wrap;}
-    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-    .benefit-card{background:var(--white);padding:38px 34px;position:relative;transition:.18s ease;}
-    .benefit-card:hover{background:#FDFCF8;transform:translateY(-2px);}
-    .benefit-card::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--gold);opacity:0;transition:.18s;}
-    .benefit-card:hover::before{opacity:1;}
-    .icon{width:38px;height:38px;border:1px solid var(--border);background:var(--light);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--gold-dark);font-weight:800;}
-    .benefit-card h3,.sector-card h3,.event-card h3,.buy-card h3,.step h3{font-family:'Playfair Display',serif;font-weight:400;color:var(--brand);font-size:21px;line-height:1.25;margin-bottom:10px;}
-    .benefit-card p,.sector-card p,.event-card p,.buy-card p,.step p{font-size:14px;color:var(--muted);line-height:1.7;}
+    .proof{background:var(--light);padding:34px 0;}
+    .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+    .proof-cell{background:white;padding:24px;text-align:center;}
+    .proof-num{display:block;font-family:'Playfair Display',serif;font-size:30px;color:var(--brand);font-weight:600;}
+    .proof-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
 
-    .pain{padding:88px 0;background:var(--white);}
-    .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-    .pain-card{background:var(--white);padding:46px 42px;}
-    .pain-card.dark{background:var(--brand);color:var(--white);}
-    .pain-card h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:400;line-height:1.16;margin-bottom:24px;}
-    .pain-card.dark h2 em{color:var(--gold);font-style:italic;}
-    .bad-good{display:flex;flex-direction:column;gap:14px;}
-    .bad-good li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);}
-    .pain-card.dark .bad-good li{color:rgba(255,255,255,.68);}
-    .mark{min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;background:var(--light);color:var(--muted);}
-    .pain-card.dark .mark{background:rgba(200,169,106,.15);color:var(--gold);}
-
-    .how{padding:88px 0;background:var(--light);}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:42px;}
-    .step{background:var(--white);padding:34px 28px;}
-    .step-num{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold);display:block;margin-bottom:14px;}
-
-    .sectors{padding:86px 0;background:var(--white);}
-    .sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-    .sector-card{background:var(--white);padding:34px;}
+    .needs{padding:84px 0;background:white;}
+    .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:34px;margin-bottom:44px;flex-wrap:wrap;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+    .card{background:white;padding:34px;transition:.18s ease;}
+    .card:hover{background:#FDFCF8;transform:translateY(-2px);}
+    .card .icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--light);border:1px solid var(--border);color:var(--gold-dark);font-weight:800;margin-bottom:18px;}
+    .card h3{font-family:'Playfair Display',serif;font-size:23px;font-weight:400;line-height:1.25;margin-bottom:10px;color:var(--brand);}
+    .card p{font-size:14px;color:var(--muted);line-height:1.7;}
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;}
-    .tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);border:1px solid var(--border);padding:4px 9px;background:var(--light);}
+    .tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);border:1px solid var(--border);padding:4px 9px;background:var(--light);}
 
-    .opportunities{padding:88px 0;background:var(--brand);color:var(--white);position:relative;overflow:hidden;}
-    .opportunities::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);pointer-events:none;}
-    .opportunities .container{position:relative;}
-    .opportunities .label{color:var(--gold);}.opportunities .h2{color:var(--white);}.opportunities .lead{color:rgba(255,255,255,.62);}
-    .opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:42px;}
-    .opp-card{background:rgba(255,255,255,.035);padding:30px;}
-    .opp-type{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px;}
-    .opp-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;line-height:1.28;margin-bottom:10px;}
-    .opp-card p{font-size:13px;color:rgba(255,255,255,.58);line-height:1.65;margin-bottom:16px;}
-    .opp-meta{font-size:11px;color:rgba(255,255,255,.42);letter-spacing:.06em;text-transform:uppercase;}
+    .dark-section{padding:86px 0;background:var(--brand);color:white;position:relative;overflow:hidden;}
+    .dark-section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
+    .dark-section .container{position:relative;}
+    .dark-section .label{color:var(--gold);}
+    .dark-section .h2{color:white;}
+    .dark-section .lead{color:rgba(255,255,255,.62);}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:42px;}
+    .flow-step{background:rgba(255,255,255,.035);padding:26px 22px;min-height:160px;}
+    .flow-step span{display:block;font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin-bottom:12px;}
+    .flow-step strong{display:block;font-size:15px;margin-bottom:8px;}
+    .flow-step p{font-size:12px;color:rgba(255,255,255,.58);line-height:1.6;}
 
-    .buy-events{padding:88px 0;background:var(--light);}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
-    .feature-box{background:var(--white);border:1px solid var(--border);padding:42px;}
-    .mini-list{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:28px;}
-    .buy-card,.event-card{background:var(--white);padding:24px;}
-    .card-kicker{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);display:block;margin-bottom:8px;}
+    .strakara-space{padding:86px 0;background:var(--light);}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;}
+    .box{background:white;border:1px solid var(--border);padding:42px;}
+    .box.dark{background:var(--brand);color:white;border-color:var(--brand);}
+    .box.dark .h2{color:white;}
+    .box.dark .lead{color:rgba(255,255,255,.64);}
+    .check-list{display:grid;gap:12px;margin:28px 0;}
+    .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);}
+    .box.dark .check{color:rgba(255,255,255,.72);}
+    .check::before{content:'✓';width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:rgba(200,169,106,.16);border:1px solid rgba(200,169,106,.35);color:var(--gold-dark);font-weight:900;font-size:12px;flex:0 0 22px;}
+    .box.dark .check::before{color:var(--gold);}
 
-    .emotional{padding:90px 0;background:var(--white);}
-    .emotional-box{background:var(--light);border:1px solid var(--border);padding:56px;text-align:center;max-width:940px;margin:0 auto;}
-    .emotional-box .lead{margin:0 auto 30px;}
+    .for-who{padding:84px 0;background:white;}
+    .cta{padding:92px 0;background:var(--brand);color:white;text-align:center;position:relative;overflow:hidden;}
+    .cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
+    .cta .container{position:relative;}
+    .cta .label{color:var(--gold);}
+    .cta .h2{color:white;}
+    .cta .lead{color:rgba(255,255,255,.62);margin:0 auto 32px;}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .note{font-size:12px;color:rgba(255,255,255,.45);margin-top:16px;}
 
-    .trust{padding:78px 0;background:var(--white);}
-    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
-    .trust-item{background:var(--white);padding:28px;text-align:center;}
-    .trust-item strong{display:block;font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:8px;}
-    .trust-item span{font-size:12px;color:var(--muted);line-height:1.6;display:block;}
+    .footer{background:#111214;padding:54px 0 30px;color:white;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:46px;margin-bottom:42px;}
+    .footer-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:.08em;display:block;margin-bottom:4px;}
+    .footer-logo span{color:var(--gold);}
+    .footer-sub{display:block;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;}
+    .footer p{font-size:13px;color:rgba(255,255,255,.36);line-height:1.7;max-width:340px;}
+    .footer h4{font-size:11px;font-weight:700;color:rgba(255,255,255,.52);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
+    .footer a{display:block;font-size:13px;color:rgba(255,255,255,.36);margin-bottom:10px;transition:.15s;}
+    .footer a:hover{color:var(--gold);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    .footer-bottom p,.footer-bottom a{font-size:12px;color:rgba(255,255,255,.26);}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap;}
 
-    .final-cta{padding:94px 0;background:var(--brand);color:var(--white);text-align:center;position:relative;overflow:hidden;}
-    .final-cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.04) 79px,rgba(200,169,106,.04) 80px);}
-    .final-cta .container{position:relative;}
-    .final-cta .label{color:var(--gold);}.final-cta .h2{color:var(--white);}.final-cta .lead{color:rgba(255,255,255,.62);margin:0 auto 34px;}
-    .final-note{font-size:12px;color:rgba(255,255,255,.45);margin-top:16px;}
-
-    .sk-footer{background:#111214;padding:56px 0 32px;}
-    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-    .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
-    .sk-footer-logo span{color:var(--gold);}.sk-footer-logo-sub{display:block;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;}
-    .sk-footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:300px;margin-bottom:18px;}
-    .sk-footer-col h4{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
-    .sk-footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px;transition:color .18s;}
-    .sk-footer-col a:hover{color:var(--gold);}
-    .sk-footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-    .sk-footer-bottom p,.sk-footer-bottom a{font-size:12px;color:rgba(255,255,255,.25);}.sk-footer-bottom-links{display:flex;gap:20px;flex-wrap:wrap;}
-
-    @media(max-width:1050px){.hero-wrap{grid-template-columns:1fr;}.benefit-grid,.sector-grid,.opp-grid{grid-template-columns:repeat(2,1fr);}.steps,.trust-grid{grid-template-columns:repeat(2,1fr);}.two-col,.pain-grid{grid-template-columns:1fr;}.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}}
-    @media(max-width:640px){.container{padding:0 20px;}.sk-banner{padding:9px 42px 9px 14px;}.sk-banner__text{font-size:12px;}.hero-wrap{padding:58px 0;gap:30px;}.hero h1{font-size:38px;}.hero-sub{font-size:16px;}.hero-checks,.hero-proof,.benefit-grid,.sector-grid,.opp-grid,.steps,.trust-grid{grid-template-columns:1fr;}.btn-dark,.btn-gold,.btn-outline,.btn-light{width:100%;}.hero-card,.feature-box,.pain-card,.emotional-box{padding:30px 24px;}.section-head{margin-bottom:32px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}}
+    @media(max-width:1050px){
+      .hero-wrap,.split{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:repeat(2,1fr);}
+      .flow{grid-template-columns:repeat(2,1fr);}
+      .nav-links,.nav-right{display:none;}
+      .hamb{display:flex;}
+    }
+    @media(max-width:680px){
+      .container{padding:0 20px;}
+      .hero-wrap{padding:54px 0;}
+      .hero h1{font-size:38px;}
+      .hero-sub{font-size:16px;}
+      .hero-actions,.proof-grid,.grid-3,.flow,.footer-grid{grid-template-columns:1fr;}
+      .btn-dark,.btn-gold,.btn-outline,.btn-white{width:100%;}
+      .hero-panel,.box,.card{padding:28px 22px;}
+      .section-head{margin-bottom:30px;}
+      .footer-bottom{flex-direction:column;text-align:center;}
+      .footer-links{justify-content:center;}
+    }
   </style>
 </head>
+
 <body>
 
-<div class="sk-banner" id="sk-banner">
-  <span class="sk-banner__text">Ouverture du réseau — créez votre profil gratuitement</span>
-  <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Rejoindre maintenant →</a>
-  <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'" aria-label="Fermer">&times;</button>
-</div>
-
-<nav class="sk-nav">
-  <a href="https://app.strakara.fr/index.html" class="sk-nav__logo">STRA<span>KARA</span></a>
-
-  <ul class="sk-nav__links">
-    <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
-    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
-    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
-    <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-    <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
-    <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
-    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
-  </ul>
-
-  <div class="sk-nav__right">
-    <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+  <div class="top-banner">
+    <strong>Ouverture gratuite</strong> — STRAKARA accueille les entreprises qui ont un besoin ou une ressource à proposer.
   </div>
 
-  <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
+  <nav class="nav">
+    <a href="https://app.strakara.fr/index.html" class="logo">STRA<span>KARA</span></a>
 
-<div class="sk-nav__mobile" id="sk-mobile">
-  <a href="https://app.strakara.fr/index.html">Accueil</a>
-  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
-  <a href="https://app.strakara.fr/membres.html">Membres</a>
-  <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
-  <a href="https://app.strakara.fr/evenements.html">Événements</a>
-  <a href="https://www.strakara.fr">strakara.fr →</a>
+    <ul class="nav-links">
+      <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
+      <li><a href="https://app.strakara.fr/annonces.html">Besoins</a></li>
+      <li><a href="https://app.strakara.fr/membres.html">Ressources</a></li>
+      <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
+      <li><a href="https://www.strakara.fr/espaces.html">Espaces STRAKARA</a></li>
+      <li><a href="https://www.strakara.fr" style="opacity:.62;">strakara.fr →</a></li>
+    </ul>
 
-  <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+    <div class="nav-right">
+      <a href="https://app.strakara.fr/publier.html?type=besoin" class="nav-secondary">J’ai un besoin</a>
+      <a href="https://app.strakara.fr/inscription-membre.html?role=ressource" class="nav-cta">Je peux aider</a>
+    </div>
+
+    <button class="hamb" onclick="document.getElementById('mobile').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile" id="mobile">
+    <a href="https://app.strakara.fr/index.html">Accueil</a>
+    <a href="https://app.strakara.fr/annonces.html">Besoins</a>
+    <a href="https://app.strakara.fr/membres.html">Ressources</a>
+    <a href="https://app.strakara.fr/membres.html">Entreprises</a>
+    <a href="https://www.strakara.fr/espaces.html">Espaces STRAKARA</a>
+    <a href="https://app.strakara.fr/publier.html?type=besoin">J’ai un besoin</a>
+    <a href="https://app.strakara.fr/inscription-membre.html?role=ressource" class="nav-cta">Je peux aider</a>
   </div>
-</div>
 
-<header class="hero">
-  <div class="container">
-    <div class="hero-wrap">
-      <div>
-        <span class="label">Réseau professionnel gratuit — France entière</span>
-        <h1>Développez votre entreprise grâce à la force du <em>collectif.</em></h1>
-        <p class="hero-sub">Rejoignez gratuitement un réseau de professionnels pour gagner en visibilité, trouver des partenaires, accéder à des achats groupés, participer à des événements et découvrir de nouvelles opportunités partout en France.</p>
-        <div class="hero-checks">
-          <span class="check">Profil professionnel gratuit</span>
-          <span class="check">Annonces et besoins gratuits</span>
-          <span class="check">Recommandations entre pros</span>
-          <span class="check">Achats groupés et événements</span>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-wrap">
+        <div>
+          <span class="label">Le moteur des besoins B2B</span>
+          <h1>Une entreprise a un besoin. <em>Une autre peut y répondre.</em></h1>
+          <p class="hero-sub">
+            STRAKARA connecte les entreprises qui cherchent une solution avec celles qui peuvent apporter une ressource, un service, un espace, une compétence ou une capacité disponible.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://app.strakara.fr/publier.html?type=besoin" class="action-card">
+              <strong>J’ai un besoin</strong>
+              <span>Urgent ou non urgent : espace, transport, logistique, prestataire, fournisseur ou autre besoin professionnel.</span>
+            </a>
+
+            <a href="https://app.strakara.fr/inscription-membre.html?role=ressource" class="action-card gold">
+              <strong>Je peux aider</strong>
+              <span>Présentez ce que votre entreprise peut apporter : service, espace, transport, stockage, conseil, production ou compétence.</span>
+            </a>
+          </div>
+
+          <p class="micro">Gratuit au lancement · Réservé aux professionnels · Mise en relation humaine au démarrage</p>
         </div>
-        <div class="hero-btns">
-          <a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon profil gratuitement</a>
-          <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les opportunités</a>
-        </div>
-        <p class="micro">Aucune carte bancaire · Réservé aux professionnels · Activation simple et rapide</p>
-      </div>
-      <aside class="hero-card" aria-label="Bénéfices STRAKARA Réseau Pro">
-        <h2>Un seul réseau pour <em>être visible, trouver et avancer.</em></h2>
-        <div class="gain-list">
-          <div class="gain"><span class="gain-num">01</span><div><strong>Vous êtes trouvé plus facilement</strong><span>Votre profil présente votre activité, votre zone et vos services.</span></div></div>
-          <div class="gain"><span class="gain-num">02</span><div><strong>Vous publiez vos besoins</strong><span>Transport, sous-traitance, stockage, prestation, chantier, mission courte.</span></div></div>
-          <div class="gain"><span class="gain-num">03</span><div><strong>Vous profitez du collectif</strong><span>Achats groupés, recommandations, événements et partage d'expériences.</span></div></div>
-        </div>
-        <a href="https://app.strakara.fr/inscription-membre.html" class="btn-gold">Rejoindre le réseau →</a>
-      </aside>
-    </div>
-    <div class="hero-proof">
-      <div class="proof-cell"><span class="proof-num">0 €</span><span class="proof-label">Inscription</span></div>
-      <div class="proof-cell"><span class="proof-num">100%</span><span class="proof-label">Professionnel</span></div>
-      <div class="proof-cell"><span class="proof-num">4</span><span class="proof-label">Leviers business</span></div>
-      <div class="proof-cell"><span class="proof-num">France</span><span class="proof-label">Réseau national</span></div>
-    </div>
-  </div>
-</header>
 
-<section class="benefits">
-  <div class="container">
-    <div class="section-head">
-      <div><span class="label">Pourquoi rejoindre</span><h2 class="h2">Ce que le réseau vous apporte <em>concrètement.</em></h2></div>
-      <p class="lead">STRAKARA Réseau Pro n'est pas un annuaire passif. C'est un outil pour rendre votre entreprise visible, créer des connexions utiles et accéder à des avantages collectifs.</p>
-    </div>
-    <div class="benefit-grid">
-      <div class="benefit-card"><div class="icon">01</div><h3>Gagner en visibilité</h3><p>Créez une fiche professionnelle claire pour présenter votre activité, votre secteur, votre zone et vos services.</p></div>
-      <div class="benefit-card"><div class="icon">02</div><h3>Trouver des partenaires</h3><p>Identifiez des professionnels utiles : artisans, transporteurs, logisticiens, prestataires, entreprises locales.</p></div>
-      <div class="benefit-card"><div class="icon">03</div><h3>Publier vos besoins</h3><p>Déposez une demande : local, mission, sous-traitance, matériel, transport, stockage ou prestation.</p></div>
-      <div class="benefit-card"><div class="icon">04</div><h3>Recevoir des recommandations</h3><p>Valorisez votre sérieux avec des avis et recommandations publiés par d'autres professionnels.</p></div>
-      <div class="benefit-card"><div class="icon">05</div><h3>Réduire vos coûts</h3><p>Accédez à des achats groupés : assurances, carburant, matériaux, logiciels, fournitures ou services.</p></div>
-      <div class="benefit-card"><div class="icon">06</div><h3>Apprendre et progresser</h3><p>Participez à des événements en visio ou locaux : comptabilité, organisation, développement commercial, outils numériques.</p></div>
-    </div>
-  </div>
-</section>
+        <aside class="hero-panel">
+          <h2>STRAKARA n’est pas un réseau social. C’est un <em>outil pour agir.</em></h2>
 
-<section class="pain">
-  <div class="container">
-    <div class="pain-grid">
-      <div class="pain-card">
-        <span class="label">Sans réseau</span>
-        <h2>Vous cherchez partout, souvent <em>seul.</em></h2>
-        <ul class="bad-good">
-          <li><span class="mark">×</span>Publicité coûteuse et résultats incertains</li>
-          <li><span class="mark">×</span>Prospection chronophage</li>
-          <li><span class="mark">×</span>Prestataires difficiles à vérifier</li>
-          <li><span class="mark">×</span>Peu de pouvoir de négociation seul</li>
-          <li><span class="mark">×</span>Informations dispersées entre LinkedIn, Google, groupes Facebook et bouche-à-oreille</li>
-        </ul>
-      </div>
-      <div class="pain-card dark">
-        <span class="label">Avec STRAKARA Réseau Pro</span>
-        <h2>Vous centralisez vos contacts, vos besoins et vos <em>opportunités.</em></h2>
-        <ul class="bad-good">
-          <li><span class="mark">✓</span>Un profil gratuit pour être visible</li>
-          <li><span class="mark">✓</span>Des annonces pour publier vos besoins</li>
-          <li><span class="mark">✓</span>Des recommandations pour inspirer confiance</li>
-          <li><span class="mark">✓</span>Des achats groupés pour réduire vos coûts</li>
-          <li><span class="mark">✓</span>Des événements pour apprendre, échanger et rencontrer d'autres pros</li>
-        </ul>
+          <div class="panel-list">
+            <div class="panel-item">
+              <span class="panel-num">01</span>
+              <div>
+                <strong>Une entreprise exprime un besoin</strong>
+                <span>Elle explique simplement ce qu’elle cherche et dans quelle zone.</span>
+              </div>
+            </div>
+
+            <div class="panel-item">
+              <span class="panel-num">02</span>
+              <div>
+                <strong>Les ressources adaptées apparaissent</strong>
+                <span>Entreprises, espaces, transporteurs, logisticiens ou prestataires utiles.</span>
+              </div>
+            </div>
+
+            <div class="panel-item">
+              <span class="panel-num">03</span>
+              <div>
+                <strong>STRAKARA facilite la mise en relation</strong>
+                <span>Au démarrage, la recherche est humaine. L’automatisation viendra ensuite.</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://app.strakara.fr/publier.html?type=besoin" class="btn-gold">Publier mon besoin →</a>
+        </aside>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="how">
-  <div class="container">
-    <span class="label">Simple</span>
-    <h2 class="h2">Comment ça marche ?</h2>
-    <p class="lead">L'objectif est simple : vous faire gagner du temps, de la visibilité et des contacts utiles.</p>
-    <div class="steps">
-      <div class="step"><span class="step-num">01</span><h3>Créez votre profil</h3><p>Présentez votre entreprise, votre zone d'intervention et ce que vous proposez.</p></div>
-      <div class="step"><span class="step-num">02</span><h3>Publiez ou recherchez</h3><p>Annonce, besoin, offre de service, demande de partenaire ou recherche d'espace.</p></div>
-      <div class="step"><span class="step-num">03</span><h3>Échangez entre pros</h3><p>Contactez les bons profils et construisez des relations utiles pour votre activité.</p></div>
-      <div class="step"><span class="step-num">04</span><h3>Profitez du collectif</h3><p>Recommandations, achats groupés, événements, conseils et opportunités.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="opportunities">
-  <div class="container">
-    <div class="section-head">
-      <div><span class="label">Opportunités</span><h2 class="h2">Ce que les membres peuvent publier.</h2></div>
-      <p class="lead">La page doit donner envie de s'inscrire parce qu'on comprend immédiatement ce qu'on peut trouver ou proposer.</p>
-    </div>
-    <div class="opp-grid">
-      <div class="opp-card"><span class="opp-type">Besoin</span><h3>Je cherche un transporteur régional</h3><p>Livraisons régulières, fret retour, dernier kilomètre, transport ponctuel.</p><span class="opp-meta">Transport · Bretagne / France</span></div>
-      <div class="opp-card"><span class="opp-type">Offre</span><h3>Je propose mes services en sous-traitance</h3><p>Artisan disponible, chantier ponctuel, renfort équipe, maintenance technique.</p><span class="opp-meta">BTP · Artisans</span></div>
-      <div class="opp-card"><span class="opp-type">Recherche</span><h3>Je cherche un espace professionnel</h3><p>Stockage, atelier, bureau, local temporaire ou solution flexible STRAKARA.</p><span class="opp-meta">Immobilier pro · Stockage</span></div>
-      <div class="opp-card"><span class="opp-type">Partenariat</span><h3>Je veux développer mon réseau local</h3><p>Recommandations croisées, partenaires terrain, contacts fiables dans votre secteur.</p><span class="opp-meta">PME · TPE</span></div>
-      <div class="opp-card"><span class="opp-type">Achat groupé</span><h3>Je souhaite réduire mes coûts</h3><p>Assurance, carburant, matériaux, logiciels, fournitures ou services professionnels.</p><span class="opp-meta">Achats · Collectif</span></div>
-      <div class="opp-card"><span class="opp-type">Événement</span><h3>Je veux apprendre avec d'autres dirigeants</h3><p>Visios, ateliers, retours d'expérience, rencontres locales, conseils pratiques.</p><span class="opp-meta">Événements · Réseau</span></div>
-    </div>
-    <div style="text-align:center;margin-top:38px;"><a href="https://app.strakara.fr/publier.html" class="btn-gold">Publier mon besoin gratuitement</a></div>
-  </div>
-</section>
-
-<section class="buy-events">
-  <div class="container">
-    <div class="two-col">
-      <div class="feature-box">
-        <span class="label">Achats groupés</span>
-        <h2 class="h2">Seul, vous payez le prix fort. <em>Ensemble, vous négociez mieux.</em></h2>
-        <p class="lead">Le réseau permet de regrouper les besoins des entreprises pour obtenir de meilleures conditions sur des dépenses professionnelles récurrentes.</p>
-        <div class="mini-list">
-          <div class="buy-card"><span class="card-kicker">Exemples</span><h3>Assurances professionnelles</h3><p>RC Pro, décennale, multirisque, flotte véhicule.</p></div>
-          <div class="buy-card"><span class="card-kicker">Exemples</span><h3>Carburant, matériaux, fournitures</h3><p>Des achats utiles aux entreprises du terrain, négociés collectivement.</p></div>
-        </div>
+  <section class="proof">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-cell"><span class="proof-num">0 €</span><span class="proof-label">Inscription au lancement</span></div>
+        <div class="proof-cell"><span class="proof-num">2</span><span class="proof-label">Actions simples</span></div>
+        <div class="proof-cell"><span class="proof-num">100</span><span class="proof-label">Premières entreprises utiles</span></div>
+        <div class="proof-cell"><span class="proof-num">France</span><span class="proof-label">Réseau professionnel</span></div>
       </div>
-      <div class="feature-box">
-        <span class="label">Événements</span>
-        <h2 class="h2">Des rencontres et visios pour <em>apprendre vite.</em></h2>
-        <p class="lead">Des formats simples, utiles, orientés dirigeant : comprendre un sujet, poser ses questions, repartir avec des actions concrètes.</p>
-        <div class="mini-list">
-          <div class="event-card"><span class="card-kicker">Visio</span><h3>Comptabilité & gestion</h3><p>Comprendre ses chiffres, ses charges, ses marges et ses obligations.</p></div>
-          <div class="event-card"><span class="card-kicker">Atelier</span><h3>Développement commercial</h3><p>Prospection, recommandations, visibilité locale, organisation commerciale.</p></div>
+    </div>
+  </section>
+
+  <section class="needs">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="label">Le principe</span>
+          <h2 class="h2">Toute entreprise utile a sa place sur <em>STRAKARA.</em></h2>
+        </div>
+        <p class="lead">
+          La règle est simple : une autre entreprise pourrait-elle un jour avoir besoin de vous ? Si oui, vous pouvez rejoindre STRAKARA.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">01</div>
+          <h3>J’ai besoin de...</h3>
+          <p>Un espace, un transporteur, un logisticien, un prestataire, un fournisseur, une solution rapide ou un contact professionnel fiable.</p>
+          <div class="tags"><span class="tag">Urgent</span><span class="tag">Non urgent</span></div>
+        </div>
+
+        <div class="card">
+          <div class="icon">02</div>
+          <h3>Je peux aider à...</h3>
+          <p>Stocker, transporter, vendre, produire, conseiller, développer, sécuriser, organiser, communiquer ou rendre service à une autre entreprise.</p>
+          <div class="tags"><span class="tag">Service</span><span class="tag">Ressource</span></div>
+        </div>
+
+        <div class="card">
+          <div class="icon">03</div>
+          <h3>STRAKARA connecte</h3>
+          <p>Le rôle de STRAKARA est de rapprocher les besoins des bonnes ressources, avec une approche humaine au démarrage.</p>
+          <div class="tags"><span class="tag">Mise en relation</span><span class="tag">Confiance</span></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sectors">
-  <div class="container">
-    <div class="section-head">
-      <div><span class="label">Pour qui ?</span><h2 class="h2">Un réseau pensé pour les pros du <em>terrain.</em></h2></div>
-      <p class="lead">Le réseau reste volontairement concret : des entreprises qui ont besoin de contacts, de visibilité, de prestataires, d'espaces et d'opportunités.</p>
-    </div>
-    <div class="sector-grid">
-      <div class="sector-card"><h3>Artisans & BTP</h3><p>Sous-traitance, chantiers, renforts, matériel, recommandations et contacts locaux.</p><div class="tags"><span class="tag">Chantier</span><span class="tag">Artisan</span><span class="tag">Sous-traitance</span></div></div>
-      <div class="sector-card"><h3>Transport & Logistique</h3><p>Fret retour, tournées, stockage, préparation, prestataires et espaces disponibles.</p><div class="tags"><span class="tag">Transport</span><span class="tag">Stockage</span><span class="tag">Logistique</span></div></div>
-      <div class="sector-card"><h3>TPE & PME</h3><p>Visibilité, partenaires, prestataires, achats groupés et développement du réseau local.</p><div class="tags"><span class="tag">PME</span><span class="tag">TPE</span><span class="tag">Partenaires</span></div></div>
-      <div class="sector-card"><h3>Prestataires de services</h3><p>Présenter ses services, trouver des missions et obtenir des recommandations fiables.</p><div class="tags"><span class="tag">Services</span><span class="tag">Missions</span><span class="tag">Avis</span></div></div>
-      <div class="sector-card"><h3>Commerçants & e-commerce</h3><p>Besoins de stockage, transport, prestataires, saisonnalité, locaux et logistique.</p><div class="tags"><span class="tag">E-commerce</span><span class="tag">Saisonnier</span><span class="tag">Stockage</span></div></div>
-      <div class="sector-card"><h3>Hébergeurs & propriétaires pro</h3><p>Donner de la visibilité à des espaces, créer des liens locaux et recevoir des demandes qualifiées.</p><div class="tags"><span class="tag">Espaces</span><span class="tag">Immobilier pro</span><span class="tag">Réseau</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="emotional">
-  <div class="container">
-    <div class="emotional-box">
-      <span class="label">L'idée STRAKARA</span>
-      <h2 class="h2">Être indépendant ne veut pas dire <em>avancer seul.</em></h2>
-      <p class="lead">Chaque jour, des dirigeants, artisans, transporteurs et PME font face aux mêmes défis : trouver des clients, réduire leurs coûts, développer leur réseau, trouver les bonnes personnes et garder de l'énergie. STRAKARA Réseau Pro a été créé pour les aider à avancer ensemble.</p>
-      <a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Je rejoins gratuitement</a>
-    </div>
-  </div>
-</section>
-
-<section class="trust">
-  <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item"><strong>Gratuit</strong><span>Créer son profil et rejoindre le réseau ne coûte rien.</span></div>
-      <div class="trust-item"><strong>Professionnel</strong><span>Réseau réservé aux entreprises, indépendants et structures pros.</span></div>
-      <div class="trust-item"><strong>Utile</strong><span>Annonces, recommandations, événements et achats groupés.</span></div>
-      <div class="trust-item"><strong>Humain</strong><span>Un réseau construit pour créer de vraies connexions terrain.</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="final-cta">
-  <div class="container">
-    <span class="label">Inscription gratuite</span>
-    <h2 class="h2">Votre prochaine opportunité professionnelle peut commencer ici.</h2>
-    <p class="lead">Créez votre profil, présentez votre activité, publiez vos besoins et rejoignez un réseau de professionnels qui avancent ensemble.</p>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="btn-gold">Créer mon profil gratuitement</a>
-    <p class="final-note">Aucune carte bancaire · Gratuit · Réservé aux professionnels</p>
-  </div>
-</section>
-
-<footer class="sk-footer">
-  <div class="container">
-    <div class="sk-footer-inner">
-      <div class="sk-footer-brand">
-        <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-        <span class="sk-footer-logo-sub">Réseau Pro</span>
-        <p>Le réseau gratuit des professionnels : visibilité, annonces, recommandations, achats groupés, événements et opportunités.</p>
+  <section class="dark-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="label">Fonctionnement</span>
+          <h2 class="h2">Besoin → ressource → mise en relation → confiance.</h2>
+        </div>
+        <p class="lead">Pas de likes, pas de posts personnels, pas de blabla. STRAKARA sert à résoudre des besoins professionnels concrets.</p>
       </div>
-      <div class="sk-footer-col"><h4>Réseau</h4><a href="https://app.strakara.fr/annonces.html">Annonces</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/recommandations.html">Recommandations</a><a href="https://app.strakara.fr/inscription-membre.html">Rejoindre</a></div>
-      <div class="sk-footer-col"><h4>Actions</h4><a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a><a href="https://app.strakara.fr/publier.html">Publier un besoin</a><a href="https://app.strakara.fr/inscription-membre.html">Participer aux achats groupés</a><a href="https://app.strakara.fr/inscription-membre.html">Événements</a></div>
-      <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://www.strakara.fr">Location d'espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Proposer un espace</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
+
+      <div class="flow">
+        <div class="flow-step"><span>01</span><strong>Besoin</strong><p>L’entreprise indique ce qu’elle cherche, où et avec quel niveau d’urgence.</p></div>
+        <div class="flow-step"><span>02</span><strong>Ressource</strong><p>Une autre entreprise propose une capacité, un service, un espace ou une compétence.</p></div>
+        <div class="flow-step"><span>03</span><strong>Recherche</strong><p>STRAKARA identifie les correspondances les plus utiles.</p></div>
+        <div class="flow-step"><span>04</span><strong>Contact</strong><p>Les entreprises sont mises en relation pour avancer rapidement.</p></div>
+        <div class="flow-step"><span>05</span><strong>Confiance</strong><p>Les collaborations réelles pourront enrichir les profils avec le temps.</p></div>
+      </div>
     </div>
-    <div class="sk-footer-bottom">
-      <p>&copy; 2026 STRAKARA — Réseau Pro</p>
-      <div class="sk-footer-bottom-links"><a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a></div>
+  </section>
+
+  <section class="strakara-space">
+    <div class="container">
+      <div class="split">
+        <div class="box">
+          <span class="label">Espaces STRAKARA</span>
+          <h2 class="h2">STRAKARA garde une place forte pour les <em>espaces professionnels.</em></h2>
+          <p class="lead">
+            Les espaces, le stockage, la logistique et le transport restent la priorité opérationnelle du lancement, car STRAKARA maîtrise déjà ce terrain.
+          </p>
+
+          <div class="check-list">
+            <div class="check">Entrepôts, ateliers, bureaux, stockage professionnel et espaces flexibles.</div>
+            <div class="check">Besoins urgents ou temporaires : quelques jours, semaines ou mois.</div>
+            <div class="check">Mise en relation avec les espaces STRAKARA déjà disponibles.</div>
+          </div>
+
+          <a href="https://www.strakara.fr/espaces.html" class="btn-dark">Voir les espaces STRAKARA</a>
+        </div>
+
+        <div class="box dark">
+          <span class="label">Pour les pros qui proposent</span>
+          <h2 class="h2">Vous avez une ressource utile ? <em>Faites-vous trouver.</em></h2>
+          <p class="lead">
+            Logistique, transport, marketing, comptabilité, juridique, web, photo, travaux, nettoyage, conseil : si une entreprise peut avoir besoin de vous, vous avez votre place.
+          </p>
+
+          <div class="check-list">
+            <div class="check">Créez votre fiche professionnelle gratuitement au lancement.</div>
+            <div class="check">Expliquez clairement quel problème vous pouvez résoudre.</div>
+            <div class="check">Soyez visible quand une entreprise cherche une ressource comme la vôtre.</div>
+          </div>
+
+          <a href="https://app.strakara.fr/inscription-membre.html?role=ressource" class="btn-gold">Je propose une ressource</a>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
+
+  <section class="for-who">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="label">Exemples de ressources</span>
+          <h2 class="h2">STRAKARA accueille les pros qui peuvent <em>aider d’autres pros.</em></h2>
+        </div>
+        <p class="lead">Le secteur n’est pas le critère principal. Le vrai critère est le problème que votre entreprise peut résoudre.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card"><div class="icon">📦</div><h3>Stocker & accueillir</h3><p>Entrepôts, ateliers, bureaux, self-stockage, surfaces disponibles, réception palette.</p></div>
+        <div class="card"><div class="icon">🚚</div><h3>Transporter & livrer</h3><p>Transporteurs, logisticiens, préparation, tournées, fret retour, manutention.</p></div>
+        <div class="card"><div class="icon">🛠</div><h3>Produire & intervenir</h3><p>Artisans, maintenance, nettoyage, travaux, sous-traitance, renfort ponctuel.</p></div>
+        <div class="card"><div class="icon">📣</div><h3>Être visible</h3><p>Marketing, communication, SEO, LinkedIn, photo, vidéo, identité professionnelle.</p></div>
+        <div class="card"><div class="icon">📊</div><h3>Gérer & structurer</h3><p>Comptabilité, juridique, assurance, administratif, organisation, outils numériques.</p></div>
+        <div class="card"><div class="icon">🤝</div><h3>Développer</h3><p>Partenaires, fournisseurs, prestataires, opportunités, collaborations professionnelles.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <span class="label">Lancement V1</span>
+      <h2 class="h2">Que souhaitez-vous faire aujourd’hui ?</h2>
+      <p class="lead">
+        Publiez un besoin ou présentez ce que votre entreprise peut apporter. STRAKARA démarre avec une approche simple, humaine et utile.
+      </p>
+
+      <div class="cta-actions">
+        <a href="https://app.strakara.fr/publier.html?type=besoin" class="btn-gold">J’ai un besoin</a>
+        <a href="https://app.strakara.fr/inscription-membre.html?role=ressource" class="btn-white">Je peux aider</a>
+      </div>
+
+      <p class="note">Gratuit au lancement · Réservé aux entreprises et professionnels</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="https://app.strakara.fr/index.html" class="footer-logo">STRA<span>KARA</span></a>
+          <span class="footer-sub">Moteur des besoins B2B</span>
+          <p>STRAKARA connecte les entreprises qui ont un besoin avec celles qui peuvent y répondre : ressources, espaces, services, transport, logistique et capacités professionnelles.</p>
+        </div>
+
+        <div>
+          <h4>Agir</h4>
+          <a href="https://app.strakara.fr/publier.html?type=besoin">J’ai un besoin</a>
+          <a href="https://app.strakara.fr/inscription-membre.html?role=ressource">Je peux aider</a>
+          <a href="https://app.strakara.fr/annonces.html">Voir les besoins</a>
+        </div>
+
+        <div>
+          <h4>Ressources</h4>
+          <a href="https://app.strakara.fr/membres.html">Entreprises</a>
+          <a href="https://www.strakara.fr/espaces.html">Espaces STRAKARA</a>
+          <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Proposer un espace</a>
+        </div>
+
+        <div>
+          <h4>STRAKARA</h4>
+          <a href="https://www.strakara.fr">Site principal</a>
+          <a href="https://www.strakara.fr/contact.html">Contact</a>
+          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 STRAKARA — Tous droits réservés</p>
+        <div class="footer-links">
+          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
+          <a href="https://www.strakara.fr/cgv.html">CGV</a>
+          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.mobile a').forEach(function(link){
+      link.addEventListener('click', function(){
+        document.getElementById('mobile').classList.remove('open');
+      });
+    });
+  </script>
 
 </body>
 </html>
