@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
   <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
 
   <style>
     :root{
@@ -78,6 +78,41 @@
     .sk-nav__links a.active{
       color:var(--brand);
       font-weight:500;
+    }
+
+
+    .sk-nav__right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-left:auto;
+      flex-shrink:0;
+    }
+
+    .sk-nav__sep{
+      width:1px;
+      height:18px;
+      background:var(--border);
+    }
+
+    .sk-btn-publier{
+      background:var(--gold);
+      color:var(--brand);
+      font-size:12px;
+      font-weight:700;
+      padding:7px 14px;
+      border-radius:20px;
+      white-space:nowrap;
+    }
+
+    .sk-btn-connexion{
+      background:var(--brand);
+      color:var(--white);
+      font-size:12px;
+      font-weight:500;
+      padding:7px 16px;
+      border-radius:20px;
+      white-space:nowrap;
     }
 
     .btn-dark{
@@ -282,7 +317,7 @@
     }
 
     @media(max-width:900px){
-      .sk-nav__links{display:none;}
+      .sk-nav__links,.sk-nav__right{display:none;}
       .detail-grid{grid-template-columns:1fr;}
       .side-card{position:static;}
       .main-img{height:280px;}
@@ -300,7 +335,14 @@
       <li><a href="https://app.strakara.fr/annonces.html" class="active">Besoins &amp; Ressources</a></li>
       <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
       <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
+      <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">Espaces STRAKARA →</a></li>
     </ul>
+
+    <div class="sk-nav__right">
+      <div class="sk-nav__sep"></div>
+      <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
+      <a href="https://app.strakara.fr/login-membre.html" class="sk-btn-connexion">Connexion</a>
+    </div>
   </nav>
 
   <div id="page-content">
@@ -479,8 +521,8 @@
         }
 
         document.getElementById('contact-btn').href = annonce.membre_id
-  ? `demande-contact.html?id=${encodeURIComponent(annonce.membre_id)}&annonce=${encodeURIComponent(annonce.id)}`
-  : `demande-contact.html?annonce=${encodeURIComponent(annonce.id)}`;
+          ? `demande-contact.html?id=${encodeURIComponent(annonce.membre_id)}&annonce=${encodeURIComponent(annonce.id)}`
+          : `demande-contact.html?annonce=${encodeURIComponent(annonce.id)}`;
         const profilBtn = document.getElementById('profil-btn');
 
         if (annonce.membre_id) {
@@ -497,6 +539,6 @@
     chargerAnnonce();
   </script>
   <script src="https://app.strakara.fr/footer.js"></script>
-<script src="https://app.strakara.fr/cookie-banner.js"></script>
+  <script src="https://app.strakara.fr/cookie-banner.js"></script>
 </body>
 </html>
