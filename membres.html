@@ -140,7 +140,7 @@
     .btn-gold-sm:hover{opacity:.88;}
 
     .sk-footer{background:#111214;padding:56px 0 32px;}
-    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
     .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
     .sk-footer-logo span{color:var(--gold);}
     .sk-footer-logo-sub{display:block;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
@@ -161,8 +161,8 @@
 </head>
 <body>
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">Réseau d'entraide pour les pros — Ouverture le 21 septembre 2026</span>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">100 places fondateurs →</a>
+    <span class="sk-banner__text">Réseau gratuit pour les professionnels du terrain</span>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Créer mon profil →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
@@ -171,17 +171,15 @@
 
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
-    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a></li>
     <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-    <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
-    <li><a href="https://app.strakara.fr/evenements.html">Événements</a></li>
     <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
   </ul>
 
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
 
@@ -194,15 +192,13 @@
 
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
-  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a>
   <a href="https://app.strakara.fr/membres.html">Membres</a>
   <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-  <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
-  <a href="https://app.strakara.fr/evenements.html">Événements</a>
   <a href="https://www.strakara.fr">strakara.fr →</a>
 
   <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
 </div>
@@ -211,11 +207,11 @@
     <div class="container">
       <div class="membres-hero-inner">
         <span class="label">Annuaire public & réseau pro</span>
-        <h1>Des professionnels visibles,<br><em>recommandés et trouvables.</em></h1>
-        <p>STRAKARA permet aux clients de trouver des professionnels vérifiés, et aux pros de se recommander, s'entraider et trouver plus facilement les contacts dont ils ont besoin.</p>
+        <h1>Les entreprises<br><em>qui peuvent vous aider.</em></h1>
+        <p>Découvrez les entreprises membres du réseau STRAKARA. Chaque entreprise peut proposer une ressource, répondre à un besoin ou être recommandée par d'autres professionnels.</p>
         <div class="hero-actions">
           <a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon profil gratuitement</a>
-          <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les annonces</a>
+          <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les besoins & ressources</a>
         </div>
         <div class="membres-hero-stats">
           <div><span class="hero-stat-num" id="stat-total">0</span><span class="hero-stat-label">Profils publics</span></div>
@@ -238,12 +234,12 @@
       >
 
       <select class="filtre-select" id="filtre-profil">
-        <option value="">Tous les profils</option>
-        <option value="artisan">Artisan</option>
-        <option value="transport">Transporteur</option>
-        <option value="prestataire">Prestataire</option>
-        <option value="hébergeur">Hébergeur d'espace</option>
-        <option value="immobilier">Immobilier Pro</option>
+        <option value="">Toutes les entreprises</option>
+        <option value="entreprise">Entreprise</option>
+        <option value="indépendant">Indépendant</option>
+        <option value="association">Association</option>
+        <option value="collectivité">Collectivité</option>
+        <option value="autre">Autre</option>
       </select>
 
       <select class="filtre-select" id="filtre-secteur">
@@ -269,10 +265,6 @@
     <div class="container">
       <div class="membres-tabs-inner">
         <button class="tab-btn active" data-tab="">Tous <span class="tab-count" id="count-all">0</span></button>
-        <button class="tab-btn" data-tab="BTP">Artisans & BTP</button>
-        <button class="tab-btn" data-tab="Transport">Transport</button>
-        <button class="tab-btn" data-tab="Prestataires">Prestataires</button>
-        <button class="tab-btn" data-tab="Immobilier">Hébergeurs</button>
       </div>
     </div>
   </div>
@@ -280,8 +272,8 @@
   <section class="membres-body">
     <div class="container">
       <div class="directory-note">
-        <p><strong>Vous cherchez un professionnel fiable ?</strong><br>Consultez les profils publics du réseau STRAKARA. Chaque membre choisit les informations qu'il souhaite rendre visibles : téléphone, site, zone d'intervention ou demande de contact.</p>
-        <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Être visible dans l'annuaire</a>
+        <p><strong>Vous recherchez une entreprise ?</strong><br>Découvrez les entreprises membres du réseau STRAKARA et trouvez rapidement une ressource, une compétence ou un partenaire adapté à votre besoin.</p>
+        <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Créer mon profil gratuitement</a>
       </div>
 
       <div class="membres-results-header">
@@ -301,12 +293,11 @@
         <div class="sk-footer-brand">
           <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
           <span class="sk-footer-logo-sub">Réseau Pro</span>
-          <p>Le réseau gratuit des pros du terrain : annuaire, annonces, entraide, recommandations et espaces professionnels flexibles.</p>
-          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — location d'espaces →</a>
+          <p>Le moteur des besoins B2B. Publiez un besoin. Proposez une ressource. Développez votre réseau professionnel.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — mise à disposition d'espaces →</a>
         </div>
-        <div class="sk-footer-col"><h4>Réseau</h4><a href="https://app.strakara.fr/annonces.html">Annonces</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/publier.html">Publier une annonce</a><a href="https://app.strakara.fr/rejoindre.html">Rejoindre — Gratuit</a></div>
-        <div class="sk-footer-col"><h4>Secteurs</h4><a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a><a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a><a href="https://app.strakara.fr/reseau/transport.html">Transport</a><a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a><a href="https://app.strakara.fr/reseau/saisonnier.html">Jobs saisonniers</a></div>
-        <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Location d'espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
+        <div class="sk-footer-col"><h4>Réseau</h4><a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a><a href="https://app.strakara.fr/membres.html">Membres</a><a href="https://app.strakara.fr/publier.html">Publier un besoin ou une ressource</a><a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a></div>
+        <div class="sk-footer-col"><h4>STRAKARA</h4><a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Mise à disposition d'espaces</a><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a><a href="https://www.strakara.fr/contact.html">Contact</a></div>
       </div>
       <div class="sk-footer-bottom"><p>&copy; 2026 STRAKARA SASU — Tous droits réservés · Réseau Pro</p><div class="sk-footer-bottom-links"><a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a></div></div>
     </div>
@@ -420,9 +411,9 @@
         ].join(' '));
         const okSearch = !search || haystack.includes(search);
         const okProfil = !profil || haystack.includes(profil);
-        const okSecteur =
-  !secteurSelect ||
-  normalize(m.secteur || '') === secteurSelect;
+        const okSecteur = !secteurSelect || normalize(m.secteur || '') === secteurSelect;
+        return okSearch && okProfil && okSecteur;
+      });
 
       if(sort === 'az') filtered.sort((a,b) => String(getEntreprise(a)).localeCompare(String(getEntreprise(b))));
       if(sort === 'ville') filtered.sort((a,b) => String(a.ville || '').localeCompare(String(b.ville || '')));
