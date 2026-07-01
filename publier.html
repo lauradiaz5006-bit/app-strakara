@@ -545,7 +545,7 @@
           image_url: imageUrl,
           statut: 'actif'
         };
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/annonces`, {
+const res = await fetch(`${SUPABASE_URL}/rest/v1/annonces`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -555,12 +555,17 @@
           },
           body: JSON.stringify(data)
         });
+        console.log("STATUS :", res.status);
 
-        if (!res.ok) {
-          const err = await res.text();
-          throw new Error(err);
-        }
+const responseText = await res.text();
 
+console.log("REPONSE :", responseText);
+
+if (!res.ok) {
+  throw new Error(responseText);
+}
+
+      
         // Succès
         document.getElementById('publier-form-container').style.display = 'none';
         document.getElementById('publier-confirm').style.display = 'block';
@@ -574,9 +579,13 @@
           statusEl.textContent = 'Le format de l’image n’est pas accepté. Utilisez JPG, PNG ou WEBP.';
         } else if (err.message === 'IMAGE_TROP_LOURDE') {
           statusEl.textContent = 'L’image est trop lourde. Merci d’utiliser une photo de 5 Mo maximum.';
-        } else {
-          statusEl.textContent = 'Une erreur est survenue. Veuillez vérifier Supabase puis réessayer.';
-        }
+      } else {
+  console.error(err);
+
+  statusEl.textContent = err.message;
+
+  alert(err.message);
+}
 
         btn.disabled = false;
         btn.textContent = 'Envoyer à STRAKARA →';
