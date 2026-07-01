@@ -4,12 +4,12 @@
   <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publier une annonce — STRAKARA Réseau Pro</title>
-  <meta name="description" content="Publiez gratuitement votre annonce professionnelle sur le réseau STRAKARA. Espace, mission, prestataire, matériel — touchez les pros vérifiés de votre région.">
+  <title>Publier un besoin ou une ressource — STRAKARA</title>
+  <meta name="description" content="Publiez gratuitement un besoin ou une ressource sur STRAKARA. Espace, transport, prestataire, compétence — le moteur de mise en relation entre entreprises.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://app.strakara.fr/publier.html">
-  <meta property="og:title" content="Publier une annonce — STRAKARA Réseau Pro">
-  <meta property="og:description" content="Publiez gratuitement votre annonce pro sur le réseau STRAKARA. 100% gratuit, membres vérifiés.">
+  <meta property="og:title" content="Publier un besoin ou une ressource — STRAKARA">
+  <meta property="og:description" content="Une entreprise a un besoin. Une autre peut y répondre. STRAKARA les met en relation. 100% gratuit.">
   <meta property="og:url" content="https://app.strakara.fr/publier.html">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,6 +100,7 @@
     .type-card-icon{font-size:18px;color:var(--gold);}
     .type-card-title{font-size:13px;font-weight:600;color:var(--brand);}
     .type-card-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;}
+    .type-helper{font-size:13px;color:var(--gold-dark);font-style:italic;margin-top:16px;padding-top:16px;border-top:1px dashed var(--border);}
     .upload-zone{border:1.5px dashed var(--border);background:#FFFDF9;padding:0;cursor:pointer;transition:border-color .2s,background .2s;display:block;overflow:hidden;}
     .upload-zone:hover{border-color:var(--gold);background:#FFF9EE;}
     .upload-zone input[type=file]{display:none;}
@@ -142,6 +143,7 @@
     .sidebar-rule-num{width:24px;height:24px;background:var(--brand);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .sidebar-rule p{font-size:13px;color:var(--muted);line-height:1.6;}
     .sidebar-card p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:8px;}
+    .sidebar-card-moteur{background:#FFFDF9;border-color:var(--gold-light);}
 
     /* CONFIRMATION */
     .publier-confirm{display:none;text-align:center;padding:80px 40px;background:var(--white);border:1px solid var(--border);}
@@ -187,7 +189,7 @@
 
   <div class="sk-banner" id="sk-banner">
     <span class="sk-banner__text">Réseau pro gratuit pour les professionnels du terrain</span>
-    <a href="https://app.strakara.fr/rejoindre.html" class="sk-banner__btn">Rejoindre — Gratuit →</a>
+    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Créer mon profil — Gratuit →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
 
@@ -196,7 +198,7 @@
 
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
-    <li><a href="https://app.strakara.fr/annonces.html">Annonces</a></li>
+    <li><a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a></li>
     <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
     <li><a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a></li>
@@ -206,7 +208,7 @@
 
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
 
@@ -219,7 +221,7 @@
 
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
-  <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+  <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
   <a href="https://app.strakara.fr/membres.html">Membres</a>
   <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
   <a href="https://app.strakara.fr/achats-groupes.html">Achats groupés</a>
@@ -227,7 +229,7 @@
   <a href="https://www.strakara.fr">strakara.fr →</a>
 
   <div class="sk-nav__mobile-btns">
-    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier une annonce</a>
+    <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
   </div>
 </div>
@@ -236,25 +238,25 @@
     <div class="container">
       <div class="publier-hero-inner">
         <span class="label" style="color:rgba(200,169,106,.7);">Publication gratuite</span>
-        <h1>Publiez votre annonce,<br><em>touchez les pros.</em></h1>
-        <p>Espace, mission, prestataire, matériel — votre annonce est visible par tous les membres vérifiés du réseau STRAKARA.</p>
+        <h1>Chaque entreprise a un besoin.<br><em>Chaque entreprise a une ressource.</em></h1>
+        <p>STRAKARA les met en relation. Décrivez ce que vous recherchez, ou ce que votre entreprise peut apporter à une autre — nous nous chargeons de trouver la bonne correspondance.</p>
         <div class="publier-hero-pills">
           <span class="hero-pill">✓ Gratuit pour toujours</span>
           <span class="hero-pill">✓ Membres vérifiés SIRET</span>
-          <span class="hero-pill">✓ Recommandations entre pros</span>
-          <span class="hero-pill">✓ En ligne sous 24h</span>
+          <span class="hero-pill">✓ Mise en relation personnalisée</span>
+          <span class="hero-pill">✓ Réponse sous 24 à 48h</span>
         </div>
         <div class="publier-hero-compare">
           <div class="compare-item compare-bad">
             <span class="compare-label">Plateformes classiques</span>
             <span class="compare-price">200–500 €<span>/mois</span></span>
-            <span class="compare-desc">pour une annonce pro visible</span>
+            <span class="compare-desc">pour une publication pro visible</span>
           </div>
           <div class="compare-vs">VS</div>
           <div class="compare-item compare-good">
             <span class="compare-label">STRAKARA</span>
             <span class="compare-price">0 €<span>/toujours</span></span>
-            <span class="compare-desc">publiez, partagez, recommandez</span>
+            <span class="compare-desc">décrivez, on met en relation</span>
           </div>
         </div>
       </div>
@@ -274,41 +276,43 @@
 
               <!-- SECTION 1 : TYPE -->
               <div class="form-section">
-                <div class="form-section-title"><span>1</span>Type d'annonce</div>
+                <div class="form-section-title"><span>1</span>Votre situation</div>
+                <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.6;"><strong style="color:var(--brand);">Toutes les entreprises sont les bienvenues sur STRAKARA.</strong> Que vous recherchiez une solution ou que vous puissiez en apporter une, vous avez votre place ici.</p>
                 <div class="type-grid">
                   <div class="type-card">
                     <input type="radio" name="type" id="type-offre" value="offre" checked>
                     <label for="type-offre">
                       <span class="type-card-icon">✓</span>
-                      <span class="type-card-title">Je propose</span>
-                      <span class="type-card-desc">Un espace, une compétence, un service</span>
+                      <span class="type-card-title">Je propose une ressource</span>
+                      <span class="type-card-desc">Un espace, une compétence, un service, une capacité disponible</span>
                     </label>
                   </div>
                   <div class="type-card">
                     <input type="radio" name="type" id="type-demande" value="demande">
                     <label for="type-demande">
                       <span class="type-card-icon">?</span>
-                      <span class="type-card-title">Je cherche</span>
-                      <span class="type-card-desc">Un espace, un prestataire, une mission</span>
+                      <span class="type-card-title">J'ai un besoin</span>
+                      <span class="type-card-desc">Un espace, un prestataire, un partenaire, une ressource</span>
                     </label>
                   </div>
                   <div class="type-card">
                     <input type="radio" name="type" id="type-echange" value="echange">
                     <label for="type-echange">
                       <span class="type-card-icon">⇄</span>
-                      <span class="type-card-title">J'échange</span>
-                      <span class="type-card-desc">Troc, partenariat, sous-traitance</span>
+                      <span class="type-card-title">Partenariat / échange</span>
+                      <span class="type-card-desc">Troc, sous-traitance, collaboration entre entreprises</span>
                     </label>
                   </div>
                 </div>
+                <p class="type-helper">Une autre entreprise pourrait-elle un jour avoir besoin de vous ? Alors vous avez votre place sur STRAKARA — le secteur d'activité n'est pas un critère de sélection.</p>
               </div>
 
               <!-- SECTION 2 : ANNONCE -->
               <div class="form-section">
-                <div class="form-section-title"><span>2</span>Votre annonce</div>
+                <div class="form-section-title"><span>2</span>Décrivez votre besoin ou votre ressource</div>
                 <div class="form-row">
-                  <label class="form-label" for="titre">Titre de l'annonce <span class="required">*</span></label>
-                  <input class="form-input" type="text" id="titre" name="titre" placeholder="Ex : Local de stockage 120 m² — Lyon 7e" required>
+                  <label class="form-label" for="titre">Titre <span class="required">*</span></label>
+                  <input class="form-input" type="text" id="titre" name="titre" placeholder="Ex : Recherche 120 m² de stockage — Lyon 7e" required>
                 </div>
                 <div class="form-row-2">
                   <div>
@@ -356,7 +360,7 @@
                 </div>
 
                 <div class="form-row">
-                  <label class="form-label" for="photo">Photo principale de l'annonce</label>
+                  <label class="form-label" for="photo">Photo (si applicable)</label>
                   <label class="upload-zone" for="photo">
                     <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp">
                     <div class="upload-placeholder" id="upload-placeholder">
@@ -372,7 +376,7 @@
                       </div>
                     </div>
                   </label>
-                  <p class="form-hint">Ajoutez une photo nette du lieu, du matériel ou du service proposé.</p>
+                  <p class="form-hint">Une photo nette du lieu, du matériel ou du service augmente vos chances de correspondance.</p>
                 </div>
               </div>
 
@@ -406,18 +410,18 @@
                 <div class="form-row">
                   <label class="form-label" for="siret">SIRET <span class="required">*</span></label>
                   <input class="form-input" type="text" id="siret" name="siret" placeholder="XXX XXX XXX XXXXX" required maxlength="17">
-                  <p class="form-hint">Obligatoire — toutes les annonces STRAKARA sont vérifiées avant publication.</p>
+                  <p class="form-hint">Obligatoire — toutes les publications STRAKARA sont liées à une entreprise vérifiable.</p>
                 </div>
               </div>
 
               <!-- SUBMIT -->
               <div class="form-submit">
                 <div class="form-submit-text">
-                  <p>Votre annonce est</p>
+                  <p>Votre publication est</p>
                   <strong>100% <em>gratuite.</em></strong>
                 </div>
-                <button type="submit" class="btn-submit" id="submit-btn">Publier mon annonce →</button>
-                <p class="form-submit-note">En publiant vous acceptez nos CGV — STRAKARA vérifie chaque annonce avant mise en ligne (sous 24h)</p>
+                <button type="submit" class="btn-submit" id="submit-btn">Envoyer à STRAKARA →</button>
+                <p class="form-submit-note">En publiant vous acceptez nos CGV — votre besoin ou ressource est immédiatement visible dans le réseau.</p>
               </div>
 
             </div>
@@ -432,16 +436,22 @@
             </div>
             <div class="sidebar-card">
               <span class="sidebar-card-title">Comment ça marche</span>
-              <div class="sidebar-rule"><div class="sidebar-rule-num">1</div><p>Remplissez le formulaire en 2 minutes</p></div>
-              <div class="sidebar-rule"><div class="sidebar-rule-num">2</div><p>STRAKARA vérifie votre SIRET sous 24h</p></div>
-              <div class="sidebar-rule"><div class="sidebar-rule-num">3</div><p>Votre annonce est publiée et visible par tous les membres vérifiés</p></div>
-              <div class="sidebar-rule"><div class="sidebar-rule-num">4</div><p>Vous recevez les réponses directement par email</p></div>
+              <div class="sidebar-rule"><div class="sidebar-rule-num">1</div><p>Vous décrivez votre besoin ou votre ressource en 2 minutes</p></div>
+              <div class="sidebar-rule"><div class="sidebar-rule-num">2</div><p>Notre équipe recherche activement la meilleure correspondance</p></div>
+              <div class="sidebar-rule"><div class="sidebar-rule-num">3</div><p>Vous êtes mis en relation directement avec l'entreprise concernée</p></div>
+              <div class="sidebar-rule"><div class="sidebar-rule-num">4</div><p>Votre publication reste visible pour d'autres opportunités futures</p></div>
+            </div>
+            <div class="sidebar-card sidebar-card-moteur">
+              <span class="sidebar-card-title">STRAKARA, le moteur des entreprises</span>
+              <p>STRAKARA met en relation les entreprises qui ont un besoin avec celles qui peuvent y répondre — tous secteurs, toutes tailles.</p>
+              <p>Au lancement, cette mise en relation est personnalisée par une équipe humaine, pas par un algorithme — nous préférons vous le dire clairement.</p>
+              <p>Nos premières correspondances traitées en priorité concernent l'espace, le transport et la prestation de services, où notre réseau est déjà actif. Les autres besoins sont les bienvenus et rejoindront progressivement le même moteur.</p>
             </div>
             <div class="sidebar-card">
-              <span class="sidebar-card-title">Conseils pour une bonne annonce</span>
-              <p>• Un titre précis avec la ville et la surface obtient 3x plus de réponses.</p>
-              <p>• Précisez vos conditions : disponibilité, durée, accès, équipements.</p>
-              <p>• Répondez rapidement aux demandes — la réactivité est clé.</p>
+              <span class="sidebar-card-title">Conseils pour une bonne publication</span>
+              <p>• Un titre précis avec la ville obtient 3x plus de réponses.</p>
+              <p>• Précisez vos conditions : disponibilité, durée, accès, budget.</p>
+              <p>• Répondez rapidement aux mises en relation — la réactivité est clé.</p>
             </div>
           </aside>
         </div>
@@ -450,10 +460,10 @@
       <!-- CONFIRMATION -->
       <div class="publier-confirm" id="publier-confirm">
         <div class="publier-confirm-icon">✓</div>
-        <h2>Annonce reçue.<br><em>Merci !</em></h2>
-        <p>Votre annonce a bien été enregistrée. STRAKARA vérifie votre dossier et la publie sous 24h. Vous recevrez une confirmation par email.</p>
+        <h2>C'est envoyé.<br><em>Merci !</em></h2>
+        <p>Votre besoin ou votre ressource est enregistré. Notre équipe recherche dès maintenant la meilleure correspondance et vous recontacte directement dès qu'une entreprise correspond.</p>
         <div class="confirm-btns">
-          <a href="https://app.strakara.fr/annonces.html" class="btn-dark">Voir les annonces</a>
+          <a href="https://app.strakara.fr/annonces.html" class="btn-dark">Voir les besoins &amp; ressources</a>
           <a href="https://app.strakara.fr/index.html" class="btn-outline">Retour à l'accueil</a>
         </div>
       </div>
@@ -467,27 +477,27 @@
         <div class="sk-footer-brand">
           <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
           <span class="sk-footer-logo-sub">Réseau Pro</span>
-          <p>Le réseau gratuit des pros du terrain — annonces, entraide, achats groupés.</p>
-          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — location d'espaces →</a>
+          <p>Le moteur de mise en relation entre entreprises — besoins, ressources, espaces professionnels.</p>
+          <a href="https://www.strakara.fr" class="sk-footer-strakara-link">Voir aussi strakara.fr — mise à disposition d'espaces →</a>
         </div>
         <div class="sk-footer-col">
           <h4>Réseau</h4>
-          <a href="https://app.strakara.fr/annonces.html">Annonces</a>
+          <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
           <a href="https://app.strakara.fr/membres.html">Membres</a>
-          <a href="https://app.strakara.fr/publier.html">Publier une annonce</a>
-          <a href="https://app.strakara.fr/rejoindre.html">Rejoindre — Gratuit</a>
+          <a href="https://app.strakara.fr/publier.html">Publier un besoin ou une ressource</a>
+          <a href="https://app.strakara.fr/inscription-membre.html">Rejoindre — Gratuit</a>
         </div>
         <div class="sk-footer-col">
-          <h4>Secteurs</h4>
-          <a href="https://app.strakara.fr/reseau/immobilier.html">Immobilier Pro</a>
-          <a href="https://app.strakara.fr/reseau/btp.html">BTP & Artisans</a>
-          <a href="https://app.strakara.fr/reseau/transport.html">Transport</a>
-          <a href="https://app.strakara.fr/reseau/prestataires.html">Prestataires</a>
+          <h4>Utiliser STRAKARA</h4>
+          <a href="https://app.strakara.fr/publier.html">Publier un besoin</a>
+          <a href="https://app.strakara.fr/publier.html">Publier une ressource</a>
+          <a href="https://app.strakara.fr/membres.html">Trouver une entreprise</a>
+          <a href="https://app.strakara.fr/inscription-membre.html">Rejoindre le réseau</a>
         </div>
         <div class="sk-footer-col">
           <h4>STRAKARA</h4>
           <a href="https://app.strakara.fr/blog/index.html">Blog & Conseils</a>
-          <a href="https://www.strakara.fr">Location d'espaces</a>
+          <a href="https://www.strakara.fr">Mise à disposition d'espaces</a>
           <a href="https://www.strakara.fr/contact.html">Contact</a>
         </div>
       </div>
@@ -617,7 +627,7 @@
         }
 
         btn.disabled = false;
-        btn.textContent = 'Publier mon annonce →';
+        btn.textContent = 'Envoyer à STRAKARA →';
       }
     }
 
@@ -651,9 +661,9 @@
     const typeInputs = document.querySelectorAll('input[name="type"]');
     const descTextarea = document.getElementById('description');
     const placeholders = {
-      offre: "Décrivez ce que vous proposez : caractéristiques, conditions, disponibilité, équipements...",
-      demande: "Décrivez ce que vous cherchez : surface, localisation, budget, durée, conditions...",
-      echange: "Décrivez l'échange proposé : ce que vous offrez, ce que vous cherchez en retour..."
+      offre: "Décrivez ce que votre entreprise peut apporter : compétence, espace, matériel, disponibilité, conditions...",
+      demande: "Décrivez votre besoin : ce que vous recherchez, contraintes, budget, délai...",
+      echange: "Décrivez l'échange ou le partenariat proposé : ce que vous offrez, ce que vous cherchez en retour..."
     };
     typeInputs.forEach(input => {
       input.addEventListener('change', () => { descTextarea.placeholder = placeholders[input.value]; });
