@@ -741,36 +741,37 @@
   }
 
   async function chargerRecos(m) {
-    const container = document.getElementById('recos-container');
+  const container = document.getElementById('recos-container');
 
-    const { data, error } = await sb.from('recommandations')
-      .select('id,auteur,texte,note,created_at,contexte')
-      .eq('membre_id', m.id)
-      .order('created_at', { ascending: false })
-      .limit(5);
+  const { data, error } = await sb.from('recommandations')
+    .select('id,auteur_nom,auteur_entreprise,message,created_at,contexte,statut')
+    .eq('membre_id', m.id)
+    .eq('statut', 'actif')
+    .order('created_at', { ascending: false })
+    .limit(5);
 
-    if (error || !data || data.length === 0) {
-      container.innerHTML = `<div class="empty-state"><p>Aucune recommandation reçue pour le moment.</p></div>`;
-      document.getElementById('stat-recos').textContent = '0';
-      return;
-    }
-
-    document.getElementById('stat-recos').textContent = data.length;
-
-    container.innerHTML = data.map(r => {
-      const note = Number(r.note || 0);
-      const stars = [1,2,3,4,5].map(i => `<span class="reco-star ${i <= note ? '' : 'empty'}">★</span>`).join('');
-      const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
-      return `
-        <div class="reco-item">
-          <div class="reco-stars">${stars}</div>
-          <div class="reco-auteur">${esc(auteur)}</div>
-          <p class="reco-texte">${esc(r.message || '')}</p>
-          <span class="reco-date">${r.contexte ? esc(r.contexte) + ' · ' : ''}${new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}</span>
-        </div>
-      `;
-    }).join('');
+  if (error || !data || data.length === 0) {
+    container.innerHTML = `<div class="empty-state"><p>Aucune recommandation reçue pour le moment.</p></div>`;
+    document.getElementById('stat-recos').textContent = '0';
+    return;
   }
+
+  document.getElementById('stat-recos').textContent = data.length;
+
+  container.innerHTML = data.map(r => {
+    const auteur = r.auteur_entreprise || r.auteur_nom || 'Professionnel STRAKARA';
+    return `
+      <div class="reco-item">
+        <div class="reco-auteur">${esc(auteur)}</div>
+        <p class="reco-texte">${esc(r.message || '')}</p>
+        <span class="reco-date">
+          ✓ Recommandation validée${r.contexte ? ' · ' + esc(r.contexte) : ''} ·
+          ${new Date(r.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+        </span>
+      </div>
+    `;
+  }).join('');
+}
 
   // ÉDITION PROFIL
   document.getElementById('btn-edit-toggle').addEventListener('click', function(e) {
