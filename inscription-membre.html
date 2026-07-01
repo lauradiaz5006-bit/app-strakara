@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
   <style>
     :root{--brand:#1E1F23;--gold:#C8A96A;--gold-dark:#A8894A;--gold-light:#D4B97A;--light:#F6F5F0;--text:#1E1F23;--muted:#6E7175;--border:#E8E0D0;--white:#FFFFFF;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -126,19 +127,6 @@
     .confirm p{font-size:15px;color:var(--muted);max-width:520px;margin:0 auto 28px;line-height:1.75;}
     .confirm-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-    .sk-footer{background:#111214;padding:56px 0 32px;}
-    .sk-footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-    .sk-footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;}
-    .sk-footer-logo span{color:var(--gold);}
-    .sk-footer-logo-sub{display:block;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
-    .sk-footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:280px;margin-bottom:18px;}
-    .sk-footer-col h4{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;}
-    .sk-footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.35);margin-bottom:10px;transition:color .18s;}
-    .sk-footer-col a:hover{color:var(--gold);}
-    .sk-footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-    .sk-footer-bottom p,.sk-footer-bottom a{font-size:12px;color:rgba(255,255,255,.25);}
-    .sk-footer-bottom-links{display:flex;gap:20px;}
-
     @media(max-width:1000px){.layout{grid-template-columns:1fr;}.sidebar{order:-1;}.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
     @media(max-width:640px){.container{padding:0 20px;}.hero{padding:48px 0;}.page-body{padding:36px 0 70px;}.form-section,.form-submit{padding:26px 22px;}.form-row-2{grid-template-columns:1fr;}.sk-footer-inner{grid-template-columns:1fr;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
   </style>
@@ -146,7 +134,7 @@
 <body>
 
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">Réseau gratuit pour les professionnels du terrain</span>
+    <span class="sk-banner__text">Réseau gratuit pour les entreprises qui ont un besoin ou une ressource</span>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Créer mon profil →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
@@ -157,15 +145,15 @@
   <ul class="sk-nav__links">
     <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
     <li><a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a></li>
-    <li><a href="https://app.strakara.fr/membres.html">Membres</a></li>
+    <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
     <li><a href="https://app.strakara.fr/recommandations.html">Recommandations</a></li>
-    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">strakara.fr →</a></li>
+    <li><a href="https://www.strakara.fr" style="font-size:11px;letter-spacing:.08em;color:var(--muted);opacity:.6;">Espaces STRAKARA →</a></li>
   </ul>
 
   <div class="sk-nav__right">
     <div class="sk-nav__sep"></div>
     <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+    <a href="https://app.strakara.fr/login-membre.html" class="sk-btn-connexion">Connexion</a>
   </div>
 
   <button class="sk-nav__hamburger" onclick="document.getElementById('sk-mobile').classList.toggle('sk-open')" aria-label="Menu">
@@ -178,13 +166,13 @@
 <div class="sk-nav__mobile" id="sk-mobile">
   <a href="https://app.strakara.fr/index.html">Accueil</a>
   <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
-  <a href="https://app.strakara.fr/membres.html">Membres</a>
+  <a href="https://app.strakara.fr/membres.html">Entreprises</a>
   <a href="https://app.strakara.fr/recommandations.html">Recommandations</a>
-  <a href="https://www.strakara.fr">strakara.fr →</a>
+  <a href="https://www.strakara.fr">Espaces STRAKARA →</a>
 
   <div class="sk-nav__mobile-btns">
     <a href="https://app.strakara.fr/publier.html" class="sk-btn-publier">+ Publier</a>
-    <a href="https://app.strakara.fr/inscription-membre.html" class="sk-btn-connexion">Créer mon profil</a>
+    <a href="https://app.strakara.fr/login-membre.html" class="sk-btn-connexion">Connexion</a>
   </div>
 </div>
 
@@ -354,16 +342,16 @@
                   <strong>100% <em>gratuit.</em></strong>
                 </div>
                 <button type="submit" class="btn-dark" id="submit-btn">Créer mon profil →</button>
-                <p class="form-submit-note">Votre profil est enregistré dans STRAKARA Réseau Pro. La vérification entreprise peut être effectuée manuellement ensuite.</p>
+                <p class="form-submit-note">Votre profil est enregistré dans STRAKARA. La vérification entreprise peut être effectuée manuellement ensuite.</p>
               </div>
             </div>
           </form>
 
           <aside class="sidebar">
             <div class="sidebar-card dark">
-              <span class="sidebar-card-title">Membre STRAKARA</span>
+              <span class="sidebar-card-title">Entreprise STRAKARA</span>
               <strong>0 €</strong>
-              <p>Créer un profil membre est gratuit. Pas d’abonnement, pas de carte bancaire.</p>
+              <p>Créer un profil entreprise est gratuit. Pas d’abonnement, pas de carte bancaire.</p>
             </div>
             <div class="sidebar-card">
               <span class="sidebar-card-title">Comment ça marche</span>
@@ -382,50 +370,17 @@
       <div class="confirm" id="confirm">
         <div class="confirm-icon">✓</div>
         <h2>Profil créé.<br><em>Bienvenue dans le réseau.</em></h2>
-        <p>Votre profil entreprise a bien été enregistré. Vous pouvez maintenant découvrir les membres du réseau ou publier un besoin / une ressource.</p>
+        <p>Votre profil entreprise a bien été enregistré. Vous pouvez maintenant découvrir les entreprises du réseau ou publier un besoin / une ressource.</p>
         <div class="confirm-btns">
-          <a href="https://app.strakara.fr/membres.html" class="btn-dark">Voir les membres</a>
+          <a href="https://app.strakara.fr/membres.html" class="btn-dark">Voir les entreprises</a>
           <a href="https://app.strakara.fr/publier.html" class="btn-outline">Publier un besoin ou une ressource</a>
         </div>
       </div>
 
     </div>
   </section>
-
-  <footer class="sk-footer">
-    <div class="container">
-      <div class="sk-footer-inner">
-        <div class="sk-footer-brand">
-          <a href="https://app.strakara.fr/index.html" class="sk-footer-logo">STRA<span>KARA</span></a>
-          <span class="sk-footer-logo-sub">Réseau Pro</span>
-          <p>Le moteur des besoins B2B. Publiez un besoin, proposez une ressource et développez votre réseau professionnel.</p>
-        </div>
-        <div class="sk-footer-col">
-          <h4>Réseau</h4>
-          <a href="https://app.strakara.fr/annonces.html">Besoins &amp; Ressources</a>
-          <a href="https://app.strakara.fr/membres.html">Membres</a>
-          <a href="https://app.strakara.fr/publier.html">Publier un besoin ou une ressource</a>
-          <a href="https://app.strakara.fr/inscription-membre.html">Créer mon profil</a>
-        </div>
-        <div class="sk-footer-col">
-          <h4>STRAKARA</h4>
-          <a href="https://www.strakara.fr">Location d'espaces</a>
-          <a href="https://www.strakara.fr/contact.html">Contact</a>
-          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
-        </div>
-      </div>
-      <div class="sk-footer-bottom">
-        <p>© 2026 STRAKARA SASU — Tous droits réservés · Réseau Pro</p>
-        <div class="sk-footer-bottom-links">
-          <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
-          <a href="https://www.strakara.fr/cgv.html">CGV</a>
-          <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+  <script src="https://app.strakara.fr/footer.js"></script>
+<script>
     const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
     const BUCKET = 'membres-images';
@@ -484,7 +439,7 @@
         const logoUrl = await uploadImage('logo','logos');
         const couvertureUrl = await uploadImage('couverture','couvertures');
 
-        showStatus('loading','Enregistrement du profil membre...');
+        showStatus('loading','Enregistrement du profil entreprise...');
         const data = {
           entreprise: document.getElementById('entreprise').value.trim(),
           siret: document.getElementById('siret').value.replace(/\s/g,''),
