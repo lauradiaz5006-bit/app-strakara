@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>STRAKARA — Le moteur des besoins B2B</title>
-  <meta name="description" content="STRAKARA connecte les entreprises qui ont un besoin avec celles qui peuvent y répondre : espaces, stockage, transport, logistique, services et ressources professionnelles.">
+  <title>STRAKARA — Réseau B2B en lancement</title>
+  <meta name="description" content="Réseau B2B STRAKARA en ouverture progressive : créez gratuitement votre profil professionnel, publiez un besoin et gagnez en visibilité auprès d’autres entreprises.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://app.strakara.fr/">
 
-  <meta property="og:title" content="STRAKARA — Le moteur des besoins B2B">
-  <meta property="og:description" content="J’ai un besoin ou je peux aider une entreprise : STRAKARA connecte les pros utiles entre eux.">
+  <meta property="og:title" content="STRAKARA — Réseau B2B en lancement">
+  <meta property="og:description" content="Rejoignez gratuitement les premières entreprises fondatrices du réseau STRAKARA.">
   <meta property="og:url" content="https://app.strakara.fr/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://app.strakara.fr/images/strakara-reseau-pro-cover.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="STRAKARA — Le moteur des besoins B2B">
-  <meta name="twitter:description" content="Connecter les entreprises qui ont un besoin avec celles qui peuvent y répondre.">
+  <meta name="twitter:title" content="STRAKARA — Réseau B2B en lancement">
+  <meta name="twitter:description" content="Créez votre profil professionnel gratuitement pendant la phase de lancement.">
   <meta name="twitter:image" content="https://app.strakara.fr/images/strakara-reseau-pro-cover.jpg">
 
   <script type="application/ld+json">
@@ -187,6 +187,25 @@
     .footer-bottom p,.footer-bottom a{font-size:12px;color:rgba(255,255,255,.26);}
     .footer-links{display:flex;gap:18px;flex-wrap:wrap;}
 
+
+
+    .launch-pop{
+      position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;
+      background:rgba(30,31,35,.56);padding:22px;
+    }
+    .launch-pop.show{display:flex;}
+    .launch-box{width:min(520px,100%);background:white;border:1px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,.24);position:relative;padding:34px;}
+    .launch-close{position:absolute;top:12px;right:14px;border:0;background:transparent;font-size:28px;line-height:1;color:var(--muted);cursor:pointer;}
+    .launch-badge{display:inline-block;background:var(--light);border:1px solid var(--border);color:var(--gold-dark);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;margin-bottom:14px;}
+    .launch-box h3{font-family:'Playfair Display',serif;font-size:32px;line-height:1.12;font-weight:400;color:var(--brand);margin-bottom:12px;}
+    .launch-box p{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:18px;}
+    .launch-list{display:grid;gap:8px;margin:18px 0 22px;}
+    .launch-list div{font-size:14px;color:var(--text);display:flex;gap:9px;align-items:flex-start;}
+    .launch-list div::before{content:'✓';color:var(--gold-dark);font-weight:900;}
+    .launch-actions{display:flex;gap:10px;flex-wrap:wrap;}
+    .launch-actions .btn-dark,.launch-actions .btn-outline{flex:1;min-width:190px;}
+    .launch-small{font-size:12px!important;color:var(--muted)!important;margin-top:12px!important;margin-bottom:0!important;}
+
     @media(max-width:1050px){
       .hero-wrap,.split{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:repeat(2,1fr);}
@@ -212,7 +231,7 @@
 <body>
 
   <div class="top-banner">
-    <strong>Ouverture gratuite</strong> — STRAKARA accueille les entreprises qui ont un besoin ou une ressource à proposer.
+    <strong>Ouverture progressive</strong> — Les premiers profils professionnels sont validés avant publication.
   </div>
 
   <nav class="nav">
@@ -222,14 +241,13 @@
       <li><a href="https://app.strakara.fr/index.html" class="active">Accueil</a></li>
       <li><a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a></li>
       <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
-      <li><a href="https://app.strakara.fr/membres.html">Entreprises</a></li>
-      <li><a href="https://www.strakara.fr">Espaces STRAKARA</a></li>
+      <li><a href="https://app.strakara.fr/rejoindre.html">Rejoindre</a></li>
       <li><a href="https://www.strakara.fr" style="opacity:.62;">Espaces STRAKARA →</a></li>
     </ul>
 
     <div class="nav-right">
       <a href="https://app.strakara.fr/publier.html?type=besoin" class="nav-secondary">J’ai un besoin</a>
-      <a href="https://app.strakara.fr/login-membre.html" class="nav-cta">Connexion</a>
+      <a href="https://app.strakara.fr/rejoindre.html" class="nav-cta">Créer mon profil</a>
     </div>
 
     <button class="hamb" onclick="document.getElementById('mobile').classList.toggle('open')" aria-label="Menu">
@@ -244,17 +262,17 @@
     <a href="https://app.strakara.fr/membres.html">Entreprises</a>
     <a href="https://www.strakara.fr">Espaces STRAKARA</a>
     <a href="https://app.strakara.fr/publier.html?type=besoin">J’ai un besoin</a>
-    <a href="https://app.strakara.fr/login-membre.html" class="nav-cta">Connexion</a>
+    <a href="https://app.strakara.fr/rejoindre.html" class="nav-cta">Créer mon profil</a>
   </div>
 
   <header class="hero">
     <div class="container">
       <div class="hero-wrap">
         <div>
-          <span class="label">Le moteur des besoins B2B</span>
-          <h1>Une entreprise a un besoin. <em>Une autre peut y répondre.</em></h1>
+          <span class="label">Réseau B2B en lancement</span>
+          <h1>Rejoignez les premières entreprises <em>fondatrices.</em></h1>
           <p class="hero-sub">
-            STRAKARA connecte les entreprises qui cherchent une solution avec celles qui peuvent apporter une ressource, un service, un espace, une compétence ou une capacité disponible.
+            STRAKARA ouvre progressivement son réseau professionnel. Créez gratuitement votre profil, présentez ce que votre entreprise peut apporter et soyez visible dès l’ouverture officielle des premiers membres.
           </p>
 
           <div class="hero-actions">
@@ -263,45 +281,45 @@
               <span>Urgent ou non urgent : espace, transport, logistique, prestataire, fournisseur ou autre besoin professionnel.</span>
             </a>
 
-            <a href="https://app.strakara.fr/login-membre.html" class="action-card gold">
-              <strong>Connexion</strong>
-              <span>Présentez ce que votre entreprise peut apporter : service, espace, transport, stockage, conseil, production ou compétence.</span>
+            <a href="https://app.strakara.fr/rejoindre.html" class="action-card gold">
+              <strong>Créer mon profil</strong>
+              <span>Présentez votre entreprise. Les profils sont vérifiés avant publication pour garder un réseau sérieux.</span>
             </a>
           </div>
 
-          <p class="micro">Gratuit au lancement · Réservé aux professionnels · Mise en relation humaine au démarrage</p>
+          <p class="micro">Gratuit au lancement · Profils validés avant publication · Réservé aux professionnels</p>
         </div>
 
         <aside class="hero-panel">
-          <h2>STRAKARA n’est pas un réseau social. C’est un <em>outil pour agir.</em></h2>
+          <h2>Pas un annuaire vide. Une <em>ouverture progressive.</em></h2>
 
           <div class="panel-list">
             <div class="panel-item">
               <span class="panel-num">01</span>
               <div>
-                <strong>Une entreprise exprime un besoin</strong>
-                <span>Elle explique simplement ce qu’elle cherche et dans quelle zone.</span>
+                <strong>Les premiers profils sont collectés</strong>
+                <span>Chaque entreprise peut présenter son activité et ses ressources utiles.</span>
               </div>
             </div>
 
             <div class="panel-item">
               <span class="panel-num">02</span>
               <div>
-                <strong>Les ressources adaptées apparaissent</strong>
-                <span>Entreprises, espaces, transporteurs, logisticiens ou prestataires utiles.</span>
+                <strong>Les profils sont vérifiés</strong>
+                <span>Les fiches sont relues avant d’être rendues visibles sur le réseau.</span>
               </div>
             </div>
 
             <div class="panel-item">
               <span class="panel-num">03</span>
               <div>
-                <strong>STRAKARA facilite la mise en relation</strong>
-                <span>Au démarrage, la recherche est humaine. L’automatisation viendra ensuite.</span>
+                <strong>Les premiers membres sont mis en avant</strong>
+                <span>Les entreprises fondatrices auront plus de visibilité pendant le lancement.</span>
               </div>
             </div>
           </div>
 
-          <a href="https://app.strakara.fr/publier.html?type=besoin" class="btn-gold">Publier mon besoin →</a>
+          <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold">Créer mon profil gratuitement →</a>
         </aside>
       </div>
     </div>
@@ -311,8 +329,8 @@
     <div class="container">
       <div class="proof-grid">
         <div class="proof-cell"><span class="proof-num">0 €</span><span class="proof-label">Inscription au lancement</span></div>
-        <div class="proof-cell"><span class="proof-num">2</span><span class="proof-label">Actions simples</span></div>
-        <div class="proof-cell"><span class="proof-num">100</span><span class="proof-label">Premières entreprises utiles</span></div>
+        <div class="proof-cell"><span class="proof-num">Validation</span><span class="proof-label">Avant publication</span></div>
+        <div class="proof-cell"><span class="proof-num">100</span><span class="proof-label">Places fondatrices visées</span></div>
         <div class="proof-cell"><span class="proof-num">France</span><span class="proof-label">Réseau professionnel</span></div>
       </div>
     </div>
@@ -323,10 +341,10 @@
       <div class="section-head">
         <div>
           <span class="label">Le principe</span>
-          <h2 class="h2">Toute entreprise utile a sa place sur <em>STRAKARA.</em></h2>
+          <h2 class="h2">Les premières fiches doivent donner envie de <em>rejoindre le réseau.</em></h2>
         </div>
         <p class="lead">
-          La règle est simple : une autre entreprise pourrait-elle un jour avoir besoin de vous ? Si oui, vous pouvez rejoindre STRAKARA.
+          Au lancement, le but n’est pas de montrer un gros nombre. Le but est de créer des profils sérieux, visibles et utiles pour les autres entreprises.
         </p>
       </div>
 
@@ -340,8 +358,8 @@
 
         <div class="card">
           <div class="icon">02</div>
-          <h3>Connexion à...</h3>
-          <p>Stocker, transporter, vendre, produire, conseiller, développer, sécuriser, organiser, communiquer ou rendre service à une autre entreprise.</p>
+          <h3>Je peux aider avec...</h3>
+          <p>Stockage, transport, logistique, travaux, conseil, communication, administratif, production ou toute ressource utile aux professionnels.</p>
           <div class="tags"><span class="tag">Service</span><span class="tag">Ressource</span></div>
         </div>
 
@@ -359,18 +377,18 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="label">Fonctionnement</span>
-          <h2 class="h2">Besoin → ressource → mise en relation → confiance.</h2>
+          <span class="label">Phase de lancement</span>
+          <h2 class="h2">Profil → validation → publication → visibilité.</h2>
         </div>
-        <p class="lead">Pas de likes, pas de posts personnels, pas de blabla. STRAKARA sert à résoudre des besoins professionnels concrets.</p>
+        <p class="lead">Les profils ne sont pas affichés comme un simple annuaire vide : ils sont créés, vérifiés, puis publiés progressivement pour donner une image sérieuse dès le départ.</p>
       </div>
 
       <div class="flow">
-        <div class="flow-step"><span>01</span><strong>Besoin</strong><p>L’entreprise indique ce qu’elle cherche, où et avec quel niveau d’urgence.</p></div>
-        <div class="flow-step"><span>02</span><strong>Ressource</strong><p>Une autre entreprise propose une capacité, un service, un espace ou une compétence.</p></div>
-        <div class="flow-step"><span>03</span><strong>Recherche</strong><p>STRAKARA identifie les correspondances les plus utiles.</p></div>
-        <div class="flow-step"><span>04</span><strong>Contact</strong><p>Les entreprises sont mises en relation pour avancer rapidement.</p></div>
-        <div class="flow-step"><span>05</span><strong>Confiance</strong><p>Les collaborations réelles pourront enrichir les profils avec le temps.</p></div>
+        <div class="flow-step"><span>01</span><strong>Profil</strong><p>L’entreprise crée sa fiche professionnelle avec son activité, sa zone et ses ressources.</p></div>
+        <div class="flow-step"><span>02</span><strong>Validation</strong><p>STRAKARA vérifie les informations avant de rendre le profil visible.</p></div>
+        <div class="flow-step"><span>03</span><strong>Publication</strong><p>Les profils sont ajoutés progressivement dans la page entreprises.</p></div>
+        <div class="flow-step"><span>04</span><strong>Mise en avant</strong><p>Les premières entreprises peuvent être présentées dans les communications du lancement.</p></div>
+        <div class="flow-step"><span>05</span><strong>Réseau</strong><p>Plus le réseau grandit, plus les mises en relation deviennent utiles.</p></div>
       </div>
     </div>
   </section>
@@ -407,7 +425,7 @@
             <div class="check">Soyez visible quand une entreprise cherche une ressource comme la vôtre.</div>
           </div>
 
-          <a href="https://app.strakara.fr/login-membre.html" class="btn-gold">Je propose une ressource</a>
+          <a href="https://app.strakara.fr/rejoindre.html" class="btn-gold">Créer mon profil</a>
         </div>
       </div>
     </div>
@@ -436,20 +454,40 @@
 
   <section class="cta">
     <div class="container">
-      <span class="label">Lancement V1</span>
-      <h2 class="h2">Que souhaitez-vous faire aujourd’hui ?</h2>
+      <span class="label">Ouverture progressive</span>
+      <h2 class="h2">Créez votre profil avant l’ouverture officielle des membres.</h2>
       <p class="lead">
-        Publiez un besoin ou présentez ce que votre entreprise peut apporter. STRAKARA démarre avec une approche simple, humaine et utile.
+        Les premiers profils sont collectés maintenant, vérifiés, puis publiés progressivement. Cela évite l’effet annuaire vide et donne une image plus professionnelle au lancement.
       </p>
 
       <div class="cta-actions">
         <a href="https://app.strakara.fr/publier.html?type=besoin" class="btn-gold">J’ai un besoin</a>
-        <a href="https://app.strakara.fr/login-membre.html" class="btn-white">Connexion</a>
+        <a href="https://app.strakara.fr/rejoindre.html" class="btn-white">Créer mon profil</a>
       </div>
 
-      <p class="note">Gratuit au lancement · Réservé aux entreprises et professionnels</p>
+      <p class="note">Gratuit au lancement · Profil visible après validation · Réservé aux professionnels</p>
     </div>
   </section>
+
+
+  <div class="launch-pop" id="launchPop" aria-hidden="true">
+    <div class="launch-box" role="dialog" aria-modal="true" aria-labelledby="launchTitle">
+      <button class="launch-close" type="button" onclick="closeLaunchPop()" aria-label="Fermer">×</button>
+      <span class="launch-badge">Ouverture progressive</span>
+      <h3 id="launchTitle">Devenez une entreprise fondatrice STRAKARA</h3>
+      <p>Créez gratuitement votre profil professionnel. Les fiches sont vérifiées avant publication pour éviter l’effet annuaire vide et garder un réseau sérieux.</p>
+      <div class="launch-list">
+        <div>Profil professionnel gratuit au lancement</div>
+        <div>Validation avant affichage public</div>
+        <div>Mise en avant possible des premiers membres</div>
+      </div>
+      <div class="launch-actions">
+        <a href="https://app.strakara.fr/rejoindre.html" class="btn-dark">Créer mon profil</a>
+        <a href="https://app.strakara.fr/publier.html?type=besoin" class="btn-outline">J’ai un besoin</a>
+      </div>
+      <p class="launch-small">Réservé aux professionnels · Fermeture automatique après votre choix</p>
+    </div>
+  </div>
 
 
   <script>
@@ -457,6 +495,29 @@
       link.addEventListener('click', function(){
         document.getElementById('mobile').classList.remove('open');
       });
+    });
+
+    function closeLaunchPop(){
+      var pop = document.getElementById('launchPop');
+      if(!pop) return;
+      pop.classList.remove('show');
+      pop.setAttribute('aria-hidden','true');
+      sessionStorage.setItem('strakaraLaunchPopClosed','1');
+    }
+
+    window.addEventListener('load', function(){
+      if(sessionStorage.getItem('strakaraLaunchPopClosed')) return;
+      setTimeout(function(){
+        var pop = document.getElementById('launchPop');
+        if(pop){
+          pop.classList.add('show');
+          pop.setAttribute('aria-hidden','false');
+        }
+      }, 6500);
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeLaunchPop();
     });
   </script>
 <script src="https://app.strakara.fr/footer.js"></script>
