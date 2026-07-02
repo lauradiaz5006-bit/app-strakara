@@ -668,6 +668,34 @@
 
     const params = new URLSearchParams(window.location.search);
     const membreIdDepuisUrl = params.get('id');
+    let membreConnecte = null;
+
+    async function chargerMembreConnecte() {
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session || !session.user || !session.user.email) return;
+
+        const { data } = await supabaseClient
+          .from('membres')
+          .select('id, entreprise, prenom, nom, email')
+          .ilike('email', session.user.email)
+          .maybeSingle();
+
+        if (data) {
+          membreConnecte = data;
+          // Pré-remplit l'identité du recommandeur : on ne redemande pas
+          // à quelqu'un de déjà connecté de retaper qui il est.
+          const prenomInput = document.getElementById('reco-prenom');
+          const entrepriseInput = document.getElementById('reco-entreprise');
+          const emailInput = document.getElementById('reco-email');
+          if (prenomInput && !prenomInput.value) prenomInput.value = data.prenom || '';
+          if (entrepriseInput && !entrepriseInput.value) entrepriseInput.value = data.entreprise || '';
+          if (emailInput && !emailInput.value) emailInput.value = data.email || '';
+        }
+      } catch (err) {
+        console.warn('Impossible de récupérer le membre connecté :', err);
+      }
+    }
 
     function escapeHtml(value) {
       return String(value || '')
@@ -725,7 +753,7 @@
         return;
       }
 
-      membresActifs = data || [];
+      membresActifs = (data || []).filter(m => !membreConnecte || m.id !== membreConnecte.id);
       select.innerHTML = '<option value="">Sélectionnez le professionnel concerné</option>';
 
       membresActifs.forEach(membre => {
@@ -886,7 +914,8 @@
       window.scrollTo({ top: document.getElementById('recommander').offsetTop - 80, behavior: 'smooth' });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      await chargerMembreConnecte();
       chargerMembres();
       chargerRecommandations();
     });
