@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const { data: membreTrouve } = await skSupabaseClient
               .from('membres')
               .select('id')
-              .or(`email.ilike.${emailRecherche},contact_email.ilike.${emailRecherche}`)
+              .ilike('email', emailRecherche)
               .maybeSingle();
             if (membreTrouve) membreIdActuel = membreTrouve.id;
           }
