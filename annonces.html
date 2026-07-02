@@ -490,9 +490,11 @@
     let annoncesFiltrees = [];
     let tabActif = '';
 
-    // ── POPUP LANCEMENT : apparition après 8s, fermeture persistante 24h (localStorage) ──
-    const LAUNCH_POPUP_KEY = 'sk_launch_popup_closed_at';
-    const LAUNCH_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24h
+    // ── POPUP LANCEMENT : apparition après 8s, tant qu'il n'y a pas (ou très peu) d'annonces réelles ──
+    // Le popup n'est plus limité à 1x/24h : il réapparaît à chaque nouvelle visite (sessionStorage,
+    // pas localStorage), mais s'arrête automatiquement tout seul dès que de vraies annonces existent.
+    const LAUNCH_POPUP_SESSION_KEY = 'sk_launch_popup_closed_session';
+    const LAUNCH_POPUP_MIN_ANNONCES = 1; // à partir de ce nombre d'annonces réelles, on arrête d'afficher le popup
 
     function fermerLaunchPopup(){
       const popup = document.getElementById('launch-popup-overlay');
@@ -500,7 +502,7 @@
         popup.classList.remove('is-open');
         popup.setAttribute('aria-hidden','true');
       }
-      try{ localStorage.setItem(LAUNCH_POPUP_KEY, Date.now().toString()); }catch(e){}
+      try{ sessionStorage.setItem(LAUNCH_POPUP_SESSION_KEY, '1'); }catch(e){}
     }
 
     function ouvrirLaunchPopup(){
@@ -511,14 +513,9 @@
       }
     }
 
-    function launchPopupDejaVuRecemment(){
-      try{
-        const last = localStorage.getItem(LAUNCH_POPUP_KEY);
-        if(!last) return false;
-        return (Date.now() - parseInt(last, 10)) < LAUNCH_POPUP_COOLDOWN_MS;
-      }catch(e){
-        return false;
-      }
+    function launchPopupFermeCetteSession(){
+      try{ return sessionStorage.getItem(LAUNCH_POPUP_SESSION_KEY) === '1'; }
+      catch(e){ return false; }
     }
 
     document.addEventListener('DOMContentLoaded', function(){
@@ -534,9 +531,11 @@
           if(p && p.classList.contains('is-open')) fermerLaunchPopup();
         }
       });
-      if(!launchPopupDejaVuRecemment()){
-        setTimeout(ouvrirLaunchPopup, 8000);
-      }
+      setTimeout(function(){
+        if(launchPopupFermeCetteSession()) return; // déjà fermé sur cette visite, on ne relance pas
+        if(toutesAnnonces.length >= LAUNCH_POPUP_MIN_ANNONCES) return; // de vraies annonces existent déjà
+        ouvrirLaunchPopup();
+      }, 8000);
     });
 
 
