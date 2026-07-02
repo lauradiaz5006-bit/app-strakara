@@ -191,6 +191,25 @@
     .page-btn:hover{border-color:var(--brand);color:var(--brand);}
     .page-btn.active{background:var(--brand);color:var(--white);border-color:var(--brand);}
 
+
+
+    /* Lancement : cacher les compteurs tant que le réseau démarre */
+    .tab-count{display:none!important;}
+    .annonces-count strong{display:none;}
+    .annonces-count::before{content:'Publications en cours de validation';color:var(--brand);font-weight:600;}
+
+    /* Popup lancement */
+    .launch-popup-overlay{position:fixed;inset:0;background:rgba(30,31,35,.62);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:999999;padding:22px;}
+    .launch-popup-overlay.is-open{display:flex;}
+    .launch-popup{width:520px;max-width:100%;background:var(--white);border:1px solid var(--border);box-shadow:0 28px 90px rgba(0,0,0,.26);padding:38px 36px;position:relative;text-align:center;}
+    .launch-popup-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;line-height:1;color:var(--muted);cursor:pointer;}
+    .launch-popup .label{margin-bottom:12px;}
+    .launch-popup h3{font-family:'Playfair Display',serif;font-size:34px;line-height:1.14;font-weight:400;color:var(--brand);margin-bottom:14px;}
+    .launch-popup h3 em{color:var(--gold);font-style:italic;}
+    .launch-popup p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:22px;}
+    .launch-popup-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .launch-popup-small{display:block;margin-top:14px;font-size:12px;color:var(--muted);}
+
     @media(max-width:1100px){.category-grid{grid-template-columns:repeat(2,1fr);}.annonces-body-inner{grid-template-columns:1fr;}.sidebar{position:static;}}
     @media(max-width:960px){.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.annonces-filtres{grid-template-columns:1fr 1fr;}.annonces-filtres .filtre-btn{grid-column:1/-1;padding:15px;}.annonces-grid{grid-template-columns:1fr;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
     @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.hero-actions{flex-direction:column;}.category-grid{grid-template-columns:1fr;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
@@ -199,7 +218,7 @@
 <body>
 
   <div class="sk-banner" id="sk-banner">
-    <span class="sk-banner__text">Réseau gratuit pour les entreprises qui ont un besoin ou une ressource</span>
+    <span class="sk-banner__text">Ouverture officielle du réseau STRAKARA — publications vérifiées avant mise en ligne</span>
     <a href="https://app.strakara.fr/inscription-membre.html" class="sk-banner__btn">Créer mon profil — Gratuit →</a>
     <button class="sk-banner__close" onclick="document.getElementById('sk-banner').style.display='none'">&times;</button>
   </div>
@@ -246,9 +265,9 @@
       <div class="annonces-hero-inner">
         <span class="label">Besoins &amp; ressources</span>
         <h1>Une entreprise a un besoin.<br><em>Une autre peut y répondre.</em></h1>
-        <p>Découvrez les besoins publiés par les entreprises du réseau et les ressources professionnelles proposées : services, compétences, espaces, matériel, fournisseurs, partenariats et solutions utiles.</p>
+        <p>Publiez gratuitement un besoin ou une ressource professionnelle. Les premières publications sont validées avant mise en ligne afin de garantir un réseau sérieux et utile.</p>
         <div class="hero-actions">
-          <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier un besoin ou une ressource</a>
+          <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier gratuitement</a>
           <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Créer mon profil</a>
         </div>
       </div>
@@ -296,7 +315,7 @@
  <div class="annonces-filtres-wrap">
   <div class="container">
 
-    <p class="filter-note">Filtrez les besoins et les ressources publiés par les entreprises du réseau STRAKARA.</p>
+    <p class="filter-note">Les premières publications sont en cours de validation. Vous pouvez déjà publier gratuitement votre besoin ou votre ressource.</p>
 
     <div class="annonces-filtres">
 
@@ -412,7 +431,7 @@
 
         <div>
           <div class="annonces-results-header">
-            <p class="annonces-count"><strong id="count-label">–</strong> besoin(s) ou ressource(s) dans le réseau STRAKARA</p>
+            <p class="annonces-count"><strong id="count-label">–</strong> dans le réseau STRAKARA</p>
             <div class="annonces-sort">
               <span>Trier par</span>
               <select id="f-tri" onchange="afficherAnnonces(annoncesFiltrees)">
@@ -437,6 +456,22 @@
 
   
 
+
+  <div class="launch-popup-overlay" id="launch-popup-overlay" aria-hidden="true">
+    <div class="launch-popup" role="dialog" aria-modal="true" aria-labelledby="launch-popup-title">
+      <button class="launch-popup-close" type="button" onclick="fermerLaunchPopup()" aria-label="Fermer">&times;</button>
+      <span class="label">Ouverture officielle</span>
+      <h3 id="launch-popup-title">Les premières annonces sont <em>en cours de validation.</em></h3>
+      <p>Publiez gratuitement votre besoin ou votre ressource et faites partie des premières entreprises visibles sur STRAKARA.</p>
+      <div class="launch-popup-actions">
+        <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier gratuitement</a>
+        <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Créer mon profil</a>
+      </div>
+      <span class="launch-popup-small">Profils et publications vérifiés avant mise en ligne.</span>
+    </div>
+  </div>
+
+
   <script>
     // ── SUPABASE CONFIG ─────────────────────────────────────────────
     const SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
@@ -445,6 +480,40 @@
     let toutesAnnonces = [];
     let annoncesFiltrees = [];
     let tabActif = '';
+
+    function fermerLaunchPopup(){
+      const popup = document.getElementById('launch-popup-overlay');
+      if(popup){
+        popup.classList.remove('is-open');
+        popup.setAttribute('aria-hidden','true');
+      }
+      try{sessionStorage.setItem('sk_launch_popup_seen','1');}catch(e){}
+    }
+
+    function ouvrirLaunchPopup(){
+      const popup = document.getElementById('launch-popup-overlay');
+      if(popup){
+        popup.classList.add('is-open');
+        popup.setAttribute('aria-hidden','false');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const popup = document.getElementById('launch-popup-overlay');
+      if(popup){
+        popup.addEventListener('click', function(e){
+          if(e.target === popup) fermerLaunchPopup();
+        });
+      }
+      try{
+        if(!sessionStorage.getItem('sk_launch_popup_seen')){
+          setTimeout(ouvrirLaunchPopup, 8000);
+        }
+      }catch(e){
+        setTimeout(ouvrirLaunchPopup, 8000);
+      }
+    });
+
 
     const CATEGORIE_ALIAS = {
       'Espaces': ['Espaces', 'Espaces professionnels', 'Immobilier Pro'],
@@ -574,9 +643,18 @@
       if (triee.length === 0) {
         grid.innerHTML = `
           <div class="annonces-empty">
-            <h3>Aucun besoin ou ressource pour l’instant</h3>
-            <p>Soyez le premier à publier un besoin ou une ressource dans cette catégorie.</p>
+            <span class="label">Phase de lancement</span>
+            <h3>Les premières publications arrivent.</h3>
+            <p>STRAKARA ouvre progressivement son réseau professionnel. Les besoins et ressources sont vérifiés avant publication afin de garder des annonces sérieuses et utiles.</p>
             <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier gratuitement</a>
+          </div>
+          <div class="network-cta">
+            <div class="network-cta-inner">
+              <span class="label">Entreprise fondatrice</span>
+              <h3>Publiez maintenant et soyez visible <em>dès le lancement.</em></h3>
+              <p>Besoin, ressource, espace, compétence, fournisseur ou partenariat : votre publication aide à construire les premières mises en relation du réseau.</p>
+              <a href="https://app.strakara.fr/publier.html" class="btn-gold-outline">Créer ma première publication →</a>
+            </div>
           </div>`;
         return;
       }
