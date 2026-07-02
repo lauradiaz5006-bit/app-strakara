@@ -725,10 +725,12 @@
   }
 
   async function chargerAnnonces(m) {
-    const nomEntreprise = m.entreprise || [m.prenom, m.nom].filter(Boolean).join(' ') || '';
+    // On remonte les annonces par email (identifiant fiable, utilisé pour la connexion),
+    // et non plus par nom_entreprise (texte libre, retapé différemment à chaque publication).
+    const email = (m.email || m.contact_email || '').trim();
     const container = document.getElementById('annonces-container');
 
-    if (!nomEntreprise) {
+    if (!email) {
       container.innerHTML = `<div class="empty-state"><p>Aucune publication pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;">Publier</a></div>`;
       document.getElementById('stat-annonces').textContent = '0';
       return;
@@ -736,7 +738,7 @@
 
     const { data, error } = await sb.from('annonces')
       .select('id,titre,description,categorie,ville,statut,image_url,created_at')
-      .eq('nom_entreprise', nomEntreprise)
+      .ilike('contact_email', email)
       .order('created_at', { ascending: false })
       .limit(10);
 
