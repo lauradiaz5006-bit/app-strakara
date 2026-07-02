@@ -134,11 +134,20 @@
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
     .card{background:white;padding:34px;transition:.18s ease;}
     .card:hover{background:#FDFCF8;transform:translateY(-2px);}
-    .card .icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--light);border:1px solid var(--border);color:var(--gold-dark);font-weight:800;margin-bottom:18px;}
+    .card .icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--light);border:1px solid var(--border);color:var(--gold-dark);margin-bottom:18px;}
+    .card .icon svg{display:block;}
     .card h3{font-family:'Playfair Display',serif;font-size:23px;font-weight:400;line-height:1.25;margin-bottom:10px;color:var(--brand);}
     .card p{font-size:14px;color:var(--muted);line-height:1.7;}
+    .card-link{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:800;letter-spacing:.03em;color:var(--gold-dark);border-bottom:1px solid rgba(200,169,106,.4);padding-bottom:2px;transition:.15s;}
+    .card-link:hover{color:var(--brand);border-color:var(--brand);}
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;}
     .tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);border:1px solid var(--border);padding:4px 9px;background:var(--light);}
+
+    .needs-promo{margin-top:1px;background:var(--light);border:1px solid var(--border);border-top:none;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+    .needs-promo-text{display:flex;flex-direction:column;gap:6px;max-width:600px;}
+    .needs-promo-text strong{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--brand);line-height:1.3;}
+    .needs-promo-text span{font-size:14px;color:var(--muted);line-height:1.65;}
+    .needs-promo .btn-dark{flex-shrink:0;}
 
     .dark-section{padding:86px 0;background:var(--brand);color:white;position:relative;overflow:hidden;}
     .dark-section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
@@ -153,6 +162,17 @@
     .flow-step p{font-size:12px;color:rgba(255,255,255,.58);line-height:1.6;}
 
     .strakara-space{padding:86px 0;background:var(--light);}
+
+    .flex-banner{background:var(--brand);color:white;padding:28px 0;position:relative;overflow:hidden;}
+    .flex-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(200,169,106,.045) 79px,rgba(200,169,106,.045) 80px);}
+    .flex-banner-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+    .flex-banner-text{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+    .flex-banner-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;line-height:1.3;color:white;margin:0;}
+    .flex-banner-title em{color:var(--gold);font-style:italic;}
+    .flex-points{display:flex;gap:18px;flex-wrap:wrap;}
+    .flex-point{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.8);white-space:nowrap;}
+    .flex-point::before{content:'✓';color:var(--gold);font-weight:900;}
+    .flex-banner .btn-gold{flex-shrink:0;}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;}
     .box{background:white;border:1px solid var(--border);padding:42px;}
     .box.dark{background:var(--brand);color:white;border-color:var(--brand);}
@@ -206,6 +226,21 @@
     .launch-actions .btn-dark,.launch-actions .btn-outline{flex:1;min-width:190px;}
     .launch-small{font-size:12px!important;color:var(--muted)!important;margin-top:12px!important;margin-bottom:0!important;}
 
+    .space-toast{
+      position:fixed;right:22px;bottom:22px;z-index:900;
+      background:white;border:1px solid var(--border);box-shadow:0 18px 50px rgba(0,0,0,.18);
+      padding:20px 44px 20px 20px;max-width:320px;
+      display:none;flex-direction:column;gap:10px;
+      opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s ease;
+    }
+    .space-toast.show{display:flex;opacity:1;transform:translateY(0);}
+    .space-toast-close{position:absolute;top:10px;right:12px;border:0;background:none;font-size:20px;line-height:1;color:var(--muted);cursor:pointer;}
+    .space-toast-close:hover{color:var(--brand);}
+    .space-toast-icon{color:var(--gold-dark);}
+    .space-toast-text strong{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:var(--brand);margin-bottom:4px;}
+    .space-toast-text span{display:block;font-size:12.5px;color:var(--muted);line-height:1.55;}
+    .space-toast .btn-gold{font-size:12px;padding:10px 16px;min-height:auto;align-self:flex-start;}
+
     @media(max-width:1050px){
       .hero-wrap,.split{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:repeat(2,1fr);}
@@ -224,6 +259,9 @@
       .section-head{margin-bottom:30px;}
       .footer-bottom{flex-direction:column;text-align:center;}
       .footer-links{justify-content:center;}
+      .flex-banner-inner{flex-direction:column;align-items:flex-start;}
+      .flex-points{gap:12px 16px;}
+      .space-toast{left:16px;right:16px;bottom:16px;max-width:none;}
     }
   </style>
 </head>
@@ -259,7 +297,7 @@
     <a href="https://app.strakara.fr/index.html">Accueil</a>
     <a href="https://app.strakara.fr/annonces.html">Besoins & Ressources</a>
     <a href="https://app.strakara.fr/membres.html">Entreprises</a>
-    <a href="https://app.strakara.fr/membres.html">Entreprises</a>
+    <a href="https://app.strakara.fr/rejoindre.html">Rejoindre</a>
     <a href="https://www.strakara.fr">Espaces STRAKARA</a>
     <a href="https://app.strakara.fr/publier.html?type=besoin">J’ai un besoin</a>
     <a href="https://app.strakara.fr/rejoindre.html" class="nav-cta">Créer mon profil</a>
@@ -325,6 +363,22 @@
     </div>
   </header>
 
+  <section class="flex-banner">
+    <div class="container">
+      <div class="flex-banner-inner">
+        <div class="flex-banner-text">
+          <p class="flex-banner-title">Découvrez les espaces flexibles <em>sans bail, sans caution encaissée.</em></p>
+          <div class="flex-points">
+            <span class="flex-point">Sans bail commercial</span>
+            <span class="flex-point">Sans caution encaissée</span>
+            <span class="flex-point">Entrée en 72h</span>
+          </div>
+        </div>
+        <a href="https://www.strakara.fr/" class="btn-gold">Voir les espaces disponibles →</a>
+      </div>
+    </div>
+  </section>
+
   <section class="proof">
     <div class="container">
       <div class="proof-grid">
@@ -340,31 +394,32 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="label">Le principe</span>
-          <h2 class="h2">Les premières fiches doivent donner envie de <em>rejoindre le réseau.</em></h2>
+          <span class="label">Comment ça marche</span>
+          <h2 class="h2">Une entreprise a un besoin. <em>Une autre peut y répondre.</em></h2>
         </div>
         <p class="lead">
-          Au lancement, le but n’est pas de montrer un gros nombre. Le but est de créer des profils sérieux, visibles et utiles pour les autres entreprises.
+          Publiez gratuitement ce que vous cherchez ou ce que vous pouvez apporter. STRAKARA rapproche directement les entreprises entre elles — sans intermédiaire, sans commission cachée.
         </p>
       </div>
 
       <div class="grid-3">
         <div class="card">
-          <div class="icon">01</div>
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg></div>
           <h3>J’ai besoin de...</h3>
           <p>Un espace, un transporteur, un logisticien, un prestataire, un fournisseur, une solution rapide ou un contact professionnel fiable.</p>
           <div class="tags"><span class="tag">Urgent</span><span class="tag">Non urgent</span></div>
+          <a href="https://www.strakara.fr/" class="card-link">Voir les espaces disponibles →</a>
         </div>
 
         <div class="card">
-          <div class="icon">02</div>
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8l9-5 9 5"/><path d="M9 13h6"/></svg></div>
           <h3>Je peux aider avec...</h3>
           <p>Stockage, transport, logistique, travaux, conseil, communication, administratif, production ou toute ressource utile aux professionnels.</p>
           <div class="tags"><span class="tag">Service</span><span class="tag">Ressource</span></div>
         </div>
 
         <div class="card">
-          <div class="icon">03</div>
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l2-2a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-2 2a4 4 0 005.7 5.7l1-1"/></svg></div>
           <h3>STRAKARA connecte</h3>
           <p>Le rôle de STRAKARA est de rapprocher les besoins des bonnes ressources, avec une approche humaine au démarrage.</p>
           <div class="tags"><span class="tag">Mise en relation</span><span class="tag">Confiance</span></div>
@@ -442,12 +497,12 @@
       </div>
 
       <div class="grid-3">
-        <div class="card"><div class="icon">📦</div><h3>Stocker & accueillir</h3><p>Entrepôts, ateliers, bureaux, stockage professionnel, surfaces disponibles, réception palette.</p></div>
-        <div class="card"><div class="icon">🚚</div><h3>Transporter & livrer</h3><p>Transporteurs, logisticiens, préparation, tournées, fret retour, manutention.</p></div>
-        <div class="card"><div class="icon">🛠</div><h3>Produire & intervenir</h3><p>Artisans, maintenance, nettoyage, travaux, sous-traitance, renfort ponctuel.</p></div>
-        <div class="card"><div class="icon">📣</div><h3>Être visible</h3><p>Marketing, communication, SEO, LinkedIn, photo, vidéo, identité professionnelle.</p></div>
-        <div class="card"><div class="icon">📊</div><h3>Gérer & structurer</h3><p>Comptabilité, juridique, assurance, administratif, organisation, outils numériques.</p></div>
-        <div class="card"><div class="icon">🤝</div><h3>Développer</h3><p>Partenaires, fournisseurs, prestataires, opportunités, collaborations professionnelles.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div><h3>Stocker & accueillir</h3><p>Entrepôts, ateliers, bureaux, stockage professionnel, surfaces disponibles, réception palette.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="13" height="9"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></div><h3>Transporter & livrer</h3><p>Transporteurs, logisticiens, préparation, tournées, fret retour, manutention.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 005.4-5.4l-2.3 2.3-2-2 2.3-2.3z"/></svg></div><h3>Produire & intervenir</h3><p>Artisans, maintenance, nettoyage, travaux, sous-traitance, renfort ponctuel.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l7 4V6l-7 4H3z"/><path d="M17 9a4 4 0 010 6"/></svg></div><h3>Être visible</h3><p>Marketing, communication, SEO, LinkedIn, photo, vidéo, identité professionnelle.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="15"/></svg></div><h3>Gérer & structurer</h3><p>Comptabilité, juridique, assurance, administratif, organisation, outils numériques.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></div><h3>Développer</h3><p>Partenaires, fournisseurs, prestataires, opportunités, collaborations professionnelles.</p></div>
       </div>
     </div>
   </section>
@@ -489,6 +544,18 @@
     </div>
   </div>
 
+  <div class="space-toast" id="spaceToast" aria-hidden="true">
+    <button class="space-toast-close" type="button" onclick="closeSpaceToast()" aria-label="Fermer">×</button>
+    <div class="space-toast-icon">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
+    </div>
+    <div class="space-toast-text">
+      <strong>Besoin d’un espace maintenant ?</strong>
+      <span>Entrepôts, ateliers, bureaux — sans bail, sans caution encaissée, entrée en 72h.</span>
+    </div>
+    <a href="https://www.strakara.fr/" class="btn-gold">Voir les espaces →</a>
+  </div>
+
 
   <script>
     document.querySelectorAll('.mobile a').forEach(function(link){
@@ -518,6 +585,25 @@
 
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape') closeLaunchPop();
+    });
+
+    function closeSpaceToast(){
+      var t = document.getElementById('spaceToast');
+      if(!t) return;
+      t.classList.remove('show');
+      t.setAttribute('aria-hidden','true');
+      sessionStorage.setItem('strakaraSpaceToastClosed','1');
+    }
+
+    window.addEventListener('load', function(){
+      if(sessionStorage.getItem('strakaraSpaceToastClosed')) return;
+      setTimeout(function(){
+        var t = document.getElementById('spaceToast');
+        if(t){
+          t.classList.add('show');
+          t.setAttribute('aria-hidden','false');
+        }
+      }, 16000); // apparaît après le popup principal, pour ne pas les cumuler
     });
   </script>
 <script src="https://app.strakara.fr/footer.js"></script>
