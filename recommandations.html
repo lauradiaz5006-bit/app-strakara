@@ -202,6 +202,10 @@
     .form-input,.form-select,.form-textarea{width:100%;padding:14px 16px;border:1px solid var(--border);background:var(--white);font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
     .form-input::placeholder,.form-textarea::placeholder{color:var(--muted);font-weight:300;}
     .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+    .form-input[readonly]{background:var(--light);color:var(--muted);cursor:not-allowed;}
+    .reco-login-required{background:var(--white);border:1px solid var(--border);padding:44px;text-align:center;}
+    .reco-login-required p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
+    .reco-login-required p strong{color:var(--brand);font-size:16px;}
     .form-select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7175' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px;}
     .form-textarea{resize:vertical;min-height:100px;line-height:1.6;}
     .form-row{margin-bottom:20px;}
@@ -580,7 +584,12 @@
         </div>
 
         <div id="reco-form-wrap">
-          <div class="reco-form-wrap">
+          <div class="reco-login-required" id="reco-login-required" style="display:none;">
+            <p><strong>Connectez-vous pour publier une recommandation.</strong></p>
+            <p>Pour garantir la fiabilité de l'annuaire, chaque recommandation est liée à un profil membre vérifié — impossible de publier sans être connecté.</p>
+            <a href="https://app.strakara.fr/login-membre.html" class="btn-dark">Se connecter →</a>
+          </div>
+          <div class="reco-form-wrap" id="reco-form-card">
             <form id="reco-form" onsubmit="handleRecoSubmit(event)">
 
               <input type="hidden" id="note-value" name="note" value="5">
@@ -623,18 +632,18 @@
               <div class="form-row-2">
                 <div>
                   <label class="form-label" for="reco-prenom">Votre pr&eacute;nom <span class="req">*</span></label>
-                  <input class="form-input" type="text" id="reco-prenom" name="prenom" placeholder="Pr&eacute;nom" required>
+                  <input class="form-input" type="text" id="reco-prenom" name="prenom" placeholder="Pr&eacute;nom" required readonly>
                 </div>
                 <div>
                   <label class="form-label" for="reco-entreprise">Votre entreprise ou nom <span class="req">*</span></label>
-                  <input class="form-input" type="text" id="reco-entreprise" name="entreprise" placeholder="Nom de votre entreprise" required>
+                  <input class="form-input" type="text" id="reco-entreprise" name="entreprise" placeholder="Nom de votre entreprise" required readonly>
                 </div>
               </div>
 
               <div class="form-row">
                 <label class="form-label" for="reco-email">Email de contact <span class="req">*</span></label>
-                <input class="form-input" type="email" id="reco-email" name="email" placeholder="vous@votreentreprise.fr" required>
-                <p class="form-hint">Utilis&eacute; uniquement pour v&eacute;rification si besoin &mdash; non publi&eacute;.</p>
+                <input class="form-input" type="email" id="reco-email" name="email" placeholder="vous@votreentreprise.fr" required readonly>
+                <p class="form-hint">✓ Identité vérifiée automatiquement via votre connexion STRAKARA — non modifiable.</p>
               </div>
 
               <div class="form-submit-row">
@@ -711,9 +720,15 @@
 
 
     async function chargerMembreConnecte() {
+      const formCard = document.getElementById('reco-form-card');
+      const loginRequired = document.getElementById('reco-login-required');
       try {
         const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session || !session.user || !session.user.email) return;
+        if (!session || !session.user || !session.user.email) {
+          formCard.style.display = 'none';
+          loginRequired.style.display = 'block';
+          return;
+        }
 
         const { data } = await supabaseClient
           .from('membres')
@@ -721,19 +736,22 @@
           .ilike('email', session.user.email)
           .maybeSingle();
 
-        if (data) {
-          membreConnecte = data;
-          // Pré-remplit l'identité du recommandeur : on ne redemande pas
-          // à quelqu'un de déjà connecté de retaper qui il est.
-          const prenomInput = document.getElementById('reco-prenom');
-          const entrepriseInput = document.getElementById('reco-entreprise');
-          const emailInput = document.getElementById('reco-email');
-          if (prenomInput && !prenomInput.value) prenomInput.value = data.prenom || '';
-          if (entrepriseInput && !entrepriseInput.value) entrepriseInput.value = data.entreprise || '';
-          if (emailInput && !emailInput.value) emailInput.value = data.email || '';
+        if (!data) {
+          formCard.style.display = 'none';
+          loginRequired.style.display = 'block';
+          return;
         }
+
+        membreConnecte = data;
+        // Identité verrouillée : posée directement depuis le profil connecté,
+        // jamais retapée à la main — impossible de la falsifier.
+        document.getElementById('reco-prenom').value = data.prenom || '';
+        document.getElementById('reco-entreprise').value = data.entreprise || '';
+        document.getElementById('reco-email').value = data.email || '';
       } catch (err) {
         console.warn('Impossible de récupérer le membre connecté :', err);
+        formCard.style.display = 'none';
+        loginRequired.style.display = 'block';
       }
     }
 
@@ -907,17 +925,25 @@
     async function handleRecoSubmit(e) {
       e.preventDefault();
 
-    
+      if (!membreConnecte) {
+        alert('Vous devez être connecté pour publier une recommandation.');
+        return;
+      }
 
       const membreId = document.getElementById('reco-cible').value;
       const message = document.getElementById('reco-texte').value.trim();
-      const auteurNom = document.getElementById('reco-prenom').value.trim();
-      const auteurEntreprise = document.getElementById('reco-entreprise').value.trim();
-      const auteurEmail = document.getElementById('reco-email').value.trim();
+      const auteurNom = membreConnecte.prenom || '';
+      const auteurEntreprise = membreConnecte.entreprise || '';
+      const auteurEmail = membreConnecte.email || '';
       const submitBtn = document.querySelector('.btn-submit');
 
       if (!membreId) {
         alert('Merci de sélectionner le professionnel concerné.');
+        return;
+      }
+
+      if (membreId === membreConnecte.id) {
+        alert('Vous ne pouvez pas recommander votre propre profil.');
         return;
       }
 
@@ -933,6 +959,7 @@
         .from('recommandations')
         .insert({
           membre_id: membreId,
+          auteur_id: membreConnecte.id,
           auteur_nom: auteurNom,
           auteur_entreprise: auteurEntreprise,
           auteur_email: auteurEmail,
