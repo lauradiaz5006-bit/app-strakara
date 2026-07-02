@@ -212,7 +212,7 @@
           <a href="https://app.strakara.fr/annonces.html" class="btn-outline">Voir les besoins & ressources</a>
         </div>
         <div class="membres-hero-stats">
-          <div><span class="hero-stat-num" id="stat-total">0</span><span class="hero-stat-label">Profils publics</span></div>
+          <div><span class="hero-stat-num" id="stat-total">Vérifiés</span><span class="hero-stat-label">Profils publiés après validation</span></div>
           <div><span class="hero-stat-num">Réseau</span><span class="hero-stat-label">Recommandations entre pros</span></div>
           <div><span class="hero-stat-num">Confiance</span><span class="hero-stat-label">Entreprises vérifiés</span></div>
         </div>
@@ -262,7 +262,7 @@
   <div class="membres-tabs">
     <div class="container">
       <div class="membres-tabs-inner">
-        <button class="tab-btn active" data-tab="">Tous <span class="tab-count" id="count-all">0</span></button>
+        <button class="tab-btn active" data-tab="">Toutes les entreprises <span class="tab-count" id="count-all" style="display:none;"></span></button>
       </div>
     </div>
   </div>
@@ -270,12 +270,12 @@
   <section class="membres-body">
     <div class="container">
       <div class="directory-note">
-        <p><strong>Vous recherchez une entreprise ?</strong><br>Découvrez les entreprises du réseau STRAKARA et trouvez rapidement un partenaire, une compétence ou une ressource adaptée à votre besoin. et trouvez rapidement une ressource, une compétence ou un partenaire adapté à votre besoin.</p>
+        <p><strong>Vous recherchez une entreprise ?</strong><br>Les premiers profils sont publiés progressivement après validation. Rejoignez les entreprises fondatrices et rendez votre activité visible gratuitement.</p>
         <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Créer mon profil gratuitement</a>
       </div>
 
       <div class="membres-results-header">
-        <p class="membres-count"><strong id="result-count">Chargement</strong> — profils publics STRAKARA</p>
+        <p class="membres-count"><strong id="result-count">Profils professionnels vérifiés</strong></p>
         <div class="membres-sort"><span>Trier par</span><select id="sort-select"><option value="recent">Les plus récents</option><option value="az">Nom A–Z</option><option value="ville">Ville</option><option value="secteur">Secteur</option></select></div>
       </div>
 
@@ -408,12 +408,20 @@
     }
 
     function renderMembres(){
-      resultCount.textContent = `${filtered.length} profil${filtered.length > 1 ? 's' : ''}`;
-      statTotal.textContent = membres.length;
-      countAll.textContent = membres.length;
+      if (filtered.length > 0) {
+        resultCount.textContent = `${filtered.length} profil${filtered.length > 1 ? 's' : ''} public${filtered.length > 1 ? 's' : ''}`;
+        statTotal.textContent = membres.length;
+        countAll.textContent = membres.length;
+        countAll.style.display = 'inline-block';
+      } else {
+        resultCount.textContent = 'Profils professionnels vérifiés';
+        statTotal.textContent = 'Vérifiés';
+        countAll.textContent = '';
+        countAll.style.display = 'none';
+      }
 
       if(!filtered.length){
-        grid.innerHTML = `<div class="membre-empty"><h3>Aucun profil trouvé.</h3><p>Vérifiez que le champ statut vaut bien actif dans Supabase, ou essayez une autre recherche.</p></div>${renderCTA()}`;
+        grid.innerHTML = `<div class="membre-empty"><h3>Le réseau est en phase de lancement.</h3><p>Les premiers profils sont en cours de validation avant publication. Rejoignez les entreprises fondatrices et profitez d'une visibilité renforcée dès l'ouverture.</p><a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon profil gratuitement</a></div>${renderCTA()}`;
         return;
       }
 
@@ -441,10 +449,11 @@
         applyFilters();
       }catch(error){
         console.error('Erreur chargement membres:', error);
-        resultCount.textContent = '0 profil';
-        statTotal.textContent = '0';
-        countAll.textContent = '0';
-        grid.innerHTML = `<div class="membre-empty"><h3>Impossible de charger les entreprises.</h3><p>Vérifiez la policy RLS de lecture publique sur la table Supabase membres.</p></div>${renderCTA()}`;
+        resultCount.textContent = 'Profils professionnels vérifiés';
+        statTotal.textContent = 'Vérifiés';
+        countAll.textContent = '';
+        countAll.style.display = 'none';
+        grid.innerHTML = `<div class="membre-empty"><h3>Les profils sont en cours de préparation.</h3><p>Le réseau STRAKARA ouvre progressivement. Les entreprises sont vérifiées avant publication afin de conserver un annuaire professionnel sérieux.</p><a href="https://app.strakara.fr/inscription-membre.html" class="btn-dark">Créer mon profil gratuitement</a></div>${renderCTA()}`;
       }
     }
 
