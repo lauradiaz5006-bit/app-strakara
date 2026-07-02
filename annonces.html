@@ -198,21 +198,30 @@
     .annonces-count strong{display:none;}
     .annonces-count::before{content:'Publications en cours de validation';color:var(--brand);font-weight:600;}
 
-    /* Popup lancement */
+    /* Popup lancement premium */
     .launch-popup-overlay{position:fixed;inset:0;background:rgba(30,31,35,.62);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:999999;padding:22px;}
     .launch-popup-overlay.is-open{display:flex;}
-    .launch-popup{width:520px;max-width:100%;background:var(--white);border:1px solid var(--border);box-shadow:0 28px 90px rgba(0,0,0,.26);padding:38px 36px;position:relative;text-align:center;}
+    .launch-popup{width:520px;max-width:100%;background:var(--white);border:1px solid var(--border);box-shadow:0 28px 90px rgba(0,0,0,.26);padding:38px 36px;position:relative;text-align:center;
+      opacity:0;transform:translateY(14px) scale(.98);transition:opacity .35s ease,transform .35s ease;}
+    .launch-popup-overlay.is-open .launch-popup{opacity:1;transform:translateY(0) scale(1);}
     .launch-popup-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;line-height:1;color:var(--muted);cursor:pointer;}
+    .launch-popup-close:hover{color:var(--brand);}
     .launch-popup .label{margin-bottom:12px;}
-    .launch-popup h3{font-family:'Playfair Display',serif;font-size:34px;line-height:1.14;font-weight:400;color:var(--brand);margin-bottom:14px;}
+    .launch-popup h3{font-family:'Playfair Display',serif;font-size:32px;line-height:1.16;font-weight:400;color:var(--brand);margin-bottom:14px;}
     .launch-popup h3 em{color:var(--gold);font-style:italic;}
     .launch-popup p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:22px;}
     .launch-popup-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-    .launch-popup-small{display:block;margin-top:14px;font-size:12px;color:var(--muted);}
+    .launch-popup-later{display:inline-block;margin-top:16px;font-size:12.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:0;font-family:'Outfit',sans-serif;transition:color .15s;}
+    .launch-popup-later:hover{color:var(--brand);}
 
     @media(max-width:1100px){.category-grid{grid-template-columns:repeat(2,1fr);}.annonces-body-inner{grid-template-columns:1fr;}.sidebar{position:static;}}
     @media(max-width:960px){.sk-nav__links,.sk-nav__right{display:none;}.sk-nav__hamburger{display:flex;}.annonces-filtres{grid-template-columns:1fr 1fr;}.annonces-filtres .filtre-btn{grid-column:1/-1;padding:15px;}.annonces-grid{grid-template-columns:1fr;}.sk-footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}
-    @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.hero-actions{flex-direction:column;}.category-grid{grid-template-columns:1fr;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}}
+    @media(max-width:600px){.container{padding:0 20px;}.annonces-hero{padding:48px 0;}.hero-actions{flex-direction:column;}.category-grid{grid-template-columns:1fr;}.annonces-filtres{grid-template-columns:1fr;}.filtre-input,.filtre-select{border-right:1px solid var(--border);border-bottom:none;}.filtre-btn{padding:16px;}.sk-footer-inner{grid-template-columns:1fr;gap:28px;}.sk-footer-bottom{flex-direction:column;text-align:center;}.sk-footer-bottom-links{flex-wrap:wrap;justify-content:center;}
+      .launch-popup{padding:30px 22px;}
+      .launch-popup h3{font-size:26px;}
+      .launch-popup-actions{flex-direction:column;}
+      .launch-popup-actions .btn-dark,.launch-popup-actions .btn-outline{text-align:center;width:100%;}
+    }
   </style>
 </head>
 <body>
@@ -460,14 +469,14 @@
   <div class="launch-popup-overlay" id="launch-popup-overlay" aria-hidden="true">
     <div class="launch-popup" role="dialog" aria-modal="true" aria-labelledby="launch-popup-title">
       <button class="launch-popup-close" type="button" onclick="fermerLaunchPopup()" aria-label="Fermer">&times;</button>
-      <span class="label">Ouverture officielle</span>
+      <span class="label">🚀 Le réseau STRAKARA ouvre ses portes</span>
       <h3 id="launch-popup-title">Les premières annonces sont <em>en cours de validation.</em></h3>
-      <p>Publiez gratuitement votre besoin ou votre ressource et faites partie des premières entreprises visibles sur STRAKARA.</p>
+      <p>Rejoignez les 100 premières entreprises fondatrices et publiez gratuitement votre besoin ou votre ressource.</p>
       <div class="launch-popup-actions">
         <a href="https://app.strakara.fr/publier.html" class="btn-dark">Publier gratuitement</a>
         <a href="https://app.strakara.fr/inscription-membre.html" class="btn-outline">Créer mon profil</a>
       </div>
-      <span class="launch-popup-small">Profils et publications vérifiés avant mise en ligne.</span>
+      <button type="button" class="launch-popup-later" onclick="fermerLaunchPopup()">Plus tard</button>
     </div>
   </div>
 
@@ -481,13 +490,17 @@
     let annoncesFiltrees = [];
     let tabActif = '';
 
+    // ── POPUP LANCEMENT : apparition après 8s, fermeture persistante 24h (localStorage) ──
+    const LAUNCH_POPUP_KEY = 'sk_launch_popup_closed_at';
+    const LAUNCH_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24h
+
     function fermerLaunchPopup(){
       const popup = document.getElementById('launch-popup-overlay');
       if(popup){
         popup.classList.remove('is-open');
         popup.setAttribute('aria-hidden','true');
       }
-      try{sessionStorage.setItem('sk_launch_popup_seen','1');}catch(e){}
+      try{ localStorage.setItem(LAUNCH_POPUP_KEY, Date.now().toString()); }catch(e){}
     }
 
     function ouvrirLaunchPopup(){
@@ -498,6 +511,16 @@
       }
     }
 
+    function launchPopupDejaVuRecemment(){
+      try{
+        const last = localStorage.getItem(LAUNCH_POPUP_KEY);
+        if(!last) return false;
+        return (Date.now() - parseInt(last, 10)) < LAUNCH_POPUP_COOLDOWN_MS;
+      }catch(e){
+        return false;
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function(){
       const popup = document.getElementById('launch-popup-overlay');
       if(popup){
@@ -505,11 +528,13 @@
           if(e.target === popup) fermerLaunchPopup();
         });
       }
-      try{
-        if(!sessionStorage.getItem('sk_launch_popup_seen')){
-          setTimeout(ouvrirLaunchPopup, 8000);
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          const p = document.getElementById('launch-popup-overlay');
+          if(p && p.classList.contains('is-open')) fermerLaunchPopup();
         }
-      }catch(e){
+      });
+      if(!launchPopupDejaVuRecemment()){
         setTimeout(ouvrirLaunchPopup, 8000);
       }
     });
