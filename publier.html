@@ -636,7 +636,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         statusEl.textContent = 'Enregistrement de l’annonce...';
 
+        // Lie l'annonce au profil membre existant (via la session connectée,
+        // ou à défaut via l'email saisi) — indispensable pour que le tableau
+        // de bord et la page "Entrer en relation" puissent retrouver l'entreprise.
+        let membreIdActuel = null;
+        try {
+          const { data: { session } } = await skSupabaseClient.auth.getSession();
+          const emailSaisi = document.getElementById('email').value.trim();
+          const emailRecherche = (session && session.user && session.user.email) || emailSaisi;
+          if (emailRecherche) {
+            const { data: membreTrouve } = await skSupabaseClient
+              .from('membres')
+              .select('id')
+              .or(`email.ilike.${emailRecherche},contact_email.ilike.${emailRecherche}`)
+              .maybeSingle();
+            if (membreTrouve) membreIdActuel = membreTrouve.id;
+          }
+        } catch (lookupErr) {
+          console.warn('Impossible de lier l’annonce à un profil membre existant :', lookupErr);
+        }
+
         const data = {
+          membre_id: membreIdActuel,
           titre: document.getElementById('titre').value.trim(),
           description: document.getElementById('description').value.trim(),
           categorie: document.getElementById('categorie').value,
