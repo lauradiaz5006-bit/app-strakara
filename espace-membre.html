@@ -725,20 +725,29 @@
   }
 
   async function chargerAnnonces(m) {
-    // On remonte les annonces par email (identifiant fiable, utilisé pour la connexion),
-    // et non plus par nom_entreprise (texte libre, retapé différemment à chaque publication).
+    // Priorité au membre_id (lien fiable, posé automatiquement depuis le correctif de publier.html).
+    // On garde l'email en secours pour les annonces publiées avant ce correctif.
     const email = (m.email || m.contact_email || '').trim();
     const container = document.getElementById('annonces-container');
 
-    if (!email) {
+    if (!m.id && !email) {
       container.innerHTML = `<div class="empty-state"><p>Aucune publication pour le moment.</p><a href="https://app.strakara.fr/publier.html" class="btn-dark" style="display:inline-block;">Publier</a></div>`;
       document.getElementById('stat-annonces').textContent = '0';
       return;
     }
 
-    const { data, error } = await sb.from('annonces')
-      .select('id,titre,description,categorie,ville,statut,image_url,created_at')
-      .ilike('contact_email', email)
+    let query = sb.from('annonces')
+      .select('id,titre,description,categorie,ville,statut,image_url,created_at');
+
+    if (m.id && email) {
+      query = query.or(`membre_id.eq.${m.id},contact_email.ilike.${email}`);
+    } else if (m.id) {
+      query = query.eq('membre_id', m.id);
+    } else {
+      query = query.ilike('contact_email', email);
+    }
+
+    const { data, error } = await query
       .order('created_at', { ascending: false })
       .limit(10);
 
