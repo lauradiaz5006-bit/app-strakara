@@ -268,6 +268,27 @@
 
 <body>
 
+  <script>
+    // ── TRACEUR DE VISITES — envoie une ligne à Supabase à chaque chargement de page ──
+    (function(){
+      var SUPABASE_URL = 'https://dsckgwjbserojugrhzpp.supabase.co';
+      var SUPABASE_KEY = 'sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa';
+      fetch(SUPABASE_URL + '/rest/v1/page_views', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        },
+        body: JSON.stringify({
+          page: window.location.pathname,
+          referrer: document.referrer || null,
+          user_agent: navigator.userAgent
+        })
+      }).catch(function(){ /* on ignore les erreurs réseau, pas grave pour un traceur */ });
+    })();
+  </script>
+
   <div class="top-banner">
     <strong>Ouverture progressive</strong> — Les premiers profils professionnels sont validés avant publication.
   </div>
