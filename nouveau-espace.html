@@ -365,9 +365,10 @@ function cardPhotos(){
       ${field("entreprise.ville_facturation","Ville","text","Paris")}
     </div>
     <div class="section-title">Responsable sur place</div>
+    <p class="hint" style="margin-bottom:14px">Le téléphone du responsable du site permettra à votre client de vous contacter pour finaliser son arrivée. Si vous ne souhaitez pas communiquer votre propre numéro, contactez-nous, ou sélectionnez « autre » ci-dessous pour indiquer les coordonnées d'un autre gérant du site — c'est ce numéro qui sera alors transmis au client.</p>
     <div class="fg">
       ${select("responsable.type","Qui gère le site ?",["moi","autre"])}
-      ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + `<div class="field full" style="margin-top:-10px"><span class="hint">Ce numéro pourra être communiqué au client une fois sa réservation validée, afin de faciliter l'organisation de son entrée dans les lieux.</span></div>` + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
+      ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
     </div>` + actions(true,"Récapitulatif");
 }
 function fileList(arr, type){
