@@ -61,18 +61,90 @@
     .dispo-card input[type=radio]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0}
     .dispo-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
     @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid,.horaires-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}}
+  
+    /* ===== NAVIGATION STRAKARA — alignée sur espaces.html ===== */
+    .sk-banner *, .sk-nav *, .sk-nav__mobile *{box-sizing:border-box;margin:0;padding:0}
+    .sk-banner{background:#1a1a18;padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
+    .sk-banner__text{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;color:#c9a84c}
+    .sk-banner__btn{background:#c9a84c;color:#1a1a18!important;text-decoration:none;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap}
+    .sk-banner__close{position:absolute;right:16px;background:none;border:0;color:#666;font-size:18px;cursor:pointer;padding:2px 6px}
+    .sk-banner.sk-hidden{display:none}
+    .sk-nav{background:#fff;border-bottom:.5px solid #e5e2da;padding:0 24px;display:flex;align-items:center;height:58px;position:relative;z-index:30}
+    .sk-nav__logo{font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:#1a1a18;text-decoration:none;margin-right:36px;white-space:nowrap;flex-shrink:0}
+    .sk-nav__logo span{color:#c9a84c}
+    .sk-nav__links{display:flex;align-items:center;gap:26px;flex:1;list-style:none}
+    .sk-nav__links a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#4a4845;text-decoration:none;white-space:nowrap}
+    .sk-nav__links a:hover{color:#1a1a18}
+    .sk-nav__right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+    .sk-nav__phone{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12.5px;color:#4a4845;text-decoration:none;white-space:nowrap}
+    .sk-nav__sep{width:.5px;height:18px;background:#e5e2da}
+    .sk-btn-espace{background:#1a1a18;color:#fff!important;text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;padding:7px 16px;border-radius:20px;white-space:nowrap}
+    .sk-nav__hamburger{display:none;background:none;border:0;cursor:pointer;padding:4px;margin-left:auto;flex-direction:column;gap:5px}
+    .sk-nav__hamburger span{display:block;width:22px;height:1.5px;background:#1a1a18}
+    .sk-nav__mobile{display:none;flex-direction:column;background:#fff;border-top:.5px solid #e5e2da;border-bottom:.5px solid #e5e2da;padding:16px 24px 20px;position:relative;z-index:29}
+    .sk-nav__mobile a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#4a4845;text-decoration:none;padding:11px 0;border-bottom:.5px solid #e5e2da}
+    .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+    .sk-nav__mobile-btns .sk-btn-espace{text-align:center;padding:10px 16px}
+    @media(max-width:1000px){.sk-nav__links,.sk-nav__right{display:none}.sk-nav__hamburger{display:flex}.sk-nav__mobile.sk-open{display:flex}}
+    @media(max-width:480px){.sk-nav{padding:0 16px}.sk-banner{padding:8px 16px;flex-wrap:wrap;gap:8px}.sk-banner__close{position:static}}
+
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="nav">
-      <a class="logo" href="https://www.strakara.fr/">STRA<span>KARA</span></a>
-      <div class="nav-actions">
-        <button type="button" onclick="saveDraft(true)">Sauvegarder</button>
-        <a href="https://app.strakara.fr/login-membre.html">Connexion</a>
-      </div>
+  <div class="sk-banner" id="sk-banner" role="banner">
+    <span class="sk-banner__text">Devenez partenaire ou apporteur d'affaires</span>
+    <a href="https://www.strakara.fr/devenir-partenaire-affaires.html" class="sk-banner__btn">Contactez-nous →</a>
+    <button class="sk-banner__close" type="button" onclick="skCloseBanner()" aria-label="Fermer le bandeau">×</button>
+  </div>
+
+  <nav class="sk-nav" role="navigation" aria-label="Navigation principale">
+    <a href="https://www.strakara.fr/" class="sk-nav__logo" aria-label="STRAKARA — Accueil">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Devenez client</a></li>
+      <li><a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a></li>
+      <li><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a></li>
+      <li><a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a></li>
+      <li><a href="https://www.strakara.fr/a-propos.html">À propos</a></li>
+      <li><a href="https://www.strakara.fr/contact.html">Contact</a></li>
+    </ul>
+    <div class="sk-nav__right">
+      <a href="tel:0759647754" class="sk-nav__phone">07 59 64 77 54</a>
+      <div class="sk-nav__sep"></div>
+      <a href="https://app.strakara.fr/" class="sk-btn-espace">Connexion membre</a>
     </div>
-  </header>
+    <button class="sk-nav__hamburger" type="button" onclick="skToggleMenu()" aria-label="Ouvrir le menu" aria-expanded="false" id="sk-hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="sk-nav__mobile" id="sk-mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Devenez client</a>
+    <a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a>
+    <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a>
+    <a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a>
+    <a href="https://www.strakara.fr/a-propos.html">À propos</a>
+    <a href="https://www.strakara.fr/contact.html">Contact</a>
+    <div class="sk-nav__mobile-btns">
+      <a href="https://app.strakara.fr/" class="sk-btn-espace">Connexion membre</a>
+    </div>
+  </div>
+
+  <script>
+    function skCloseBanner(){
+      document.getElementById('sk-banner').classList.add('sk-hidden');
+      sessionStorage.setItem('sk-banner-closed','1');
+    }
+    if(sessionStorage.getItem('sk-banner-closed')){
+      var skBanner=document.getElementById('sk-banner');
+      if(skBanner) skBanner.classList.add('sk-hidden');
+    }
+    function skToggleMenu(){
+      var menu=document.getElementById('sk-mobile-menu');
+      var btn=document.getElementById('sk-hamburger');
+      var open=menu.classList.toggle('sk-open');
+      btn.setAttribute('aria-expanded',String(open));
+    }
+  </script>
 
   <main class="wrap" id="app">
     <section class="hero" id="hero">
