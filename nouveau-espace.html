@@ -88,6 +88,33 @@
     @media(max-width:1000px){.sk-nav__links,.sk-nav__right{display:none}.sk-nav__hamburger{display:flex}.sk-nav__mobile.sk-open{display:flex}}
     @media(max-width:480px){.sk-nav{padding:0 16px}.sk-banner{padding:8px 16px;flex-wrap:wrap;gap:8px}.sk-banner__close{position:static}}
 
+
+    /* ===== HARMONISATION TYPOGRAPHIQUE — pages STRAKARA ===== */
+    .wrap{max-width:1180px;padding:42px 48px 80px}
+    .hero{padding:46px 48px;border-radius:0;box-shadow:none}
+    .hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(38px,4.4vw,52px);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin:0 0 16px}
+    .hero p{font-size:16.5px;line-height:1.78;font-weight:300;max-width:760px}
+    .badge{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:0;margin-bottom:20px}
+    .card-head h2{font-family:"Playfair Display",Georgia,serif;font-size:30px;line-height:1.18;font-weight:600}
+    .card-head p{font-size:15px;line-height:1.65}
+    .field label,.section-title{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+    @media(max-width:900px){.wrap{padding:32px 28px 70px}.hero{padding:38px 32px}}
+    @media(max-width:600px){.wrap{padding:26px 20px 60px}.hero{padding:32px 24px}.hero h1{font-size:36px}}
+
+    /* ===== FOOTER STRAKARA ===== */
+    .sk-footer{background:#111214;color:#fff;padding:56px 0 30px;margin-top:0}
+    .sk-footer__inner{max-width:1280px;margin:0 auto 46px;padding:0 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+    .sk-footer__logo{font-family:Georgia,'Times New Roman',serif;font-size:16px;letter-spacing:.2em;text-decoration:none;color:#fff;font-weight:400}
+    .sk-footer__logo span{color:#c9a84c}
+    .sk-footer__brand p{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.38);max-width:270px;margin:16px 0 0}
+    .sk-footer__col h4{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.52);margin:0 0 16px}
+    .sk-footer__col a{display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;margin:0 0 10px}
+    .sk-footer__col a:hover{color:#c9a84c}
+    .sk-footer__bottom{max-width:1280px;margin:auto;padding:24px 48px 0;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .sk-footer__bottom p,.sk-footer__bottom a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,.28);text-decoration:none}
+    .sk-footer__bottom div{display:flex;gap:20px}
+    @media(max-width:800px){.sk-footer__inner{grid-template-columns:1fr 1fr;padding:0 28px}.sk-footer__bottom{padding-left:28px;padding-right:28px}}
+    @media(max-width:560px){.sk-footer__inner{grid-template-columns:1fr;padding:0 20px;gap:30px}.sk-footer__bottom{padding-left:20px;padding-right:20px;flex-direction:column;align-items:flex-start}.sk-footer__bottom div{flex-wrap:wrap}}
   </style>
 </head>
 <body>
@@ -109,8 +136,6 @@
     </ul>
     <div class="sk-nav__right">
       <a href="tel:0759647754" class="sk-nav__phone">07 59 64 77 54</a>
-      <div class="sk-nav__sep"></div>
-      <a href="https://app.strakara.fr/" class="sk-btn-espace">Connexion membre</a>
     </div>
     <button class="sk-nav__hamburger" type="button" onclick="skToggleMenu()" aria-label="Ouvrir le menu" aria-expanded="false" id="sk-hamburger">
       <span></span><span></span><span></span>
@@ -124,9 +149,7 @@
     <a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a>
     <a href="https://www.strakara.fr/a-propos.html">À propos</a>
     <a href="https://www.strakara.fr/contact.html">Contact</a>
-    <div class="sk-nav__mobile-btns">
-      <a href="https://app.strakara.fr/" class="sk-btn-espace">Connexion membre</a>
-    </div>
+    <a href="tel:0759647754">07 59 64 77 54</a>
   </div>
 
   <script>
@@ -694,7 +717,45 @@ function resetAll(){ localStorage.removeItem(SAVE_KEY); location.reload(); }
 loadDraft();
 render();
 </script>
-  <script src="https://app.strakara.fr/footer.js"></script>
+  <footer class="sk-footer">
+    <div class="sk-footer__inner">
+      <div class="sk-footer__brand">
+        <a class="sk-footer__logo" href="https://www.strakara.fr/">STRA<span>KARA</span></a>
+        <p>Des espaces professionnels flexibles pour les entreprises, et une nouvelle façon de valoriser les surfaces disponibles.</p>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Services</h4>
+        <a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a>
+        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a>
+        <a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a>
+        <a href="https://www.strakara.fr/blog/index.html">Ressources</a>
+        <a href="https://www.strakara.fr/checklist-stockage-professionnel.html">Checklist préparation</a>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Société</h4>
+        <a href="https://www.strakara.fr/">Accueil</a>
+        <a href="https://www.strakara.fr/a-propos.html">À propos</a>
+        <a href="https://www.strakara.fr/modele-stockage-professionnel.html">Notre modèle</a>
+        <a href="https://www.strakara.fr/contact.html">Contact</a>
+        <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
+        <a href="tel:0759647754">07 59 64 77 54</a>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Légal</h4>
+        <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
+        <a href="https://www.strakara.fr/cgv.html">CGV</a>
+        <a href="https://www.strakara.fr/cgh.html">CGH</a>
+        <a href="https://www.strakara.fr/reglement-interieur.html">Règlement intérieur</a>
+        <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
+        <a href="https://www.strakara.fr/politique-cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="sk-footer__bottom">
+      <p>© 2026 STRAKARA SASU — Tous droits réservés</p>
+      <div><a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a></div>
+    </div>
+  </footer>
+
   <script src="https://app.strakara.fr/cookie-banner.js"></script>
 </body>
 </html>
