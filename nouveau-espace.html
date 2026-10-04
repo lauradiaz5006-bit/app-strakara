@@ -87,7 +87,11 @@
     .po-card .po-price{font-family:"Playfair Display",Georgia,serif;font-size:28px;font-weight:700;color:var(--brand);line-height:1;margin-top:6px}
     .po-card .po-price small{font-family:Outfit,sans-serif;font-size:13px;font-weight:700;color:var(--muted)}
     .po-card .po-ttc{font-size:12px;color:var(--muted)}
-    .po-reco{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--brand);font-size:10.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
+    .po-reco{display:none}.po-card.is-reco .po-reco{display:block}
+    .pack-hint{display:none;margin:0 0 12px;border-radius:14px;padding:12px 14px;font-size:14px;font-weight:700;line-height:1.5}
+    .pack-hint.show{display:block}.pack-hint.warn{background:#FEF3C7;color:var(--orange);border:1px solid #FCD34D}.pack-hint.ok{background:#F0FDF4;color:var(--green);border:1px solid #86EFAC}
+    .pack-hint button{margin-top:8px;border:none;border-radius:999px;background:var(--brand);color:#fff;font:800 13px Outfit,sans-serif;padding:8px 14px;cursor:pointer}
+    .po-card .po-reco{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--brand);font-size:10.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
     .po-none{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;cursor:pointer;font-weight:700;font-size:14px;color:#444}
     .po-none input[type=radio]{width:18px;height:18px;padding:0;margin:0;border:0;box-shadow:none;accent-color:var(--gold);flex-shrink:0}
     .po-none:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.06)}
@@ -447,6 +451,7 @@ function setDeep(path, value){
   schedSave();
   renderSteps();
   if(/surface_totale|longueur|largeur/.test(path)){ window.__surfWarned = false; updateSurfHint(); }
+  if(path === "espace.option_photos"){ window.__packWarned = false; updatePackHint(); }
 }
 function toggleArray(path, value, checked){
   const parts = path.split(".");
@@ -470,6 +475,7 @@ function render(){
   $("[data-card='3']").innerHTML = cardRecap();
   updateCards();
   updateSurfHint();
+  updatePackHint();
 }
 function updateCards(){
   $all(".card").forEach(c => c.classList.toggle("active", Number(c.dataset.card)===step));
@@ -714,9 +720,10 @@ function photoOfferWidget(){
         <div class="po-benefit">${PO_ICONS.web}Format web optimisé</div>
       </div>
       <div class="offre-free">${PO_ICONS.cadeau}<span>Offert : la photo de couverture de votre annonce est optimisée gratuitement.</span></div>
+      <div class="pack-hint" id="packHint"></div>
       <div class="po-grid">${Object.entries(PACKS_PHOTOS).map(([k,p])=>`
-        <label class="po-card">
-          ${k==="standard"?'<span class="po-reco">Recommandé</span>':''}
+        <label class="po-card" id="po_${k}">
+          <span class="po-reco">Conseillé</span>
           <input type="radio" name="option_photos" value="${k}" ${m===k?'checked':''} onchange="setDeep('espace.option_photos',this.value)">
           ${poStackSVG(tiers[k])}
           <b>${p.label}</b>
@@ -732,6 +739,46 @@ function photoOfferWidget(){
       <div class="po-secure">${PO_ICONS.cadenas}<span>Paiement en ligne sécurisé après l'envoi de votre dossier. Remboursement intégral si votre dossier n'est pas validé. Au-delà de 20 photos : sur devis.</span></div>
     </div>
   </div>`;
+}
+
+/* ---- CONTRÔLE NOMBRE DE PHOTOS / PACK ---- */
+const PACK_LIMITES = { essentiel:[1,5], standard:[6,10], complet:[11,20] };
+function packConseille(n){
+  if(n <= 0) return "standard";
+  if(n <= 5) return "essentiel";
+  if(n <= 10) return "standard";
+  return "complet";
+}
+function packConseil(){
+  const n = files.photos.length;
+  const k = state.espace.option_photos || "aucune";
+  const p = PACKS_PHOTOS[k];
+  if(!p || n === 0) return null;
+  const [min, max] = PACK_LIMITES[k];
+  const reco = packConseille(n);
+  if(n < min) return { warn:true, suggest:reco,
+    msg:`Vous avez ajouté ${n} photo(s) : le pack ${p.label} (${p.photos.toLowerCase()}) est plus grand que nécessaire. Le pack ${PACKS_PHOTOS[reco].label} suffit et vous coûte moins cher (${PACKS_PHOTOS[reco].ttc} € TTC au lieu de ${p.ttc} € TTC).` };
+  if(n > 20 && k === "complet") return { warn:true, suggest:null,
+    msg:`Vous avez ajouté ${n} photos : le pack Complet couvre 20 photos. Les ${n-20} photo(s) supplémentaire(s) feront l'objet d'un devis (7 € HT par photo).` };
+  if(n > max) return { warn:true, suggest:reco,
+    msg:`Vous avez ajouté ${n} photos : le pack ${p.label} n'en couvre que ${max}. Seules ${max} photos seraient optimisées. Le pack ${PACKS_PHOTOS[reco].label} couvre toutes vos photos.` };
+  return { warn:false, msg:`✓ Le pack ${p.label} correspond à vos ${n} photo(s).` };
+}
+function choisirPack(k){
+  state.espace.option_photos = k;
+  const r = document.querySelector(`input[name="option_photos"][value="${k}"]`);
+  if(r) r.checked = true;
+  window.__packWarned = false;
+  schedSave(); updatePackHint();
+}
+function updatePackHint(){
+  const reco = packConseille(files.photos.length);
+  Object.keys(PACKS_PHOTOS).forEach(k=>{ const c=document.getElementById("po_"+k); if(c) c.classList.toggle("is-reco", k===reco); });
+  const el = document.getElementById("packHint"); if(!el) return;
+  const c = packConseil();
+  if(!c){ el.className="pack-hint"; el.innerHTML=""; return; }
+  el.className = "pack-hint show " + (c.warn ? "warn" : "ok");
+  el.innerHTML = esc(c.msg) + (c.suggest ? `<br><button type="button" onclick="choisirPack('${c.suggest}')">Passer au pack ${esc(PACKS_PHOTOS[c.suggest].label)}</button>` : "");
 }
 
 function docSlot(d){
@@ -812,6 +859,7 @@ function renderFileList(type){
     if(status) status.textContent = n ? "✓ Fourni" : (type==="documents" ? "Facultatif" : "À fournir");
   }
   updateRecapCounters();
+  if(type === "photos"){ window.__packWarned = false; updatePackHint(); }
   schedSave();
 }
 function docsCount(){ return files.kbis.length + files.identite.length + files.assurance.length + files.documents.length; }
@@ -874,6 +922,15 @@ function validateStep(s, visible){
   if(s===2 && ent.siret && !siretValide(ent.siret)) msg="Le SIRET doit comporter 14 chiffres valides (sans espace). Vérifiez-le sur votre Kbis.";
   if(s===2 && ent.tva && !tvaValide(ent.tva, ent.siret)) msg="Le numéro de TVA ne semble pas valide ou ne correspond pas à votre SIRET (format attendu : FR + 2 caractères + SIREN).";
   if(s===2 && files.photos.length === 0) msg="Ajoutez au moins une photo du site avant de continuer.";
+  if(s===2 && !msg){
+    const pc = packConseil();
+    if(pc && pc.warn && !window.__packWarned){
+      window.__packWarned = true;
+      msg = pc.msg + " Vous pouvez changer de pack, ou cliquer à nouveau sur « Récapitulatif » pour conserver votre choix.";
+      updatePackHint();
+      if(visible){ showAlert("warn", esc(msg)); return false; }
+    }
+  }
   if(s===3 && !state.consentement) msg="Vous devez accepter les Conditions Générales Hébergeur STRAKARA avant l'envoi.";
   if(msg && visible) showAlert("err",msg);
   return !msg;
@@ -885,7 +942,7 @@ async function uploadOne(file, folder){
   const ext = file.name.split(".").pop().toLowerCase();
   const baseName = file.name
     .replace(/\.[^.]+$/, "")
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
     .replace(/[^a-zA-Z0-9_-]/g, "_")
     .slice(0, 40);
   const uniqueName = `${Date.now()}_${Math.random().toString(36).slice(2,8)}_${baseName}.${ext}`;
