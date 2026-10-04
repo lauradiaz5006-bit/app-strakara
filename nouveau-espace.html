@@ -330,7 +330,7 @@ const state = {
 
 const files = window.strakaraFiles = { photos: [], kbis: [], identite: [], assurance: [], documents: [] };
 const DOC_SLOTS = [
-  { key:"kbis",      label:"Kbis (moins de 3 mois)",                 hint:"Extrait Kbis ou avis de situation SIRENE." },
+  { key:"kbis",      label:"Kbis",                 hint:"Extrait Kbis ou avis de situation SIRENE." },
   { key:"identite",  label:"Pièce d'identité du représentant légal", hint:"Carte d'identité ou passeport, recto-verso." },
   { key:"assurance", label:"Attestation d'assurance du bâtiment",    hint:"Multirisque professionnelle ou PNO, en cours de validité." },
   { key:"documents", label:"Autres documents (facultatif)",          hint:"Plan, règlement du site, mandat ou autorisation…" }
@@ -519,7 +519,7 @@ function horaireWidget(){
         ${x.label}
       </label>`).join("")}
     </div>
-    ${m==="autre" ? `<div class="field full"><label>Précisez les horaires</label><input type="text" value="${esc(state.espace.horaires_custom)}" placeholder="Ex. Lun-Ven 8h-18h, Sam 9h-12h" oninput="setDeep('espace.horaires_custom',this.value)"></div>` : ""}
+    ${(m==="7j" || m==="autre") ? `<div class="field full"><label>Précisez les horaires</label><input type="text" value="${esc(state.espace.horaires_custom)}" placeholder="Ex. Lun-Ven 8h-18h, Sam 9h-12h" oninput="setDeep('espace.horaires_custom',this.value)"></div>` : ""}
   `;
 }
 
@@ -869,7 +869,7 @@ function validateStep(s, visible){
     }
   }
   if(s===1 && !e.description_espace) msg="Ajoutez une description de l'espace proposé avant de continuer.";
-  if(s===1 && e.horaires_mode==="autre" && !e.horaires_custom) msg="Précisez les horaires d'accès.";
+  if(s===1 && (e.horaires_mode==="7j" || e.horaires_mode==="autre") && !e.horaires_custom) msg="Précisez les horaires d'accès.";
   if(s===2 && (!ent.nom || !ent.siret || !ent.email)) msg="Complétez les informations entreprise obligatoires.";
   if(s===2 && ent.siret && !siretValide(ent.siret)) msg="Le SIRET doit comporter 14 chiffres valides (sans espace). Vérifiez-le sur votre Kbis.";
   if(s===2 && ent.tva && !tvaValide(ent.tva, ent.siret)) msg="Le numéro de TVA ne semble pas valide ou ne correspond pas à votre SIRET (format attendu : FR + 2 caractères + SIREN).";
@@ -885,7 +885,7 @@ async function uploadOne(file, folder){
   const ext = file.name.split(".").pop().toLowerCase();
   const baseName = file.name
     .replace(/\.[^.]+$/, "")
-    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-zA-Z0-9_-]/g, "_")
     .slice(0, 40);
   const uniqueName = `${Date.now()}_${Math.random().toString(36).slice(2,8)}_${baseName}.${ext}`;
@@ -921,7 +921,7 @@ async function uploadFiles(){
 function getHorairesLabel(){
   const m = state.espace.horaires_mode;
   if(m === "24h") return "24h/7j";
-  if(m === "7j")  return "7j/7";
+  if(m === "7j")  return "7j/7" + (state.espace.horaires_custom ? " — " + state.espace.horaires_custom : "");
   return state.espace.horaires_custom || "À préciser";
 }
 
