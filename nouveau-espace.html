@@ -290,9 +290,9 @@ const SUPABASE_BUCKET = "espaces";
 
 /* ---- PACKS PHOTOS (liens Stripe) ---- */
 const PACKS_PHOTOS = {
-  essentiel: { label:"Essentiel", photos:"Jusqu'à 5 photos", ht:50,  ttc:60,  lien:"https://buy.stripe.com/test_8x23cwd0X7vc0zkfic1oI3Z" },
-  standard:  { label:"Standard",  photos:"6 à 10 photos",    ht:90,  ttc:108, lien:"https://buy.stripe.com/test_28EdRa7GDbLs6XI5HC1oI3Y" },
-  complet:   { label:"Complet",   photos:"11 à 20 photos",   ht:150, ttc:180, lien:"https://buy.stripe.com/test_bJecN69OL5n42Hsc601oI3X" }
+  essentiel: { label:"Essentiel", photos:"Jusqu'à 5 photos", ht:50,  ttc:60,  lien:"https://buy.stripe.com/bJeaEY6DOeO4eAEdJY8IU0b" },
+  standard:  { label:"Standard",  photos:"6 à 10 photos",    ht:90,  ttc:108, lien:"https://buy.stripe.com/aFa5kE3rCbBSdwA9tI8IU0a" },
+  complet:   { label:"Complet",   photos:"11 à 20 photos",   ht:150, ttc:180, lien:"https://buy.stripe.com/4gM00k0fq49q0JOgWa8IU09" }
 };
 function packLabel(k){ const p=PACKS_PHOTOS[k]; return p ? `${p.label} — ${p.ht} € HT (${p.ttc} € TTC)` : "Non merci (photo de couverture offerte)"; }
 
