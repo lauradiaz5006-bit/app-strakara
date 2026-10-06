@@ -291,6 +291,7 @@ const SUPABASE_URL = "https://dsckgwjbserojugrhzpp.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa";
 const SUPABASE_TABLE = "espaces_hebergeurs";
 const SUPABASE_BUCKET = "espaces";
+const SUPABASE_BUCKET_DOCS = "documents-hebergeurs"; // privé : Kbis, CNI, assurance (aucun lien public)
 
 /* ---- PACKS PHOTOS (liens Stripe) ---- */
 const PACKS_PHOTOS = {
@@ -937,7 +938,7 @@ function validateStep(s, visible){
 }
 
 /* ---- UPLOAD avec retry et nom sanitizé ---- */
-async function uploadOne(file, folder){
+async function uploadOne(file, folder, prive=false){
   // Sanitize filename: suppression des accents, caractères spéciaux
   const ext = file.name.split(".").pop().toLowerCase();
   const baseName = file.name
@@ -947,14 +948,16 @@ async function uploadOne(file, folder){
     .slice(0, 40);
   const uniqueName = `${Date.now()}_${Math.random().toString(36).slice(2,8)}_${baseName}.${ext}`;
   const path = `${folder}/${uniqueName}`;
+  const bucket = prive ? SUPABASE_BUCKET_DOCS : SUPABASE_BUCKET;
 
-  const { error } = await sb.storage.from(SUPABASE_BUCKET).upload(path, file, {
+  const { error } = await sb.storage.from(bucket).upload(path, file, {
     upsert: false,
     contentType: file.type || "application/octet-stream"
   });
   if(error) throw new Error(`Upload échoué (${file.name}) : ${error.message}`);
 
-  const { data } = sb.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
+  if(prive) return { name: file.name, path, bucket, url: null, size: file.size, type: file.type };
+  const { data } = sb.storage.from(bucket).getPublicUrl(path);
   return { name: file.name, path, url: data.publicUrl, size: file.size, type: file.type };
 }
 
@@ -967,7 +970,7 @@ async function uploadFiles(){
   const categories = { kbis:"kbis", identite:"identite", assurance:"assurance", documents:"autre" };
   for(const [key, categorie] of Object.entries(categories)){
     for(const f of files[key]){
-      const up = await uploadOne(f, "documents");
+      const up = await uploadOne(f, "depots", true);
       up.categorie = categorie;
       docUploads.push(up);
     }
