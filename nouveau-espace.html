@@ -182,9 +182,34 @@
   
 /* Appli iPhone : laisser la place à l'heure / batterie (sans effet dans un navigateur classique) */
 body{padding-top:env(safe-area-inset-top)}
+
+/* ── Mode appli (ouvert depuis l'appli STRAKARA) : pas de bandeau, menu ni pied de page du site ── */
+html.mode-appli .sk-banner, html.mode-appli .sk-nav, html.mode-appli .sk-footer{display:none!important}
+.ska-top{display:none}
+html.mode-appli .ska-top{display:flex;position:sticky;top:0;z-index:50;align-items:center;justify-content:space-between;gap:10px;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:rgba(255,255,255,.97);border-bottom:1px solid #EAE4D8;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+html.mode-appli body{padding-top:0!important}
+.ska-top button{border:0;background:#F2EFE8;color:#1E1F23;font:700 13px Outfit,system-ui,sans-serif;padding:9px 14px;border-radius:12px;cursor:pointer}
+.ska-top .ska-logo{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:22px;font-weight:700;letter-spacing:.02em;color:#1E1F23;text-decoration:none}
+.ska-top .ska-logo span{color:#C8A96A}
+.ska-top .ska-vide{width:74px}
 </style>
+<script>
+(function(){try{
+  var p=new URLSearchParams(location.search);
+  var natif=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+  if(p.get('app')==='1'){try{sessionStorage.setItem('sk_mode_appli','1')}catch(e){}}
+  var mem=false;try{mem=sessionStorage.getItem('sk_mode_appli')==='1'}catch(e){}
+  if(natif||p.get('app')==='1'||mem)document.documentElement.classList.add('mode-appli');
+}catch(e){}})();
+</script>
 </head>
 <body>
+  <header class="ska-top" aria-label="Appli STRAKARA">
+    <button type="button" onclick="if(history.length>1){history.back()}else{location.href='https://www.strakara.fr/espace-hebergeur-app.html'}">← Retour</button>
+    <a class="ska-logo" href="https://www.strakara.fr/accueil-app.html">STRA<span>KARA</span></a>
+    <span class="ska-vide"></span>
+  </header>
+
   <div class="sk-banner" id="sk-banner" role="banner">
     <span class="sk-banner__text">Devenez partenaire ou apporteur d'affaires</span>
     <a href="https://www.strakara.fr/devenir-partenaire-affaires.html" class="sk-banner__btn">Contactez-nous →</a>
