@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
   <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Proposer un espace professionnel — STRAKARA</title>
   <meta name="description" content="Proposez un espace professionnel sur STRAKARA : entrepôt, atelier, bureau ou surface professionnelle sous-utilisée. Dossier connecté à Supabase." />
   <meta name="robots" content="noindex, nofollow" />
@@ -179,7 +179,10 @@
     .sk-footer__bottom div{display:flex;gap:20px}
     @media(max-width:800px){.sk-footer__inner{grid-template-columns:1fr 1fr;padding:0 28px}.sk-footer__bottom{padding-left:28px;padding-right:28px}}
     @media(max-width:560px){.sk-footer__inner{grid-template-columns:1fr;padding:0 20px;gap:30px}.sk-footer__bottom{padding-left:20px;padding-right:20px;flex-direction:column;align-items:flex-start}.sk-footer__bottom div{flex-wrap:wrap}}
-  </style>
+  
+/* Appli iPhone : laisser la place à l'heure / batterie (sans effet dans un navigateur classique) */
+body{padding-top:env(safe-area-inset-top)}
+</style>
 </head>
 <body>
   <div class="sk-banner" id="sk-banner" role="banner">
