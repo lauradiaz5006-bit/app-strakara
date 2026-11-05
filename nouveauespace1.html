@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" href="https://app.strakara.fr/footer.css">
+  <link rel="icon" href="https://www.strakara.fr/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Proposer un espace professionnel — STRAKARA</title>
+  <meta name="description" content="Proposez un espace professionnel sur STRAKARA : entrepôt, atelier, bureau ou surface professionnelle sous-utilisée. Présentez votre site, vos lots et vos conditions d’accueil." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{
+      --brand:#1E1F23; --brand-2:#292B31; --gold:#C8A96A; --gold-2:#A98745;
+      --light:#F6F5F0; --white:#fff; --text:#1E1F23; --muted:#737373;
+      --border:#E7E2D7; --green:#15803D; --red:#B42318; --orange:#B45309;
+      --r:18px; --shadow:0 18px 60px rgba(30,31,35,.12);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Outfit,system-ui,sans-serif;background:var(--light);color:var(--text)}
+    a{color:inherit}.topbar{position:sticky;top:0;z-index:20;background:rgba(30,31,35,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{max-width:1120px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .logo{font-weight:800;letter-spacing:.12em;color:#fff;text-decoration:none}.logo span{color:var(--gold)}
+    .nav-actions{display:flex;gap:10px;flex-wrap:wrap}.nav-actions a,.nav-actions button{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;border-radius:999px;padding:10px 14px;font-weight:700;font-size:13px;text-decoration:none;cursor:pointer}
+    .wrap{max-width:1120px;margin:auto;padding:34px 20px 70px}.hero{background:linear-gradient(135deg,var(--brand),#34363D);border-radius:30px;padding:38px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(200,169,106,.16)}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,106,.12);border:1px solid rgba(200,169,106,.32);color:var(--gold);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:800;margin-bottom:18px}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(34px,6vw,62px);line-height:.98;margin:0 0 14px}.hero p{max-width:720px;color:rgba(255,255,255,.74);font-size:18px;line-height:1.6;margin:0}
+    .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px 18px;min-width:140px}.kpi b{display:block;color:var(--gold);font-size:26px}.kpi span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.62)}
+    .grid{display:grid;grid-template-columns:310px 1fr;gap:22px;margin-top:22px}.side{align-self:start;position:sticky;top:82px;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:0 10px 30px rgba(30,31,35,.06)}
+    .step{display:flex;gap:11px;align-items:center;padding:13px;border-radius:14px;color:var(--muted);font-weight:700;cursor:pointer}.step.active{background:var(--brand);color:#fff}.step.done{color:var(--green)}
+    .num{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#F1EEE7;font-size:12px}.active .num{background:var(--gold);color:var(--brand)}.done .num{background:#DCFCE7;color:var(--green)}
+    .card{display:none;background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.card.active{display:block}.card-head{padding:24px 26px;background:#fff;border-bottom:1px solid var(--border)}.card-head h2{font-family:"Playfair Display",serif;font-size:32px;margin:0 0 5px}.card-head p{margin:0;color:var(--muted);line-height:1.5}.card-body{padding:26px}
+    .section-title{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);margin:26px 0 12px}.section-title:first-child{margin-top:0}
+    .fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;color:#444}
+    input,select,textarea{width:100%;border:1.5px solid var(--border);border-radius:14px;padding:13px 14px;font:500 15px Outfit,sans-serif;background:#fff;outline:none;color:var(--text)}textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(200,169,106,.12)}
+    .hint{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.4}.type-grid,.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.type-card,.check{border:1.5px solid var(--border);border-radius:16px;padding:15px;background:#fff;cursor:pointer;transition:.15s}.type-card.selected,.check:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+    .type-card b{display:block;margin-bottom:4px}.type-card span{color:var(--muted);font-size:13px}.check{display:flex;gap:10px;align-items:flex-start;font-weight:700}.check input{width:auto;margin-top:2px;accent-color:var(--gold)}
+    .lot{display:grid;grid-template-columns:1.4fr .7fr .8fr 42px;gap:10px;align-items:end;border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px;background:#FAFAF8}.btn-mini{border:none;border-radius:12px;background:#FEE2E2;color:var(--red);height:46px;cursor:pointer;font-weight:900}
+    .uploads{display:grid;grid-template-columns:1fr 1fr;gap:16px}.drop{border:1.5px dashed #D6C8A9;border-radius:18px;background:#FFFCF4;padding:18px}.drop input{background:white}.file-list{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+    .alert{display:none;margin:16px 0;border-radius:16px;padding:14px 16px;font-weight:700}.alert.ok{display:block;background:#DCFCE7;color:var(--green);border:1px solid #86EFAC}.alert.err{display:block;background:#FEE2E2;color:var(--red);border:1px solid #FCA5A5}.alert.warn{display:block;background:#FEF3C7;color:var(--orange);border:1px solid #FCD34D}
+    .actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{border:none;border-radius:999px;padding:14px 20px;font:800 14px Outfit,sans-serif;cursor:pointer}.btn-next{background:var(--brand);color:#fff}.btn-prev{background:#EEEAE0;color:var(--brand)}.btn-gold{background:var(--gold);color:var(--brand)}.btn-line{background:white;border:1px solid var(--border);color:var(--brand)}
+    .recap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.recap-box{background:#FAFAF8;border:1px solid var(--border);border-radius:16px;padding:16px}.recap-box b{display:block;margin-bottom:5px}.recap-box span{color:var(--muted);font-size:14px;line-height:1.5}
+    .success{display:none;text-align:center;background:#fff;border:1px solid var(--border);border-radius:26px;padding:44px;box-shadow:var(--shadow);margin-top:22px}.success.show{display:block}.success .icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#DCFCE7;color:var(--green);font-size:32px}.success h2{font-family:"Playfair Display",serif;font-size:38px;margin:0 0 10px}.success p{color:var(--muted);font-size:17px;line-height:1.6}
+    .file-counter{margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900;color:var(--brand)}
+    .cgh-box{margin-top:18px;border:2px solid var(--gold);background:#FFFCF4;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+    .cgh-box input{width:20px;height:20px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+    .cgh-box strong{display:block;margin-bottom:4px;color:var(--brand)}
+    .cgh-box a{color:var(--gold-2);font-weight:900;text-decoration:underline}
+    .hidden{display:none!important}
+    /* Horaires radio */
+    .horaires-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+    .horaire-card{border:1.5px solid var(--border);border-radius:16px;padding:14px;background:#fff;cursor:pointer;transition:.15s;display:flex;gap:10px;align-items:center;font-weight:700}
+    .horaire-card input[type=radio]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0}
+    .horaire-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+    /* Dispo radio */
+    .dispo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .dispo-card{border:1.5px solid var(--border);border-radius:16px;padding:14px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:center;font-weight:700}
+    .dispo-card input[type=radio]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0}
+    .dispo-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09)}
+
+    /* ===== OFFRE PACK PHOTOS ===== */
+    .po{margin-top:28px;border:1px solid var(--border);border-radius:22px;overflow:hidden;background:#fff}
+    .po-head{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:linear-gradient(135deg,var(--brand),#34363D);color:#fff}
+    .po-text{padding:26px 26px 24px}
+    .po-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(200,169,106,.12);border:1px solid rgba(200,169,106,.32);padding:6px 11px;border-radius:999px}
+    .po-text h3{font-family:"Playfair Display",Georgia,serif;font-size:26px;line-height:1.15;font-weight:600;margin:14px 0 10px}
+    .po-text p{margin:0;color:rgba(255,255,255,.74);font-size:15px;line-height:1.65;font-weight:300}
+    .po-visual{display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(255,255,255,.04)}
+    .po-visual svg{width:100%;max-width:360px;height:auto;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+    .po-body{padding:22px 24px 24px}
+    .po-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+    .po-benefit{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 8px;border-radius:14px;background:#FAFAF8;border:1px solid var(--border);font-size:13px;font-weight:700;color:var(--brand)}
+    .po-benefit svg{width:30px;height:30px}
+    .offre-free{display:flex;align-items:center;gap:10px;background:#DCFCE7;color:var(--green);border:1px solid #86EFAC;border-radius:14px;padding:11px 14px;font-weight:700;font-size:14px;margin-bottom:16px}
+    .offre-free svg{width:22px;height:22px;flex-shrink:0}
+    .po-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+    .po-card{position:relative;border:1.5px solid var(--border);border-radius:18px;padding:18px 14px 16px;background:#fff;cursor:pointer;transition:.15s;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+    .po-card:hover{border-color:#D6C8A9;transform:translateY(-2px)}
+    .po-card input[type=radio]{position:absolute;top:12px;left:12px;width:18px;height:18px;padding:0;margin:0;border:0;box-shadow:none;accent-color:var(--gold)}
+    .po-card:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.09);box-shadow:0 10px 26px rgba(169,135,69,.18)}
+    .po-card svg{width:74px;height:56px;margin:4px 0 2px}
+    .po-card b{font-size:16px}
+    .po-card .po-count{font-size:13px;color:var(--muted);font-weight:600}
+    .po-card .po-price{font-family:"Playfair Display",Georgia,serif;font-size:28px;font-weight:700;color:var(--brand);line-height:1;margin-top:6px}
+    .po-card .po-price small{font-family:Outfit,sans-serif;font-size:13px;font-weight:700;color:var(--muted)}
+    .po-card .po-ttc{font-size:12px;color:var(--muted)}
+    .po-reco{display:none}.po-card.is-reco .po-reco{display:block}
+    .pack-hint{display:none;margin:0 0 12px;border-radius:14px;padding:12px 14px;font-size:14px;font-weight:700;line-height:1.5}
+    .pack-hint.show{display:block}.pack-hint.warn{background:#FEF3C7;color:var(--orange);border:1px solid #FCD34D}.pack-hint.ok{background:#F0FDF4;color:var(--green);border:1px solid #86EFAC}
+    .pack-hint button{margin-top:8px;border:none;border-radius:999px;background:var(--brand);color:#fff;font:800 13px Outfit,sans-serif;padding:8px 14px;cursor:pointer}
+    .po-card .po-reco{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--brand);font-size:10.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
+    .po-none{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;cursor:pointer;font-weight:700;font-size:14px;color:#444}
+    .po-none input[type=radio]{width:18px;height:18px;padding:0;margin:0;border:0;box-shadow:none;accent-color:var(--gold);flex-shrink:0}
+    .po-none:has(input:checked){border-color:var(--gold);background:rgba(200,169,106,.06)}
+    .po-none span small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
+    .po-secure{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:12.5px;line-height:1.45}
+    .po-secure svg{width:18px;height:18px;flex-shrink:0}
+    .pay-box{display:none;margin:24px auto 0;max-width:540px;border:2px solid var(--gold);background:#FFFCF4;border-radius:20px;padding:22px;text-align:center}
+    .pay-box.show{display:block}
+    .pay-box svg.pay-ico{width:56px;height:56px;margin:0 auto 8px;display:block}
+    .pay-box b{display:block;font-size:18px;color:var(--brand)}
+    .pay-box p{font-size:15px!important;margin:8px 0 16px!important}
+    .pay-box .po-secure{justify-content:center;margin-top:12px}
+
+    /* ===== COORDONNÉES, AIDES & DOCUMENTS ===== */
+    .contact-box{border:1.5px solid var(--gold);background:#FFFCF4;border-radius:18px;padding:18px;margin-bottom:6px}
+    .contact-box .hint{margin-top:10px}
+    .info-note{display:flex;gap:10px;align-items:flex-start;background:#F7F4EC;border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:13.5px;line-height:1.5;color:#444}
+    .info-note svg{width:20px;height:20px;flex-shrink:0;margin-top:1px}
+    .surf-hint{grid-column:1/-1;font-size:13px;font-weight:700;padding:10px 14px;border-radius:12px;background:#F7F4EC;color:#444;display:none}
+    .surf-hint.show{display:block}.surf-hint.warn{background:#FEF3C7;color:var(--orange)}
+    .doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .doc-slot{border:1.5px dashed #D6C8A9;border-radius:16px;background:#FFFCF4;padding:14px}
+    .doc-slot.ok{border-style:solid;border-color:#86EFAC;background:#F0FDF4}
+    .doc-slot-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+    .doc-slot-head b{font-size:14px}
+    .doc-status{font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:#FEF3C7;color:var(--orange);white-space:nowrap}
+    .doc-slot.ok .doc-status{background:#DCFCE7;color:var(--green)}
+    .doc-slot input{background:#fff;padding:9px 10px;font-size:13px}
+    .doc-slot .file-list{font-size:12.5px}
+    .tips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+    .tips span{font-size:12px;font-weight:700;background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px 10px;color:#555}
+
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static}.fg,.uploads,.recap{grid-template-columns:1fr}.type-grid,.check-grid,.horaires-grid{grid-template-columns:1fr}.hero{padding:28px}.lot{grid-template-columns:1fr}.btn-mini{width:100%}.po-head{grid-template-columns:1fr}.po-benefits{grid-template-columns:1fr 1fr}.po-grid{grid-template-columns:1fr}.doc-grid{grid-template-columns:1fr}}
+
+    /* ===== NAVIGATION STRAKARA — alignée sur espaces.html ===== */
+    .sk-banner *, .sk-nav *, .sk-nav__mobile *{box-sizing:border-box;margin:0;padding:0}
+    .sk-banner{background:#1a1a18;padding:9px 24px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
+    .sk-banner__text{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;color:#c9a84c}
+    .sk-banner__btn{background:#c9a84c;color:#1a1a18!important;text-decoration:none;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;white-space:nowrap}
+    .sk-banner__close{position:absolute;right:16px;background:none;border:0;color:#666;font-size:18px;cursor:pointer;padding:2px 6px}
+    .sk-banner.sk-hidden{display:none}
+    .sk-nav{background:#fff;border-bottom:.5px solid #e5e2da;padding:0 24px;display:flex;align-items:center;height:58px;position:relative;z-index:30}
+    .sk-nav__logo{font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:#1a1a18;text-decoration:none;margin-right:36px;white-space:nowrap;flex-shrink:0}
+    .sk-nav__logo span{color:#c9a84c}
+    .sk-nav__links{display:flex;align-items:center;gap:26px;flex:1;list-style:none}
+    .sk-nav__links a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#4a4845;text-decoration:none;white-space:nowrap}
+    .sk-nav__links a:hover{color:#1a1a18}
+    .sk-nav__right{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+    .sk-nav__phone{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12.5px;color:#4a4845;text-decoration:none;white-space:nowrap}
+    .sk-nav__sep{width:.5px;height:18px;background:#e5e2da}
+    .sk-btn-espace{background:#1a1a18;color:#fff!important;text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;padding:7px 16px;border-radius:20px;white-space:nowrap}
+    .sk-nav__hamburger{display:none;background:none;border:0;cursor:pointer;padding:4px;margin-left:auto;flex-direction:column;gap:5px}
+    .sk-nav__hamburger span{display:block;width:22px;height:1.5px;background:#1a1a18}
+    .sk-nav__mobile{display:none;flex-direction:column;background:#fff;border-top:.5px solid #e5e2da;border-bottom:.5px solid #e5e2da;padding:16px 24px 20px;position:relative;z-index:29}
+    .sk-nav__mobile a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#4a4845;text-decoration:none;padding:11px 0;border-bottom:.5px solid #e5e2da}
+    .sk-nav__mobile-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+    .sk-nav__mobile-btns .sk-btn-espace{text-align:center;padding:10px 16px}
+    @media(max-width:1000px){.sk-nav__links,.sk-nav__right{display:none}.sk-nav__hamburger{display:flex}.sk-nav__mobile.sk-open{display:flex}}
+    @media(max-width:480px){.sk-nav{padding:0 16px}.sk-banner{padding:8px 16px;flex-wrap:wrap;gap:8px}.sk-banner__close{position:static}}
+
+
+    /* ===== HARMONISATION TYPOGRAPHIQUE — pages STRAKARA ===== */
+    .wrap{max-width:1180px;padding:42px 48px 80px}
+    .hero{padding:46px 48px;border-radius:0;box-shadow:none}
+    .hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(38px,4.4vw,52px);line-height:1.08;font-weight:600;letter-spacing:-.02em;margin:0 0 16px}
+    .hero p{font-size:16.5px;line-height:1.78;font-weight:300;max-width:760px}
+    .badge{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:0;margin-bottom:20px}
+    .card-head h2{font-family:"Playfair Display",Georgia,serif;font-size:30px;line-height:1.18;font-weight:600}
+    .card-head p{font-size:15px;line-height:1.65}
+    .field label,.section-title{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+    @media(max-width:900px){.wrap{padding:32px 28px 70px}.hero{padding:38px 32px}}
+    @media(max-width:600px){.wrap{padding:26px 20px 60px}.hero{padding:32px 24px}.hero h1{font-size:36px}}
+
+    /* ===== FOOTER STRAKARA ===== */
+    .sk-footer{background:#111214;color:#fff;padding:56px 0 30px;margin-top:0}
+    .sk-footer__inner{max-width:1280px;margin:0 auto 46px;padding:0 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+    .sk-footer__logo{font-family:Georgia,'Times New Roman',serif;font-size:16px;letter-spacing:.2em;text-decoration:none;color:#fff;font-weight:400}
+    .sk-footer__logo span{color:#c9a84c}
+    .sk-footer__brand p{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.38);max-width:270px;margin:16px 0 0}
+    .sk-footer__col h4{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.52);margin:0 0 16px}
+    .sk-footer__col a{display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;margin:0 0 10px}
+    .sk-footer__col a:hover{color:#c9a84c}
+    .sk-footer__bottom{max-width:1280px;margin:auto;padding:24px 48px 0;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .sk-footer__bottom p,.sk-footer__bottom a{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,.28);text-decoration:none}
+    .sk-footer__bottom div{display:flex;gap:20px}
+    @media(max-width:800px){.sk-footer__inner{grid-template-columns:1fr 1fr;padding:0 28px}.sk-footer__bottom{padding-left:28px;padding-right:28px}}
+    @media(max-width:560px){.sk-footer__inner{grid-template-columns:1fr;padding:0 20px;gap:30px}.sk-footer__bottom{padding-left:20px;padding-right:20px;flex-direction:column;align-items:flex-start}.sk-footer__bottom div{flex-wrap:wrap}}
+  
+/* Appli iPhone : laisser la place à l'heure / batterie (sans effet dans un navigateur classique) */
+body{padding-top:env(safe-area-inset-top)}
+
+/* ── Mode appli (ouvert depuis l'appli STRAKARA) : pas de bandeau, menu ni pied de page du site ── */
+html.mode-appli .sk-banner, html.mode-appli .sk-nav, html.mode-appli .sk-footer{display:none!important}
+.ska-top{display:none}
+html.mode-appli .ska-top{display:flex;position:sticky;top:0;z-index:50;align-items:center;justify-content:space-between;gap:10px;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:rgba(255,255,255,.97);border-bottom:1px solid #EAE4D8;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+html.mode-appli body{padding-top:0!important}
+.ska-top button{border:0;background:#F2EFE8;color:#1E1F23;font:700 13px Outfit,system-ui,sans-serif;padding:9px 14px;border-radius:12px;cursor:pointer}
+.ska-top .ska-logo{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;font-size:22px;font-weight:700;letter-spacing:.02em;color:#1E1F23;text-decoration:none}
+.ska-top .ska-logo span{color:#C8A96A}
+.ska-top .ska-vide{width:74px}
+</style>
+<script>
+(function(){try{
+  var p=new URLSearchParams(location.search);
+  var natif=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+  if(p.get('app')==='1'){try{sessionStorage.setItem('sk_mode_appli','1')}catch(e){}}
+  var mem=false;try{mem=sessionStorage.getItem('sk_mode_appli')==='1'}catch(e){}
+  if(natif||p.get('app')==='1'||mem)document.documentElement.classList.add('mode-appli');
+}catch(e){}})();
+</script>
+<style>
+.check input[type=checkbox]{flex:0 0 19px;width:19px;height:19px;margin-top:3px}.hero{border-radius:24px}body{font-size:17px}.field label{font-size:14px;line-height:1.5;text-transform:none;letter-spacing:0}input,select,textarea{font-size:17px}.hint{font-size:14px;line-height:1.65}.check{font-size:15px;line-height:1.5}.section-title{font-size:14px;line-height:1.5;margin-top:30px}.step{font-size:15px;cursor:pointer}.grid{grid-template-columns:270px minmax(0,1fr)}.card-body,.card-head{padding:26px}.fg>*{min-width:0}.card,.side{box-shadow:0 9px 30px rgba(30,31,35,.075)}.lot-v2{border:1px solid #DAC797;border-radius:16px;padding:20px;margin:16px 0;background:#fffdf9;box-shadow:0 7px 20px rgba(30,31,35,.05)}.lot-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;color:#1E3A5F}.lot-head .btn-mini{width:40px;height:36px}.notice{padding:17px;border-radius:12px;background:#f3f6fa;color:#1E3A5F;font-size:15px;line-height:1.65}.test-banner{background:#fff7df;color:#664a10;border:1px solid #C8A96A;border-radius:14px;padding:16px 20px;line-height:1.6;margin-bottom:20px}.recap-box span{white-space:pre-line;overflow-wrap:anywhere;font-size:15px}.success pre{white-space:pre-wrap;word-break:break-word;text-align:left;max-height:400px;overflow:auto;background:#f6f5f0;padding:15px;font-size:13px}.field.full{min-width:0}.step:focus-visible{outline:2px solid #1E3A5F}.btn-next{background:#C8A96A;color:#1E1F23}.check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.side{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.step{margin:0;font-size:14px}.hero{padding:28px}}
+@media(max-width:560px){.wrap{padding:20px 12px 45px}.fg,.recap,.uploads{grid-template-columns:1fr}.field.full{grid-column:auto}.type-grid{grid-template-columns:1fr 1fr}.card-body,.card-head{padding:20px 16px}.check-grid{grid-template-columns:1fr}.lot-v2{padding:15px}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.kpi{min-width:0;padding:12px 7px}.kpi b{font-size:23px}.kpi span{font-size:10px;letter-spacing:0}.hero{padding:24px 20px}.hero h1{font-size:32px;line-height:1.12}.hero p{font-size:16px}.nav{padding:12px}.actions .btn{max-width:100%;white-space:normal}.test-banner{font-size:14px}.horaires-grid,.dispo-grid{grid-template-columns:1fr}input,textarea,select{min-width:0;max-width:100%}.card-head h2{font-size:28px}.doc-slot,.recap-box,.po-text{min-width:0}.file-list{overflow-wrap:anywhere}}
+</style></head>
+<body>
+  <header class="ska-top" aria-label="Appli STRAKARA">
+    <button type="button" onclick="if(history.length>1){history.back()}else{location.href='https://www.strakara.fr/espace-hebergeur-app.html'}">← Retour</button>
+    <a class="ska-logo" href="https://www.strakara.fr/accueil-app.html">STRA<span>KARA</span></a>
+    <span class="ska-vide"></span>
+  </header>
+
+  <div class="sk-banner" id="sk-banner" role="banner">
+    <span class="sk-banner__text">Devenez partenaire ou apporteur d'affaires</span>
+    <a href="https://www.strakara.fr/devenir-partenaire-affaires.html" class="sk-banner__btn">Contactez-nous →</a>
+    <button class="sk-banner__close" type="button" onclick="skCloseBanner()" aria-label="Fermer le bandeau">×</button>
+  </div>
+
+  <nav class="sk-nav" role="navigation" aria-label="Navigation principale">
+    <a href="https://www.strakara.fr/" class="sk-nav__logo" aria-label="STRAKARA — Accueil">STRA<span>KARA</span></a>
+    <ul class="sk-nav__links">
+      <li><a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Devenez client</a></li>
+      <li><a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a></li>
+      <li><a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a></li>
+      <li><a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a></li>
+      <li><a href="https://www.strakara.fr/a-propos.html">À propos</a></li>
+      <li><a href="https://www.strakara.fr/contact.html">Contact</a></li>
+    </ul>
+    <div class="sk-nav__right">
+      <a href="tel:0759647754" class="sk-nav__phone">07 59 64 77 54</a>
+    </div>
+    <button class="sk-nav__hamburger" type="button" onclick="skToggleMenu()" aria-label="Ouvrir le menu" aria-expanded="false" id="sk-hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="sk-nav__mobile" id="sk-mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="https://www.strakara.fr/stockage-pro-flexible-france.html">Devenez client</a>
+    <a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a>
+    <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a>
+    <a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a>
+    <a href="https://www.strakara.fr/a-propos.html">À propos</a>
+    <a href="https://www.strakara.fr/contact.html">Contact</a>
+    <a href="tel:0759647754">07 59 64 77 54</a>
+  </div>
+
+  <script>
+    function skCloseBanner(){
+      document.getElementById('sk-banner').classList.add('sk-hidden');
+      sessionStorage.setItem('sk-banner-closed','1');
+    }
+    if(sessionStorage.getItem('sk-banner-closed')){
+      var skBanner=document.getElementById('sk-banner');
+      if(skBanner) skBanner.classList.add('sk-hidden');
+    }
+    function skToggleMenu(){
+      var menu=document.getElementById('sk-mobile-menu');
+      var btn=document.getElementById('sk-hamburger');
+      var open=menu.classList.toggle('sk-open');
+      btn.setAttribute('aria-expanded',String(open));
+    }
+  </script>
+
+  <main class="wrap" id="app">
+    <section class="hero" id="hero">
+      <div class="badge">Nouveau partenariat hébergeur</div>
+      <h1>Référencez vos espaces professionnels</h1>
+      <p>Proposez un entrepôt, un atelier, un bureau ou tout autre espace professionnel sous-utilisé. Votre dossier sera étudié après vérification. L'équipe STRAKARA vous contactera ensuite afin de finaliser votre enregistrement en tant qu'hébergeur.</p>
+      <div class="kpis">
+        <div class="kpi"><b>48h</b><span>vérification</span></div>
+        <div class="kpi"><b>0 €</b><span>frais d’inscription</span></div>
+        <div class="kpi"><b>B2B</b><span>pros vérifiés</span></div>
+      </div>
+    </section>
+
+    <div id="alert" class="alert"></div>
+
+    <section class="grid" id="formArea">
+      <aside class="side" id="steps"></aside>
+      <form id="form" novalidate onsubmit="event.preventDefault(); submitForm();">
+        <section class="card active" data-card="0"></section>
+        <section class="card" data-card="1"></section>
+        <section class="card" data-card="2"></section>
+        <section class="card" data-card="3"></section>
+        <section class="card" data-card="4"></section>
+        <section class="card" data-card="5"></section>
+      </form>
+    </section>
+
+    <section class="success" id="success">
+      <div class="icon">✓</div>
+      <h2>Demande envoyée</h2>
+      <p>Votre dossier a bien été enregistré. STRAKARA vérifie les informations, puis revient vers vous pour l'étude du dossier et l'activation des paiements.</p>
+      <div class="pay-box" id="payBox">
+        <svg class="pay-ico" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#C8A96A" opacity=".16"/>
+          <rect x="14" y="21" width="36" height="26" rx="5" fill="#1E1F23"/>
+          <path d="M24 21l3-5h10l3 5" fill="#1E1F23"/>
+          <circle cx="32" cy="34" r="8.5" fill="#C8A96A"/>
+          <circle cx="32" cy="34" r="4.5" fill="#1E1F23"/>
+          <circle cx="44" cy="26" r="1.8" fill="#C8A96A"/>
+          <path d="M50 12l1.6 3.4L55 17l-3.4 1.6L50 22l-1.6-3.4L45 17l3.4-1.6z" fill="#C8A96A"/>
+        </svg>
+        <b id="payTitle">Votre pack photos</b>
+        <p>Réglez votre pack maintenant : nous optimisons vos photos dès la validation de votre dossier. Si votre dossier n'est pas validé, vous êtes intégralement remboursé.</p>
+        <a class="btn btn-gold" id="payBtn" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Payer mon pack photos</a>
+        <div class="po-secure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Paiement sécurisé par Stripe · Facture envoyée par email
+        </div>
+      </div>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-gold" onclick="resetAll()">Proposer un autre espace</button>
+        <a class="btn btn-line" href="https://www.strakara.fr/" style="text-decoration:none">Découvrir les espaces STRAKARA</a>
+      </div>
+    </section>
+  </main>
+
+<script>
+const SUPABASE_URL = "https://dsckgwjbserojugrhzpp.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_9GnhFXe4GzRg4-xl-EE5lw__DeRpjoa";
+const SUPABASE_TABLE = "espaces_hebergeurs";
+const SUPABASE_BUCKET = "espaces";
+const SUPABASE_BUCKET_DOCS = "documents-hebergeurs"; // privé : Kbis, CNI, assurance (aucun lien public)
+
+/* ---- PACKS PHOTOS (liens Stripe) ---- */
+const PACKS_PHOTOS = {
+  essentiel: { label:"Essentiel", photos:"Jusqu'à 5 photos", ht:50,  ttc:60,  lien:"https://buy.stripe.com/bJeaEY6DOeO4eAEdJY8IU0b" },
+  standard:  { label:"Standard",  photos:"6 à 10 photos",    ht:90,  ttc:108, lien:"https://buy.stripe.com/aFa5kE3rCbBSdwA9tI8IU0a" },
+  complet:   { label:"Complet",   photos:"11 à 20 photos",   ht:150, ttc:180, lien:"https://buy.stripe.com/4gM00k0fq49q0JOgWa8IU09" }
+};
+function packLabel(k){ const p=PACKS_PHOTOS[k]; return p ? `${p.label} — ${p.ht} € HT (${p.ttc} € TTC)` : "Non merci (photo de couverture offerte)"; }
+
+const sb = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) || null;
+
+// Version de validation : aucun envoi externe, même pour les brouillons.
+const MODE_TEST = true;
+const SAVE_KEY = "strakara_nouveauespace1_test_v2";
+const stepsConfig = ["Votre espace", "Accès & équipements", "Lots & tarifs", "Conditions d’accueil", "Photos & entreprise", "Vérifier & tester"];
+let step = 0;
+
+const state = {
+  hebergeur_id: localStorage.getItem("strakara_hebergeur_id") || null,
+  email_compte: localStorage.getItem("strakara_client_email") || "",
+  entreprise: {
+    nom: "", siret: "", tva: "", email: "", telephone: "",
+    adresse_facturation: "", code_postal_facturation: "", ville_facturation: ""
+  },
+  espace: {
+    type: "Entrepôt", nom: "", titre: "", ville: "", code_postal: "", adresse_confidentielle: "",
+    localisation_publique: "", surface_totale: "", hauteur: "", longueur: "", largeur: "",
+    remuneration_souhaitee_ht: "",
+    disponibilite_mode: "",
+    date_disponibilite: "",
+    description_batiment: "", description_espace: "", situation_acces: "", a_savoir: "",
+    horaires_mode: "",
+    horaires_custom: "",
+    activites: [], acces: [], securite: [], equipements: [],
+    vehicules: [], portes: [], manutention: [], autres_equipements: "",
+    commercialisation: "", partage: "", site_en_activite: "", accueil_public: "",
+    etat: "", environnement: "", temperature: "", temperature_details: "",
+    porte_largeur: "", porte_hauteur: "", acces_details: "", rendez_vous: "", stationnement: "",
+    charges_mode: "", charges_details: "", frais_annexes: "", manutention_conditions: "", prix_a_definir: false,
+    lots: [],
+    option_photos: "aucune"
+  },
+  conditions: {
+    visite: "", visite_modalites: "", caution_mode: "", caution_calcul: "", montant_caution: "", conditions_caution: "",
+    reglement: "", restrictions: "", documents_demandes: [], documents_autres: "", assurances: [],
+    delai_entree: "", preavis_acces: "", duree_min: "1", duree_max: "9", renouvellement: "",
+    infos_entreprise_publiques: "", exigences_confirmees: false
+  },
+  contact: { nom: "", fonction: "" },
+  responsable: { type: "moi", nom: "", telephone: "", email: "", fonction: "" },
+  consentement: false
+};
+
+const files = window.strakaraFiles = { photos: [], kbis: [], identite: [], assurance: [], documents: [] };
+const DOC_SLOTS = [
+  { key:"kbis",      label:"Kbis",                 hint:"Extrait Kbis ou avis de situation SIRENE." },
+  { key:"identite",  label:"Pièce d'identité du représentant légal", hint:"Carte d'identité ou passeport, recto-verso." },
+  { key:"assurance", label:"Attestation d'assurance du bâtiment",    hint:"Multirisque professionnelle ou PNO, en cours de validité." },
+  { key:"documents", label:"Autres documents (facultatif)",          hint:"Plan, règlement du site, mandat ou autorisation…" }
+];
+
+function $(q){ return document.querySelector(q); }
+function $all(q){ return Array.from(document.querySelectorAll(q)); }
+function esc(v){ return String(v ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+function showAlert(type,msg){ const a=$("#alert"); a.className="alert "+type; a.innerHTML=msg; a.scrollIntoView({behavior:"smooth",block:"center"}); }
+function hideAlert(){ $("#alert").className="alert"; $("#alert").innerHTML=""; }
+
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return;
+    const saved = JSON.parse(raw);
+    Object.assign(state.entreprise, saved.entreprise || {});
+    Object.assign(state.espace, saved.espace || {});
+    Object.assign(state.responsable, saved.responsable || {});
+    Object.assign(state.contact, saved.contact || {});
+    Object.assign(state.conditions, saved.conditions || {});
+    state.email_compte = saved.email_compte || state.email_compte;
+    state.hebergeur_id = saved.hebergeur_id || state.hebergeur_id;
+    state.consentement = !!saved.consentement;
+  }catch(e){}
+}
+function saveDraft(manual=false){
+  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  if(manual) showAlert("ok","Brouillon sauvegardé sur cet appareil.");
+}
+function schedSave(){
+  clearTimeout(window.__saveTimer); window.__saveTimer=setTimeout(saveDraft,400);
+  clearTimeout(window.__brTimer); window.__brTimer=setTimeout(()=>pushBrouillon(),2500);
+}
+
+/* ---- BROUILLONS SUPABASE (suivi des dossiers non envoyés) ---- */
+function getBrouillonId(){
+  let id = localStorage.getItem("strakara_brouillon_id");
+  if(!id){ id = crypto.randomUUID(); localStorage.setItem("strakara_brouillon_id", id); }
+  return id;
+}
+async function pushBrouillon(converti=false, dossierId=null){
+  if(MODE_TEST) return;
+  const email = (state.email_compte || state.entreprise.email || "").trim();
+  const tel = (state.entreprise.telephone || "").trim();
+  if(!email && !tel) return; // rien d'exploitable tant qu'aucune coordonnée n'est saisie
+  try{
+    const data = JSON.parse(JSON.stringify({ entreprise:state.entreprise, espace:state.espace, contact:state.contact, responsable:state.responsable, conditions:state.conditions,
+      fichiers:Object.fromEntries(Object.entries(files).map(([k,v])=>[k,v.length])) }));
+    await sb.rpc("save_brouillon", {
+      p_id: getBrouillonId(),
+      p_email: email || null,
+      p_telephone: tel || null,
+      p_nom_contact: state.contact.nom || null,
+      p_entreprise: state.entreprise.nom || null,
+      p_ville: state.espace.ville || null,
+      p_titre: state.espace.titre || state.espace.nom || null,
+      p_etape: step + 1,
+      p_data: data,
+      p_converti: converti,
+      p_dossier_id: dossierId
+    });
+  }catch(e){ console.warn("Brouillon non synchronisé :", e); }
+}
+
+/* ---- CONTRÔLES ---- */
+function cleanSiret(v){ return String(v||"").replace(/\s+/g,""); }
+function luhnOk(num){
+  let sum=0;
+  for(let i=0;i<num.length;i++){
+    let d=Number(num[num.length-1-i]);
+    if(i%2===1){ d*=2; if(d>9) d-=9; }
+    sum+=d;
+  }
+  return sum%10===0;
+}
+function siretValide(v){
+  const s = cleanSiret(v);
+  if(!/^\d{14}$/.test(s)) return false;
+  return luhnOk(s) || s.startsWith("356000000"); // exception La Poste
+}
+function tvaValide(v, siret){
+  const t = String(v||"").replace(/\s+/g,"").toUpperCase();
+  if(!t) return true; // facultatif
+  if(!/^FR[0-9A-Z]{2}\d{9}$/.test(t)) return false;
+  const siren = t.slice(4);
+  if(/^\d{2}$/.test(t.slice(2,4))){
+    const cle = (12 + 3 * (Number(siren) % 97)) % 97;
+    if(Number(t.slice(2,4)) !== cle) return false;
+  }
+  const s = cleanSiret(siret);
+  return !s || s.slice(0,9) === siren;
+}
+function surfaceCheck(){
+  const e = state.espace;
+  const L = Number(e.longueur), l = Number(e.largeur), S = Number(e.surface_totale);
+  if(!(L>0 && l>0)) return { show:false };
+  const calc = Math.round(L*l);
+  if(!(S>0)) return { show:true, warn:false, msg:`Dimensions : ${L} m × ${l} m, soit environ ${calc} m².` };
+  const ecart = Math.abs(calc - S) / S;
+  if(ecart > 0.25) return { show:true, warn:true, msg:`⚠️ ${L} m × ${l} m = ${calc} m², alors que vous indiquez ${S} m². Vérifiez la surface ou les dimensions (sauf si l'espace comporte plusieurs niveaux ou zones).` };
+  return { show:true, warn:false, msg:`✓ ${L} m × ${l} m, soit environ ${calc} m² : cohérent avec la surface indiquée.` };
+}
+function updateSurfHint(){
+  const el = document.getElementById("surfHint"); if(!el) return;
+  const c = surfaceCheck();
+  el.className = "surf-hint" + (c.show?" show":"") + (c.warn?" warn":"");
+  el.textContent = c.msg || "";
+}
+
+function setDeep(path, value){
+  const parts = path.split(".");
+  let obj = state;
+  while(parts.length>1) obj = obj[parts.shift()];
+  obj[parts[0]] = value;
+  schedSave();
+  renderSteps();
+  if(/surface_totale|longueur|largeur/.test(path)){ window.__surfWarned = false; updateSurfHint(); }
+  if(path === "espace.option_photos"){ window.__packWarned = false; updatePackHint(); }
+}
+function toggleArray(path, value, checked){
+  const parts = path.split(".");
+  let obj = state;
+  while(parts.length>1) obj = obj[parts.shift()];
+  const key = parts[0];
+  obj[key] = Array.isArray(obj[key]) ? obj[key] : [];
+  if(checked && !obj[key].includes(value)) obj[key].push(value);
+  if(!checked) obj[key] = obj[key].filter(x => x !== value);
+  schedSave();
+}
+
+function renderSteps(){
+  $("#steps").innerHTML = stepsConfig.map((s,i)=>`<div role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goStep(${i})}" class="step ${i===step?'active':''} ${i<step?'done':''}" onclick="goStep(${i})"><span class="num">${i<step?'✓':i+1}</span>${s}</div>`).join("");
+}
+function render(){
+  renderSteps();
+  const cards=[cardEspace,cardCaracteristiques,cardLotsTarifs,cardConditions,cardPhotos,cardRecap];
+  cards.forEach((fn,i)=>{$("[data-card='"+i+"']").innerHTML=fn()});
+  updateCards(); updateSurfHint(); updatePackHint();
+}
+function updateCards(){
+  $all(".card").forEach(c => c.classList.toggle("active", Number(c.dataset.card)===step));
+  hideAlert();
+}
+function goStep(i){
+  if(i>step){for(let k=step;k<i;k++){if(!validateStep(k,true))return;}}
+  step=i;render();window.scrollTo({top:0,behavior:"smooth"});
+}
+function next(){
+  if(validateStep(step,true)){
+    if(step===0 && !state.entreprise.email && state.email_compte)state.entreprise.email=state.email_compte;
+    step=Math.min(step+1,stepsConfig.length-1);saveDraft();pushBrouillon();render();window.scrollTo({top:0,behavior:"smooth"});
+  }
+}
+function prev(){step=Math.max(step-1,0);render();}
+
+function field(path,label,type="text",placeholder="",full=false,attrs=""){
+  const val = path.split(".").reduce((o,k)=>o?.[k], state) ?? "";
+  const tag = type==="textarea"
+    ? `<textarea id="f_${path.replace(/\./g,'_')}" placeholder="${esc(placeholder)}" oninput="setDeep('${path}',this.value)" ${attrs}>${esc(val)}</textarea>`
+    : `<input id="f_${path.replace(/\./g,'_')}" type="${type}" value="${esc(val)}" placeholder="${esc(placeholder)}" oninput="setDeep('${path}',this.value)" ${attrs}>`;
+  return `<div class="field ${full?'full':''}"><label for="f_${path.replace(/\./g,'_')}">${label}</label>${tag}</div>`;
+}
+function select(path,label,options,full=false){
+  const val = path.split(".").reduce((o,k)=>o?.[k], state) ?? "";
+  return `<div class="field ${full?'full':''}"><label for="f_${path.replace(/\./g,'_')}">${label}</label><select id="f_${path.replace(/\./g,'_')}" onchange="setDeep('${path}',this.value)${path==='responsable.type'?';render()':''}">${options.map(o=>`<option value="${esc(o)}" ${val===o?'selected':''}>${esc(o)}</option>`).join("")}</select></div>`;
+}
+function checkGrid(path, options){
+  const arr = path.split(".").reduce((o,k)=>o?.[k], state) || [];
+  return `<div class="check-grid">${options.map(o=>`<label class="check"><input type="checkbox" ${arr.includes(o)?'checked':''} onchange="toggleArray('${path}','${esc(o)}',this.checked)"><span>${esc(o)}</span></label>`).join("")}</div>`;
+}
+
+function cardHead(n,t,p){ return `<div class="card-head"><h2>${t}</h2><p>${p}</p></div><div class="card-body">`; }
+function actions(back=true,nextLabel="Continuer"){ return `<div class="actions">${back?`<button type="button" class="btn btn-prev" onclick="prev()">Retour</button>`:"<span></span>"}<button type="button" class="btn btn-next" onclick="next()">${nextLabel}</button></div></div>`; }
+
+/* ---- HORAIRES WIDGET ---- */
+function horaireWidget(){
+  const m = state.espace.horaires_mode;
+  const modes = [
+    {val:"24h", label:"24h/7j"},
+    {val:"7j",  label:"7j/7 (horaires à préciser)"},
+    {val:"autre", label:"Indiquer les horaires"}
+  ];
+  return `
+    <div class="section-title">Horaires d'accès</div>
+    <div class="horaires-grid">${modes.map(x=>`
+      <label class="horaire-card">
+        <input type="radio" name="horaires_mode" value="${x.val}" ${m===x.val?'checked':''} onchange="setDeep('espace.horaires_mode',this.value);render()">
+        ${x.label}
+      </label>`).join("")}
+    </div>
+    ${(m==="7j" || m==="autre") ? `<div class="field full"><label>Précisez les horaires</label><input type="text" value="${esc(state.espace.horaires_custom)}" placeholder="Ex. Lun-Ven 8h-18h, Sam 9h-12h" oninput="setDeep('espace.horaires_custom',this.value)"></div>` : ""}
+  `;
+}
+
+/* ---- DISPO WIDGET ---- */
+function dispoWidget(){
+  const m = state.espace.disponibilite_mode;
+  return `
+    <div class="section-title">Disponibilité</div>
+    <div class="dispo-grid">
+      <label class="dispo-card">
+        <input type="radio" name="dispo_mode" value="immédiat" ${m==="immédiat"?'checked':''} onchange="setDeep('espace.disponibilite_mode',this.value);render()">
+        Disponible immédiatement
+      </label>
+      <label class="dispo-card">
+        <input type="radio" name="dispo_mode" value="date" ${m==="date"?'checked':''} onchange="setDeep('espace.disponibilite_mode',this.value);render()">
+        À partir d'une date
+      </label>
+    </div>
+    ${m==="date" ? `<div class="field"><label>Date de disponibilité *</label><input type="date" value="${esc(state.espace.date_disponibilite)}" oninput="setDeep('espace.date_disponibilite',this.value)"></div>` : ""}
+  `;
+}
+
+function cardEspace(){
+  const types = [
+    ["Entrepôt","Entreposage, logistique, palettes"],
+    ["Atelier","Production légère, artisanat"],
+    ["Bureau / Coworking","Postes, bureaux, open-space"],
+    ["Espace de stockage","Box, réserve ou petites surfaces"],
+    ["Dépôt / Showroom","Marchandises ou exposition"],
+    ["Mixte","Bureau + stockage"],
+    ["Zone extérieure","Cour, parking, terrain"]
+  ];
+  return cardHead(1,"Votre espace","Indiquez vos coordonnées, le type d'espace, la localisation et les surfaces principales.")
+  + `<div class="section-title">Vos coordonnées</div>
+    <div class="contact-box">
+      <div class="fg">
+        ${field("contact.nom","Nom et prénom *","text","Ex. Marie Dupont")}
+        ${field("contact.fonction","Fonction","text","Ex. Gérant, responsable logistique")}
+        ${field("email_compte","Email de connexion à votre espace hébergeur *","email","contact@entreprise.fr")}
+        ${field("entreprise.telephone","Téléphone *","tel","06 12 34 56 78")}
+      </div>
+      <p class="hint">C'est à cet email que vous recevrez les demandes de réservation, les validations d'entrée des clients et les demandes de visite. Vos informations sont enregistrées au fur et à mesure pour que vous puissiez reprendre votre dossier et que l'équipe STRAKARA puisse vous recontacter.</p>
+    </div>
+    <div class="section-title">Type d'espace</div>
+    <div class="type-grid">${types.map(t=>`<div class="type-card ${state.espace.type===t[0]?'selected':''}" onclick="setDeep('espace.type','${t[0]}');render()"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("")}</div>
+    <div class="section-title">Localisation & surface</div>
+    <div class="fg">
+      ${field("espace.nom","Nom interne de l'espace *","text","Ex. Entrepôt Nantes Nord",true)}
+      ${field("espace.titre","Titre souhaité (facultatif)","text","Ex. Entrepôt 120 m² — accès PL — Nantes",true)}
+      ${field("espace.ville","Ville *","text","Ex. Nantes")}
+      ${field("espace.code_postal","Code postal *","text","Ex. 44000")}
+      ${field("espace.adresse_confidentielle","Adresse exacte confidentielle *","text","Non affichée publiquement",true)}
+      ${field("espace.localisation_publique","Localisation approximative publique *","text","Ex. Nantes Nord / accès N137",true)}
+      ${field("espace.surface_totale","Surface disponible réelle (m²) *","number","Ex. 120","","min='1'")}
+      ${field("espace.hauteur","Hauteur sous plafond m","number","Ex. 5","","step='0.1'")}
+      ${field("espace.longueur","Longueur approx. m","number","Ex. 20")}
+      ${field("espace.largeur","Largeur approx. m","number","Ex. 6")}
+      <div class="surf-hint" id="surfHint"></div>
+
+    </div>
+    <div class="info-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>Montant souhaité :</b> c'est le montant HT de l’espace, réglé par l’occupant selon les conditions convenues avec vous. Le forfait de services STRAKARA est facturé en plus au client : rien n'est retenu sur votre montant. Si l'espace est divisible en lots, indiquez le montant pour l'ensemble et détaillez vos lots à l'étape suivante.</span>
+    </div>
+    <div class="section-title">Configuration du site</div><div class="fg">
+      ${choice("espace.partage","L’espace proposé est-il partagé ? *",["Exclusif au client","Partagé avec d’autres entreprises","Les deux selon les lots"])}
+      ${choice("espace.site_en_activite","Le site accueille-t-il déjà votre activité ? *",["Oui","Non"])}
+      ${choice("espace.accueil_public","L’usage proposé implique-t-il de recevoir du public ? *",["Non","Oui","À confirmer avec STRAKARA"])}
+      ${choice("espace.etat","État de l’espace *",["Bon état, utilisable en l’état","Travaux ou aménagements nécessaires","À confirmer"])}
+      ${field("espace.environnement","Environnement et repères publics","textarea","Zone d’activité, accès autoroute, transports. Sans adresse exacte ni code d’accès.",true)}
+    </div><p class="hint">L’adresse exacte reste dans le dossier privé. Si votre usage implique de recevoir du public, ses conditions seront examinées avant toute publication.</p>
+    ${dispoWidget()}` + actions(false,"Accès et équipements");
+}
+
+function cardCaracteristiques(){
+  return cardHead(2,"Caractéristiques","Décrivez ce que le client pourra réellement utiliser.")
+  + `<div class="section-title">Descriptions visibles sur la fiche espace</div>
+    <div class="fg">
+      ${field("espace.description_espace","Description de l'espace proposé *","textarea","Surface, lots, séparation, équipements, contraintes… Quelques lignes suffisent : notre équipe rédige ensuite votre annonce.",true)}
+      ${field("espace.description_batiment","Description du bâtiment (facultatif)","textarea","État général, environnement, sécurité…",true)}
+      ${field("espace.situation_acces","Situation géographique & accès (facultatif)","textarea","Axes routiers, accès utilitaires/PL, zone d'activité…",true)}
+      ${field("espace.a_savoir","À savoir","textarea","Règles du site, contraintes, informations importantes…",true)}
+    </div>
+    <div class="section-title">Activités autorisées</div>${checkGrid("espace.activites",["Stockage palettes","E-commerce","Archivage","Artisanat léger","Atelier","Logistique","Bureaux","Stockage matériel","Préparation commandes"])}
+    ${horaireWidget()}
+    ${checkGrid("espace.acces",["Accès autonome","Accès accompagné","Badge / RFID","Code portail","Clés","Accueil transporteur possible"])}
+    <div class="section-title">Sécurité</div>${checkGrid("espace.securite",["Caméras intérieures","Caméras extérieures","Alarme","Clôture complète","Éclairage automatique","Présence humaine"])}
+    <div class="section-title">Équipements</div>${checkGrid("espace.equipements",["Électricité","Éclairage LED","Racks / palettiers","Sanitaires","WiFi / 4G correct","Chauffage / isolation"])}
+    ${field("espace.autres_equipements","Autres équipements","textarea","Pont roulant, froid, quai, fosse, douche, 36 kVA, etc.",true)}
+    <div class="section-title">Véhicules, portes & manutention</div>
+    ${checkGrid("espace.vehicules",["Accès VL","Accès utilitaire","Accès PL court","Accès semi-remorque","Parking dédié","Rampe d'accès"])}
+    ${checkGrid("espace.portes",["Porte sectionnelle","Rideau métallique","Porte de quai","Portail coulissant","Porte piétonne","Porte battante"])}
+    ${checkGrid("espace.manutention",["Transpalette manuel","Transpalette électrique","Chariot élévateur","Gerbeur électrique"])}
+    <div class="section-title">Dimensions et conditions d’utilisation</div><div class="fg">
+      ${field("espace.porte_largeur","Largeur utile de la porte principale (m)","number","Ex. 3",false,"min='0.1' step='0.01'")}
+      ${field("espace.porte_hauteur","Hauteur utile de la porte principale (m)","number","Ex. 3,5",false,"min='0.1' step='0.01'")}
+      ${choice("espace.temperature","Conditions de température *",["Ambiante, non régulée","Hors gel","Température dirigée","Froid positif","Froid négatif","Sans objet / extérieur"])}
+      ${field("espace.temperature_details","Température et humidité : précisions","text","Plage garantie si applicable ; sinon laisser vide")}
+      ${choice("espace.rendez_vous","Accès ou livraisons sur rendez-vous ? *",["Oui","Non"])}
+      ${field("espace.stationnement","Stationnement et manœuvres","text","Sur site ou rue, restrictions de gabarit, aire de retournement…")}
+      ${field("espace.acces_details","Contraintes d’accès à connaître","textarea","Étage, escalier, charge au sol, puissance électrique, accès transporteurs, délai de prévenance… Sans code ni consigne confidentielle.",true)}
+      ${field("espace.manutention_conditions","Utilisation des moyens de manutention","textarea","Qui peut les utiliser ? Personnel sur place, habilitation, coût, horaires. Disponibilité à confirmer si nécessaire.",true)}
+    </div>`
+  + actions(true,"Lots et tarifs");
+}
+
+function choice(path,label,options,full=false){
+  const value=path.split('.').reduce((o,k)=>o?.[k],state)||'',id='f_'+path.replace(/\./g,'_');
+  return `<div class="field ${full?'full':''}"><label for="${id}">${esc(label)}</label><select id="${id}" onchange="setDeep('${path}',this.value);render()"><option value="">Choisir une réponse</option>${options.map(o=>`<option value="${esc(o)}" ${value===o?'selected':''}>${esc(o)}</option>`).join('')}</select>${value.length>30?'<small class="hint">'+esc(value)+'</small>':''}</div>`;
+}
+function lotRow(l,i){
+  const input=(key,label,type='text',placeholder='')=>`<div class="field"><label for="lot_${i}_${key}">${label}</label><input id="lot_${i}_${key}" type="${type}" ${type==='number'?"min='0.01' step='0.01'":''} value="${esc(l[key]??'')}" placeholder="${placeholder}" oninput="state.espace.lots[${i}].${key}=this.value;schedSave()"></div>`;
+  return `<div class="lot-v2"><div class="lot-head"><b>Lot ${i+1}</b><button type="button" class="btn-mini" aria-label="Supprimer le lot ${i+1}" onclick="removeLot(${i})">×</button></div><div class="fg">
+    ${input('nom','Référence du lot *','text','Ex. Lot 1')}
+    <div class="field"><label for="lot_${i}_unite">Unité proposée *</label><select id="lot_${i}_unite" onchange="state.espace.lots[${i}].unite=this.value;schedSave();render()">${['m²','palettes','postes'].map(u=>`<option ${l.unite===u?'selected':''}>${u}</option>`).join('')}</select></div>
+    ${input('surface','Surface réelle du lot (m²)'+((l.unite||'m²')==='m²'?' *':''),'number','Ex. 50')}
+    ${l.unite==='palettes'?input('palettes_max','Capacité de ce lot en palettes *','number','Ex. 10'):l.unite==='postes'?input('postes','Nombre de postes *','number','Ex. 4'):''}
+    ${input('prix_ht','Loyer du lot HT / mois'+(!state.espace.prix_a_definir?' *':''),'number','Ex. 150')}
+    ${input('description','Particularité du lot','text','Séparé, racks, bureau fermé…')}
+    ${input('date_disponibilite','Disponible à partir du (sinon date du site)','date')}
+    <div class="field full"><label for="lot_${i}_photo">Photo du lot (facultative)</label><select id="lot_${i}_photo" onchange="state.espace.lots[${i}].photo_nom=this.value;schedSave()"><option value="">Utiliser la photo principale du site</option>${files.photos.map(f=>`<option value="${esc(f.name)}" ${l.photo_nom===f.name?'selected':''}>${esc(f.name)}</option>`).join('')}</select><small class="hint">Vous pourrez choisir une photo après l’avoir ajoutée à l’étape « Photos & entreprise ».</small></div>
+  </div></div>`;
+}
+function addLot(){state.espace.lots.push({nom:'Lot '+(state.espace.lots.length+1),unite:'m²',surface:'',palettes_max:'',postes:'',prix_ht:'',description:'',date_disponibilite:'',photo_nom:''});saveDraft();render()}
+function removeLot(i){state.espace.lots.splice(i,1);saveDraft();render()}
+function cardLotsTarifs(){
+  const e=state.espace;
+  return cardHead(3,'Lots et tarifs','Décrivez ce qui peut être réservé et le montant réglé à votre entreprise.')+
+    `<div class="fg">${choice('espace.commercialisation','Comment souhaitez-vous proposer cet espace ? *',['En intégralité','En plusieurs lots','À définir avec STRAKARA'],true)}</div>
+    <label class="check" style="margin:18px 0"><input type="checkbox" ${e.prix_a_definir?'checked':''} onchange="state.espace.prix_a_definir=this.checked;schedSave();render()"><span>Je souhaite définir les loyers avec STRAKARA avant la publication.</span></label>
+    ${e.commercialisation==='En plusieurs lots'?`<div class="section-title">Un lot = une offre réservable</div><p class="hint">Exemple : 10 palettes à 150 € HT/mois. La surface en m² et le nombre de palettes restent deux informations distinctes. Les capacités ne sont pas converties automatiquement.</p><div id="lots">${e.lots.map(lotRow).join('')}</div><button type="button" class="btn btn-line" onclick="addLot()">+ Ajouter un lot</button>`:`<div class="fg">${field('espace.remuneration_souhaitee_ht','Loyer de l’ensemble HT / mois'+(!e.prix_a_definir?' *':''),'number','Ex. 1200',true,"min='0.01' step='0.01'")}</div>`}
+    <div class="section-title">Charges et prestations</div><div class="fg">
+      ${choice('espace.charges_mode','Les charges sont-elles comprises ? *',['Toutes incluses','Partiellement incluses','Non incluses'])}
+      ${field('espace.charges_details','Ce qui est compris et ce qui est facturé en plus *','textarea','Électricité, eau, chauffage, nettoyage… Indiquez les montants ou le mode de calcul. Écrivez « Aucun supplément » si tout est inclus.',true)}
+      ${field('espace.frais_annexes','Autres prestations et tarifs','textarea','Ex. manutention : 2 € HT / palette en entrée et en sortie. Précisez l’unité, le caractère obligatoire ou facultatif, ou « Aucun ».',true)}
+    </div><p class="hint">Tous les loyers sont indiqués hors taxes par mois. Les frais de services STRAKARA sont présentés séparément au client. Aucun tarif non confirmé ne doit être publié.</p>`+actions(true,'Conditions d’accueil');
+}
+function cardConditions(){
+  const c=state.conditions,sw=c.caution_mode.includes('Swikly'),direct=c.caution_mode.includes('hébergeur'),both=c.caution_mode.includes('choix');
+  return cardHead(4,'Vos conditions d’accueil','Ces réponses alimenteront les conditions propres à votre site et aux réservations.')+
+    `<div class="section-title">Durée et entrée dans les lieux</div><p class="notice">Les demandes sont soumises à votre accord, après examen du dossier. Cette version ne propose pas de réservation instantanée.</p><div class="fg">
+      ${field('conditions.duree_min','Durée minimale acceptée (mois) *','number','1',false,"min='1' max='9' step='1'")}
+      ${field('conditions.duree_max','Durée maximale acceptée (mois) *','number','9',false,"min='1' max='9' step='1'")}
+      ${choice('conditions.renouvellement','Renouvellement envisageable après la période ? *',['Sur nouvelle demande et avec mon accord','Non'])}
+      ${field('conditions.delai_entree','Délai réaliste pour entrer après dossier accepté *','text','Ex. sous 72 h après assurances, caution et premier loyer')}
+      ${field('conditions.preavis_acces','Préparation de l’arrivée','textarea','Accueil, créneau à convenir, matériel à apporter… Ne saisissez aucun code d’accès.',true)}
+    </div><div class="section-title">Visites avant réservation</div><div class="fg">
+      ${choice('conditions.visite','Acceptez-vous les demandes de visite ? *',['Oui','Non'])}
+      ${c.visite==='Oui'?field('conditions.visite_modalites','Modalités de visite *','textarea','Sur rendez-vous, jours et créneaux, délai de prévenance. Demande via STRAKARA.',true):''}
+    </div><div class="section-title">Caution</div><div class="fg">
+      ${choice('conditions.caution_mode','Quel mode de caution acceptez-vous ? *',['Empreinte bancaire Swikly','Dépôt versé à l’hébergeur','Les deux au choix du client','Aucune caution'],true)}
+      ${c.caution_mode&&c.caution_mode!=='Aucune caution'?choice('conditions.caution_calcul','Comment calculer la caution ? *',['Montant fixe par réservation','Deux mois de loyer HT'])+(c.caution_calcul==='Montant fixe par réservation'?field('conditions.montant_caution','Montant de la caution (€) *','number','Montant confirmé, en euros',false,"min='0.01' step='0.01'"):'')+field('conditions.conditions_caution','Conditions et échéance de constitution *','textarea','Montant fixe ou calcul selon le lot ; date limite ; modalités de restitution du dépôt. Si les deux modes sont acceptés, précisez les conditions de chacun.',true):''}
+    </div>${sw||both?'<p class="hint">Une empreinte bancaire n’est pas un versement de caution. Ses modalités et les frais éventuels seront précisés dans le récapitulatif de réservation.</p>':''}${direct||both?'<p class="hint">Précisez quand le dépôt doit être réglé et les conditions de restitution. Le montant sera vérifié avant publication.</p>':''}
+    <div class="section-title">Documents à demander aux occupants</div><p class="hint">Sélectionnez les pièces réellement demandées pour réserver cet espace. Il s’agit de votre liste d’exigences, pas des documents de votre entreprise à déposer ensuite.</p>
+    ${checkGrid('conditions.documents_demandes',['CNI','Kbis','RC Pro','Comptes','Assurance biens'])}
+    ${field('conditions.documents_autres','Autre pièce ou équivalent accepté','textarea','Ex. avis SIRENE pour une entreprise sans Kbis ; document spécifique justifié.',true)}
+    <div class="section-title">Assurances exigées avant l’entrée</div>${checkGrid('conditions.assurances',['RC professionnelle','Assurance des biens stockés','RC locative selon l’usage'])}
+    <div class="section-title">Règlement, restrictions et entreprise</div><div class="fg">
+      ${field('conditions.reglement','Règlement intérieur propre au site *','textarea','Horaires, accompagnement, circulation, bruit, propreté, déchets, zones autorisées… Écrivez explicitement si aucune règle supplémentaire.',true)}
+      ${field('conditions.restrictions','Activités ou marchandises refusées *','textarea','Ex. produits dangereux, alimentaire, batteries, activité bruyante. Indiquez « Aucune restriction supplémentaire » si applicable.',true)}
+      ${field('conditions.infos_entreprise_publiques','Présentation publique de votre entreprise (facultative)','textarea','Secteur d’activité, présence sur place, fonctionnement. Sans téléphone, email, adresse exacte ni code d’accès.',true)}
+    </div><label class="check"><input type="checkbox" ${c.exigences_confirmees?'checked':''} onchange="state.conditions.exigences_confirmees=this.checked;schedSave()"><span>J’ai vérifié les documents, les assurances et les conditions indiquées. Les règles propres au site complètent le cadre STRAKARA.</span></label>`+actions(true,'Photos et entreprise');
+}
+
+
+function poScene(c){
+  // Intérieur d'entrepôt stylisé : mur, sol en perspective, racks, cartons, éclairage
+  return `
+    <rect width="320" height="200" fill="${c.wall}"/>
+    <polygon points="0,200 320,200 236,132 84,132" fill="${c.floor}"/>
+    <line x1="160" y1="132" x2="160" y2="200" stroke="${c.line}" stroke-width="2" stroke-dasharray="8 7"/>
+    <rect x="84" y="34" width="152" height="98" fill="${c.back}"/>
+    <ellipse cx="122" cy="40" rx="18" ry="4" fill="${c.light}"/>
+    <ellipse cx="198" cy="40" rx="18" ry="4" fill="${c.light}"/>
+    <polygon points="104,42 140,42 152,132 92,132" fill="${c.beam}" opacity="${c.beamOp}"/>
+    <polygon points="180,42 216,42 228,132 168,132" fill="${c.beam}" opacity="${c.beamOp}"/>
+    ${[96,146,196].map(x=>`
+      <rect x="${x}" y="58" width="32" height="74" fill="none" stroke="${c.rack}" stroke-width="3"/>
+      <line x1="${x}" y1="83" x2="${x+32}" y2="83" stroke="${c.rack}" stroke-width="3"/>
+      <line x1="${x}" y1="108" x2="${x+32}" y2="108" stroke="${c.rack}" stroke-width="3"/>
+      <rect x="${x+4}" y="68" width="11" height="13" rx="1.5" fill="${c.box}"/>
+      <rect x="${x+17}" y="71" width="11" height="10" rx="1.5" fill="${c.box2}"/>
+      <rect x="${x+4}" y="93" width="24" height="13" rx="1.5" fill="${c.box2}"/>
+      <rect x="${x+6}" y="117" width="10" height="13" rx="1.5" fill="${c.box}"/>
+      <rect x="${x+18}" y="120" width="10" height="10" rx="1.5" fill="${c.box2}"/>`).join("")}
+    <rect x="34" y="96" width="34" height="56" rx="2" fill="${c.door}"/>
+    <rect x="252" y="96" width="34" height="56" rx="2" fill="${c.door}"/>
+  `;
+}
+function poBeforeAfterSVG(){
+  const dull = {wall:"#5d5f63",floor:"#6c6a66",line:"#7d7a74",back:"#4f5155",light:"#8a8a86",beam:"#9a9893",beamOp:".08",rack:"#7b7d80",box:"#7f7465",box2:"#6f675b",door:"#55575b"};
+  const bright = {wall:"#EDE6D6",floor:"#D9CCB0",line:"#FFFFFF",back:"#F7F1E3",light:"#FFF8E6",beam:"#FFF4D6",beamOp:".75",rack:"#1E1F23",box:"#C8A96A",box2:"#A98745",door:"#CFC3A6"};
+  return `
+  <svg viewBox="0 0 320 200" role="img" aria-label="Exemple avant / après retouche photo">
+    <defs>
+      <clipPath id="poClipL"><rect x="0" y="0" width="160" height="200"/></clipPath>
+      <clipPath id="poClipR"><rect x="160" y="0" width="160" height="200"/></clipPath>
+    </defs>
+    <g clip-path="url(#poClipL)"><g transform="rotate(-3 160 100) scale(1.04) translate(-6 -4)">${poScene(dull)}</g></g>
+    <g clip-path="url(#poClipR)">${poScene(bright)}</g>
+    <line x1="160" y1="0" x2="160" y2="200" stroke="#fff" stroke-width="3"/>
+    <circle cx="160" cy="100" r="15" fill="#fff"/>
+    <path d="M154 100l-5-5v10zM166 100l5-5v10z" fill="#1E1F23"/>
+    <rect x="10" y="10" width="58" height="22" rx="11" fill="rgba(0,0,0,.55)"/>
+    <text x="39" y="25" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="800" letter-spacing="1.2" fill="#fff">AVANT</text>
+    <rect x="252" y="10" width="58" height="22" rx="11" fill="#C8A96A"/>
+    <text x="281" y="25" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="800" letter-spacing="1.2" fill="#1E1F23">APRÈS</text>
+    <path d="M296 160l2.6 5.6 5.6 2.6-5.6 2.6-2.6 5.6-2.6-5.6-5.6-2.6 5.6-2.6z" fill="#C8A96A"/>
+    <path d="M276 176l1.5 3.2 3.2 1.5-3.2 1.5-1.5 3.2-1.5-3.2-3.2-1.5 3.2-1.5z" fill="#C8A96A"/>
+  </svg>`;
+}
+const PO_ICONS = {
+  lumiere:`<svg viewBox="0 0 32 32" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round"><circle cx="16" cy="16" r="5.5" fill="#C8A96A" fill-opacity=".25"/><path d="M16 3v3M16 26v3M3 16h3M26 16h3M6.8 6.8l2.1 2.1M23.1 23.1l2.1 2.1M6.8 25.2l2.1-2.1M23.1 8.9l2.1-2.1"/></svg>`,
+  lignes:`<svg viewBox="0 0 32 32" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="22" height="22" rx="3" fill="#C8A96A" fill-opacity=".12"/><path d="M12.3 5v22M19.7 5v22M5 12.3h22M5 19.7h22" stroke-opacity=".55"/><path d="M9 23l14-14" stroke="#1E1F23"/></svg>`,
+  cadrage:`<svg viewBox="0 0 32 32" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v18a2 2 0 0 0 2 2h18"/><path d="M23 29V11a2 2 0 0 0-2-2H3"/><rect x="11" y="11" width="10" height="10" fill="#C8A96A" fill-opacity=".25" stroke="none"/></svg>`,
+  web:`<svg viewBox="0 0 32 32" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="26" height="17" rx="2.5" fill="#C8A96A" fill-opacity=".12"/><path d="M12 27h8M16 23v4"/><path d="M8 18l5-5 4 4 3-3 4 4" stroke="#1E1F23"/></svg>`,
+  cadeau:`<svg viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>`,
+  cadenas:`<svg viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>`
+};
+function poStackSVG(n){
+  // Pile de photos : 1, 2 ou 3 cadres selon la taille du pack
+  const frames = [];
+  for(let i=n-1;i>=0;i--){
+    const x = 14 + i*9, y = 14 - i*5, rot = (i-1)*5;
+    const top = i===0;
+    frames.push(`<g transform="rotate(${rot} ${x+22} ${y+16})">
+      <rect x="${x}" y="${y}" width="44" height="32" rx="4" fill="${top?'#1E1F23':'#fff'}" stroke="${top?'#1E1F23':'#D6C8A9'}" stroke-width="1.5"/>
+      ${top?`<path d="M${x+6} ${y+26}l9-9 6 6 5-5 12 8z" fill="#C8A96A"/><circle cx="${x+33}" cy="${y+9}" r="3.2" fill="#C8A96A"/>`:''}
+    </g>`);
+  }
+  return `<svg viewBox="0 0 74 56" fill="none" aria-hidden="true">${frames.join("")}</svg>`;
+}
+
+/* ---- OFFRE OPTIMISATION PHOTOS ---- */
+function photoOfferWidget(){
+  const m = state.espace.option_photos || "aucune";
+  const tiers = {essentiel:1, standard:2, complet:3};
+  return `
+  <div class="po">
+    <div class="po-head">
+      <div class="po-text">
+        <span class="po-kicker">Option · Pack photos pro</span>
+        <h3>Des photos qui donnent envie de réserver</h3>
+        <p>Vos photos sont la première chose que voient les entreprises qui cherchent un espace. Nous les retouchons pour montrer votre site sous son meilleur jour : lumineux, net et professionnel.</p>
+      </div>
+      <div class="po-visual">${poBeforeAfterSVG()}</div>
+    </div>
+    <div class="po-body">
+      <div class="po-benefits">
+        <div class="po-benefit">${PO_ICONS.lumiere}Luminosité & couleurs</div>
+        <div class="po-benefit">${PO_ICONS.lignes}Lignes redressées</div>
+        <div class="po-benefit">${PO_ICONS.cadrage}Recadrage soigné</div>
+        <div class="po-benefit">${PO_ICONS.web}Format web optimisé</div>
+      </div>
+      <div class="offre-free">${PO_ICONS.cadeau}<span>Offert : la photo de couverture de votre annonce est optimisée gratuitement.</span></div>
+      <div class="pack-hint" id="packHint"></div>
+      <div class="po-grid">${Object.entries(PACKS_PHOTOS).map(([k,p])=>`
+        <label class="po-card" id="po_${k}">
+          <span class="po-reco">Conseillé</span>
+          <input type="radio" name="option_photos" value="${k}" ${m===k?'checked':''} onchange="setDeep('espace.option_photos',this.value)">
+          ${poStackSVG(tiers[k])}
+          <b>${p.label}</b>
+          <span class="po-count">${p.photos}</span>
+          <span class="po-price">${p.ht} €<small> HT</small></span>
+          <span class="po-ttc">soit ${p.ttc} € TTC</span>
+        </label>`).join("")}
+      </div>
+      <label class="po-none">
+        <input type="radio" name="option_photos" value="aucune" ${m==="aucune"?'checked':''} onchange="setDeep('espace.option_photos',this.value)">
+        <span>Non merci<small>Seule la photo de couverture sera optimisée (offerte).</small></span>
+      </label>
+      <div class="po-secure">${PO_ICONS.cadenas}<span>Paiement en ligne sécurisé après l'envoi de votre dossier. Remboursement intégral si votre dossier n'est pas validé. Au-delà de 20 photos : sur devis.</span></div>
+    </div>
+  </div>`;
+}
+
+/* ---- CONTRÔLE NOMBRE DE PHOTOS / PACK ---- */
+const PACK_LIMITES = { essentiel:[1,5], standard:[6,10], complet:[11,20] };
+function packConseille(n){
+  if(n <= 0) return "standard";
+  if(n <= 5) return "essentiel";
+  if(n <= 10) return "standard";
+  return "complet";
+}
+function packConseil(){
+  const n = files.photos.length;
+  const k = state.espace.option_photos || "aucune";
+  const p = PACKS_PHOTOS[k];
+  if(!p || n === 0) return null;
+  const [min, max] = PACK_LIMITES[k];
+  const reco = packConseille(n);
+  if(n < min) return { warn:true, suggest:reco,
+    msg:`Vous avez ajouté ${n} photo(s) : le pack ${p.label} (${p.photos.toLowerCase()}) est plus grand que nécessaire. Le pack ${PACKS_PHOTOS[reco].label} suffit et vous coûte moins cher (${PACKS_PHOTOS[reco].ttc} € TTC au lieu de ${p.ttc} € TTC).` };
+  if(n > 20 && k === "complet") return { warn:true, suggest:null,
+    msg:`Vous avez ajouté ${n} photos : le pack Complet couvre 20 photos. Les ${n-20} photo(s) supplémentaire(s) feront l'objet d'un devis (7 € HT par photo).` };
+  if(n > max) return { warn:true, suggest:reco,
+    msg:`Vous avez ajouté ${n} photos : le pack ${p.label} n'en couvre que ${max}. Seules ${max} photos seraient optimisées. Le pack ${PACKS_PHOTOS[reco].label} couvre toutes vos photos.` };
+  return { warn:false, msg:`✓ Le pack ${p.label} correspond à vos ${n} photo(s).` };
+}
+function choisirPack(k){
+  state.espace.option_photos = k;
+  const r = document.querySelector(`input[name="option_photos"][value="${k}"]`);
+  if(r) r.checked = true;
+  window.__packWarned = false;
+  schedSave(); updatePackHint();
+}
+function updatePackHint(){
+  const reco = packConseille(files.photos.length);
+  Object.keys(PACKS_PHOTOS).forEach(k=>{ const c=document.getElementById("po_"+k); if(c) c.classList.toggle("is-reco", k===reco); });
+  const el = document.getElementById("packHint"); if(!el) return;
+  const c = packConseil();
+  if(!c){ el.className="pack-hint"; el.innerHTML=""; return; }
+  el.className = "pack-hint show " + (c.warn ? "warn" : "ok");
+  el.innerHTML = esc(c.msg) + (c.suggest ? `<br><button type="button" onclick="choisirPack('${c.suggest}')">Passer au pack ${esc(PACKS_PHOTOS[c.suggest].label)}</button>` : "");
+}
+
+function docSlot(d){
+  const n = files[d.key].length;
+  const status = n ? "✓ Fourni" : (d.key==="documents" ? "Facultatif" : "À fournir");
+  return `<div class="doc-slot ${n?'ok':''}" id="slot_${d.key}">
+    <div class="doc-slot-head"><b>${d.label}</b><span class="doc-status" id="status_${d.key}">${status}</span></div>
+    <p class="hint" style="margin:0 0 8px">${d.hint}</p>
+    <input type="file" multiple accept="application/pdf,image/jpeg,image/jpg,image/png,image/webp" onchange="setFiles('${d.key}', this.files)">
+    <div class="file-list" id="${d.key}List">${fileList(files[d.key], d.key)}</div>
+  </div>`;
+}
+
+function cardPhotos(){
+  return cardHead(5,"Photos & entreprise","Ajoutez les éléments nécessaires pour vérifier et publier le dossier.")
+  + `<div class="drop">
+      <b>Photos du site *</b>
+      <p class="hint">Façade, intérieur, accès, zones disponibles. Minimum conseillé : 3 photos.</p>
+      <div class="tips"><span>📐 À l'horizontale</span><span>☀️ De jour, lumières allumées</span><span>🧹 Espace dégagé</span><span>🚫 Sans enseigne ni plaque visible</span><span>🖼️ Vraies photos, pas de captures d'écran</span></div>
+      <input type="file" multiple accept="image/jpeg,image/jpg,image/png,image/webp,image/gif" onchange="setFiles('photos', this.files)">
+      <div class="file-counter" id="photosCounter">${files.photos.length} photo(s) sélectionnée(s)</div>
+      <div class="file-list" id="photosList">${fileList(files.photos,'photos')}</div>
+    </div>
+    <div class="section-title">Documents administratifs</div>
+    <p class="hint" style="margin:0">Ces documents sont nécessaires avant l'arrivée de votre premier client. Si vous ne les avez pas sous la main, vous pouvez envoyer votre dossier maintenant et nous les transmettre plus tard.</p>
+    <div class="doc-grid">${DOC_SLOTS.map(d=>docSlot(d)).join("")}</div>
+    <div class="info-note"><svg viewBox="0 0 24 24" fill="none" stroke="#A98745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span>Les fichiers ne sont pas conservés si vous quittez ou rechargez la page : ajoutez-les juste avant l'envoi.</span></div>
+    ${photoOfferWidget()}
+    <div class="section-title">Entreprise & facturation</div>
+    <div class="fg">
+      ${field("entreprise.nom","Raison sociale *","text","Ex. SAS Exemple",true)}
+      ${field("entreprise.siret","SIRET (14 chiffres) *","text","12345678900012")}
+      ${field("entreprise.tva","TVA intracommunautaire","text","FR...")}
+      ${field("entreprise.email","Email de facturation *","email","compta@entreprise.fr",true)}
+      ${field("entreprise.adresse_facturation","Adresse de facturation","text","Adresse complète",true)}
+      ${field("entreprise.code_postal_facturation","Code postal","text","75000")}
+      ${field("entreprise.ville_facturation","Ville","text","Paris")}
+    </div>
+    <div class="section-title">Responsable sur place</div>
+    <p class="hint" style="margin-bottom:14px">Le téléphone du responsable du site permettra à votre client de vous contacter pour finaliser son arrivée. Par défaut, ce sont vos coordonnées (étape 1) qui sont transmises. Pour indiquer un autre gérant du site, sélectionnez « autre » ci-dessous : c'est son numéro qui sera alors transmis au client.</p>
+    <div class="fg">
+      ${select("responsable.type","Qui gère le site ?",["moi","autre"])}
+      ${state.responsable.type==="autre" ? field("responsable.nom","Nom responsable *","text","Nom prénom") + field("responsable.telephone","Téléphone responsable *","tel","06...") + field("responsable.email","Email responsable","email","email@...") + field("responsable.fonction","Fonction","text","Responsable logistique") : ""}
+    </div>` + actions(true,"Vérifier mon dossier");
+}
+function fileList(arr, type){
+  if(!arr || !arr.length) return `<span style="color:var(--muted)">Aucun fichier sélectionné.</span>`;
+  return arr.map((f,i)=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <span>📎 ${esc(f.name)} <span style="color:var(--muted);font-size:11px">(${Math.round(f.size/1024)} Ko)</span></span>
+      <button type="button" onclick="removeFile('${type}',${i})" style="border:none;background:#FEE2E2;color:var(--red);border-radius:8px;padding:3px 9px;cursor:pointer;font-weight:900;font-size:13px">×</button>
+    </div>`).join("");
+}
+function removeFile(type, index){
+  files[type].splice(index, 1);
+  renderFileList(type);
+}
+function setFiles(type, fileListInput){
+  // Accumulate — deduplicate by name+size
+  const newFiles = Array.from(fileListInput || []);
+  const existing = files[type];
+  for(const f of newFiles){
+    const isDuplicate = existing.some(e => e.name === f.name && e.size === f.size);
+    if(!isDuplicate) existing.push(f);
+  }
+  renderFileList(type);
+}
+function renderFileList(type){
+  const list = document.getElementById(type + "List");
+  const counter = document.getElementById(type + "Counter");
+  if(list) list.innerHTML = fileList(files[type], type);
+  if(counter && type === "photos") counter.textContent = files.photos.length + " photo(s) sélectionnée(s)";
+  const slot = document.getElementById("slot_" + type);
+  const status = document.getElementById("status_" + type);
+  if(slot){
+    const n = files[type].length;
+    slot.classList.toggle("ok", n > 0);
+    if(status) status.textContent = n ? "✓ Fourni" : (type==="documents" ? "Facultatif" : "À fournir");
+  }
+  updateRecapCounters();
+  if(type === "photos"){ window.__packWarned = false; updatePackHint(); }
+  schedSave();
+}
+function docsCount(){ return files.kbis.length + files.identite.length + files.assurance.length + files.documents.length; }
+function updateRecapCounters(){
+  const p = document.getElementById("recapPhotosCount");
+  const d = document.getElementById("recapDocsCount");
+  const total = document.getElementById("recapTotalFilesCount");
+  if(p) p.textContent = files.photos.length + " photo(s)";
+  if(d) d.textContent = docsCount() + " document(s)";
+  if(total) total.textContent = (files.photos.length + docsCount()) + " fichier(s) au total";
+}
+function docsManquants(){
+  return DOC_SLOTS.filter(d => d.key !== "documents" && !files[d.key].length).map(d => d.label.split(" (")[0]);
+}
+
+function cardRecap(){
+  const e=state.espace, ent=state.entreprise;
+  const dispoLabel = e.disponibilite_mode === "date" && e.date_disponibilite
+    ? "À partir du " + e.date_disponibilite
+    : "Disponible immédiatement";
+  return cardHead(6,"Vérifier votre dossier","Vérifiez les informations avant envoi.")
+  + `<div class="recap">
+      <div class="recap-box"><b>Espace</b><span>${esc(e.type)} — ${esc(e.titre || e.nom)}<br>${esc(e.localisation_publique)}<br>${esc(e.surface_totale)} m²<br>${esc(e.partage)}</span></div>
+      <div class="recap-box"><b>Disponibilité</b><span>${esc(dispoLabel)}</span></div>
+      <div class="recap-box"><b>Contact</b><span>${esc(state.contact.nom)}${state.contact.fonction?' — '+esc(state.contact.fonction):''}<br>${esc(state.email_compte)}<br>${esc(ent.telephone)}</span></div>
+      <div class="recap-box"><b>Entreprise</b><span>${esc(ent.nom)}<br>SIRET : ${esc(ent.siret)}<br>${esc(ent.email)}</span></div>
+      <div class="recap-box"><b>Lots et loyers</b><span>${esc(e.commercialisation)}<br>${e.commercialisation==='En plusieurs lots'?e.lots.map(l=>esc(l.nom)+' : '+esc(l.unite==='palettes'?l.palettes_max+' palettes':l.unite==='postes'?l.postes+' postes':l.surface+' m²')+' · '+(l.prix_ht?esc(l.prix_ht)+' € HT/mois':'loyer à définir')).join('<br>'):e.prix_a_definir?'Loyer à définir':esc(e.remuneration_souhaitee_ht)+' € HT/mois'}</span></div>
+      <div class="recap-box"><b>Charges et prestations</b><span>${esc(e.charges_mode)}<br>${esc(e.charges_details)}<br>${esc(e.frais_annexes||'Aucun autre tarif renseigné')}</span></div>
+      <div class="recap-box"><b>Caution et visites</b><span>${esc(state.conditions.caution_mode)}${state.conditions.caution_mode!=='Aucune caution'?' · '+(state.conditions.caution_calcul==='Deux mois de loyer HT'?'Deux mois de loyer HT':esc(state.conditions.montant_caution)+' €'):''}<br>${esc(state.conditions.conditions_caution)}<br>Visites : ${esc(state.conditions.visite)}<br>${esc(state.conditions.visite_modalites)}</span></div>
+      <div class="recap-box"><b>Documents et durée</b><span>${esc(state.conditions.documents_demandes.join(', '))}<br>${esc(state.conditions.documents_autres)}<br>De ${esc(state.conditions.duree_min)} à ${esc(state.conditions.duree_max)} mois · ${esc(state.conditions.renouvellement)}</span></div>
+      <div class="recap-box"><b>Règlement et restrictions</b><span>${esc(state.conditions.reglement)}<br>${esc(state.conditions.restrictions)}</span></div>
+      <div class="recap-box"><b>Optimisation photos</b><span>${esc(packLabel(e.option_photos))}</span></div>
+      <div class="recap-box"><b>Fichiers</b><span id="recapPhotosCount">${files.photos.length} photo(s)</span><br><span id="recapDocsCount">${docsCount()} document(s)</span><br><span id="recapTotalFilesCount">${files.photos.length + docsCount()} fichier(s) au total</span></div>
+    </div>
+    ${docsManquants().length ? `<div class="alert warn" style="display:block;margin-top:16px">Documents à nous transmettre plus tard : ${esc(docsManquants().join(", "))}. Vous pouvez envoyer votre dossier maintenant.</div>` : ""}
+    <div class="cgh-box">
+      <input id="acceptCGH" type="checkbox" ${state.consentement?'checked':''} onchange="state.consentement=this.checked;schedSave()">
+      <div>
+        <strong>Acceptation des Conditions Générales Hébergeur STRAKARA</strong>
+        <div>Je confirme être propriétaire ou disposer de l'autorisation nécessaire, et j'accepte les <a href="https://www.strakara.fr/cgh.html" target="_blank" rel="noopener">CGH STRAKARA</a>.</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-prev" onclick="prev()">Retour</button>
+      <button type="submit" class="btn btn-gold" id="submitBtn">${MODE_TEST?"Tester le dossier sans l’envoyer":"Envoyer à STRAKARA"}</button>
+    </div></div>`;
+}
+
+function validateStep(s,visible){
+  const e=state.espace,c=state.conditions,ent=state.entreprise,number=v=>v!==''&&v!==null&&Number.isFinite(Number(v)),positive=v=>number(v)&&Number(v)>0;
+  let msg='';const need=(condition,message)=>{if(!msg&&condition)msg=message};
+  if(s===0){
+    need(![state.contact.nom,state.email_compte,ent.telephone].every(v=>String(v||'').trim()),'Indiquez votre nom, votre email de connexion et votre téléphone.');
+    need(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email_compte),'Vérifiez votre email de connexion.');
+    need(![e.nom,e.ville,e.code_postal,e.adresse_confidentielle,e.localisation_publique].every(v=>String(v||'').trim()),'Complétez le nom du site, la ville, le code postal, l’adresse exacte privée et la localisation publique.');
+    need(!/^\d{5}$/.test(e.code_postal.trim()),'Le code postal doit comporter 5 chiffres.');
+    need(!positive(e.surface_totale),'Indiquez une surface réelle disponible en m² supérieure à zéro.');
+    need(!e.partage||!e.site_en_activite||!e.accueil_public||!e.etat,'Précisez le partage de l’espace, l’activité sur site, la réception du public et l’état des lieux.');
+    need(!e.disponibilite_mode,'Choisissez la disponibilité du site.');
+    need(e.disponibilite_mode==='date'&&!e.date_disponibilite,'Indiquez la date de disponibilité.');
+    for(const k of ['hauteur','longueur','largeur'])need(e[k]!==''&&!positive(e[k]),'Les dimensions renseignées doivent être positives.');
+    if(!msg){const check=surfaceCheck();if(check.warn&&!window.__surfWarned){window.__surfWarned=true;msg='Vérifiez la cohérence entre la surface et les dimensions. Si elles sont correctes, cliquez une seconde fois sur Continuer.';}}
+  }
+  if(s===1){
+    need(!e.description_espace.trim(),'Décrivez l’espace réellement proposé.');
+    need(!e.activites.length,'Sélectionnez au moins une activité acceptée.');
+    need(!e.horaires_mode,'Choisissez les horaires d’accès.');
+    need(e.horaires_mode!=='24h'&&!e.horaires_custom.trim(),'Précisez les horaires d’accès.');
+    need(!e.acces.length,'Précisez au moins un mode d’accès au site.');
+    need(e.acces.includes('Accès autonome')&&e.acces.includes('Accès accompagné'),'Choisissez un mode d’accès cohérent : autonome ou accompagné. Précisez les éventuelles exceptions dans les contraintes d’accès.');
+    need(!e.temperature||!e.rendez_vous,'Précisez les conditions de température et les rendez-vous.');
+    need(['Température dirigée','Froid positif','Froid négatif'].includes(e.temperature)&&!e.temperature_details.trim(),'Indiquez la plage de température proposée.');
+    for(const k of ['porte_largeur','porte_hauteur'])need(e[k]!==''&&!positive(e[k]),'Les dimensions de porte renseignées doivent être positives.');
+  }
+  if(s===2){
+    need(!e.commercialisation,'Choisissez si vous proposez l’espace entier ou des lots.');
+    need(!e.charges_mode||!e.charges_details.trim(),'Précisez les charges comprises et les éventuels suppléments.');
+    if(e.commercialisation==='En plusieurs lots'){
+      need(!e.lots.length,'Ajoutez au moins un lot.');
+      const names=new Set();let surface=0;
+      e.lots.forEach((l,i)=>{
+        const name=String(l.nom||'').trim();need(!name,'Indiquez une référence pour le lot '+(i+1)+'.');
+        need(names.has(name.toLocaleLowerCase()),'Chaque référence de lot doit être unique.');names.add(name.toLocaleLowerCase());
+        need((l.unite||'m²')==='m²'&&!positive(l.surface),'Indiquez la surface du lot '+(i+1)+'.');
+        need(l.unite==='palettes'&&(!positive(l.palettes_max)||!Number.isInteger(Number(l.palettes_max))),'Indiquez un nombre entier de palettes pour le lot '+(i+1)+'.');
+        need(l.unite==='postes'&&(!positive(l.postes)||!Number.isInteger(Number(l.postes))),'Indiquez un nombre entier de postes pour le lot '+(i+1)+'.');
+        need(l.surface!==''&&l.surface!=null&&!positive(l.surface),'Vérifiez la surface du lot '+(i+1)+'.');
+        need(!e.prix_a_definir&&!positive(l.prix_ht),'Indiquez le loyer mensuel HT du lot '+(i+1)+' ou demandez une définition des prix avec STRAKARA.');
+        need(l.prix_ht!==''&&l.prix_ht!=null&&!positive(l.prix_ht),'Le loyer renseigné doit être supérieur à zéro.');
+        surface+=Number(l.surface)||0;
+      });
+      need(surface>Number(e.surface_totale)+.01,'La somme des surfaces des lots dépasse la surface disponible du site. Vérifiez le découpage.');
+    }else if(e.commercialisation==='En intégralité')need(!e.prix_a_definir&&!positive(e.remuneration_souhaitee_ht),'Indiquez le loyer mensuel HT ou demandez une définition du prix avec STRAKARA.');
+  }
+  if(s===3){
+    need(!c.visite||!c.caution_mode||!c.renouvellement,'Répondez aux questions sur les visites, la caution et le renouvellement.');
+    need(c.visite==='Oui'&&!c.visite_modalites.trim(),'Précisez les modalités des visites.');
+    need(c.caution_mode!=='Aucune caution'&&c.caution_mode&&(!c.caution_calcul||(c.caution_calcul==='Montant fixe par réservation'&&!positive(c.montant_caution))||!c.conditions_caution.trim()),'Indiquez le montant et les conditions de la caution.');
+    need(!Number.isInteger(Number(c.duree_min))||!Number.isInteger(Number(c.duree_max))||Number(c.duree_min)<1||Number(c.duree_max)>9||Number(c.duree_max)<Number(c.duree_min),'Les durées doivent être comprises entre 1 et 9 mois, avec un minimum inférieur ou égal au maximum.');
+    need(!c.delai_entree.trim(),'Précisez le délai d’entrée réaliste après acceptation.');
+    need(!c.documents_demandes.length&&!c.documents_autres.trim(),'Indiquez les documents demandés aux occupants.');
+    need(!c.assurances.length,'Sélectionnez les assurances exigées avant l’entrée.');
+    need(!c.reglement.trim()||!c.restrictions.trim(),'Précisez le règlement du site et les activités ou marchandises refusées.');
+    need(!c.exigences_confirmees,'Confirmez avoir vérifié les exigences et conditions du site.');
+  }
+  if(s===4){
+    need(!ent.nom.trim()||!ent.siret.trim()||!ent.email.trim(),'Complétez la raison sociale, le SIRET et l’email de facturation.');
+    need(!siretValide(ent.siret),'Vérifiez les 14 chiffres du SIRET sur votre justificatif.');
+    need(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ent.email),'Vérifiez votre email de facturation.');
+    need(ent.tva&&!tvaValide(ent.tva,ent.siret),'Vérifiez le numéro de TVA et sa correspondance avec le SIRET.');
+    need(!files.photos.length,'Ajoutez au moins une photo réelle du site.');
+    need(state.responsable.type==='autre'&&(!state.responsable.nom.trim()||!state.responsable.telephone.trim()),'Indiquez le nom et le téléphone du responsable sur place.');
+    if(!msg){const pc=packConseil();if(pc&&pc.warn&&!window.__packWarned){window.__packWarned=true;msg=pc.msg+' Cliquez une seconde fois pour conserver votre choix.';}}
+  }
+  if(s===5)need(!state.consentement,'Acceptez les Conditions Générales Hébergeur avant de tester le dossier.');
+  if(msg&&visible)showAlert('err',esc(msg));return !msg;
+}
+
+
+/* ---- UPLOAD avec retry et nom sanitizé ---- */
+async function uploadOne(file, folder, prive=false){
+  if(MODE_TEST)throw new Error("Les téléversements sont désactivés en version de test.");
+  // Sanitize filename: suppression des accents, caractères spéciaux
+  const ext = file.name.split(".").pop().toLowerCase();
+  const baseName = file.name
+    .replace(/\.[^.]+$/, "")
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-zA-Z0-9_-]/g, "_")
+    .slice(0, 40);
+  const uniqueName = `${Date.now()}_${Math.random().toString(36).slice(2,8)}_${baseName}.${ext}`;
+  const path = `${folder}/${uniqueName}`;
+  const bucket = prive ? SUPABASE_BUCKET_DOCS : SUPABASE_BUCKET;
+
+  const { error } = await sb.storage.from(bucket).upload(path, file, {
+    upsert: false,
+    contentType: file.type || "application/octet-stream"
+  });
+  if(error) throw new Error(`Upload échoué (${file.name}) : ${error.message}`);
+
+  if(prive) return { name: file.name, path, bucket, url: null, size: file.size, type: file.type };
+  const { data } = sb.storage.from(bucket).getPublicUrl(path);
+  return { name: file.name, path, url: data.publicUrl, size: file.size, type: file.type };
+}
+
+async function uploadFiles(){
+  const photoUploads = [];
+  const docUploads = [];
+  for(const f of files.photos){
+    photoUploads.push(await uploadOne(f, "photos"));
+  }
+  const categories = { kbis:"kbis", identite:"identite", assurance:"assurance", documents:"autre" };
+  for(const [key, categorie] of Object.entries(categories)){
+    for(const f of files[key]){
+      const up = await uploadOne(f, "depots", true);
+      up.categorie = categorie;
+      docUploads.push(up);
+    }
+  }
+  return { photos: photoUploads, documents: docUploads };
+}
+
+function getHorairesLabel(){
+  const m = state.espace.horaires_mode;
+  if(m === "24h") return "24h/7j";
+  if(m === "7j")  return "7j/7" + (state.espace.horaires_custom ? " — " + state.espace.horaires_custom : "");
+  return state.espace.horaires_custom || "À préciser";
+}
+
+async function submitForm(){
+  for(let k=0;k<stepsConfig.length;k++){if(!validateStep(k,true)){step=k;const message=$("#alert").textContent;render();showAlert('err',esc(message));return;}}
+  if(MODE_TEST){afficherTest();return;}
+  if(!sb){showAlert("err","La connexion au service est indisponible. Rechargez la page avant de réessayer.");return;}
+  const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Envoi en cours...";
+  try{
+    showAlert("warn","Envoi du dossier en cours… ⏳ Ne fermez pas et ne rafraîchissez pas cette page, l'upload des fichiers peut prendre quelques minutes.");
+
+    let photoUploads = [], docUploads = [];
+    try {
+      const uploaded = await uploadFiles();
+      photoUploads = uploaded.photos;
+      docUploads = uploaded.documents;
+    } catch(uploadErr) {
+      showAlert("err", "Erreur lors de l'upload des fichiers : " + esc(uploadErr.message));
+      btn.disabled=false; btn.textContent=MODE_TEST?"Tester le dossier sans l’envoyer":"Envoyer à STRAKARA";
+      return;
+    }
+
+    const e = state.espace;
+    const ent = state.entreprise;
+    const resp = state.responsable;
+    const dispoLabel = e.disponibilite_mode === "date" && e.date_disponibilite
+      ? "Disponible à partir du " + e.date_disponibilite
+      : "Disponible immédiatement";
+
+    const dossierId = crypto.randomUUID();
+    if(!e.titre.trim())e.titre=titreSuggere();
+    const payload = {
+      id: dossierId,
+      statut: "en_attente",
+      hebergeur_id: state.hebergeur_id,
+      email_compte: state.email_compte || ent.email,
+
+      validation_nom: ent.nom,
+      validation_email: ent.email,
+      accepted_cgh: true,
+      accepted_cgh_date: new Date().toISOString(),
+      accepted_cgh_version: "CGH-2026-06",
+      accepted_cgh_user_agent: navigator.userAgent,
+
+      nom_facturation: ent.nom,
+      siret: cleanSiret(ent.siret),
+      tva: String(ent.tva||"").replace(/\s+/g,"").toUpperCase(),
+      telephone: ent.telephone,
+      email_facturation: ent.email,
+      adresse_facturation: ent.adresse_facturation,
+      code_postal_facturation: ent.code_postal_facturation,
+      ville_facturation: ent.ville_facturation,
+
+      responsable_sur_place: resp.type,
+      nom_responsable: resp.type === "autre" ? resp.nom : state.contact.nom,
+      telephone_responsable: resp.type === "autre" ? resp.telephone : ent.telephone,
+      email_responsable: resp.type === "autre" ? resp.email : (state.email_compte || ent.email),
+      fonction_responsable: resp.type === "autre" ? resp.fonction : state.contact.fonction,
+      horaires: getHorairesLabel(),
+
+      nom_site: e.nom,
+      type_espace: e.type,
+      adresse: e.adresse_confidentielle,
+      ville: e.ville,
+      code_postal: e.code_postal,
+      surface_totale: e.surface_totale ? Number(e.surface_totale) : null,
+      longueur: e.longueur ? Number(e.longueur) : null,
+      largeur: e.largeur ? Number(e.largeur) : null,
+      hauteur: e.hauteur ? Number(e.hauteur) : null,
+      revenu_souhaite: e.remuneration_souhaitee_ht ? Number(e.remuneration_souhaitee_ht) : null,
+      disponibilite: dispoLabel,
+      date_disponibilite: (e.disponibilite_mode === "date" && e.date_disponibilite) ? e.date_disponibilite : null,
+      titre_annonce: e.titre,
+      localisation: e.localisation_publique,
+      acces_routiers: e.situation_acces,
+
+      description_batiment: e.description_batiment,
+      description_espace: e.description_espace,
+      description_situation: e.situation_acces,
+      a_savoir: e.a_savoir,
+      // Colonne texte existante : aucune migration de Supabase requise.
+      // n8n doit décoder le bloc balisé pour exploiter les nouveaux champs.
+      informations_complementaires: serialiserComplement(),
+
+      activites: e.activites,
+      acces: e.acces,
+      securite: e.securite,
+      equipements: e.equipements,
+      vehicules: e.vehicules,
+      portes: e.portes,
+      manutention: e.manutention,
+      autres_equipements: e.autres_equipements,
+      site_entier: e.commercialisation === "En intégralité",
+      surface_circulation: null,
+      lots: e.commercialisation === "En plusieurs lots" ? e.lots : [],
+
+      option_photos: e.option_photos || "aucune",
+      photos_site: photoUploads,
+      photos_espace: [],
+      documents: docUploads,
+      plans: []
+    };
+
+const { error } = await sb.from(SUPABASE_TABLE).insert(payload);
+if(error) throw error;
+
+// Brouillon marqué comme envoyé (converti) puis oublié sur cet appareil
+clearTimeout(window.__brTimer);
+await pushBrouillon(true, dossierId);
+localStorage.removeItem("strakara_brouillon_id");
+
+// ── WEBHOOK N8N → EMAIL CONFIRMATION HÉBERGEUR ──────────────
+try {
+  await fetch('https://strakara.app.n8n.cloud/webhook/nouveau-espace-strakara', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      dossier_id: dossierId,
+      formulaire_version: 'nouveauespace-v2',
+      fiche_annonce: construireFiche(),
+      email: state.email_compte || ent.email || resp.email || '',
+      prenom_nom: state.contact.nom || resp.nom || ent.nom || '',
+      titre: e.titre || e.nom || '',
+      ville: e.ville || '',
+      type_espace: e.type || ''
+    })
+  });
+} catch(n8nErr) {
+  console.warn('Webhook N8N non atteint :', n8nErr);
+}
+
+    localStorage.removeItem(SAVE_KEY);
+    $("#formArea").classList.add("hidden");
+    $("#hero").classList.add("hidden");
+    $("#alert").className="alert";
+    $("#success").classList.add("show");
+    const pack = PACKS_PHOTOS[e.option_photos];
+    if(pack){
+      const email = state.email_compte || ent.email || "";
+      $("#payTitle").textContent = `Votre pack photos ${pack.label} — ${pack.ttc} € TTC`;
+      $("#payBtn").href = `${pack.lien}?client_reference_id=${dossierId}&prefilled_email=${encodeURIComponent(email)}`;
+      $("#payBox").classList.add("show");
+    }
+    window.scrollTo({top:0,behavior:"smooth"});
+  }catch(err){
+    console.error(err);
+    showAlert("err","Erreur : " + esc(err.message || String(err)));
+  }finally{
+    btn.disabled=false; btn.textContent=MODE_TEST?"Tester le dossier sans l’envoyer":"Envoyer à STRAKARA";
+  }
+}
+/* Contrat de données additif : les colonnes Supabase historiques restent inchangées. */
+function titreSuggere(){const e=state.espace;return e.type+' · '+e.surface_totale+' m² · '+e.ville;}
+function construireFiche(){
+  const e=state.espace,c=state.conditions;
+  const mode=c.caution_mode==='Aucune caution'?'Aucune':c.caution_mode==='Empreinte bancaire Swikly'?'Swikly':c.caution_mode==='Dépôt versé à l’hébergeur'?'Dépôt versé':'Choix du client';
+  const typesCaution=mode==='Aucune'?[]:mode==='Swikly'?['Empreinte bancaire']:mode==='Dépôt versé'?['Caution ']:['Empreinte bancaire','Caution '];
+  const lots=e.commercialisation==='En plusieurs lots'?e.lots.map((l,i)=>({
+    nom:String(l.nom||'Lot '+(i+1)).trim(),unite:l.unite||'m²',surface:l.surface?Number(l.surface):null,
+    surface_lot_m2:l.surface?Number(l.surface):null,palettes_max:l.unite==='palettes'?Number(l.palettes_max):null,
+    postes:l.unite==='postes'?Number(l.postes):null,prix_ht:l.prix_ht?Number(l.prix_ht):null,
+    montant_caution:c.caution_mode==='Aucune caution'?0:c.caution_calcul==='Deux mois de loyer HT'?(l.prix_ht?Number(l.prix_ht)*2:null):(c.montant_caution?Number(c.montant_caution):null),
+    description:l.description||'',date_disponibilite:l.date_disponibilite||null,
+    photo_nom:files.photos.some(f=>f.name===l.photo_nom)?l.photo_nom:null
+  })):[];
+  return {
+    schema_version:'strakara.fiche-annonce.v2',
+    site:{nom:e.nom,ville:e.ville,code_postal:e.code_postal,localisation_publique:e.localisation_publique,
+      titre_souhaite:e.titre.trim()||titreSuggere(),type:e.type,surface_disponible_m2:Number(e.surface_totale),partage:e.partage,site_en_activite:e.site_en_activite,
+      accueil_public:e.accueil_public,etat:e.etat,environnement:e.environnement,horaires:getHorairesLabel(),temperature:e.temperature,temperature_details:e.temperature_details,
+      dimensions_porte:{largeur_m:e.porte_largeur?Number(e.porte_largeur):null,hauteur_m:e.porte_hauteur?Number(e.porte_hauteur):null},
+      acces:e.acces,acces_details:e.acces_details,rendez_vous:e.rendez_vous,stationnement:e.stationnement,
+      activites:e.activites,securite:e.securite,equipements:e.equipements,vehicules:e.vehicules,portes:e.portes,manutention:e.manutention,manutention_conditions:e.manutention_conditions,
+      informations_entreprise_publiques:c.infos_entreprise_publiques},
+    commercialisation:{mode:e.commercialisation,prix_a_definir:e.prix_a_definir||e.commercialisation==='À définir avec STRAKARA',
+      loyer_ensemble_ht_mois:e.remuneration_souhaitee_ht?Number(e.remuneration_souhaitee_ht):null,
+      charges_mode:e.charges_mode,charges_details:e.charges_details,frais_annexes:e.frais_annexes,lots},
+    conditions:{visite:c.visite==='Oui'?'oui':'non',visite_modalites:c.visite==='Oui'?c.visite_modalites:'',
+      caution_mode:mode,caution_calcul:mode==='Aucune'?null:c.caution_calcul,montant_caution:mode==='Aucune'?0:c.caution_calcul==='Deux mois de loyer HT'?(e.commercialisation==='En intégralité'&&e.remuneration_souhaitee_ht?Number(e.remuneration_souhaitee_ht)*2:null):Number(c.montant_caution),conditions_caution:mode==='Aucune'?'Aucune caution demandée':c.conditions_caution,
+      documents_demandes:[...c.documents_demandes],documents_autres:c.documents_autres,assurances:[...c.assurances],
+      duree_min_mois:Number(c.duree_min),duree_max_mois:Number(c.duree_max),renouvellement:c.renouvellement,delai_entree:c.delai_entree,preparation_arrivee:c.preavis_acces,
+      validation:'sur_demande',reglement:c.reglement,restrictions:c.restrictions,exigences_confirmees:c.exigences_confirmees},
+    correspondance_airtable:{
+      'Espace de Stockage':{'Visite':[c.visite==='Oui'?'oui':'non'],'documents_demandes':[...c.documents_demandes],
+        'Type de caution':typesCaution,'Montant caution':mode==='Aucune'?0:c.caution_calcul==='Deux mois de loyer HT'?(e.commercialisation==='En intégralité'&&e.remuneration_souhaitee_ht?Number(e.remuneration_souhaitee_ht)*2:null):Number(c.montant_caution),
+        'Conditions de caution':mode==='Aucune'?'Aucune caution demandée':c.conditions_caution,
+        'À savoir':[c.reglement,c.restrictions,c.documents_autres?'Autres documents : '+c.documents_autres:''].filter(Boolean).join('\n\n'),
+        'Important':c.restrictions,'⏱️ Accès au site':getHorairesLabel(),'🚗 Accès véhicule':e.vehicules.join(', '),'🔒 Sécurité du site':e.securite.join(', ')},
+      'Site':{'Contraintes Réglement':c.reglement,'Horaires':getHorairesLabel(),'sécurité globale':e.securite.join(', '),"Type d'accès":e.acces.join(', ')}
+    },
+    controle_publication:{validation_humaine_requise:true,points_a_confirmer:[...(e.prix_a_definir||e.commercialisation==='À définir avec STRAKARA'?['Loyers et découpage à définir']:[]),...(e.accueil_public!=='Non'?['Usage avec réception du public à examiner']:[]),...(!files.kbis.length||!files.identite.length||!files.assurance.length?['Documents hébergeur à vérifier']:[])]},
+    consignes_redaction:{ne_pas_inventer:true,adresse_exacte_publique:false,eviter_doublons_prix_horaires:true,absence_information:'Ne pas affirmer une caractéristique non renseignée'}
+  };
+}
+function serialiserComplement(){return [state.espace.autres_equipements,'[STRAKARA_FICHE_V2]',JSON.stringify(construireFiche()),'[/STRAKARA_FICHE_V2]'].filter(Boolean).join('\n');}
+function afficherTest(){
+  const fiche=construireFiche();window.strakaraDernierTest={mode:'simulation_sans_envoi',formulaire_version:'nouveauespace-v2',fiche_annonce:fiche,
+    fichiers:Object.fromEntries(Object.entries(files).map(([k,arr])=>[k,arr.map(f=>({nom:f.name,taille:f.size,type:f.type}))]))};
+  const target=$('#success');target.innerHTML='<div class="icon">✓</div><h2>Votre dossier de test est prêt</h2><p>Aucun envoi n’a été effectué. Vérifiez les réponses et téléchargez les données de test si vous souhaitez contrôler leur reprise dans n8n.</p><div class="actions"><button type="button" class="btn btn-line" onclick="retourTest()">Revenir au formulaire</button><button type="button" class="btn btn-gold" onclick="telechargerTest()">Télécharger les données de test</button></div><details style="margin-top:24px;text-align:left"><summary>Voir les données structurées de la fiche</summary><pre>'+esc(JSON.stringify(fiche,null,2))+'</pre></details>';
+  $('#formArea').classList.add('hidden');$('#hero').classList.add('hidden');hideAlert();target.classList.add('show');window.scrollTo({top:0,behavior:'smooth'});
+}
+function retourTest(){$('#success').classList.remove('show');$('#formArea').classList.remove('hidden');$('#hero').classList.remove('hidden');step=5;render()}
+function telechargerTest(){const blob=new Blob([JSON.stringify(window.strakaraDernierTest,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='strakara-dossier-test.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+
+function resetAll(){ localStorage.removeItem(SAVE_KEY); location.reload(); }
+
+loadDraft();
+render();
+if(MODE_TEST){
+  const banner=document.createElement('div');banner.className='test-banner';banner.setAttribute('role','status');banner.textContent='VERSION DE TEST · Aucun dossier, brouillon, fichier ou paiement n’est envoyé. Vos réponses restent sur cet appareil.';document.querySelector('main').prepend(banner);
+}
+</script>
+  <footer class="sk-footer">
+    <div class="sk-footer__inner">
+      <div class="sk-footer__brand">
+        <a class="sk-footer__logo" href="https://www.strakara.fr/">STRA<span>KARA</span></a>
+        <p>Des espaces professionnels flexibles pour les entreprises, et une nouvelle façon de valoriser les surfaces disponibles.</p>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Services</h4>
+        <a href="https://www.strakara.fr/espaces.html">Nos espaces pros</a>
+        <a href="https://www.strakara.fr/devenir-hebergeur-stockage.html">Devenir hébergeur</a>
+        <a href="https://www.strakara.fr/recherches-clients.html">Recherches clients</a>
+        <a href="https://www.strakara.fr/blog/index.html">Ressources</a>
+        <a href="https://www.strakara.fr/checklist-stockage-professionnel.html">Checklist préparation</a>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Société</h4>
+        <a href="https://www.strakara.fr/">Accueil</a>
+        <a href="https://www.strakara.fr/a-propos.html">À propos</a>
+        <a href="https://www.strakara.fr/modele-stockage-professionnel.html">Notre modèle</a>
+        <a href="https://www.strakara.fr/contact.html">Contact</a>
+        <a href="mailto:contact@strakara.fr">contact@strakara.fr</a>
+        <a href="tel:0759647754">07 59 64 77 54</a>
+      </div>
+      <div class="sk-footer__col">
+        <h4>Légal</h4>
+        <a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a>
+        <a href="https://www.strakara.fr/cgv.html">CGV</a>
+        <a href="https://www.strakara.fr/cgh.html">CGH</a>
+        <a href="https://www.strakara.fr/reglement-interieur.html">Règlement intérieur</a>
+        <a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a>
+        <a href="https://www.strakara.fr/politique-cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="sk-footer__bottom">
+      <p>© 2026 STRAKARA SASU — Tous droits réservés</p>
+      <div><a href="https://www.strakara.fr/mentions-legales.html">Mentions légales</a><a href="https://www.strakara.fr/cgv.html">CGV</a><a href="https://www.strakara.fr/politique-confidentialite.html">Confidentialité</a></div>
+    </div>
+  </footer>
+
+  <script src="https://app.strakara.fr/cookie-banner.js"></script>
+</body>
+</html>
