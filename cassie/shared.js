@@ -216,3 +216,18 @@ function runQuizGame(rootEl, jeuNom, generateQuestion, totalQuestions = 8) {
 
   renderQuestion();
 }
+
+// ---------- Difficulté adaptative ----------
+// Regarde les 3 dernières parties de ce jeu : si ça se passe bien, on monte
+// d'un niveau ; si c'est difficile, on redescend. Comme ça elle réussit de
+// mieux en mieux, sans jamais rester bloquée sur un niveau trop dur.
+async function chooseAdaptiveLevel(jeu, maxLevel = 3) {
+  const sessions = (await getCassieSessions()).filter(s => s.jeu === jeu).slice(0, 3);
+  if (sessions.length === 0) return 1;
+  const totalBonnes = sessions.reduce((s, x) => s + (x.bonnes_reponses || 0), 0);
+  const totalQ = sessions.reduce((s, x) => s + (x.total_questions || 0), 0);
+  const rate = totalQ ? totalBonnes / totalQ : 0;
+  if (rate >= 0.85) return maxLevel;
+  if (rate >= 0.6) return Math.min(maxLevel, 2);
+  return 1;
+}

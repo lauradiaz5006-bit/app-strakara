@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dizaines et centaines</title>
+<link rel="stylesheet" href="style.css?v=3" />
+<style>
+  .blocs-zone { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0 16px; }
+  .bloc-centaine, .bloc-dizaine, .bloc-unite {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blanc); font-family: var(--display); font-weight: 800;
+  }
+  .bloc-centaine { width: 64px; height: 64px; background: var(--violet); border-radius: 14px; font-size: 1.1rem; }
+  .bloc-dizaine { width: 44px; height: 44px; background: var(--bleu); border-radius: 10px; font-size: 1rem; }
+  .bloc-unite { width: 20px; height: 20px; background: var(--orange); border-radius: 50%; }
+  .niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
+</style>
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>🧱 Dizaines et centaines</h1>
+  <p>Regarde les blocs, trouve le nombre !</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root">Chargement...</div>
+</main>
+
+<script src="shared.js?v=3"></script>
+<script>
+function blocsPour(n) {
+  const centaines = Math.floor(n / 100);
+  const dizaines = Math.floor((n % 100) / 10);
+  const unites = n % 10;
+  let html = '<div class="blocs-zone">';
+  for (let i = 0; i < centaines; i++) html += `<div class="bloc-centaine">100</div>`;
+  for (let i = 0; i < dizaines; i++) html += `<div class="bloc-dizaine">10</div>`;
+  for (let i = 0; i < unites; i++) html += `<div class="bloc-unite"></div>`;
+  html += '</div>';
+  return html;
+}
+
+async function start() {
+  const level = await chooseAdaptiveLevel("dizaines", 3);
+  const range = level === 1 ? [11, 39] : level === 2 ? [40, 99] : [100, 180];
+
+  function genQuestion() {
+    const n = randInt(range[0], range[1]);
+    const text = `
+      <div class="niveau-badge">Niveau ${level}</div>
+      ${blocsPour(n)}
+      <p style="font-size:1.1rem; font-weight:700; color:#6b6484;">Quel nombre est-ce ?</p>
+    `;
+    const options = fakeAnswersAround(n, 0, 200);
+    return { text, correct: n, options };
+  }
+
+  runQuizGame(document.getElementById("game-root"), "dizaines", genQuestion, 6);
+}
+start();
+</script>
+</body>
+</html>

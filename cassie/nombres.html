@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Les nombres</title>
-<link rel="stylesheet" href="style.css?v=2" />
+<link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -18,7 +18,7 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=2"></script>
+<script src="shared.js?v=3"></script>
 <script>
 function uniqueOptionsWith(a, b, correct, max) {
   const set = new Set([a, b]);
@@ -31,17 +31,16 @@ function uniqueOptionsWith(a, b, correct, max) {
   return shuffle([...set].slice(0, 4));
 }
 
-function genQuestion() {
+function genQuestion(max) {
   const type = randInt(0, 2);
-  const max = 20;
   if (type === 0) {
     const a = randInt(1, max), b = randInt(1, max);
-    if (a === b) return genQuestion();
+    if (a === b) return genQuestion(max);
     const correct = Math.max(a, b);
     return { text: `Quel est le plus grand nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct, max) };
   } else if (type === 1) {
     const a = randInt(1, max), b = randInt(1, max);
-    if (a === b) return genQuestion();
+    if (a === b) return genQuestion(max);
     const correct = Math.min(a, b);
     return { text: `Quel est le plus petit nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct, max) };
   } else {
@@ -51,7 +50,12 @@ function genQuestion() {
   }
 }
 
-runQuizGame(document.getElementById("game-root"), "nombres", genQuestion, 6);
+async function start() {
+  const level = await chooseAdaptiveLevel("nombres", 3);
+  const max = level === 1 ? 20 : level === 2 ? 50 : 100;
+  runQuizGame(document.getElementById("game-root"), "nombres", () => genQuestion(max), 6);
+}
+start();
 </script>
 </body>
 </html>
