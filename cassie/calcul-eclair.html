@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calcul éclair</title>
+<link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>⚡ Calcul éclair</h1>
+  <p>Trouve vite le bon résultat !</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root"></div>
+</main>
+
+<script src="shared.js?v=1"></script>
+<script>
+function genQuestion() {
+  const isAddition = Math.random() < 0.5;
+  let a, b, correct, symbole;
+  if (isAddition) {
+    a = randInt(1, 60);
+    b = randInt(1, Math.max(1, Math.min(40, 100 - a)));
+    correct = a + b;
+    symbole = "+";
+  } else {
+    a = randInt(10, 100);
+    b = randInt(1, a);
+    correct = a - b;
+    symbole = "−";
+  }
+  const options = fakeAnswersAround(correct, 0, 150);
+  return { text: `${a} ${symbole} ${b} = ?`, correct, options };
+}
+
+runQuizGame(document.getElementById("game-root"), "calcul-eclair", genQuestion, 8);
+</script>
+</body>
+</html>

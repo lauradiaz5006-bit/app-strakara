@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>L'espace de Cassie</title>
+<link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>Coucou Cassie ! 🌟</h1>
+  <p>On joue un peu avec les nombres ?</p>
+  <div class="cassie-stats">
+    <div class="stat-pill" id="stars-pill">⭐ ...</div>
+    <div class="stat-pill" id="minutes-pill">⏱️ ...</div>
+  </div>
+</header>
+
+<main>
+  <a class="game-card c-bleu" href="calcul-eclair.html">
+    <span class="emoji">⚡</span>
+    <h3>Calcul éclair</h3>
+    <p>Des additions et des soustractions, vite fait bien fait !</p>
+  </a>
+
+  <a class="game-card c-vert" href="doubles-moities.html">
+    <span class="emoji">🪞</span>
+    <h3>Doubles et moitiés</h3>
+    <p>Devine le double ou la moitié d'un nombre.</p>
+  </a>
+
+  <a class="game-card c-violet" href="nombres.html">
+    <span class="emoji">🔢</span>
+    <h3>Les nombres jusqu'à 100</h3>
+    <p>Range-les, compare-les, trouve le plus grand !</p>
+  </a>
+
+  <a class="game-card c-orange" href="problemes.html">
+    <span class="emoji">🧩</span>
+    <h3>Petits problèmes</h3>
+    <p>De petites histoires à résoudre avec des nombres.</p>
+  </a>
+</main>
+
+<footer class="cassie-footer">bravo pour chaque partie jouée 💛</footer>
+
+<script src="shared.js?v=1"></script>
+<script>
+(async function () {
+  const stars = await getTotalStars();
+  const minutes = await getTodayMinutes();
+  document.getElementById("stars-pill").textContent = `⭐ ${stars}`;
+  document.getElementById("minutes-pill").textContent = `⏱️ ${minutes} min aujourd'hui`;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Doubles et moitiés</title>
+<link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>🪞 Doubles et moitiés</h1>
+  <p>Devine le double ou la moitié !</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root"></div>
+</main>
+
+<script src="shared.js?v=1"></script>
+<script>
+function genQuestion() {
+  const isDouble = Math.random() < 0.5;
+  let n, correct, text;
+  if (isDouble) {
+    n = randInt(1, 25);
+    correct = n * 2;
+    text = `Le double de ${n}, c'est ?`;
+  } else {
+    n = randInt(1, 25) * 2;
+    correct = n / 2;
+    text = `La moitié de ${n}, c'est ?`;
+  }
+  const options = fakeAnswersAround(correct, 0, 60);
+  return { text, correct, options };
+}
+
+runQuizGame(document.getElementById("game-root"), "doubles-moities", genQuestion, 8);
+</script>
+</body>
+</html>

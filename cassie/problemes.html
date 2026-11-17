@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Petits problèmes</title>
+<link rel="stylesheet" href="style.css?v=1" />
+<style>
+  .question-text { font-size: 1.7rem; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>🧩 Petits problèmes</h1>
+  <p>Lis bien l'histoire, puis trouve la réponse !</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root"></div>
+</main>
+
+<script src="shared.js?v=1"></script>
+<script>
+const objets = [
+  { emoji: "🍎", nom: "pommes" },
+  { emoji: "🎈", nom: "ballons" },
+  { emoji: "🐟", nom: "poissons" },
+  { emoji: "🧸", nom: "peluches" },
+  { emoji: "🍬", nom: "bonbons" },
+  { emoji: "⭐", nom: "étoiles" },
+];
+const prenoms = ["Cassie", "Léo", "Mia", "Tom", "Léa"];
+
+function genQuestion() {
+  const obj = objets[randInt(0, objets.length - 1)];
+  const prenom = prenoms[randInt(0, prenoms.length - 1)];
+  const isAddition = Math.random() < 0.5;
+  let text, correct;
+  if (isAddition) {
+    const a = randInt(2, 20), b = randInt(2, 15);
+    correct = a + b;
+    text = `${prenom} a ${a} ${obj.emoji} ${obj.nom}. On lui en donne ${b} de plus. Combien en a-t-${prenom === "Cassie" || prenom === "Mia" || prenom === "Léa" ? "elle" : "il"} maintenant ?`;
+  } else {
+    const a = randInt(10, 25), b = randInt(2, a - 1);
+    correct = a - b;
+    text = `${prenom} a ${a} ${obj.emoji} ${obj.nom}. ${prenom === "Cassie" || prenom === "Mia" || prenom === "Léa" ? "Elle" : "Il"} en donne ${b} à un copain. Combien lui en reste-t-il ?`;
+  }
+  const options = fakeAnswersAround(correct, 0, 45);
+  return { text, correct, options };
+}
+
+runQuizGame(document.getElementById("game-root"), "problemes", genQuestion, 6);
+</script>
+</body>
+</html>
