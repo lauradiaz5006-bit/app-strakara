@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <title>L'espace de Nina</title>
-<link rel="stylesheet" href="style.css?v=2" />
+<link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 <header class="top">
@@ -93,7 +93,7 @@
 
 <footer class="nina-footer">on avance, à ton rythme, et c'est déjà énorme 💛</footer>
 
-<script src="shared.js?v=2"></script>
+<script src="shared.js?v=3"></script>
 <script>
 async function renderNotes(matiere) {
   const notes = (await getNotes(matiere)).reverse();
@@ -104,14 +104,20 @@ async function renderNotes(matiere) {
   if (notes.length === 0) { empty.style.display = "block"; return; }
   empty.style.display = "none";
   notes.forEach(n => {
+    const col = document.createElement("div");
+    col.className = "bar-col";
+    const label = document.createElement("span");
+    label.className = "label";
+    label.textContent = `${n.note}/20`;
     const bar = document.createElement("div");
     bar.className = "bar";
     const height = Math.max(6, (n.note / 20) * 100);
     bar.style.height = height + "px";
     const date = new Date(n.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "2-digit" });
-    bar.innerHTML = `<span class="label">${n.note}/20</span>`;
-    bar.title = `${n.commentaire || ""} — ${date}`;
-    chart.appendChild(bar);
+    col.title = `${n.commentaire || ""} — ${date}`;
+    col.appendChild(label);
+    col.appendChild(bar);
+    chart.appendChild(col);
   });
   if (notes.length >= 2) {
     const first = notes[0].note, last = notes[notes.length - 1].note;
