@@ -186,11 +186,51 @@ function copyForAI(lessonTitle, lessonText, question, matiere = "maths") {
   );
 }
 
+// ---------- Catalogue des fiches (pour que l'IA puisse orienter Nina) ----------
+const FICHES_NINA = {
+  "Calcul rapide": "automatismes.html",
+  "Statistiques & probabilités": "stats-probas.html",
+  "Suites géométriques": "suites.html",
+  "Fonctions polynômes de degré 3": "fonctions-degre3.html",
+  "Exponentielle & logarithme": "fonctions-exp-log.html",
+  "Vecteurs": "vecteurs.html",
+  "Grammaire & orthographe": "grammaire.html",
+  "Compréhension de texte": "comprehension.html",
+  "Expression écrite": "expression-ecrite.html",
+  "L'objet d'étude": "objet-etude.html",
+  "Préparation à l'oral": "oral.html",
+  "Énergie et chauffage": "energie-chauffage.html",
+  "Électricité : distribution et puissance": "electricite-distribution.html",
+  "Lumière et couleur des objets": "lumiere-couleur.html",
+  "Compréhension orale (anglais)": "comprehension-orale-anglais.html",
+  "Compréhension écrite (anglais)": "comprehension-ecrite-anglais.html",
+  "Expression écrite en anglais": "expression-ecrite-anglais.html",
+};
+
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Remplace les mentions "📍 Fiche conseillée : <titre exact>" par un vrai lien cliquable.
+function linkifyFiches(text) {
+  let html = escapeHtml(text);
+  html = html.replace(/📍\s*Fiche conseillée\s*:\s*([^\n<]+)/g, (match, titre) => {
+    const t = titre.trim();
+    const href = FICHES_NINA[t];
+    if (href) {
+      return `📍 Fiche conseillée : <a href="${href}" class="ai-fiche-link">${escapeHtml(t)} →</a>`;
+    }
+    return match;
+  });
+  return html.replace(/\n/g, "<br>");
+}
+
 // ---------- Chat IA intégré ----------
 let _aiChatSendFn = null;
 
 function initAIChat(getLessonContext) {
   const history = [];
+  let pendingImage = null; // { mediaType, data (base64 sans préfixe), previewUrl }
   const widget = document.createElement("div");
   widget.id = "ai-tutor-widget";
   widget.innerHTML = `
@@ -198,7 +238,12 @@ function initAIChat(getLessonContext) {
     <div id="ai-tutor-panel" class="hidden">
       <div id="ai-tutor-header">Ton prof IA <button id="ai-tutor-close">✕</button></div>
       <div id="ai-tutor-messages"></div>
+      <div id="ai-tutor-preview" class="hidden"></div>
       <form id="ai-tutor-form">
+        <label id="ai-tutor-photo-btn" title="Envoyer une photo ou une capture d'écran">
+          📷
+          <input id="ai-tutor-photo-input" type="file" accept="image/*" capture="environment" hidden />
+        </label>
         <input id="ai-tutor-input" type="text" placeholder="Pose ta question..." autocomplete="off" />
         <button type="submit">Envoyer</button>
       </form>
@@ -211,9 +256,32 @@ function initAIChat(getLessonContext) {
   const messagesEl = widget.querySelector("#ai-tutor-messages");
   const form = widget.querySelector("#ai-tutor-form");
   const input = widget.querySelector("#ai-tutor-input");
+  const photoInput = widget.querySelector("#ai-tutor-photo-input");
+  const previewEl = widget.querySelector("#ai-tutor-preview");
 
   toggle.addEventListener("click", () => panel.classList.toggle("hidden"));
   closeBtn.addEventListener("click", () => panel.classList.add("hidden"));
+
+  photoInput.addEventListener("change", () => {
+    const file = photoInput.files && photoInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result; // data:image/jpeg;base64,xxxx
+      const [, mediaType, data] = dataUrl.match(/^data:(.+?);base64,(.*)$/) || [];
+      if (!data) return;
+      pendingImage = { mediaType, data, previewUrl: dataUrl };
+      previewEl.classList.remove("hidden");
+      previewEl.innerHTML = `<img src="${dataUrl}" alt="Photo à envoyer"><button type="button" id="ai-tutor-preview-remove">✕</button>`;
+      previewEl.querySelector("#ai-tutor-preview-remove").addEventListener("click", () => {
+        pendingImage = null;
+        previewEl.classList.add("hidden");
+        previewEl.innerHTML = "";
+        photoInput.value = "";
+      });
+    };
+    reader.readAsDataURL(file);
+  });
 
   _aiChatSendFn = (text) => {
     panel.classList.remove("hidden");
@@ -221,10 +289,24 @@ function initAIChat(getLessonContext) {
     form.dispatchEvent(new Event("submit", { cancelable: true }));
   };
 
-  function addMessage(role, text) {
+  function addMessage(role, text, imageUrl) {
     const div = document.createElement("div");
     div.className = `ai-msg ai-msg-${role}`;
-    div.textContent = text;
+    if (imageUrl) {
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      img.className = "ai-msg-image";
+      div.appendChild(img);
+    }
+    if (text) {
+      const textDiv = document.createElement("div");
+      if (role === "assistant") {
+        textDiv.innerHTML = linkifyFiches(text);
+      } else {
+        textDiv.textContent = text;
+      }
+      div.appendChild(textDiv);
+    }
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
@@ -232,10 +314,15 @@ function initAIChat(getLessonContext) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const message = input.value.trim();
-    if (!message) return;
+    const image = pendingImage;
+    if (!message && !image) return;
     input.value = "";
-    addMessage("user", message);
-    history.push({ role: "user", content: message });
+    addMessage("user", message, image ? image.previewUrl : null);
+    history.push({ role: "user", content: message || "(photo envoyée, sans texte)" });
+    pendingImage = null;
+    previewEl.classList.add("hidden");
+    previewEl.innerHTML = "";
+    photoInput.value = "";
     const thinking = document.createElement("div");
     thinking.className = "ai-msg ai-msg-assistant ai-msg-thinking";
     thinking.textContent = "...";
@@ -247,9 +334,10 @@ function initAIChat(getLessonContext) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message,
+          message: message || "Regarde cette photo de mon devoir et aide-moi.",
           lessonContext: getLessonContext ? getLessonContext() : null,
           history,
+          image: image ? { mediaType: image.mediaType, data: image.data } : null,
         }),
       });
       const data = await res.json();
