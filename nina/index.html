@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>L'espace de Nina</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <h1>Salut Nina 👋</h1>
+  <p>Ton espace pour progresser, à ton rythme.</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Tes matières</h2>
+    <div class="theme-grid">
+      <a class="theme-card" href="maths.html">
+        <div class="emoji">📐</div>
+        <h3>Maths</h3>
+        <span class="tag">Statistiques & probabilités</span>
+      </a>
+      <div class="theme-card soon">
+        <div class="emoji">📖</div>
+        <h3>Français</h3>
+        <span class="tag">Bientôt</span>
+      </div>
+      <div class="theme-card soon">
+        <div class="emoji">🏗️</div>
+        <h3>Autres matières</h3>
+        <span class="tag">Bientôt</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Ta moyenne en maths</h2>
+    <p style="color:var(--muted); margin-top:-8px;">Note-la à chaque bulletin pour voir ta progression.</p>
+    <form id="note-form" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+      <input type="number" id="note-value" step="0.01" min="0" max="20" placeholder="Note /20" required style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; width:110px;" />
+      <input type="number" id="note-objectif" step="0.01" min="0" max="20" placeholder="Objectif /20" style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; width:130px;" />
+      <input type="text" id="note-commentaire" placeholder="Contexte (ex: bulletin T1)" style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; flex:1; min-width:140px;" />
+      <button type="submit" class="primary">Ajouter</button>
+    </form>
+    <div id="notes-chart" class="notes-chart"></div>
+    <p id="notes-empty" style="color:var(--muted);">Pas encore de note enregistrée.</p>
+  </section>
+
+  <section class="card">
+    <h2>Ton temps de travail</h2>
+    <p id="total-time" style="font-size:1.3rem; font-weight:bold; color:var(--primary-dark);">—</p>
+    <div id="sessions-list"></div>
+  </section>
+</main>
+
+<footer class="nina-footer">Fait avec ❤️ pour que tu réussisses.</footer>
+
+<script src="shared.js"></script>
+<script>
+async function renderNotes() {
+  const notes = (await getNotes()).reverse(); // ordre chronologique
+  const chart = document.getElementById("notes-chart");
+  const empty = document.getElementById("notes-empty");
+  chart.innerHTML = "";
+  if (notes.length === 0) { empty.style.display = "block"; return; }
+  empty.style.display = "none";
+  notes.forEach(n => {
+    const bar = document.createElement("div");
+    bar.className = "bar";
+    const height = Math.max(6, (n.note / 20) * 100);
+    bar.style.height = height + "px";
+    const date = new Date(n.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" });
+    bar.innerHTML = `<span class="label">${n.note}/20</span>`;
+    bar.title = `${n.commentaire || ""} — ${date}`;
+    chart.appendChild(bar);
+  });
+  if (notes.length >= 2) {
+    const first = notes[0].note, last = notes[notes.length - 1].note;
+    const diff = (last - first).toFixed(2);
+    const msg = document.createElement("p");
+    msg.style.marginTop = "28px";
+    msg.style.color = diff >= 0 ? "#1e8449" : "var(--muted)";
+    msg.textContent = diff >= 0
+      ? `+${diff} point(s) depuis ta première note enregistrée. Continue !`
+      : `${diff} point(s) depuis ta première note — on va redresser ça ensemble.`;
+    chart.after(msg);
+  }
+  const lastNote = notes[notes.length - 1];
+  if (lastNote?.objectif) {
+    const obj = document.createElement("p");
+    obj.style.color = "var(--muted)";
+    obj.textContent = `Objectif actuel : ${lastNote.objectif}/20 (il reste ${(lastNote.objectif - lastNote.note).toFixed(2)} point(s) à gagner).`;
+    chart.parentElement.appendChild(obj);
+  }
+}
+
+async function renderSessions() {
+  const sessions = await getSessions();
+  const totalSeconds = sessions.reduce((a, s) => a + (s.duree_secondes || 0), 0);
+  const totalMin = Math.round(totalSeconds / 60);
+  document.getElementById("total-time").textContent = `${totalMin} min au total en maths`;
+  const list = document.getElementById("sessions-list");
+  if (sessions.length === 0) {
+    list.innerHTML = `<p style="color:var(--muted);">Pas encore de session enregistrée — lance-toi sur Maths !</p>`;
+    return;
+  }
+  list.innerHTML = sessions.slice(0, 8).map(s => {
+    const date = new Date(s.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+    const pct = s.total_questions ? Math.round((s.bonnes_reponses / s.total_questions) * 100) : 0;
+    return `<p style="margin:6px 0; font-size:0.9rem;">${date} — <strong>${s.theme}</strong> — ${Math.round(s.duree_secondes/60)} min — ${s.bonnes_reponses}/${s.total_questions} (${pct}%)</p>`;
+  }).join("");
+}
+
+document.getElementById("note-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const note = parseFloat(document.getElementById("note-value").value);
+  const objectif = parseFloat(document.getElementById("note-objectif").value) || null;
+  const commentaire = document.getElementById("note-commentaire").value || null;
+  await logNote(note, objectif, commentaire);
+  e.target.reset();
+  renderNotes();
+});
+
+renderNotes();
+renderSessions();
+</script>
+</body>
+</html>
