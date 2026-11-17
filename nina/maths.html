@@ -77,10 +77,19 @@
     const theme = card.dataset.theme;
     const tag = card.querySelector(".status-tag");
     const data = byTheme[theme];
-    if (!data || data.total === 0) return; // reste "Non commencé"
+
+    const barOuter = document.createElement("div");
+    barOuter.className = "progress-bar-outer mini";
+    const barInner = document.createElement("div");
+    barInner.className = "progress-bar-inner";
+    barOuter.appendChild(barInner);
+    tag.after(barOuter);
+
+    if (!data || data.total === 0) { barInner.style.width = "0%"; return; } // reste "Non commencé"
     const pct = Math.round((data.bonnes / data.total) * 100);
+    barInner.style.width = pct + "%";
     if (data.hasQuiz && pct >= 80) {
-      tag.textContent = `Maîtrisé · ${pct}%`;
+      tag.textContent = `🏆 Maîtrisé · ${pct}%`;
     } else {
       tag.textContent = `En cours · ${pct}%`;
     }
