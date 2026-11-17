@@ -1,0 +1,12 @@
+{
+  "name": "Cassie",
+  "short_name": "Cassie",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FFFBF0",
+  "theme_color": "#FF9F45",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
