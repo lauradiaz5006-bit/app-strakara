@@ -63,7 +63,7 @@
 <script src="shared.js"></script>
 <script>
 (async function renderStatus() {
-  const sessions = await getSessions();
+  const sessions = await getSessions("maths");
   const byTheme = {};
   sessions.forEach(s => {
     const t = s.theme.replace(/^Quiz final — /, "");

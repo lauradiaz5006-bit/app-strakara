@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Expression écrite</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">thème 2 — français</span>
+  <h1>✍️ Expression écrite</h1>
+  <p>Terminale Bac Pro — structurer une réponse</p>
+</header>
+
+<main>
+  <p><a class="retour" href="francais.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <div id="lesson-text">
+      <p>À l'écrit, une bonne réponse n'est pas seulement "juste" sur le fond : elle doit aussi être bien construite. Voici le plan à suivre pour une réponse argumentée (une dizaine de lignes) :</p>
+      <ul>
+        <li><strong>1. Phrase d'introduction</strong> qui reprend les mots de la question, pour montrer qu'on y répond directement.</li>
+        <li><strong>2. Un ou deux arguments</strong>, chacun appuyé par un exemple précis (tiré du texte, de ton expérience ou de l'actualité).</li>
+        <li><strong>3. Des connecteurs logiques</strong> pour enchaîner les idées clairement.</li>
+        <li><strong>4. Une phrase de conclusion</strong> qui résume ta position.</li>
+      </ul>
+      <p><em>Les connecteurs à connaître :</em></p>
+      <ul>
+        <li>Addition : de plus, en outre, par ailleurs</li>
+        <li>Opposition : cependant, mais, pourtant, néanmoins</li>
+        <li>Cause : car, parce que, en effet</li>
+        <li>Conséquence : donc, par conséquent, c'est pourquoi</li>
+      </ul>
+      <p><em>À l'écrit professionnel</em> (un mail, un message à un client), on évite le langage familier ("bosser", "un truc") et on utilise des formules plus soutenues ("travailler", "un élément").</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Expression écrite (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'français')">📋 Copier le cours pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Construire le plan d'une réponse, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js"></script>
+<script>
+const THEME = "Expression écrite";
+const MATIERE = "francais";
+
+const BANQUE = [
+  { question: `Quel connecteur logique indique une opposition ? Choisis-en un : "cependant", "donc" ou "de plus". (réponds par le mot qui convient)`, expected: "cependant", explanation: `"Cependant" marque une opposition entre deux idées ; "donc" marque la conséquence, "de plus" l'addition.` },
+  { question: `Quel connecteur logique indique une conséquence ? Choisis-en un : "mais", "car" ou "par conséquent". (réponds par le mot qui convient)`, expected: "par conséquent", explanation: `"Par conséquent" introduit le résultat d'une cause ; "mais" marque l'opposition, "car" la cause.` },
+  { question: `Complète avec un connecteur de cause : « Le chantier est en retard, ___ le fournisseur n'a pas livré à temps. »`, expected: "car", explanation: `"Car" introduit la cause du retard (on explique pourquoi). "Parce que" fonctionnerait aussi, mais "car" est le mot attendu ici.` },
+  { question: `Complète avec un connecteur d'addition : « Ce matériau est solide. ___, il est facile à entretenir. »`, expected: "de plus", explanation: `"De plus" ajoute un second argument au premier ; c'est un connecteur d'addition.` },
+  { question: `Remplace le mot familier par un mot plus soutenu pour un écrit professionnel : « Je dois bosser ce week-end. » → « Je dois ___ ce week-end. »`, expected: "travailler", explanation: `"Bosser" est familier ; à l'écrit professionnel on utilise "travailler".` },
+  { question: `Remplace le mot familier par un mot plus soutenu : « Il y a un truc qui ne va pas sur le plan. » → « Il y a un ___ qui ne va pas sur le plan. »`, expected: "problème", explanation: `"Truc" est familier et vague ; "problème" ou "élément" sont plus précis et soutenus.` },
+  { question: `Quelle est la première chose à faire dans une phrase d'introduction de réponse argumentée ?`, expected: "reprendre les mots de la question", explanation: `On reprend les mots de la question pour montrer clairement qu'on y répond.` },
+  { question: `Dans un plan de réponse argumentée, qu'est-ce qui doit accompagner chaque argument ?`, expected: "un exemple", explanation: `Un argument sans exemple reste abstrait : il faut toujours l'appuyer par un exemple précis.` },
+  { question: `Quel connecteur logique utiliserais-tu pour introduire ton tout premier argument ? (un seul mot ou une expression courante)`, expected: "d'abord", explanation: `"D'abord" (ou "tout d'abord", "premièrement") signale clairement le début de l'argumentation.` },
+  { question: `Quelle expression permet de conclure une réponse argumentée ? (une expression courante)`, expected: "en conclusion", explanation: `"En conclusion" (ou "pour conclure", "finalement") annonce clairement la synthèse finale.` },
+];
+
+function closeEnoughText(a, b) {
+  return a.trim().toLowerCase().replace(/\s+/g, " ") === b.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function generateExercise() {
+  const item = BANQUE[Math.floor(Math.random() * BANQUE.length)];
+  return { question: item.question, expected: item.expected, explanation: item.explanation, isText: true };
+}
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => "Expression écrite (Terminale Bac Pro, français) : structurer une réponse argumentée (introduction, arguments + exemples, conclusion), connecteurs logiques (addition, opposition, cause, conséquence), registre de langue professionnel");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input type="text" id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    const correct = closeEnoughText(input.value, ex.expected);
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac (construire un plan de réponse) ----------
+function genBacExercise() {
+  const contexte = `Sujet type bac : « Selon vous, le monde du travail d'aujourd'hui laisse-t-il assez de place au temps libre ? » Tu dois construire le plan de ta réponse argumentée avant de la rédiger.`;
+  return {
+    dureeConseillee: "10 min",
+    contexte,
+    parts: [
+      { question: `Quel connecteur utiliserais-tu pour introduire ton premier argument ? (ex : "d'abord")`, expected: "d'abord", isText: true, explanation: `"D'abord" (ou "tout d'abord") signale le début de l'argumentation de façon claire.` },
+      { question: `Si ton deuxième argument apporte une nuance ou un contre-exemple, quel connecteur utiliserais-tu ? (réponds "cependant")`, expected: "cependant", isText: true, explanation: `"Cependant" permet d'introduire une nuance ou un point de vue différent du premier argument.` },
+      { question: `Quelle expression utiliserais-tu pour conclure ta réponse ? (réponds "en conclusion")`, expected: "en conclusion", isText: true, explanation: `"En conclusion" (ou "pour conclure") annonce clairement la phrase de synthèse finale.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
+</body>
+</html>

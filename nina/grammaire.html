@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Grammaire & orthographe</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">thème 3 — français</span>
+  <h1>🔤 Grammaire & orthographe</h1>
+  <p>Terminale Bac Pro — les automatismes de l'écrit</p>
+</header>
+
+<main>
+  <p><a class="retour" href="francais.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <div id="lesson-text">
+      <p>À l'écrit, les fautes les plus fréquentes viennent de quelques points précis. Les maîtriser fait gagner des points automatiquement, même sans être « bon en français ».</p>
+      <ul>
+        <li><strong>Accord sujet-verbe :</strong> le verbe s'accorde avec son sujet, même si le sujet est loin ou pluriel. <em>Les clients arrivent</em> (pas « arrive »).</li>
+        <li><strong>Homophones courants :</strong> a/à, est/et, on/ont, son/sont, ce/se, leur/leurs. Pour les distinguer, on remplace mentalement : « a » peut se remplacer par « avait », « à » non.</li>
+        <li><strong>Conjugaison :</strong> présent, futur simple, imparfait et passé composé sont les temps les plus utilisés à l'écrit professionnel et dans les réponses d'examen.</li>
+        <li><strong>Accord de l'adjectif :</strong> l'adjectif s'accorde en genre et en nombre avec le nom qu'il qualifie. <em>Des matériaux neufs</em>, <em>une pièce neuve</em>.</li>
+      </ul>
+      <p><em>Astuce :</em> en cas de doute sur un homophone, remplace le mot par un synonyme simple dans la phrase pour voir ce qui « sonne » juste.</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Grammaire et orthographe (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'français')">📋 Copier le cours pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js"></script>
+<script>
+const THEME = "Grammaire et orthographe";
+const MATIERE = "francais";
+
+const BANQUE = [
+  { question: `Complète : « Les clients ___ (arriver) demain matin pour la livraison. »`, expected: "arrivent", explanation: `Sujet pluriel « les clients » + verbe du 1er groupe au présent → terminaison -ent : ils/elles arrivent.` },
+  { question: `Complète par « a » ou « à » : « Il va ___ l'atelier pour vérifier le délai. »`, expected: "à", explanation: `« à » est une préposition (impossible à remplacer par « avait ») ; « a » est le verbe avoir (on aurait « avait l'atelier »).` },
+  { question: `Complète par « est » ou « et » : « Le plan ___ prêt, ___ la commande peut partir. »`, expected: "est et", explanation: `« est » (verbe être, remplaçable par « était ») puis « et » (mot de liaison, addition).` },
+  { question: `Complète par « on » ou « ont » : « ___ -ils déjà livré la commande ? »`, expected: "ont", explanation: `« ont » est le verbe avoir à la 3e personne du pluriel (ils ont), remplaçable par « avaient ».` },
+  { question: `Complète par « son » ou « sont » : « Les plans ___ terminés, elle a validé ___ projet. »`, expected: "sont son", explanation: `« sont » (verbe être, remplaçable par « étaient ») puis « son » (déterminant possessif devant un nom).` },
+  { question: `Complète par « ce » ou « se » : « Il ___ prépare pour l'examen. »`, expected: "se", explanation: `« se » est un pronom réfléchi devant un verbe (il se prépare) ; « ce » est un déterminant ou pronom démonstratif.` },
+  { question: `Complète par « leur » ou « leurs » : « Les clients ont apporté ___ plans. »`, expected: "leurs", explanation: `« leurs » s'accorde avec « plans » (pluriel) : c'est un déterminant possessif pluriel.` },
+  { question: `Conjugue : « Elle ___ (finir, passé composé) le dossier hier. »`, expected: "a fini", explanation: `Passé composé = auxiliaire avoir/être au présent + participe passé : elle a fini.` },
+  { question: `Conjugue : « Nous ___ (livrer, futur simple) la commande vendredi. »`, expected: "livrerons", explanation: `Futur simple du 1er groupe : radical de l'infinitif + -ons pour « nous » : livrerons.` },
+  { question: `Conjugue : « Quand j'étais apprentie, je ___ (travailler, imparfait) tous les samedis. »`, expected: "travaillais", explanation: `Imparfait du 1er groupe : radical + -ais pour « je » : travaillais.` },
+  { question: `Accorde l'adjectif : « Des matériaux (neuf) ont été livrés. » → « Des matériaux ___. »`, expected: "neufs", explanation: `« matériaux » est masculin pluriel, donc l'adjectif prend un -s : neufs.` },
+  { question: `Accorde l'adjectif : « Une pièce (neuf) vient d'arriver. » → « Une pièce ___. »`, expected: "neuve", explanation: `« pièce » est féminin singulier : neuf devient neuve au féminin.` },
+];
+
+function closeEnoughText(a, b) {
+  return a.trim().toLowerCase().replace(/\s+/g, " ") === b.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function generateExercise() {
+  const item = BANQUE[Math.floor(Math.random() * BANQUE.length)];
+  return { question: item.question, expected: item.expected, explanation: item.explanation, isText: true };
+}
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => "Grammaire et orthographe (Terminale Bac Pro, français) : accords sujet-verbe, homophones (a/à, est/et, on/ont, son/sont, ce/se, leur/leurs), conjugaison (présent, futur simple, imparfait, passé composé), accord de l'adjectif");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input type="text" id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    const correct = closeEnoughText(input.value, ex.expected);
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac (contexte professionnel) ----------
+const BAC_CONTEXTES = [
+  {
+    contexte: `Un devis d'agencement doit être relu avant envoi au client. Voici trois corrections à faire.`,
+    parts: [
+      { question: `Complète : « Les prestations ___ (être) détaillées dans le tableau ci-dessous. » (conjugue au présent)`, expected: "sont", explanation: `Sujet pluriel « les prestations » + verbe être au présent → sont.` },
+      { question: `Complète par « a » ou « à » : « Le client ___ validé le devis ___ 14h. »`, expected: "a à", explanation: `« a » (verbe avoir, remplaçable par « avait ») puis « à » (préposition de temps).` },
+      { question: `Accorde : « Les finitions (demandé) par le client seront ajoutées. » → « Les finitions ___ par le client... »`, expected: "demandées", explanation: `« finitions » est féminin pluriel, donc le participe passé s'accorde : demandées.` },
+    ],
+  },
+  {
+    contexte: `Un message professionnel doit être envoyé à un fournisseur pour confirmer une commande.`,
+    parts: [
+      { question: `Complète : « Nous ___ (confirmer, futur simple) la commande demain matin. »`, expected: "confirmerons", explanation: `Futur simple du 1er groupe : radical + -ons pour « nous » : confirmerons.` },
+      { question: `Complète par « son » ou « sont » : « Les délais ___ respectés grâce à ___ sérieux. »`, expected: "sont son", explanation: `« sont » (verbe être) puis « son » (déterminant possessif devant « sérieux »).` },
+      { question: `Accorde l'adjectif : « Les matériaux (neuf) seront livrés lundi. » → « Les matériaux ___ seront livrés lundi. »`, expected: "neufs", explanation: `« matériaux » est masculin pluriel : neufs.` },
+    ],
+  },
+];
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const base = BAC_CONTEXTES[Math.floor(Math.random() * BAC_CONTEXTES.length)];
+  const ex = { dureeConseillee: "10 min", contexte: base.contexte, parts: base.parts };
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
+</body>
+</html>

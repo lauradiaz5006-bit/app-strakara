@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Compréhension de texte</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">thème 1 — français</span>
+  <h1>📖 Compréhension de texte</h1>
+  <p>Terminale Bac Pro — épreuve écrite</p>
+</header>
+
+<main>
+  <p><a class="retour" href="francais.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <div id="lesson-text">
+      <p>À l'examen, on te donne un texte et on te pose des questions sur son sens. La méthode est toujours la même :</p>
+      <ul>
+        <li><strong>1. Lis le texte deux fois</strong> avant de répondre : une fois pour comprendre globalement, une fois pour repérer les détails.</li>
+        <li><strong>2. Repère l'idée principale</strong> de chaque paragraphe (souvent dans la première ou la dernière phrase).</li>
+        <li><strong>3. Cherche les mots de liaison</strong> (mais, cependant, donc, par exemple...) : ils indiquent comment les idées s'enchaînent.</li>
+        <li><strong>4. Réponds avec les mots du texte</strong> quand c'est possible, et toujours par une phrase complète, pas juste un mot isolé.</li>
+        <li><strong>5. Justifie</strong> en citant ou en reformulant un passage précis du texte, pas une impression générale.</li>
+      </ul>
+      <p><em>Piège fréquent :</em> une question peut sembler facile mais demander une réponse précise, pas juste "oui" ou "ce qui te passe par la tête". Appuie-toi toujours sur le texte.</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Compréhension de texte (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'français')">📋 Copier le cours pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Un texte court, puis une question. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un texte, plusieurs questions liées, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js"></script>
+<script>
+const THEME = "Compréhension de texte";
+const MATIERE = "francais";
+
+const TEXTE_1 = {
+  titre: "Le temps qui file",
+  texte: `Entre les notifications du téléphone, les séries qu'on regarde avant de dormir et les journées de travail qui s'allongent, beaucoup de gens ont l'impression de ne plus avoir une minute à eux. Pourtant, le temps libre n'a pas vraiment disparu : il s'est seulement fragmenté. Au lieu d'une grande pause, on grappille des minutes ici et là, entre deux tâches, en attendant le bus ou pendant une pause déjeuner. Certains apprennent à se déconnecter volontairement, le temps d'un repas ou d'une balade, pour retrouver un rythme plus lent. D'autres, au contraire, remplissent chaque instant pour ne jamais s'ennuyer. Ce rapport au temps dit beaucoup de notre époque : on veut tout faire, vite, sans jamais vraiment s'arrêter.`,
+  questions: [
+    { question: `Quelle est l'idée principale de ce texte ?`, options: ["Le temps libre a complètement disparu", "Le temps libre existe encore, mais il est plus fragmenté qu'avant", "Il faut toujours remplir son temps pour ne pas s'ennuyer", "Les gens n'utilisent plus leur téléphone"], expected: 1, explanation: `Le texte dit que "le temps libre n'a pas vraiment disparu : il s'est seulement fragmenté" — c'est l'idée centrale.` },
+    { question: `Que signifie "grappiller des minutes" dans ce texte ?`, options: ["Perdre du temps sans s'en rendre compte", "Récupérer de petits moments de temps libre, petit à petit", "Travailler plus longtemps que prévu", "Dormir moins pour avoir plus de temps"], expected: 1, explanation: `"Grappiller" veut dire récupérer un peu à la fois, comme on cueille des grains de raisin un par un : ici, de petits moments de temps libre.` },
+  ],
+};
+
+const TEXTE_2 = {
+  titre: "Le geste qui ne s'improvise pas",
+  texte: `Dans un monde où tout semble pouvoir se commander en ligne en quelques clics, certains métiers résistent parce qu'ils demandent un savoir-faire qu'aucune machine ne remplace totalement. Poser une étagère au millimètre, choisir le bon matériau selon l'usage, ajuster une finition à la main : ce sont des gestes qui s'apprennent avec le temps, par la répétition et par l'erreur. Un bon agenceur ne se contente pas de suivre un plan ; il anticipe les contraintes du lieu, discute avec le client, et adapte son travail à la réalité du chantier. Cette part d'expérience et de jugement explique pourquoi, même à l'ère de l'intelligence artificielle, ces compétences manuelles restent recherchées sur le marché du travail.`,
+  questions: [
+    { question: `Selon le texte, pourquoi certains métiers manuels résistent-ils à l'automatisation ?`, options: ["Parce qu'ils sont moins chers que les machines", "Parce qu'ils demandent un savoir-faire et un jugement qu'une machine ne reproduit pas totalement", "Parce que les clients préfèrent discuter avec quelqu'un", "Parce qu'il n'y a pas assez de machines disponibles"], expected: 1, explanation: `Le texte explique que ces métiers "demandent un savoir-faire qu'aucune machine ne remplace totalement".` },
+    { question: `D'après le texte, qu'est-ce qu'un bon agenceur fait en plus de suivre un plan ?`, options: ["Il travaille plus vite que les autres", "Il anticipe les contraintes du lieu et adapte son travail à la réalité du chantier", "Il utilise toujours la même méthode, sans exception", "Il ne parle jamais directement au client"], expected: 1, explanation: `Le texte précise : "il anticipe les contraintes du lieu, discute avec le client, et adapte son travail à la réalité du chantier".` },
+  ],
+};
+
+const TEXTES = [TEXTE_1, TEXTE_2];
+
+function buildPool() {
+  const pool = [];
+  TEXTES.forEach(t => t.questions.forEach(q => pool.push({ titre: t.titre, texte: t.texte, ...q })));
+  return pool;
+}
+const POOL = buildPool();
+
+function generateExercise() {
+  return POOL[Math.floor(Math.random() * POOL.length)];
+}
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => "Compréhension de texte (Terminale Bac Pro, français) : méthode de lecture, idée principale, vocabulaire en contexte, justification par le texte");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <p style="font-style:italic; margin-bottom:6px;">« ${ex.titre} »</p>
+      <p style="background:var(--rose); padding:12px 16px; border-radius:14px; margin-bottom:14px;">${ex.texte}</p>
+      <div class="question">${ex.question}</div>
+      <div id="qcm-options" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;">
+        ${ex.options.map((opt, i) => `<button class="secondary qcm-opt" data-i="${i}" style="text-align:left;">${opt}</button>`).join("")}
+      </div>
+      <div id="feedback"></div>
+    </div>`;
+  const feedback = container.querySelector("#feedback");
+  container.querySelectorAll(".qcm-opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = parseInt(btn.dataset.i, 10);
+      const correct = i === ex.expected;
+      container.querySelectorAll(".qcm-opt").forEach(b => b.disabled = true);
+      feedback.className = "feedback " + (correct ? "ok" : "ko");
+      feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+        `<br><a href="#" onclick="askAI('Je ne comprends pas cette question de compréhension : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+      onAnswered(correct);
+    });
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac (texte + questions liées a/b/c) ----------
+function genBacExercise() {
+  const contexte = `« L'atelier connecté » — Depuis que l'atelier a investi dans un logiciel de conception 3D, le travail a changé de rythme. Les plans qui prenaient une journée entière à dessiner à la main sont maintenant prêts en une heure. Cependant, cette rapidité ne remplace pas l'œil du professionnel : c'est toujours lui qui vérifie que les mesures collent à la réalité du chantier avant de lancer la fabrication. L'outil numérique fait gagner du temps, mais la décision finale reste humaine.`;
+  return {
+    dureeConseillee: "12 min",
+    contexte,
+    parts: [
+      { question: `Quel mot du texte introduit une idée d'opposition, au début de la troisième phrase ? (réponds par ce seul mot)`, expected: "cependant", isText: true, explanation: `« Cependant » introduit une opposition entre la rapidité du logiciel et le fait qu'il ne remplace pas l'œil du professionnel.` },
+      { question: `D'après le texte, la décision finale revient-elle à l'ordinateur ou à l'humain ? (réponds "ordinateur" ou "humain")`, expected: "humain", isText: true, explanation: `Le texte conclut : « la décision finale reste humaine ».` },
+      { question: `Le texte dit-il que le logiciel remplace complètement le travail du professionnel ? (réponds "oui" ou "non")`, expected: "non", isText: true, explanation: `Le texte dit que « cette rapidité ne remplace pas l'œil du professionnel » : le logiciel aide, il ne remplace pas.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = Math.min(6, POOL.length);
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+  const shuffled = [...POOL].sort(() => Math.random() - 0.5);
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = shuffled[index % shuffled.length];
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
+</body>
+</html>

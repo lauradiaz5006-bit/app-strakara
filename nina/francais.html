@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Français — thèmes</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">choisis ton thème</span>
+  <h1>📖 Français</h1>
+  <p>Terminale Bac Pro — épreuve écrite et orale</p>
+</header>
+
+<main>
+  <p><a class="retour" href="index.html">← Retour à l'accueil</a></p>
+
+  <section class="card">
+    <div class="theme-grid">
+      <a class="theme-card active" href="comprehension.html" data-theme="Compréhension de texte">
+        <div class="emoji">📖</div>
+        <h3>Compréhension de texte</h3>
+        <p class="desc">Lire un texte, repérer l'idée principale, répondre avec précision</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+      <a class="theme-card active" href="expression-ecrite.html" data-theme="Expression écrite">
+        <div class="emoji">✍️</div>
+        <h3>Expression écrite</h3>
+        <p class="desc">Structurer une réponse, utiliser les connecteurs logiques</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+      <a class="theme-card active" href="grammaire.html" data-theme="Grammaire et orthographe">
+        <div class="emoji">🔤</div>
+        <h3>Grammaire & orthographe</h3>
+        <p class="desc">Accords, conjugaison, homophones — les automatismes à l'écrit</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+      <a class="theme-card soon" href="objet-etude.html">
+        <div class="emoji">🌍</div>
+        <h3>L'objet d'étude</h3>
+        <p class="desc">« Vivre aujourd'hui : l'humanité, le monde, les sciences et la technique »</p>
+        <span class="tag soon-tag">Cours bientôt · IA dispo</span>
+      </a>
+      <a class="theme-card soon" href="oral.html">
+        <div class="emoji">🎤</div>
+        <h3>Préparation à l'oral</h3>
+        <p class="desc">Présenter un sujet, répondre à l'entretien</p>
+        <span class="tag soon-tag">Cours bientôt · IA dispo</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js"></script>
+<script>
+(async function updateStatuses() {
+  const sessions = await getSessions("francais");
+  const byTheme = {};
+  sessions.forEach(s => {
+    const t = s.theme.replace(/^Quiz final — /, "");
+    if (!byTheme[t]) byTheme[t] = { bonnes: 0, total: 0, hasQuiz: false };
+    byTheme[t].bonnes += s.bonnes_reponses || 0;
+    byTheme[t].total += s.total_questions || 0;
+    if (s.theme.startsWith("Quiz final")) byTheme[t].hasQuiz = true;
+  });
+
+  document.querySelectorAll(".theme-card[data-theme]").forEach(card => {
+    const theme = card.dataset.theme;
+    const tag = card.querySelector(".status-tag");
+    const data = byTheme[theme];
+    if (!data || data.total === 0) return;
+    const pct = Math.round((data.bonnes / data.total) * 100);
+    if (data.hasQuiz && pct >= 80) {
+      tag.textContent = `Maîtrisé · ${pct}%`;
+    } else {
+      tag.textContent = `En cours · ${pct}%`;
+    }
+  });
+})();
+</script>
+</body>
+</html>

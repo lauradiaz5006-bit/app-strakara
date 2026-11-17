@@ -55,8 +55,10 @@ async function logNote(note, objectif, commentaire, matiere = "maths") {
   return sbInsert("nina_notes", { matiere, note, objectif, commentaire });
 }
 
-async function getSessions(matiere = "maths") {
-  return sbSelect("nina_sessions", `matiere=eq.${matiere}&order=created_at.desc&limit=100`);
+async function getSessions(matiere = null) {
+  return sbSelect("nina_sessions", matiere
+    ? `matiere=eq.${matiere}&order=created_at.desc&limit=100`
+    : `order=created_at.desc&limit=200`);
 }
 
 async function getNotes(matiere = "maths") {
@@ -125,8 +127,8 @@ function encouragementRatee() {
 }
 
 // ---------- Copier pour une IA externe ----------
-function copyForAI(lessonTitle, lessonText, question) {
-  const prompt = `Je suis en Terminale Bac Pro ERA, j'ai du mal avec ce point de maths : "${lessonTitle}".\n\nVoici le cours :\n${lessonText}\n\nMa question / ce qui me bloque : ${question || "(explique-moi ce point autrement, avec un exemple très simple)"}`;
+function copyForAI(lessonTitle, lessonText, question, matiere = "maths") {
+  const prompt = `Je suis en Terminale Bac Pro ERA, j'ai du mal avec ce point de ${matiere} : "${lessonTitle}".\n\nVoici le cours :\n${lessonText}\n\nMa question / ce qui me bloque : ${question || "(explique-moi ce point autrement, avec un exemple très simple)"}`;
   navigator.clipboard?.writeText(prompt).then(
     () => alert("Copié ! Colle ça dans Claude ou ChatGPT."),
     () => alert("Impossible de copier automatiquement — sélectionne le texte du cours à la main."),
