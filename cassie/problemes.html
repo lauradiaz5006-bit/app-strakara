@@ -4,16 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Petits problèmes</title>
-<link rel="stylesheet" href="style.css?v=1" />
+<link rel="stylesheet" href="style.css?v=2" />
 <style>
-  .question-text { font-size: 1.7rem; line-height: 1.4; }
+  .question-text { font-size: 1.6rem; line-height: 1.4; }
+  .objets-ligne { font-size: 2.2rem; letter-spacing: 3px; margin: 10px 0; }
 </style>
 </head>
 <body>
 
 <header class="cassie-header">
   <h1>🧩 Petits problèmes</h1>
-  <p>Lis bien l'histoire, puis trouve la réponse !</p>
+  <p>Regarde l'image, écoute l'histoire, et trouve la réponse !</p>
 </header>
 
 <main>
@@ -21,7 +22,7 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=1"></script>
+<script src="shared.js?v=2"></script>
 <script>
 const objets = [
   { emoji: "🍎", nom: "pommes" },
@@ -32,26 +33,28 @@ const objets = [
   { emoji: "⭐", nom: "étoiles" },
 ];
 const prenoms = ["Cassie", "Léo", "Mia", "Tom", "Léa"];
+const feminins = ["Cassie", "Mia", "Léa"];
 
 function genQuestion() {
   const obj = objets[randInt(0, objets.length - 1)];
   const prenom = prenoms[randInt(0, prenoms.length - 1)];
+  const pronom = feminins.includes(prenom) ? "elle" : "il";
   const isAddition = Math.random() < 0.5;
   let text, correct;
   if (isAddition) {
-    const a = randInt(2, 20), b = randInt(2, 15);
+    const a = randInt(2, 6), b = randInt(1, 5);
     correct = a + b;
-    text = `${prenom} a ${a} ${obj.emoji} ${obj.nom}. On lui en donne ${b} de plus. Combien en a-t-${prenom === "Cassie" || prenom === "Mia" || prenom === "Léa" ? "elle" : "il"} maintenant ?`;
+    text = `${prenom} a ${a} ${obj.nom}.<div class="objets-ligne">${obj.emoji.repeat(a)}</div>On lui en donne ${b} de plus.<div class="objets-ligne">${obj.emoji.repeat(b)}</div>Combien ${pronom === "elle" ? "en a-t-elle" : "en a-t-il"} maintenant ?`;
   } else {
-    const a = randInt(10, 25), b = randInt(2, a - 1);
+    const a = randInt(6, 10), b = randInt(1, a - 2);
     correct = a - b;
-    text = `${prenom} a ${a} ${obj.emoji} ${obj.nom}. ${prenom === "Cassie" || prenom === "Mia" || prenom === "Léa" ? "Elle" : "Il"} en donne ${b} à un copain. Combien lui en reste-t-il ?`;
+    text = `${prenom} a ${a} ${obj.nom}.<div class="objets-ligne">${obj.emoji.repeat(a)}</div>${pronom === "elle" ? "Elle" : "Il"} en donne ${b} à un copain.<br/>Combien lui en reste-t-il ?`;
   }
-  const options = fakeAnswersAround(correct, 0, 45);
+  const options = fakeAnswersAround(correct, 0, 16);
   return { text, correct, options };
 }
 
-runQuizGame(document.getElementById("game-root"), "problemes", genQuestion, 6);
+runQuizGame(document.getElementById("game-root"), "problemes", genQuestion, 5);
 </script>
 </body>
 </html>

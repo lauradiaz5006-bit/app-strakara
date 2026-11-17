@@ -3,14 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Calcul éclair</title>
-<link rel="stylesheet" href="style.css?v=1" />
+<title>Compte et calcule</title>
+<link rel="stylesheet" href="style.css?v=2" />
+<style>
+  .objets-ligne { font-size: 2.4rem; line-height: 1.3; letter-spacing: 4px; }
+  .objets-bloc { margin: 6px 0; }
+  .objets-signe { font-family: var(--display); font-size: 2rem; color: var(--bleu-fonce); margin: 4px 0; }
+</style>
 </head>
 <body>
 
 <header class="cassie-header">
-  <h1>⚡ Calcul éclair</h1>
-  <p>Trouve vite le bon résultat !</p>
+  <h1>⚡ Compte et calcule</h1>
+  <p>Compte les objets, puis trouve le total !</p>
 </header>
 
 <main>
@@ -18,27 +23,45 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=1"></script>
+<script src="shared.js?v=2"></script>
 <script>
-function genQuestion() {
-  const isAddition = Math.random() < 0.5;
-  let a, b, correct, symbole;
-  if (isAddition) {
-    a = randInt(1, 60);
-    b = randInt(1, Math.max(1, Math.min(40, 100 - a)));
-    correct = a + b;
-    symbole = "+";
-  } else {
-    a = randInt(10, 100);
-    b = randInt(1, a);
-    correct = a - b;
-    symbole = "−";
-  }
-  const options = fakeAnswersAround(correct, 0, 150);
-  return { text: `${a} ${symbole} ${b} = ?`, correct, options };
+const objetsEmoji = ["🍓", "🍎", "🎈", "🐟", "🌟", "🧸", "🍬", "🚗"];
+
+function ligneObjets(emoji, n) {
+  return `<div class="objets-ligne objets-bloc">${emoji.repeat(n)}</div>`;
 }
 
-runQuizGame(document.getElementById("game-root"), "calcul-eclair", genQuestion, 8);
+function genQuestion() {
+  const emoji = objetsEmoji[randInt(0, objetsEmoji.length - 1)];
+  const isAddition = Math.random() < 0.6;
+  let a, b, correct, html;
+  if (isAddition) {
+    a = randInt(1, 7);
+    b = randInt(1, 6);
+    correct = a + b;
+    html = `
+      ${ligneObjets(emoji, a)}
+      <div class="objets-signe">+</div>
+      ${ligneObjets(emoji, b)}
+      <div class="objets-signe">= ?</div>
+      <p style="font-size:1rem; font-weight:700; color:#6b6484;">Combien de ${emoji} en tout ?</p>
+    `;
+  } else {
+    a = randInt(5, 10);
+    b = randInt(1, a - 1);
+    correct = a - b;
+    const restants = a - b;
+    html = `
+      ${ligneObjets(emoji, a)}
+      <div class="objets-signe">On en enlève ${b}</div>
+      <p style="font-size:1rem; font-weight:700; color:#6b6484;">Combien de ${emoji} va-t-il rester ?</p>
+    `;
+  }
+  const options = fakeAnswersAround(correct, 0, 16);
+  return { text: html, correct, options };
+}
+
+runQuizGame(document.getElementById("game-root"), "compte-et-calcule", genQuestion, 6);
 </script>
 </body>
 </html>

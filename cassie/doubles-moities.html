@@ -4,13 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Doubles et moitiés</title>
-<link rel="stylesheet" href="style.css?v=1" />
+<link rel="stylesheet" href="style.css?v=2" />
+<style>
+  .objets-ligne { font-size: 2.4rem; line-height: 1.3; letter-spacing: 4px; }
+</style>
 </head>
 <body>
 
 <header class="cassie-header">
   <h1>🪞 Doubles et moitiés</h1>
-  <p>Devine le double ou la moitié !</p>
+  <p>Regarde bien les objets, puis devine !</p>
 </header>
 
 <main>
@@ -18,25 +21,34 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=1"></script>
+<script src="shared.js?v=2"></script>
 <script>
+const objetsEmoji = ["🍓", "🍎", "🎈", "🐟", "🌟", "🧸"];
+
 function genQuestion() {
+  const emoji = objetsEmoji[randInt(0, objetsEmoji.length - 1)];
   const isDouble = Math.random() < 0.5;
-  let n, correct, text;
+  let n, correct, html;
   if (isDouble) {
-    n = randInt(1, 25);
+    n = randInt(1, 6);
     correct = n * 2;
-    text = `Le double de ${n}, c'est ?`;
+    html = `
+      <div class="objets-ligne">${emoji.repeat(n)}</div>
+      <p style="font-size:1.1rem; font-weight:700; color:#6b6484; margin:10px 0 0;">Si on double, ça fait combien de ${emoji} ?</p>
+    `;
   } else {
-    n = randInt(1, 25) * 2;
+    n = randInt(1, 6) * 2;
     correct = n / 2;
-    text = `La moitié de ${n}, c'est ?`;
+    html = `
+      <div class="objets-ligne">${emoji.repeat(n)}</div>
+      <p style="font-size:1.1rem; font-weight:700; color:#6b6484; margin:10px 0 0;">La moitié de ces ${emoji}, ça fait combien ?</p>
+    `;
   }
-  const options = fakeAnswersAround(correct, 0, 60);
-  return { text, correct, options };
+  const options = fakeAnswersAround(correct, 0, 14);
+  return { text: html, correct, options };
 }
 
-runQuizGame(document.getElementById("game-root"), "doubles-moities", genQuestion, 8);
+runQuizGame(document.getElementById("game-root"), "doubles-moities", genQuestion, 6);
 </script>
 </body>
 </html>

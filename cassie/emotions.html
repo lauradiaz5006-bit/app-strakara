@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mes émotions</title>
+<link rel="stylesheet" href="style.css?v=2" />
+<style>
+  .question-text { font-size: 1.6rem; line-height: 1.4; }
+  .scenario-emoji { font-size: 3rem; display: block; margin-bottom: 10px; }
+  .answer-btn { font-size: 1.1rem; line-height: 1.3; }
+</style>
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>💛 Mes émotions</h1>
+  <p>Comment se sent le personnage ?</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root"></div>
+</main>
+
+<script src="shared.js?v=2"></script>
+<script>
+const emotionsListe = ["content·e", "triste", "en colère", "a peur", "surpris·e", "fier·fière"];
+
+const scenarios = [
+  { emoji: "🎁", text: "Léo reçoit un cadeau qu'il adore pour son anniversaire.", correct: "content·e" },
+  { emoji: "🧸", text: "Mia a perdu son doudou préféré au parc.", correct: "triste" },
+  { emoji: "👟", text: "Tom a réussi tout seul à faire ses lacets !", correct: "fier·fière" },
+  { emoji: "🐕", text: "Un gros chien aboie très fort juste à côté de Léa.", correct: "a peur" },
+  { emoji: "🐘", text: "Cassie voit un éléphant rose dans son jardin !", correct: "surpris·e" },
+  { emoji: "🖼️", text: "Quelqu'un a déchiré le dessin que Léo venait de finir.", correct: "en colère" },
+  { emoji: "🏆", text: "Mia gagne la course de la récré.", correct: "content·e" },
+  { emoji: "👋", text: "Tom doit dire au revoir à son copain qui déménage loin.", correct: "triste" },
+  { emoji: "🧹", text: "Léa a rangé toute sa chambre sans aide.", correct: "fier·fière" },
+  { emoji: "⛈️", text: "Il y a un très grand bruit de tonnerre pendant la nuit.", correct: "a peur" },
+  { emoji: "🎉", text: "Cassie ouvre la porte et tout le monde crie « Surprise ! ».", correct: "surpris·e" },
+  { emoji: "🧩", text: "Quelqu'un lui prend son jeu sans lui demander.", correct: "en colère" },
+];
+
+function genQuestion() {
+  const s = scenarios[randInt(0, scenarios.length - 1)];
+  const distracteurs = shuffle(emotionsListe.filter(e => e !== s.correct)).slice(0, 3);
+  const options = shuffle([s.correct, ...distracteurs]);
+  const text = `
+    <span class="scenario-emoji">${s.emoji}</span>
+    ${s.text}
+    <p style="font-size:1rem; font-weight:700; color:#6b6484; margin-top:14px;">Comment se sent-il ou elle ?</p>
+  `;
+  return { text, correct: s.correct, options };
+}
+
+runQuizGame(document.getElementById("game-root"), "emotions", genQuestion, 6);
+</script>
+</body>
+</html>

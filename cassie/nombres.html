@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Les nombres jusqu'à 100</title>
-<link rel="stylesheet" href="style.css?v=1" />
+<title>Les nombres</title>
+<link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
 <header class="cassie-header">
-  <h1>🔢 Les nombres jusqu'à 100</h1>
+  <h1>🔢 Les nombres</h1>
   <p>Trouve le plus grand, le plus petit, ou celui qui vient après !</p>
 </header>
 
@@ -18,14 +18,14 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=1"></script>
+<script src="shared.js?v=2"></script>
 <script>
-function uniqueOptionsWith(a, b, correct) {
+function uniqueOptionsWith(a, b, correct, max) {
   const set = new Set([a, b]);
   let tries = 0;
   while (set.size < 4 && tries < 30) {
-    const candidate = correct + randInt(-10, 10);
-    if (candidate >= 0 && candidate <= 100) set.add(candidate);
+    const candidate = correct + randInt(-5, 5);
+    if (candidate >= 0 && candidate <= max) set.add(candidate);
     tries++;
   }
   return shuffle([...set].slice(0, 4));
@@ -33,27 +33,25 @@ function uniqueOptionsWith(a, b, correct) {
 
 function genQuestion() {
   const type = randInt(0, 2);
+  const max = 20;
   if (type === 0) {
-    // plus grand
-    const a = randInt(1, 99), b = randInt(1, 99);
+    const a = randInt(1, max), b = randInt(1, max);
     if (a === b) return genQuestion();
     const correct = Math.max(a, b);
-    return { text: `Quel est le plus grand nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct) };
+    return { text: `Quel est le plus grand nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct, max) };
   } else if (type === 1) {
-    // plus petit
-    const a = randInt(1, 99), b = randInt(1, 99);
+    const a = randInt(1, max), b = randInt(1, max);
     if (a === b) return genQuestion();
     const correct = Math.min(a, b);
-    return { text: `Quel est le plus petit nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct) };
+    return { text: `Quel est le plus petit nombre : ${a} ou ${b} ?`, correct, options: uniqueOptionsWith(a, b, correct, max) };
   } else {
-    // nombre juste après
-    const n = randInt(1, 98);
+    const n = randInt(1, max - 1);
     const correct = n + 1;
-    return { text: `Quel nombre vient juste après ${n} ?`, correct, options: fakeAnswersAround(correct, 0, 100) };
+    return { text: `Quel nombre vient juste après ${n} ?`, correct, options: fakeAnswersAround(correct, 0, max + 1) };
   }
 }
 
-runQuizGame(document.getElementById("game-root"), "nombres-jusqu-a-100", genQuestion, 8);
+runQuizGame(document.getElementById("game-root"), "nombres", genQuestion, 6);
 </script>
 </body>
 </html>
