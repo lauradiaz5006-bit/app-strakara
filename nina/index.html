@@ -12,14 +12,20 @@
   <span class="manuscrit">objectif : réussir ton bac</span>
   <h1>Salut Nina</h1>
   <p id="bac-countdown">—</p>
-  <span class="streak-badge" id="streak-badge" style="display:none;"></span>
+  <div class="badges-row">
+    <span class="streak-badge" id="streak-badge" style="display:none;"></span>
+    <span class="xp-badge" id="xp-badge" style="display:none;"></span>
+  </div>
 </header>
 
 <main>
-  <section class="card" id="objectif-jour-card">
-    <h2>Objectif du jour</h2>
-    <p id="objectif-jour-text" style="font-size:1.05rem;">—</p>
-    <a class="btn" id="objectif-jour-btn" href="maths.html" style="background:var(--prune); color:var(--blanc);">C'est parti</a>
+  <section class="card hero-card" id="objectif-jour-card">
+    <div class="hero-top">
+      <span class="level-chip" id="level-chip">Niveau 1</span>
+      <h2>Objectif du jour</h2>
+    </div>
+    <p id="objectif-jour-text" style="font-size:1.1rem;">—</p>
+    <a class="btn btn-hero" id="objectif-jour-btn" href="maths.html" style="background:var(--prune); color:var(--blanc);">C'est parti</a>
   </section>
 
   <section class="card">
@@ -191,6 +197,18 @@ renderNotes();
     streakEl.style.display = "inline-flex";
     streakEl.textContent = `🔥 ${streak} jour${streak > 1 ? "s" : ""} d'affilée`;
     streakEl.title = graceUsed ? "Tu as sauté un jour mais la série continue, pas de souci." : "";
+  }
+
+  // -- XP et niveau --
+  const xp = computeXP(sessions);
+  const { level, xpForNext } = xpLevel(xp);
+  const xpEl = document.getElementById("xp-badge");
+  const levelChip = document.getElementById("level-chip");
+  levelChip.textContent = `Niveau ${level}`;
+  if (xp > 0) {
+    xpEl.style.display = "inline-flex";
+    xpEl.textContent = `⭐ ${xp} XP`;
+    xpEl.title = `Encore ${xpForNext - xp} XP avant le niveau ${level + 1}`;
   }
 })();
 

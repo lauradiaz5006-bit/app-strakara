@@ -126,6 +126,24 @@ function encouragementRatee() {
   return randomFrom(ENCOURAGEMENTS_RATEES);
 }
 
+// ---------- Points d'expérience (XP) ----------
+function computeXP(sessions) {
+  // 10 XP par bonne réponse, +25 XP bonus pour chaque quiz final passé
+  let xp = 0;
+  sessions.forEach(s => {
+    xp += (s.bonnes_reponses || 0) * 10;
+    if (s.theme && s.theme.startsWith("Quiz final")) xp += 25;
+  });
+  return xp;
+}
+
+function xpLevel(xp) {
+  // Palier simple : niveau = racine, pour une progression qui ralentit un peu
+  const level = Math.max(1, Math.floor(Math.sqrt(xp / 50)) + 1);
+  const xpForNext = 50 * Math.pow(level, 2);
+  return { level, xpForNext };
+}
+
 // ---------- Petite animation de validation (feedback immédiat) ----------
 function triggerSuccessAnimation() {
   const el = document.createElement("div");
