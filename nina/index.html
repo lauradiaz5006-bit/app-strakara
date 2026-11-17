@@ -62,16 +62,26 @@
   </section>
 
   <section class="card">
-    <h2>Ta moyenne en maths</h2>
-    <p style="color:var(--prune-doux); margin-top:-10px;">Note-la à chaque bulletin pour voir le chemin parcouru.</p>
+    <h2>Ton bilan scolaire</h2>
+    <p style="color:var(--prune-doux); margin-top:-10px;">Tes moyennes de bulletin, trimestre après trimestre — pour voir le chemin parcouru, avec ses hauts et ses bas.</p>
     <form id="note-form" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <select id="note-matiere" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; font-family:var(--texte); background:var(--blanc);">
+        <option value="maths">Maths</option>
+        <option value="francais">Français</option>
+      </select>
       <input type="number" id="note-value" step="0.01" min="0" max="20" placeholder="Note /20" required style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:110px; font-family:var(--texte);" />
       <input type="number" id="note-objectif" step="0.01" min="0" max="20" placeholder="Objectif /20" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:140px; font-family:var(--texte);" />
       <input type="text" id="note-commentaire" placeholder="Contexte (ex: bulletin T1)" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; flex:1; min-width:150px; font-family:var(--texte);" />
       <button type="submit" class="primary">Ajouter</button>
     </form>
-    <div id="notes-chart" class="notes-chart"></div>
-    <p id="notes-empty" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
+
+    <h3 style="margin-bottom:0;">📐 Maths</h3>
+    <div id="notes-chart-maths" class="notes-chart"></div>
+    <p id="notes-empty-maths" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
+
+    <h3 style="margin:28px 0 0;">📖 Français</h3>
+    <div id="notes-chart-francais" class="notes-chart"></div>
+    <p id="notes-empty-francais" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
   </section>
 
   <section class="card">
@@ -85,10 +95,11 @@
 
 <script src="shared.js?v=2"></script>
 <script>
-async function renderNotes() {
-  const notes = (await getNotes()).reverse();
-  const chart = document.getElementById("notes-chart");
-  const empty = document.getElementById("notes-empty");
+async function renderNotes(matiere) {
+  const notes = (await getNotes(matiere)).reverse();
+  const chart = document.getElementById(`notes-chart-${matiere}`);
+  const empty = document.getElementById(`notes-empty-${matiere}`);
+  chart.parentElement.querySelectorAll(".bilan-msg").forEach(el => el.remove());
   chart.innerHTML = "";
   if (notes.length === 0) { empty.style.display = "block"; return; }
   empty.style.display = "none";
@@ -97,7 +108,7 @@ async function renderNotes() {
     bar.className = "bar";
     const height = Math.max(6, (n.note / 20) * 100);
     bar.style.height = height + "px";
-    const date = new Date(n.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" });
+    const date = new Date(n.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "2-digit" });
     bar.innerHTML = `<span class="label">${n.note}/20</span>`;
     bar.title = `${n.commentaire || ""} — ${date}`;
     chart.appendChild(bar);
@@ -106,23 +117,37 @@ async function renderNotes() {
     const first = notes[0].note, last = notes[notes.length - 1].note;
     const diff = (last - first).toFixed(2);
     const msg = document.createElement("p");
+    msg.className = "bilan-msg";
     msg.style.marginTop = "28px";
     msg.style.color = diff >= 0 ? "#2F6B3A" : "var(--prune-doux)";
     msg.textContent = diff >= 0
       ? `+${diff} point(s) depuis ta première note enregistrée. Continue !`
       : `${diff} point(s) depuis ta première note — on va redresser ça ensemble.`;
     chart.after(msg);
+
+    const minEntry = notes.reduce((min, n) => (n.note < min.note ? n : min), notes[0]);
+    const minIsMiddle = minEntry !== notes[0] && minEntry !== notes[notes.length - 1];
+    if (minIsMiddle) {
+      const dipMsg = document.createElement("p");
+      dipMsg.className = "bilan-msg";
+      dipMsg.style.color = "var(--prune-doux)";
+      dipMsg.style.fontSize = "0.88rem";
+      dipMsg.textContent = `Un passage plus difficile autour de ${minEntry.note}/20 (${minEntry.commentaire || "une période"}), mais ça n'a pas empêché de repartir vers le haut ensuite.`;
+      msg.after(dipMsg);
+    }
   }
   const lastNote = notes[notes.length - 1];
   if (lastNote?.objectif) {
     const obj = document.createElement("p");
+    obj.className = "bilan-msg";
     obj.style.color = "var(--prune-doux)";
     obj.textContent = `Objectif actuel : ${lastNote.objectif}/20 (il reste ${(lastNote.objectif - lastNote.note).toFixed(2)} point(s) à gagner).`;
     chart.parentElement.appendChild(obj);
   }
 }
 
-renderNotes();
+renderNotes("maths");
+renderNotes("francais");
 renderPenseeDuJour("pensee-du-jour");
 renderPhraseCle("phrase-cle");
 
@@ -225,12 +250,13 @@ renderPhraseCle("phrase-cle");
 
 document.getElementById("note-form").addEventListener("submit", async (e) => {
   e.preventDefault();
+  const matiere = document.getElementById("note-matiere").value;
   const note = parseFloat(document.getElementById("note-value").value);
   const objectif = parseFloat(document.getElementById("note-objectif").value) || null;
   const commentaire = document.getElementById("note-commentaire").value || null;
-  await logNote(note, objectif, commentaire);
+  await logNote(note, objectif, commentaire, matiere);
   e.target.reset();
-  renderNotes();
+  renderNotes(matiere);
 });
 </script>
 </body>
