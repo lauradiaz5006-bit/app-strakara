@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anglais</title>
+<link rel="stylesheet" href="style.css?v=4" />
+<style>
+  .mot-emoji { font-size: 3.5rem; text-align: center; margin: 6px 0 14px; }
+  .niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
+</style>
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>🇬🇧 Anglais</h1>
+  <p>Comment dit-on ça en anglais ?</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root">Chargement...</div>
+</main>
+
+<script src="shared.js?v=4"></script>
+<script>
+const MOTS_L1 = [
+  {emoji:"🔴", mot:"red"}, {emoji:"🔵", mot:"blue"}, {emoji:"🟡", mot:"yellow"}, {emoji:"🟢", mot:"green"},
+  {emoji:"🐱", mot:"cat"}, {emoji:"🐶", mot:"dog"}, {emoji:"🐟", mot:"fish"},
+  {emoji:"1️⃣", mot:"one"}, {emoji:"2️⃣", mot:"two"}, {emoji:"3️⃣", mot:"three"}, {emoji:"4️⃣", mot:"four"}, {emoji:"5️⃣", mot:"five"},
+];
+const MOTS_L2 = [
+  {emoji:"6️⃣", mot:"six"}, {emoji:"7️⃣", mot:"seven"}, {emoji:"8️⃣", mot:"eight"}, {emoji:"9️⃣", mot:"nine"}, {emoji:"🔟", mot:"ten"},
+  {emoji:"👨", mot:"dad"}, {emoji:"👩", mot:"mom"}, {emoji:"👧", mot:"sister"}, {emoji:"👦", mot:"brother"},
+  {emoji:"🐰", mot:"rabbit"}, {emoji:"🐸", mot:"frog"}, {emoji:"🦋", mot:"butterfly"},
+];
+const MOTS_L3 = [
+  {emoji:"☀️", mot:"sun"}, {emoji:"🌙", mot:"moon"}, {emoji:"⭐", mot:"star"}, {emoji:"🏠", mot:"house"},
+  {emoji:"📚", mot:"book"}, {emoji:"🍎", mot:"apple"}, {emoji:"🚗", mot:"car"}, {emoji:"🎂", mot:"cake"},
+];
+const TOUS_LES_MOTS = [...MOTS_L1, ...MOTS_L2, ...MOTS_L3];
+
+async function start() {
+  const level = await chooseAdaptiveLevel("anglais", 3);
+  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : MOTS_L3;
+
+  function genQuestion() {
+    const item = pool[randInt(0, pool.length - 1)];
+    const options = new Set([item.mot]);
+    let tries = 0;
+    while (options.size < 4 && tries < 30) {
+      const candidat = TOUS_LES_MOTS[randInt(0, TOUS_LES_MOTS.length - 1)].mot;
+      options.add(candidat);
+      tries++;
+    }
+    const text = `
+      <div class="niveau-badge">Niveau ${level}</div>
+      <div class="mot-emoji">${item.emoji}</div>
+      <p style="font-size:1.1rem; font-weight:700; color:#6b6484;">Comment dit-on ça en anglais ?</p>
+    `;
+    return { text, correct: item.mot, options: shuffle([...options]) };
+  }
+
+  runQuizGame(document.getElementById("game-root"), "anglais", genQuestion, 6);
+}
+start();
+</script>
+</body>
+</html>

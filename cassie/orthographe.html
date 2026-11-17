@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orthographe</title>
+<link rel="stylesheet" href="style.css?v=4" />
+<style>
+  .mot-emoji { font-size: 3.5rem; text-align: center; margin: 6px 0 14px; }
+  .niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
+</style>
+</head>
+<body>
+
+<header class="cassie-header">
+  <h1>✏️ Orthographe</h1>
+  <p>Regarde l'image, trouve l'orthographe qui est juste !</p>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+  <div id="game-root">Chargement...</div>
+</main>
+
+<script src="shared.js?v=4"></script>
+<script>
+const MOTS_L1 = [
+  {emoji:"🐱", mot:"chat"}, {emoji:"🐶", mot:"chien"}, {emoji:"🌙", mot:"lune"},
+  {emoji:"🍎", mot:"pomme"}, {emoji:"🏫", mot:"ecole"}, {emoji:"🚲", mot:"velo"},
+  {emoji:"🪑", mot:"table"}, {emoji:"🌸", mot:"fleur"}, {emoji:"🛏️", mot:"lit"}, {emoji:"🎒", mot:"sac"},
+];
+const MOTS_L2 = [
+  {emoji:"🏠", mot:"maison"}, {emoji:"🐟", mot:"poisson"}, {emoji:"🐦", mot:"oiseau"},
+  {emoji:"⛵", mot:"bateau"}, {emoji:"🎂", mot:"gateau"}, {emoji:"🎈", mot:"ballon"},
+  {emoji:"🎁", mot:"cadeau"}, {emoji:"☁️", mot:"nuage"}, {emoji:"🚗", mot:"voiture"}, {emoji:"🌳", mot:"jardin"},
+];
+const MOTS_L3 = [
+  {emoji:"⭐", mot:"etoile"}, {emoji:"☀️", mot:"soleil"}, {emoji:"⛰️", mot:"montagne"},
+  {emoji:"🐸", mot:"grenouille"}, {emoji:"☂️", mot:"parapluie"}, {emoji:"🎉", mot:"anniversaire"},
+  {emoji:"📖", mot:"dictionnaire"}, {emoji:"💻", mot:"ordinateur"}, {emoji:"🦋", mot:"papillon"}, {emoji:"🐘", mot:"elephant"},
+];
+
+function corrupt(word, exclude) {
+  const subs = shuffle([["on","an"],["an","on"],["in","un"],["un","in"],["eau","au"],["au","eau"],["ai","ei"],["ei","ai"],["qu","k"],["ph","f"],["oi","oa"],["ou","on"]]);
+  for (const [a, b] of subs) {
+    if (word.includes(a)) {
+      const v = word.replace(a, b);
+      if (v !== word && !exclude.has(v)) return v;
+    }
+  }
+  const consonnes = "bcdfgjklmnpqrstvz";
+  for (let i = 0; i < word.length; i++) {
+    if (consonnes.includes(word[i])) {
+      const v = word.slice(0, i + 1) + word[i] + word.slice(i + 1);
+      if (!exclude.has(v)) return v;
+    }
+  }
+  const v2 = word.slice(0, -1);
+  if (v2.length > 1 && !exclude.has(v2)) return v2;
+  return word + "e";
+}
+
+function afficheMot(m) {
+  return m === "ecole" ? "école" : m === "gateau" ? "gâteau" : m === "etoile" ? "étoile" : m === "elephant" ? "éléphant" : m;
+}
+
+async function start() {
+  const level = await chooseAdaptiveLevel("orthographe", 3);
+  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : MOTS_L3;
+
+  function genQuestion() {
+    const item = pool[randInt(0, pool.length - 1)];
+    const variants = new Set([item.mot]);
+    let tries = 0;
+    while (variants.size < 4 && tries < 20) {
+      variants.add(corrupt(item.mot, variants));
+      tries++;
+    }
+    const text = `
+      <div class="niveau-badge">Niveau ${level}</div>
+      <div class="mot-emoji">${item.emoji}</div>
+      <p style="font-size:1.1rem; font-weight:700; color:#6b6484;">Quelle est la bonne orthographe ?</p>
+    `;
+    return { text, correct: afficheMot(item.mot), options: shuffle([...variants].map(afficheMot)) };
+  }
+
+  runQuizGame(document.getElementById("game-root"), "orthographe", genQuestion, 6);
+}
+start();
+</script>
+</body>
+</html>
