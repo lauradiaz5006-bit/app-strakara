@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>L'espace de Nina</title>
-<link rel="stylesheet" href="style.css?v=5" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -81,6 +81,7 @@
         <option value="maths">Maths</option>
         <option value="francais">Français</option>
         <option value="sciences">Sciences</option>
+        <option value="anglais">Anglais</option>
       </select>
       <input type="number" id="note-value" step="0.01" min="0" max="20" placeholder="Note /20" required style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:110px; font-family:var(--texte);" />
       <input type="number" id="note-objectif" step="0.01" min="0" max="20" placeholder="Objectif /20" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:140px; font-family:var(--texte);" />
@@ -99,6 +100,10 @@
     <h3 style="margin:28px 0 0;">🔬 Sciences</h3>
     <div id="notes-chart-sciences" class="notes-chart"></div>
     <p id="notes-empty-sciences" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
+
+    <h3 style="margin:28px 0 0;">🇬🇧 Anglais</h3>
+    <div id="notes-chart-anglais" class="notes-chart"></div>
+    <p id="notes-empty-anglais" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
   </section>
 
   <section class="card">
@@ -110,7 +115,7 @@
 
 <footer class="nina-footer">on avance, à ton rythme, et c'est déjà énorme 💛</footer>
 
-<script src="shared.js?v=5"></script>
+<script src="shared.js?v=6"></script>
 <script>
 async function renderNotes(matiere) {
   const notes = (await getNotes(matiere)).reverse();
@@ -172,6 +177,7 @@ async function renderNotes(matiere) {
 renderNotes("maths");
 renderNotes("francais");
 renderNotes("sciences");
+renderNotes("anglais");
 renderPenseeDuJour("pensee-du-jour");
 renderPhraseCle("phrase-cle");
 
