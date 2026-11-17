@@ -89,6 +89,23 @@ function triggerConfetti() {
   }
 }
 
+const BRAVO_MESSAGES = [
+  "BRAVO CASSIE, TU ES GÉNIALE !",
+  "SUPER CASSIE !",
+  "WAOUH, TROP FORTE !",
+  "CASSIE CHAMPIONNE !",
+  "TU GÈRES CASSIE !",
+  "INCROYABLE !",
+];
+
+function showBravoMessage() {
+  const msg = document.createElement("div");
+  msg.className = "bravo-message";
+  msg.textContent = BRAVO_MESSAGES[Math.floor(Math.random() * BRAVO_MESSAGES.length)];
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 1500);
+}
+
 function playSuccessSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -182,6 +199,7 @@ function runQuizGame(rootEl, jeuNom, generateQuestion, totalQuestions = 8) {
       bonnesReponses++;
       playSuccessSound();
       triggerConfetti();
+      if (Math.random() < 0.35) showBravoMessage();
     }
     results[index] = isCorrect;
     index++;

@@ -153,6 +153,31 @@ main { max-width: 640px; margin: -20px auto 40px; padding: 0 16px; }
 .bravo-screen .stars { font-size: 3rem; margin: 10px 0 20px; }
 .bravo-screen h2 { font-size: 2.2rem; }
 
+.bravo-message {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  background: var(--vert);
+  color: var(--blanc);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 20px 28px;
+  border-radius: 24px;
+  box-shadow: 0 10px 0 var(--vert-fonce);
+  z-index: 1000;
+  pointer-events: none;
+  animation: bravo-pop 1.5s ease-out forwards;
+}
+@keyframes bravo-pop {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  15% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+  30% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+}
+
 .confetti-piece {
   position: fixed;
   top: -20px;
