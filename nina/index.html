@@ -9,58 +9,62 @@
 </head>
 <body>
 <header class="top">
-  <h1>Salut Nina 👋</h1>
-  <p>Ton espace pour progresser, à ton rythme.</p>
+  <span class="manuscrit">ton espace à toi</span>
+  <h1>Salut Nina</h1>
+  <p>Avance à ton rythme. Chaque effort compte, même petit.</p>
 </header>
 
 <main>
   <section class="card">
     <h2>Tes matières</h2>
     <div class="theme-grid">
-      <a class="theme-card" href="maths.html">
+      <a class="theme-card active" href="maths.html">
         <div class="emoji">📐</div>
         <h3>Maths</h3>
-        <span class="tag">Statistiques & probabilités</span>
+        <p class="desc">6 thèmes du programme, cours, exercices, quiz et ton prof IA</p>
+        <span class="tag">Ouvrir</span>
       </a>
       <div class="theme-card soon">
         <div class="emoji">📖</div>
         <h3>Français</h3>
-        <span class="tag">Bientôt</span>
+        <p class="desc">Arrive bientôt</p>
+        <span class="tag soon-tag">Bientôt</span>
       </div>
       <div class="theme-card soon">
         <div class="emoji">🏗️</div>
-        <h3>Autres matières</h3>
-        <span class="tag">Bientôt</span>
+        <h3>Enseignement pro</h3>
+        <p class="desc">Arrive bientôt</p>
+        <span class="tag soon-tag">Bientôt</span>
       </div>
     </div>
   </section>
 
   <section class="card">
     <h2>Ta moyenne en maths</h2>
-    <p style="color:var(--muted); margin-top:-8px;">Note-la à chaque bulletin pour voir ta progression.</p>
-    <form id="note-form" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-      <input type="number" id="note-value" step="0.01" min="0" max="20" placeholder="Note /20" required style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; width:110px;" />
-      <input type="number" id="note-objectif" step="0.01" min="0" max="20" placeholder="Objectif /20" style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; width:130px;" />
-      <input type="text" id="note-commentaire" placeholder="Contexte (ex: bulletin T1)" style="padding:8px 12px; border:2px solid #ddd; border-radius:8px; flex:1; min-width:140px;" />
+    <p style="color:var(--prune-doux); margin-top:-10px;">Note-la à chaque bulletin pour voir le chemin parcouru.</p>
+    <form id="note-form" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <input type="number" id="note-value" step="0.01" min="0" max="20" placeholder="Note /20" required style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:110px; font-family:var(--texte);" />
+      <input type="number" id="note-objectif" step="0.01" min="0" max="20" placeholder="Objectif /20" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; width:140px; font-family:var(--texte);" />
+      <input type="text" id="note-commentaire" placeholder="Contexte (ex: bulletin T1)" style="padding:10px 14px; border:1.5px solid var(--rose-fonce); border-radius:999px; flex:1; min-width:150px; font-family:var(--texte);" />
       <button type="submit" class="primary">Ajouter</button>
     </form>
     <div id="notes-chart" class="notes-chart"></div>
-    <p id="notes-empty" style="color:var(--muted);">Pas encore de note enregistrée.</p>
+    <p id="notes-empty" style="color:var(--prune-doux);">Pas encore de note enregistrée.</p>
   </section>
 
   <section class="card">
-    <h2>Ton temps de travail</h2>
-    <p id="total-time" style="font-size:1.3rem; font-weight:bold; color:var(--primary-dark);">—</p>
-    <div id="sessions-list"></div>
+    <h2>Tes statistiques</h2>
+    <p style="color:var(--prune-doux);">Temps passé, points forts, points faibles — tout est sur une page dédiée.</p>
+    <a class="btn" href="progres.html" style="background:var(--prune); color:var(--blanc);">Voir mes statistiques</a>
   </section>
 </main>
 
-<footer class="nina-footer">Fait avec ❤️ pour que tu réussisses.</footer>
+<footer class="nina-footer">fait avec soin, pour que tu avances sereine</footer>
 
 <script src="shared.js"></script>
 <script>
 async function renderNotes() {
-  const notes = (await getNotes()).reverse(); // ordre chronologique
+  const notes = (await getNotes()).reverse();
   const chart = document.getElementById("notes-chart");
   const empty = document.getElementById("notes-empty");
   chart.innerHTML = "";
@@ -81,7 +85,7 @@ async function renderNotes() {
     const diff = (last - first).toFixed(2);
     const msg = document.createElement("p");
     msg.style.marginTop = "28px";
-    msg.style.color = diff >= 0 ? "#1e8449" : "var(--muted)";
+    msg.style.color = diff >= 0 ? "#2F6B3A" : "var(--prune-doux)";
     msg.textContent = diff >= 0
       ? `+${diff} point(s) depuis ta première note enregistrée. Continue !`
       : `${diff} point(s) depuis ta première note — on va redresser ça ensemble.`;
@@ -90,28 +94,13 @@ async function renderNotes() {
   const lastNote = notes[notes.length - 1];
   if (lastNote?.objectif) {
     const obj = document.createElement("p");
-    obj.style.color = "var(--muted)";
+    obj.style.color = "var(--prune-doux)";
     obj.textContent = `Objectif actuel : ${lastNote.objectif}/20 (il reste ${(lastNote.objectif - lastNote.note).toFixed(2)} point(s) à gagner).`;
     chart.parentElement.appendChild(obj);
   }
 }
 
-async function renderSessions() {
-  const sessions = await getSessions();
-  const totalSeconds = sessions.reduce((a, s) => a + (s.duree_secondes || 0), 0);
-  const totalMin = Math.round(totalSeconds / 60);
-  document.getElementById("total-time").textContent = `${totalMin} min au total en maths`;
-  const list = document.getElementById("sessions-list");
-  if (sessions.length === 0) {
-    list.innerHTML = `<p style="color:var(--muted);">Pas encore de session enregistrée — lance-toi sur Maths !</p>`;
-    return;
-  }
-  list.innerHTML = sessions.slice(0, 8).map(s => {
-    const date = new Date(s.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
-    const pct = s.total_questions ? Math.round((s.bonnes_reponses / s.total_questions) * 100) : 0;
-    return `<p style="margin:6px 0; font-size:0.9rem;">${date} — <strong>${s.theme}</strong> — ${Math.round(s.duree_secondes/60)} min — ${s.bonnes_reponses}/${s.total_questions} (${pct}%)</p>`;
-  }).join("");
-}
+renderNotes();
 
 document.getElementById("note-form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -122,9 +111,6 @@ document.getElementById("note-form").addEventListener("submit", async (e) => {
   e.target.reset();
   renderNotes();
 });
-
-renderNotes();
-renderSessions();
 </script>
 </body>
 </html>

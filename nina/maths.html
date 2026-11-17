@@ -4,238 +4,62 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Maths — Statistiques & probabilités</title>
+<title>Maths — Terminale Bac Pro</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <header class="top">
-  <h1>📐 Statistiques & probabilités</h1>
-  <p>Terminale Bac Pro — groupement B</p>
+  <span class="manuscrit">ton programme</span>
+  <h1>📐 Maths</h1>
+  <p>Terminale Bac Pro, groupement B — choisis un thème</p>
 </header>
 
 <main>
-  <div class="chrono-bar">
-    <div>⏱️ Temps sur cette session : <span class="time" id="chrono-display">00:00</span></div>
-    <button class="secondary" id="finish-session-btn">Terminer la session</button>
-  </div>
+  <p><a class="retour" href="index.html">← Retour à l'accueil</a></p>
 
   <section class="card">
-    <h2>📘 Le cours</h2>
-    <div id="lesson-text">
-      <h3>1. Statistique à deux variables</h3>
-      <p>Quand on mesure deux grandeurs liées (par exemple : surface d'un agencement et temps de pose), on obtient une série de points (x ; y). Si ces points semblent alignés, on peut les <strong>ajuster par une droite</strong> d'équation <strong>y = a·x + b</strong>.</p>
-      <ul>
-        <li><strong>a</strong> (coefficient directeur) se calcule avec deux points (x₁;y₁) et (x₂;y₂) : <br><code>a = (y₂ − y₁) / (x₂ − x₁)</code></li>
-        <li><strong>b</strong> (ordonnée à l'origine) se calcule ensuite avec un point connu : <br><code>b = y₁ − a × x₁</code></li>
-        <li>Une fois a et b connus, on peut <strong>estimer</strong> une valeur de y pour un x qui n'a pas été mesuré, en remplaçant x dans y = a·x + b.</li>
-      </ul>
-      <p><em>Exemple :</em> points (2 ; 5) et (4 ; 9). a = (9−5)/(4−2) = 2. Puis b = 5 − 2×2 = 1. Donc y = 2x + 1. Pour x = 6 : y = 13.</p>
-
-      <h3>2. Probabilités (arbre pondéré)</h3>
-      <p>Quand une situation se déroule en plusieurs étapes, on utilise un <strong>arbre de probabilités</strong>. Sur chaque branche, on écrit la probabilité de l'évènement.</p>
-      <ul>
-        <li>Pour calculer la probabilité de suivre <strong>deux branches à la suite</strong> (A puis B), on <strong>multiplie</strong> : P(A ∩ B) = P(A) × P(B sachant A).</li>
-        <li>La probabilité du contraire : P(non A) = 1 − P(A).</li>
-        <li><strong>A et B sont indépendants</strong> si le fait que A se réalise ne change rien à la probabilité de B : P(B sachant A) = P(B sachant non A).</li>
-      </ul>
-      <p><em>Exemple :</em> P(A) = 0,3 ; P(B sachant A) = 0,2. Alors P(A ∩ B) = 0,3 × 0,2 = 0,06.</p>
+    <div class="theme-grid">
+      <a class="theme-card active" href="stats-probas.html">
+        <div class="emoji">📊</div>
+        <h3>Statistiques & probabilités</h3>
+        <p class="desc">Ajustement affine, arbres pondérés, indépendance</p>
+        <span class="tag">Ouvrir</span>
+      </a>
+      <a class="theme-card active" href="suites.html">
+        <div class="emoji">🔢</div>
+        <h3>Suites géométriques</h3>
+        <p class="desc">Terme de rang n, sens de variation, somme</p>
+        <span class="tag">Ouvrir</span>
+      </a>
+      <a class="theme-card active" href="automatismes.html">
+        <div class="emoji">⚡</div>
+        <h3>Calcul rapide</h3>
+        <p class="desc">Échauffement : fractions, pourcentages, priorités</p>
+        <span class="tag">Ouvrir</span>
+      </a>
+      <a class="theme-card soon" href="fonctions-degre3.html">
+        <div class="emoji">📈</div>
+        <h3>Fonctions polynômes degré 3</h3>
+        <p class="desc">Dérivée, variations, extremums</p>
+        <span class="tag soon-tag">Cours bientôt · IA dispo</span>
+      </a>
+      <a class="theme-card soon" href="fonctions-exp-log.html">
+        <div class="emoji">🌱</div>
+        <h3>Exponentielle & logarithme</h3>
+        <p class="desc">Fonctions de base q, équations</p>
+        <span class="tag soon-tag">Cours bientôt · IA dispo</span>
+      </a>
+      <a class="theme-card soon" href="vecteurs.html">
+        <div class="emoji">➡️</div>
+        <h3>Vecteurs</h3>
+        <p class="desc">Coordonnées, norme, colinéarité</p>
+        <span class="tag soon-tag">Cours bientôt · IA dispo</span>
+      </a>
     </div>
-    <button class="secondary" onclick="copyForAI('Statistiques à deux variables et probabilités (Terminale Bac Pro)', document.getElementById('lesson-text').innerText)">📋 Copier le cours pour le coller dans une IA</button>
-  </section>
-
-  <section class="card">
-    <h2>✏️ Exercices d'entraînement</h2>
-    <p style="color:var(--muted);">Autant de questions que tu veux, générées à chaque fois. <span id="practice-score">0 bonnes / 0</span></p>
-    <div id="practice-exercise"></div>
-    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
-  </section>
-
-  <section class="card">
-    <h2>🏁 Quiz final</h2>
-    <p style="color:var(--muted);">6 questions mélangées pour tester ton niveau sur ce thème.</p>
-    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
-    <div id="quiz-area"></div>
   </section>
 </main>
 
-<footer class="nina-footer">Courage Nina, chaque exercice te rapproche de ton objectif 💪</footer>
-
+<footer class="nina-footer">un thème à la fois, et ça suffit</footer>
 <script src="shared.js"></script>
-<script>
-const THEME = "Statistiques et probabilités";
-
-// ---------- Générateurs d'exercices ----------
-function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
-function parseUserNumber(str) {
-  if (!str) return NaN;
-  return parseFloat(str.toString().replace(",", "."));
-}
-function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
-
-function genAjustement() {
-  const a = randInt(-4, 4) === 0 ? 2 : randInt(-4, 4) / 2; // évite a=0, pas à 0.5
-  const b = randInt(-8, 8);
-  const x1 = randInt(0, 6);
-  const x2 = x1 + randInt(2, 6);
-  const y1 = roundTo(a * x1 + b, 1);
-  const y2 = roundTo(a * x2 + b, 1);
-  const subtype = randInt(1, 3);
-
-  if (subtype === 1) {
-    return {
-      question: `Deux mesures donnent les points (${x1} ; ${y1}) et (${x2} ; ${y2}). En supposant un ajustement affine y = a·x + b, calcule le coefficient directeur <strong>a</strong>.`,
-      expected: a,
-      explanation: `a = (y₂ − y₁) / (x₂ − x₁) = (${y2} − ${y1}) / (${x2} − ${x1}) = ${a}`,
-    };
-  } else if (subtype === 2) {
-    return {
-      question: `On sait que a = ${a} et que le point (${x1} ; ${y1}) appartient à la droite d'ajustement y = a·x + b. Calcule <strong>b</strong>.`,
-      expected: b,
-      explanation: `b = y₁ − a × x₁ = ${y1} − ${a} × ${x1} = ${b}`,
-    };
-  } else {
-    const x3 = x2 + randInt(2, 5);
-    const y3 = roundTo(a * x3 + b, 1);
-    return {
-      question: `Avec a = ${a} et b = ${b} (y = a·x + b), estime la valeur de y pour x = ${x3}.`,
-      expected: y3,
-      explanation: `y = ${a} × ${x3} + ${b} = ${y3}`,
-    };
-  }
-}
-
-function genProbabilites() {
-  const pA = roundTo(randInt(2, 7) / 10, 2);
-  const pBsachantA = roundTo(randInt(1, 8) / 10, 2);
-  const pBsachantNonA = roundTo(randInt(1, 8) / 10, 2);
-  const subtype = randInt(1, 3);
-
-  if (subtype === 1) {
-    const result = roundTo(pA * pBsachantA, 3);
-    return {
-      question: `P(A) = ${pA} et P(B sachant A) = ${pBsachantA}. Calcule P(A ∩ B).`,
-      expected: result,
-      explanation: `P(A ∩ B) = P(A) × P(B sachant A) = ${pA} × ${pBsachantA} = ${result}`,
-    };
-  } else if (subtype === 2) {
-    const result = roundTo(1 - pA, 2);
-    return {
-      question: `P(A) = ${pA}. Calcule P(non A).`,
-      expected: result,
-      explanation: `P(non A) = 1 − P(A) = 1 − ${pA} = ${result}`,
-    };
-  } else {
-    const indep = pBsachantA === pBsachantNonA;
-    return {
-      question: `P(B sachant A) = ${pBsachantA} et P(B sachant non A) = ${pBsachantNonA}. Les évènements A et B sont-ils indépendants ? (réponds "oui" ou "non")`,
-      expected: indep ? "oui" : "non",
-      isText: true,
-      explanation: indep
-        ? `Les deux probabilités sont égales (${pBsachantA}), donc A et B sont indépendants.`
-        : `Les probabilités sont différentes (${pBsachantA} ≠ ${pBsachantNonA}), donc A et B ne sont pas indépendants.`,
-    };
-  }
-}
-
-function generateExercise() {
-  return Math.random() < 0.5 ? genAjustement() : genProbabilites();
-}
-
-// ---------- Session / chrono ----------
-const chrono = new Chrono(document.getElementById("chrono-display"));
-chrono.start();
-initAIChat(() => THEME);
-
-let practiceCorrect = 0, practiceTotal = 0;
-
-function renderExercise(container, ex, onAnswered) {
-  container.innerHTML = `
-    <div class="exercise">
-      <div class="question">${ex.question}</div>
-      <input ${ex.isText ? 'type="text"' : 'type="number" step="any"'} id="answer-input" placeholder="Ta réponse" />
-      <button class="primary" id="check-btn">Vérifier</button>
-      <div id="feedback"></div>
-    </div>`;
-  const checkBtn = container.querySelector("#check-btn");
-  const input = container.querySelector("#answer-input");
-  const feedback = container.querySelector("#feedback");
-  checkBtn.addEventListener("click", () => {
-    let correct;
-    if (ex.isText) {
-      correct = input.value.trim().toLowerCase() === ex.expected;
-    } else {
-      correct = closeEnough(parseUserNumber(input.value), ex.expected);
-    }
-    feedback.className = "feedback " + (correct ? "ok" : "ko");
-    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
-      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
-    checkBtn.disabled = true;
-    input.disabled = true;
-    onAnswered(correct);
-  });
-}
-
-function loadPracticeExercise() {
-  const ex = generateExercise();
-  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
-    practiceTotal++;
-    if (correct) practiceCorrect++;
-    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
-  });
-}
-document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
-loadPracticeExercise();
-
-document.getElementById("finish-session-btn").addEventListener("click", async () => {
-  chrono.stop();
-  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
-  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
-});
-
-// ---------- Quiz final ----------
-document.getElementById("start-quiz-btn").addEventListener("click", () => {
-  document.getElementById("start-quiz-btn").disabled = true;
-  const quizArea = document.getElementById("quiz-area");
-  const NB_QUESTIONS = 6;
-  let index = 0, correctCount = 0;
-  const quizChrono = new Chrono(null);
-  quizChrono.start();
-
-  function nextQuestion() {
-    if (index >= NB_QUESTIONS) {
-      quizChrono.stop();
-      finishQuiz();
-      return;
-    }
-    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
-    const ex = generateExercise();
-    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
-      if (correct) correctCount++;
-      index++;
-      setTimeout(nextQuestion, 1800);
-    });
-  }
-
-  async function finishQuiz() {
-    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
-    let message;
-    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête ! 🎉";
-    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top. 💪";
-    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte. 🌱";
-
-    quizArea.innerHTML = `
-      <div class="exercise">
-        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
-        <p>${message}</p>
-        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
-      </div>`;
-    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS);
-    document.getElementById("start-quiz-btn").disabled = false;
-  }
-
-  nextQuestion();
-});
-</script>
 </body>
 </html>

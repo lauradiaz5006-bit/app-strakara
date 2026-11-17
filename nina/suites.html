@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Suites géométriques</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">thème 2</span>
+  <h1>🔢 Suites géométriques</h1>
+  <p>Terminale Bac Pro — groupement B</p>
+</header>
+
+<main>
+  <p><a class="retour" href="maths.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <div id="lesson-text">
+      <p>Une suite géométrique est une liste de nombres où on passe d'un terme au suivant en <strong>multipliant toujours par le même nombre</strong>, appelé <strong>raison q</strong> (ici toujours positive).</p>
+      <ul>
+        <li>Premier terme : <strong>u₀</strong></li>
+        <li>Terme de rang n : <strong>uₙ = u₀ × qⁿ</strong></li>
+        <li>Sens de variation : si q &gt; 1, la suite augmente ; si 0 &lt; q &lt; 1, elle diminue ; si q = 1, elle reste constante.</li>
+        <li>Somme des n+1 premiers termes (de u₀ à uₙ) : <strong>Sₙ = u₀ × (qⁿ⁺¹ − 1) / (q − 1)</strong> (si q ≠ 1)</li>
+      </ul>
+      <p><em>Exemple :</em> u₀ = 3, q = 2. u₃ = 3 × 2³ = 3 × 8 = 24.</p>
+      <p><em>Contexte pro :</em> une pièce de bois qui perd 10 % de sa valeur chaque année suit une suite géométrique de raison q = 0,9.</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Suites géométriques (Terminale Bac Pro)', document.getElementById('lesson-text').innerText)">📋 Copier le cours pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js"></script>
+<script>
+const THEME = "Suites géométriques";
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
+function parseUserNumber(str) { if (!str) return NaN; return parseFloat(str.toString().replace(",", ".")); }
+function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
+
+const QS = [2, 3, 1.5, 0.5]; // raisons simples et lisibles
+
+function generateExercise() {
+  const u0 = randInt(2, 10);
+  const q = QS[randInt(0, QS.length - 1)];
+  const n = randInt(2, 4);
+  const subtype = randInt(1, 3);
+
+  if (subtype === 1) {
+    const un = roundTo(u0 * Math.pow(q, n), 2);
+    return {
+      question: `Une suite géométrique a pour premier terme u₀ = ${u0} et pour raison q = ${q}. Calcule u${toSubscript(n)} (le terme de rang ${n}).`,
+      expected: un,
+      explanation: `u${toSubscript(n)} = u₀ × q${toSuperscript(n)} = ${u0} × ${q}${toSuperscript(n)} = ${un}`,
+    };
+  } else if (subtype === 2) {
+    const u1 = roundTo(u0 * q, 2);
+    return {
+      question: `Une suite géométrique a pour premier terme u₀ = ${u0} et u₁ = ${u1}. Calcule la raison <strong>q</strong>.`,
+      expected: q,
+      explanation: `q = u₁ / u₀ = ${u1} / ${u0} = ${q}`,
+    };
+  } else {
+    const isIncreasing = q > 1;
+    return {
+      question: `Une suite géométrique a pour raison q = ${q} (et u₀ &gt; 0). Cette suite est-elle croissante ou décroissante ? (réponds "croissante" ou "décroissante")`,
+      expected: isIncreasing ? "croissante" : "décroissante",
+      isText: true,
+      explanation: isIncreasing
+        ? `q = ${q} > 1, donc chaque terme est plus grand que le précédent : la suite est croissante.`
+        : `0 < q = ${q} < 1, donc chaque terme est plus petit que le précédent : la suite est décroissante.`,
+    };
+  }
+}
+
+function toSubscript(n) { return ["₀","₁","₂","₃","₄","₅","₆","₇","₈","₉"][n] || n; }
+function toSuperscript(n) { return ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"][n] || `^${n}`; }
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => THEME);
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input ${ex.isText ? 'type="text"' : 'type="number" step="any"'} id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    let correct;
+    if (ex.isText) {
+      correct = input.value.trim().toLowerCase() === ex.expected;
+    } else {
+      correct = closeEnough(parseUserNumber(input.value), ex.expected);
+    }
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Calcul rapide</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">échauffement</span>
+  <h1>⚡ Calcul rapide</h1>
+  <p>Priorités, fractions, pourcentages — pour reprendre confiance</p>
+</header>
+
+<main>
+  <p><a class="retour" href="maths.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Rappels</h2>
+    <div id="lesson-text">
+      <ul>
+        <li><strong>Priorités opératoires :</strong> parenthèses d'abord, puis multiplications/divisions, puis additions/soustractions.</li>
+        <li><strong>Pourcentage :</strong> x % d'un nombre N = (x ÷ 100) × N.</li>
+        <li><strong>Fractions :</strong> pour additionner, on met au même dénominateur.</li>
+      </ul>
+      <p><em>Exemple :</em> 20 % de 150 = 0,20 × 150 = 30.</p>
+      <p>Ce ne sont pas des exercices notés au bac, mais ils reviennent partout — les maîtriser rend tout le reste plus facile.</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Calcul rapide : priorités, pourcentages, fractions', document.getElementById('lesson-text').innerText)">📋 Copier pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices express</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées, contre la montre dans ta tête.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
+  </section>
+</main>
+
+<footer class="nina-footer">la confiance se construit un calcul à la fois</footer>
+
+<script src="shared.js"></script>
+<script>
+const THEME = "Calcul rapide";
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
+function parseUserNumber(str) { if (!str) return NaN; return parseFloat(str.toString().replace(",", ".")); }
+function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
+
+function generateExercise() {
+  const subtype = randInt(1, 3);
+  if (subtype === 1) {
+    const a = randInt(2, 9), b = randInt(2, 9), c = randInt(2, 9);
+    const result = a + b * c;
+    return {
+      question: `Calcule : ${a} + ${b} × ${c}`,
+      expected: result,
+      explanation: `On fait d'abord la multiplication : ${b} × ${c} = ${b*c}, puis ${a} + ${b*c} = ${result}`,
+    };
+  } else if (subtype === 2) {
+    const pct = [10, 20, 25, 50, 75][randInt(0, 4)];
+    const base = randInt(2, 40) * 10;
+    const result = roundTo((pct / 100) * base, 2);
+    return {
+      question: `Calcule ${pct} % de ${base}`,
+      expected: result,
+      explanation: `${pct} % de ${base} = (${pct} ÷ 100) × ${base} = ${result}`,
+    };
+  } else {
+    const den = [2, 3, 4, 5, 10][randInt(0, 4)];
+    const num1 = randInt(1, den - 1), num2 = randInt(1, den - 1);
+    const result = roundTo((num1 + num2) / den, 2);
+    return {
+      question: `Calcule : ${num1}/${den} + ${num2}/${den} (donne le résultat en décimal)`,
+      expected: result,
+      explanation: `Même dénominateur : (${num1}+${num2})/${den} = ${num1+num2}/${den} = ${result}`,
+    };
+  }
+}
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => THEME);
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input type="number" step="any" id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    const correct = closeEnough(parseUserNumber(input.value), ex.expected);
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1200);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Tu es à l'aise sur le calcul mental, c'est une super base !";
+    else if (pct >= 50) message = "Pas mal — quelques automatismes à consolider encore.";
+    else message = "C'est pour ça qu'on s'entraîne : refais-en régulièrement, ça viendra vite.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
+</body>
+</html>

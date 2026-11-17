@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Mes statistiques</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">ton tableau de bord</span>
+  <h1>📊 Mes statistiques</h1>
+  <p>Temps de travail, points forts, points faibles</p>
+</header>
+
+<main>
+  <p><a class="retour" href="index.html">← Retour à l'accueil</a></p>
+
+  <section class="card">
+    <h2>Temps total</h2>
+    <p id="total-time" style="font-size:1.5rem; font-weight:800; color:var(--prune); font-family:var(--display);">—</p>
+  </section>
+
+  <section class="card">
+    <h2>Par thème</h2>
+    <div id="theme-table"></div>
+  </section>
+
+  <section class="card">
+    <h2>Points forts & points faibles</h2>
+    <div id="forts-faibles"></div>
+  </section>
+
+  <section class="card">
+    <h2>Historique des sessions</h2>
+    <div id="sessions-list"></div>
+  </section>
+</main>
+
+<footer class="nina-footer">voir le chemin parcouru, c'est déjà une victoire</footer>
+
+<script src="shared.js"></script>
+<script>
+function baseTheme(theme) {
+  return theme.replace(/^Quiz final — /, "");
+}
+
+async function render() {
+  const sessions = await getSessions();
+
+  const totalSeconds = sessions.reduce((a, s) => a + (s.duree_secondes || 0), 0);
+  document.getElementById("total-time").textContent = `${Math.round(totalSeconds / 60)} min au total`;
+
+  // Regroupement par thème (quiz et entraînement confondus)
+  const byTheme = {};
+  sessions.forEach(s => {
+    const t = baseTheme(s.theme);
+    if (!byTheme[t]) byTheme[t] = { temps: 0, bonnes: 0, total: 0, sessions: 0 };
+    byTheme[t].temps += s.duree_secondes || 0;
+    byTheme[t].bonnes += s.bonnes_reponses || 0;
+    byTheme[t].total += s.total_questions || 0;
+    byTheme[t].sessions += 1;
+  });
+
+  const themes = Object.entries(byTheme).map(([theme, d]) => ({
+    theme,
+    pct: d.total ? Math.round((d.bonnes / d.total) * 100) : null,
+    tempsMin: Math.round(d.temps / 60),
+    sessions: d.sessions,
+  }));
+
+  // Tableau par thème
+  const tableEl = document.getElementById("theme-table");
+  if (themes.length === 0) {
+    tableEl.innerHTML = `<p style="color:var(--prune-doux);">Pas encore de données — lance-toi sur un thème de Maths !</p>`;
+  } else {
+    tableEl.innerHTML = themes.map(t => `
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:4px;">
+          <span>${t.theme}</span>
+          <span>${t.pct !== null ? t.pct + "%" : "—"}</span>
+        </div>
+        <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${t.pct || 0}%"></div></div>
+        <p style="margin:2px 0 0; font-size:0.85rem; color:var(--prune-doux);">${t.tempsMin} min · ${t.sessions} session(s)</p>
+      </div>
+    `).join("");
+  }
+
+  // Points forts / faibles (seulement les thèmes avec au moins quelques questions)
+  const ffEl = document.getElementById("forts-faibles");
+  const withScore = themes.filter(t => t.pct !== null && (byTheme[t.theme].total >= 3));
+  if (withScore.length === 0) {
+    ffEl.innerHTML = `<p style="color:var(--prune-doux);">Fais quelques exercices ou un quiz sur au moins un thème pour voir apparaître tes points forts et points faibles.</p>`;
+  } else {
+    const sorted = [...withScore].sort((a, b) => b.pct - a.pct);
+    const fort = sorted[0];
+    const faible = sorted[sorted.length - 1];
+    let html = `<p><span class="badge">💪 Point fort</span> <strong>${fort.theme}</strong> — ${fort.pct}% de réussite</p>`;
+    if (faible.theme !== fort.theme) {
+      html += `<p><span class="badge">🎯 À travailler</span> <strong>${faible.theme}</strong> — ${faible.pct}% de réussite</p>`;
+    }
+    ffEl.innerHTML = html;
+  }
+
+  // Historique
+  const list = document.getElementById("sessions-list");
+  if (sessions.length === 0) {
+    list.innerHTML = `<p style="color:var(--prune-doux);">Pas encore de session enregistrée.</p>`;
+  } else {
+    list.innerHTML = sessions.slice(0, 15).map(s => {
+      const date = new Date(s.created_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+      const pct = s.total_questions ? Math.round((s.bonnes_reponses / s.total_questions) * 100) : 0;
+      return `<p style="margin:8px 0; font-size:0.92rem;">${date} — <strong>${s.theme}</strong> — ${Math.round(s.duree_secondes/60)} min — ${s.bonnes_reponses}/${s.total_questions} (${pct}%)</p>`;
+    }).join("");
+  }
+}
+
+render();
+</script>
+</body>
+</html>
