@@ -76,6 +76,14 @@
   </section>
 
   <section class="card">
+    <h2>Vidéos pour approfondir</h2>
+    <p style="color:var(--prune-doux);">Si tu veux voir cette leçon expliquée autrement, en vidéo.</p>
+    <div class="video-links">
+      <a href="#" id="video-link-1" target="_blank" rel="noopener">🎥 Vecteurs : coordonnées, norme, colinéarité</a>
+    </div>
+  </section>
+
+  <section class="card">
     <h2>Exercices d'entraînement</h2>
     <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
     <div id="practice-exercise"></div>
@@ -165,6 +173,7 @@ function generateExercise() { return genExercise(); }
 const chrono = new Chrono(null);
 chrono.start();
 initAIChat(() => THEME);
+document.getElementById("video-link-1").href = youtubeSearchLink("vecteurs coordonnées norme colinéarité bac pro maths");
 
 let practiceCorrect = 0, practiceTotal = 0;
 

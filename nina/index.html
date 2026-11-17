@@ -19,6 +19,15 @@
 </header>
 
 <main>
+  <section class="card citation-card" id="pensee-du-jour-card">
+    <div id="pensee-du-jour"></div>
+  </section>
+
+  <section class="card phrase-cle-card" id="phrase-cle-card">
+    <p class="phrase-cle-label">Ta phrase clé du jour</p>
+    <p class="phrase-cle-texte" id="phrase-cle"></p>
+  </section>
+
   <section class="card hero-card" id="objectif-jour-card">
     <div class="hero-top">
       <span class="level-chip" id="level-chip">Niveau 1</span>
@@ -114,6 +123,8 @@ async function renderNotes() {
 }
 
 renderNotes();
+renderPenseeDuJour("pensee-du-jour");
+renderPhraseCle("phrase-cle");
 
 // ---------- Compte à rebours bac (approximatif, épreuves écrites bac pro session 2027) ----------
 (function renderCountdown() {

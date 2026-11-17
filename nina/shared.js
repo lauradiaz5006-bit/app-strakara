@@ -312,3 +312,67 @@ function renderMultiPartExercise(container, ex, onFinish) {
     onFinish(correctCount, ex.parts.length);
   });
 }
+
+// ---------- Pensée du jour (citation) et phrase clé personnelle ----------
+// Citations bibliques (Nouveau Testament, traduction Segond 1910, domaine public)
+// et pensées inspirantes originales — change une fois par jour, pas à chaque page.
+const CITATIONS_DU_JOUR = [
+  { texte: "Je puis tout par celui qui me fortifie.", source: "Philippiens 4:13" },
+  { texte: "Que votre cœur ne se trouble point. Croyez en Dieu, et croyez en moi.", source: "Jean 14:1" },
+  { texte: "L'amour est patient, il est plein de bonté ; l'amour n'est point envieux.", source: "1 Corinthiens 13:4" },
+  { texte: "Ne vous inquiétez de rien ; en toute chose, faites connaître vos besoins par la prière.", source: "Philippiens 4:6" },
+  { texte: "Tout est possible à celui qui croit.", source: "Marc 9:23" },
+  { texte: "La foi, c'est la ferme assurance des choses qu'on espère.", source: "Hébreux 11:1" },
+  { texte: "Demandez, et vous recevrez, afin que votre joie soit parfaite.", source: "Jean 16:24" },
+  { texte: "Que personne ne méprise ta jeunesse ; mais sois un modèle pour les fidèles.", source: "1 Timothée 4:12" },
+  { texte: "Fortifiez-vous et ayez du courage.", source: "Deutéronome 31:6" },
+  { texte: "Chaque jour porte en lui une graine que seul ton effort fait grandir.", source: "pensée du jour" },
+  { texte: "Le travail bien fait ne crie jamais, il se voit simplement, plus tard, dans ce qui tient debout.", source: "pensée du jour" },
+  { texte: "On ne devient pas patient en attendant que ça devienne facile, mais en continuant pendant que c'est encore difficile.", source: "pensée du jour" },
+  { texte: "Ce que tu apprends aujourd'hui, tu ne l'apprends plus jamais à zéro demain.", source: "pensée du jour" },
+  { texte: "Avancer un peu chaque jour vaut mieux que tout vouloir d'un coup.", source: "pensée du jour" },
+];
+
+// Phrases clés personnelles pour Nina — mantras du jour, liés à son métier et à son chemin.
+const PHRASES_CLE_NINA = [
+  "Répète-toi : j'aime ce métier, et je suis en train de devenir bonne dans ce métier.",
+  "Je n'ai pas besoin d'être parfaite aujourd'hui, j'ai juste besoin d'avancer un peu.",
+  "Chaque exercice raté m'apprend quelque chose que je n'aurais pas appris sinon.",
+  "Je travaille pour la Nina de l'année prochaine, celle qui aura son bac.",
+  "Je suis capable de comprendre ça, même si ça prend du temps.",
+  "Mon métier a de la valeur, et moi aussi.",
+  "Je n'ai pas à me comparer : je avance à mon rythme, et c'est le bon rythme pour moi.",
+  "Aujourd'hui, je fais un petit pas. Demain, j'en ferai un autre.",
+  "Je suis fière du chemin déjà parcouru, même quand je ne le vois pas encore.",
+  "Pourquoi je fais ça ? Parce que j'aime ce métier et que je mérite de réussir.",
+];
+
+function dayOfYearSeed() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const diff = now - start;
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
+function pickDaily(arr, offset = 0) {
+  return arr[(dayOfYearSeed() + offset) % arr.length];
+}
+
+function renderPenseeDuJour(elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const c = pickDaily(CITATIONS_DU_JOUR);
+  el.innerHTML = `<p class="citation-texte">« ${c.texte} »</p><p class="citation-source">— ${c.source}</p>`;
+}
+
+function renderPhraseCle(elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const p = pickDaily(PHRASES_CLE_NINA, 7); // décalage pour ne pas tomber sur le même index que la citation
+  el.textContent = p;
+}
+
+// ---------- Lien de recherche YouTube (toujours valide, pas de lien fabriqué) ----------
+function youtubeSearchLink(query) {
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+}

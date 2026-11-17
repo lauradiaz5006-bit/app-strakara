@@ -380,3 +380,57 @@ a.retour:hover { color: var(--prune); }
 .retenir p.titre { margin: 0 0 8px; font-weight: 800; color: var(--champagne); }
 .retenir ul { margin: 0; padding-left: 20px; }
 .retenir li { margin-bottom: 4px; }
+
+/* ---------- Pensée du jour & phrase clé ---------- */
+.citation-card {
+  background: linear-gradient(135deg, var(--prune) 0%, var(--prune-survol) 100%);
+  color: var(--blanc);
+  text-align: center;
+}
+.citation-texte {
+  font-family: var(--manuscrit);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+.citation-source {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.phrase-cle-card {
+  background: var(--champagne-clair);
+  text-align: center;
+}
+.phrase-cle-label {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--champagne);
+  font-weight: 800;
+}
+.phrase-cle-texte {
+  font-family: var(--manuscrit);
+  font-size: 1.3rem;
+  color: var(--prune);
+  margin: 0;
+}
+
+/* ---------- Vidéos pour approfondir ---------- */
+.video-links a {
+  display: block;
+  padding: 10px 16px;
+  margin: 6px 0;
+  border-radius: 999px;
+  background: var(--rose);
+  color: var(--prune);
+  font-weight: 700;
+  text-decoration: none;
+}
+.video-links a:hover {
+  background: var(--rose-fonce);
+}
