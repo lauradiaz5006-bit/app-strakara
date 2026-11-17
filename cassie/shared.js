@@ -217,6 +217,19 @@ function runQuizGame(rootEl, jeuNom, generateQuestion, totalQuestions = 8) {
   renderQuestion();
 }
 
+// ---------- Blocs base 10 (centaines/dizaines/unités) ----------
+function blocsPour(n) {
+  const centaines = Math.floor(n / 100);
+  const dizaines = Math.floor((n % 100) / 10);
+  const unites = n % 10;
+  let html = '<div class="blocs-zone">';
+  for (let i = 0; i < centaines; i++) html += `<div class="bloc-centaine">100</div>`;
+  for (let i = 0; i < dizaines; i++) html += `<div class="bloc-dizaine">10</div>`;
+  for (let i = 0; i < unites; i++) html += `<div class="bloc-unite"></div>`;
+  html += '</div>';
+  return html;
+}
+
 // ---------- Difficulté adaptative ----------
 // Regarde les 3 dernières parties de ce jeu : si ça se passe bien, on monte
 // d'un niveau ; si c'est difficile, on redescend. Comme ça elle réussit de

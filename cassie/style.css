@@ -173,6 +173,16 @@ main { max-width: 640px; margin: -20px auto 40px; padding: 0 16px; }
   text-decoration: none;
 }
 
+.blocs-zone { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0 16px; }
+.bloc-centaine, .bloc-dizaine, .bloc-unite {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blanc); font-family: var(--display); font-weight: 800;
+}
+.bloc-centaine { width: 64px; height: 64px; background: var(--violet); border-radius: 14px; font-size: 1.1rem; }
+.bloc-dizaine { width: 44px; height: 44px; background: var(--bleu); border-radius: 10px; font-size: 1rem; }
+.bloc-unite { width: 20px; height: 20px; background: var(--orange); border-radius: 50%; }
+.niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
+
 footer.cassie-footer {
   text-align: center;
   padding: 24px;

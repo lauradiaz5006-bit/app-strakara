@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Compte et calcule</title>
-<link rel="stylesheet" href="style.css?v=4" />
+<link rel="stylesheet" href="style.css?v=5" />
 <style>
   .objets-ligne { font-size: 2.4rem; line-height: 1.3; letter-spacing: 4px; }
   .objets-bloc { margin: 6px 0; }
@@ -23,7 +23,7 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=4"></script>
+<script src="shared.js?v=5"></script>
 <script>
 const objetsEmoji = ["🍓", "🍎", "🎈", "🐟", "🌟", "🧸", "🍬", "🚗"];
 
@@ -31,37 +31,44 @@ function ligneObjets(emoji, n) {
   return `<div class="objets-ligne objets-bloc">${emoji.repeat(n)}</div>`;
 }
 
-function genQuestion() {
+function genQuestion(level) {
   const emoji = objetsEmoji[randInt(0, objetsEmoji.length - 1)];
   const isAddition = Math.random() < 0.6;
+  const petit = level === 1;
   let a, b, correct, html;
+  const rep = (n) => petit ? ligneObjets(emoji, n) : blocsPour(n);
   if (isAddition) {
-    a = randInt(1, 7);
-    b = randInt(1, 6);
+    a = petit ? randInt(1, 7) : level === 2 ? randInt(10, 40) : randInt(40, 80);
+    b = petit ? randInt(1, 6) : level === 2 ? randInt(5, 20) : randInt(10, 40);
     correct = a + b;
     html = `
-      ${ligneObjets(emoji, a)}
+      <div class="niveau-badge">Niveau ${level}</div>
+      ${rep(a)}
       <div class="objets-signe">+</div>
-      ${ligneObjets(emoji, b)}
+      ${rep(b)}
       <div class="objets-signe">= ?</div>
-      <p style="font-size:1rem; font-weight:700; color:#6b6484;">Combien de ${emoji} en tout ?</p>
+      <p style="font-size:1rem; font-weight:700; color:#6b6484;">${petit ? `Combien de ${emoji} en tout ?` : "Combien ça fait en tout ?"}</p>
     `;
   } else {
-    a = randInt(5, 10);
-    b = randInt(1, a - 1);
+    a = petit ? randInt(5, 10) : level === 2 ? randInt(20, 50) : randInt(50, 100);
+    b = petit ? randInt(1, a - 1) : randInt(5, Math.floor(a / 2));
     correct = a - b;
-    const restants = a - b;
     html = `
-      ${ligneObjets(emoji, a)}
-      <div class="objets-signe">On en enlève ${b}</div>
-      <p style="font-size:1rem; font-weight:700; color:#6b6484;">Combien de ${emoji} va-t-il rester ?</p>
+      <div class="niveau-badge">Niveau ${level}</div>
+      ${rep(a)}
+      <div class="objets-signe">${petit ? `On en enlève ${b}` : `On enlève ${b}`}</div>
+      <p style="font-size:1rem; font-weight:700; color:#6b6484;">${petit ? `Combien de ${emoji} va-t-il rester ?` : "Combien va-t-il rester ?"}</p>
     `;
   }
-  const options = fakeAnswersAround(correct, 0, 16);
+  const options = fakeAnswersAround(correct, 0, petit ? 16 : 150);
   return { text: html, correct, options };
 }
 
-runQuizGame(document.getElementById("game-root"), "compte-et-calcule", genQuestion, 6);
+async function start() {
+  const level = await chooseAdaptiveLevel("compte-et-calcule", 3);
+  runQuizGame(document.getElementById("game-root"), "compte-et-calcule", () => genQuestion(level), 6);
+}
+start();
 </script>
 </body>
 </html>
