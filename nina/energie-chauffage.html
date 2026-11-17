@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Énergie et chauffage</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,13 +25,47 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Énergie et puissance.</strong> Un appareil (radiateur, chauffe-eau...) transforme de l'énergie électrique en chaleur. La <strong>puissance P</strong> (en watts, W) indique la quantité d'énergie fournie chaque seconde. L'<strong>énergie E</strong> (en joules J, ou en kWh pour la facture) dépend de la puissance ET du temps d'utilisation :</p>
-    <p style="text-align:center; font-size:1.2em;"><strong>E = P × t</strong></p>
-    <p>(E en joules si P est en watts et t en secondes ; E en kWh si P est en kW et t en heures)</p>
-    <p><strong>Rendement.</strong> Un appareil ne convertit jamais 100% de l'énergie reçue en énergie utile : une partie se perd (souvent sous forme de chaleur non utilisée). Le rendement η (lettre grecque "êta") compare l'énergie utile à l'énergie reçue :</p>
-    <p style="text-align:center; font-size:1.2em;"><strong>η = énergie utile / énergie reçue</strong> (souvent exprimé en %)</p>
-    <p><strong>Piège classique :</strong> ne pas confondre puissance (en W, un instant donné) et énergie (en J ou kWh, cumulée sur une durée). Sur une facture d'électricité, c'est toujours l'énergie (kWh) qui est facturée, jamais la puissance seule.</p>
-    <p><strong>Exemple.</strong> Un radiateur de 1500 W fonctionne pendant 4 heures. Énergie consommée : E = 1,5 kW × 4 h = 6 kWh.</p>
+    <div id="lesson-text">
+      <h3>1. Puissance et énergie</h3>
+      <p>Un appareil (radiateur, chauffe-eau...) transforme de l'énergie électrique en chaleur. La <strong>puissance P</strong> (en watts, W) indique la quantité d'énergie fournie chaque seconde. L'<strong>énergie E</strong> dépend de la puissance ET du temps d'utilisation :</p>
+      <p style="text-align:center; font-size:1.2em;"><strong>E = P × t</strong></p>
+      <p>E est en joules (J) si P est en watts (W) et t en secondes (s) ; E est en kWh si P est en kW et t en heures (h) — c'est cette unité qu'on utilise sur une facture d'électricité.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode : calculer une énergie consommée</p>
+        <ol>
+          <li>Repérer la puissance P de l'appareil (en W ou en kW).</li>
+          <li>Repérer la durée de fonctionnement t (convertir en heures si besoin pour avoir E en kWh).</li>
+          <li>Appliquer E = P × t.</li>
+          <li>Vérifier l'unité du résultat (kWh si P en kW et t en h).</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple :</em> un radiateur de 1,5 kW fonctionne pendant 4 h. E = 1,5 × 4 = 6 kWh.</p>
+
+      <h3>2. Rendement</h3>
+      <p>Un appareil ne convertit jamais 100% de l'énergie reçue en énergie utile : une partie se perd (souvent sous forme de chaleur non utilisée). Le rendement η ("êta") compare l'énergie utile à l'énergie reçue :</p>
+      <p style="text-align:center; font-size:1.2em;"><strong>η = énergie utile / énergie reçue</strong></p>
+      <p>η est un nombre entre 0 et 1 (ou exprimé en %). On en déduit : énergie utile = η × énergie reçue, et énergie perdue = énergie reçue − énergie utile.</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Confondre puissance (en W, à un instant donné) et énergie (en J ou kWh, cumulée sur une durée).</li>
+          <li>Oublier de convertir les minutes en heures avant de calculer une énergie en kWh.</li>
+          <li>Croire que le rendement peut dépasser 1 (100%) : c'est physiquement impossible, il y a toujours des pertes.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>E = P × t (kWh si P en kW et t en h).</li>
+          <li>η = énergie utile / énergie reçue (toujours ≤ 1).</li>
+        </ul>
+      </div>
+    </div>
+    <button class="secondary" onclick="copyForAI('Énergie et chauffage (sciences physiques, Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'sciences')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
@@ -43,18 +77,230 @@
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, de vérifier un calcul de puissance ou d'énergie, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
-<footer class="nina-footer">ça arrive, patience</footer>
+<footer class="nina-footer">chaque exercice te rapproche de ton objectif</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Énergie et chauffage";
+const MATIERE = "sciences";
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
+function parseUserNumber(str) { if (!str) return NaN; return parseFloat(str.toString().replace(",", ".")); }
+function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
+
+function genEnergie() {
+  const subtype = randInt(1, 3);
+  const P = roundTo(randInt(5, 30) / 10, 1); // kW
+  const t = randInt(2, 8); // h
+
+  if (subtype === 1) {
+    const E = roundTo(P * t, 2);
+    return {
+      question: `Un radiateur électrique a une puissance de ${P} kW et fonctionne pendant ${t} h. Calcule l'énergie consommée E (en kWh).`,
+      expected: E,
+      explanation: `E = P × t = ${P} × ${t} = ${E} kWh`,
+    };
+  } else if (subtype === 2) {
+    const E = roundTo(P * t, 2);
+    return {
+      question: `Un appareil a consommé ${E} kWh en fonctionnant pendant ${t} h. Calcule sa puissance P (en kW).`,
+      expected: P,
+      explanation: `P = E / t = ${E} / ${t} = ${P} kW`,
+    };
+  } else {
+    const E = roundTo(P * t, 2);
+    const tResult = roundTo(E / P, 2);
+    return {
+      question: `Un appareil de puissance ${P} kW doit consommer ${E} kWh. Pendant combien de temps t (en h) doit-il fonctionner ?`,
+      expected: tResult,
+      explanation: `t = E / P = ${E} / ${P} = ${tResult} h`,
+    };
+  }
+}
+
+function genRendement() {
+  const subtype = randInt(1, 3);
+  const Ereçue = randInt(10, 40);
+  const eta = roundTo(randInt(60, 95) / 100, 2);
+
+  if (subtype === 1) {
+    const Eutile = roundTo(Ereçue * eta, 2);
+    return {
+      question: `Un chauffage reçoit une énergie de ${Ereçue} kWh et a un rendement de ${Math.round(eta*100)}%. Calcule l'énergie utile (en kWh).`,
+      expected: Eutile,
+      explanation: `Énergie utile = η × énergie reçue = ${eta} × ${Ereçue} = ${Eutile} kWh`,
+    };
+  } else if (subtype === 2) {
+    const Eutile = roundTo(Ereçue * eta, 2);
+    const etaResult = eta;
+    return {
+      question: `Un appareil reçoit ${Ereçue} kWh et restitue ${Eutile} kWh d'énergie utile. Calcule son rendement η (donne un nombre décimal, ex : 0,75).`,
+      expected: etaResult,
+      explanation: `η = énergie utile / énergie reçue = ${Eutile} / ${Ereçue} = ${etaResult}`,
+    };
+  } else {
+    const Eutile = roundTo(Ereçue * eta, 2);
+    const Eperdue = roundTo(Ereçue - Eutile, 2);
+    return {
+      question: `Un appareil reçoit ${Ereçue} kWh avec un rendement de ${Math.round(eta*100)}%. Calcule l'énergie perdue (en kWh).`,
+      expected: Eperdue,
+      explanation: `Énergie utile = ${eta} × ${Ereçue} = ${Eutile} kWh, donc énergie perdue = ${Ereçue} − ${Eutile} = ${Eperdue} kWh`,
+    };
+  }
+}
+
+function generateExercise() {
+  return Math.random() < 0.5 ? genEnergie() : genRendement();
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (sciences physiques, bac pro) : puissance P (W), énergie E = P×t (J ou kWh), rendement η = énergie utile / énergie reçue, dispositifs de chauffage électrique.");
 document.getElementById("video-link-1").href = youtubeSearchLink("Lumni puissance énergie rendement chauffage électrique bac pro");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input ${ex.isText ? 'type="text"' : 'type="number" step="any"'} id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    let correct;
+    if (ex.isText) {
+      correct = input.value.trim().toLowerCase() === ex.expected;
+    } else {
+      correct = closeEnough(parseUserNumber(input.value), ex.expected);
+    }
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    if (correct) triggerSuccessAnimation();
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac ----------
+function genBacExercise() {
+  const P = roundTo(randInt(8, 24) / 10, 1);
+  const t = randInt(3, 8);
+  const E = roundTo(P * t, 2);
+  const eta = roundTo(randInt(65, 90) / 100, 2);
+  const Eutile = roundTo(E * eta, 2);
+  const Eperdue = roundTo(E - Eutile, 2);
+  return {
+    dureeConseillee: "10 min",
+    contexte: `Sur un chantier, un chauffage d'appoint de puissance ${P} kW est utilisé pendant ${t} h pour sécher un enduit avant la pose d'un revêtement. Son rendement est de ${Math.round(eta*100)}%.`,
+    parts: [
+      { question: `Calculer l'énergie totale consommée E (en kWh).`, expected: E, explanation: `E = P × t = ${P} × ${t} = ${E} kWh` },
+      { question: `Calculer l'énergie utile réellement transformée en chaleur (en kWh).`, expected: Eutile, explanation: `Énergie utile = η × E = ${eta} × ${E} = ${Eutile} kWh` },
+      { question: `Calculer l'énergie perdue (en kWh).`, expected: Eperdue, explanation: `Énergie perdue = E − énergie utile = ${E} − ${Eutile} = ${Eperdue} kWh` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Compréhension écrite</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,27 +25,221 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Le format à l'examen.</strong> Tu lis un texte authentique en anglais (15 lignes maximum — article, publicité, courrier...). Tu dois en rendre compte <strong>en français</strong>, par écrit : montrer que tu as compris le sens général et les idées importantes.</p>
-    <p><strong>Méthode, en 3 étapes :</strong></p>
-    <p>1. Repère d'abord le "qui, quoi, où, quand" : regarde le titre, la source, la mise en page (c'est une pub ? un article ? une lettre ?). Ça donne déjà beaucoup d'informations avant même de tout lire.</p>
-    <p>2. Lis une première fois sans t'arrêter sur les mots inconnus : souligne seulement les mots que tu reconnais ou devines par le contexte.</p>
-    <p>3. Relis phrase par phrase pour les questions précises, en t'appuyant sur les mots autour d'un mot inconnu pour le deviner (le contexte donne souvent le sens).</p>
-    <p><strong>Piège classique :</strong> ne pas confondre un mot qui ressemble au français mais qui a un sens différent (les "faux amis"). Exemples : "actually" = "en fait" (pas "actuellement"), "library" = "bibliothèque" (pas "librairie").</p>
-    <p><strong>Toujours justifier :</strong> à l'examen, on te demande souvent de citer le passage du texte qui prouve ta réponse (entre guillemets). Ne réponds jamais "au feeling" sans pouvoir montrer où tu l'as vu dans le texte.</p>
+    <div id="lesson-text">
+      <p><strong>Le format à l'examen.</strong> Tu lis un texte authentique en anglais (15 lignes maximum — article, publicité, courrier...). Tu dois en rendre compte <strong>en français</strong>, par écrit : montrer que tu as compris le sens général et les idées importantes.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode, en 3 étapes</p>
+        <ol>
+          <li>Repère d'abord le "qui, quoi, où, quand" : regarde le titre, la source, la mise en page (c'est une pub ? un article ? une lettre ?). Ça donne déjà beaucoup d'informations avant même de tout lire.</li>
+          <li>Lis une première fois sans t'arrêter sur les mots inconnus : souligne seulement les mots que tu reconnais ou devines par le contexte.</li>
+          <li>Relis phrase par phrase pour les questions précises, en t'appuyant sur les mots autour d'un mot inconnu pour le deviner (le contexte donne souvent le sens).</li>
+        </ol>
+      </div>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents : les faux amis</p>
+        <ul>
+          <li>"actually" = en fait (pas "actuellement")</li>
+          <li>"library" = bibliothèque (pas "librairie", qui se dit "bookshop")</li>
+          <li>"eventually" = finalement (pas "éventuellement")</li>
+          <li>"sensible" = raisonnable (pas "sensible", qui se dit "sensitive")</li>
+        </ul>
+      </div>
+
+      <p><strong>Toujours justifier :</strong> à l'examen, on te demande souvent de citer le passage du texte qui prouve ta réponse (entre guillemets). Ne réponds jamais "au feeling" sans pouvoir montrer où tu l'as vu dans le texte.</p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Compréhension écrite en anglais (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'anglais')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un mot ou une phrase d'un texte que tu étudies, de te donner des exemples de faux amis, ou de t'aider sur un exercice avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Un texte court, puis une question. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un texte, plusieurs questions liées, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
 <footer class="nina-footer">step by step 🇬🇧</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Compréhension écrite";
+const MATIERE = "anglais";
+
+const TEXTE_1 = {
+  titre: "A job advert",
+  texte: `"Workshop assistant wanted. We are a small furniture company looking for a motivated person to help with cutting, assembling and finishing wooden furniture. No experience required, we will train you. Good team spirit is essential. Send your application by email."`,
+  questions: [
+    { question: `Quel type de poste propose cette annonce ?`, options: ["Vendeur en magasin de meubles", "Assistant d'atelier dans une entreprise de meubles", "Chauffeur-livreur", "Comptable"], expected: 1, explanation: `L'annonce dit "Workshop assistant wanted" pour une entreprise de meubles ("furniture company").` },
+    { question: `L'entreprise demande-t-elle de l'expérience ?`, options: ["Oui, plusieurs années minimum", "Non, elle précise qu'aucune expérience n'est requise", "Oui, mais seulement 6 mois", "Le texte ne le précise pas"], expected: 1, explanation: `Le texte dit clairement "No experience required, we will train you."` },
+  ],
+};
+
+const TEXTE_2 = {
+  titre: "A letter from a customer",
+  texte: `"Dear Sir or Madam, I recently ordered a wooden bookshelf from your workshop. I am actually very happy with the quality, but the delivery took much longer than expected — almost three weeks instead of one. I would appreciate some information about future delivery times before I order again."`,
+  questions: [
+    { question: `Le client est-il globalement satisfait de la qualité du produit ?`, options: ["Non, il est très mécontent", "Oui, il dit être très content de la qualité", "Il ne donne pas son avis sur la qualité", "Il demande un remboursement"], expected: 1, explanation: `Il écrit "I am actually very happy with the quality" — "actually" ici veut dire "en fait", pas "actuellement" : c'est un faux ami !` },
+    { question: `Quel est le problème qu'il signale ?`, options: ["Le produit était cassé", "La livraison a pris beaucoup plus de temps que prévu", "Le prix était trop élevé", "La couleur n'était pas la bonne"], expected: 1, explanation: `"the delivery took much longer than expected — almost three weeks instead of one."` },
+  ],
+};
+
+const TEXTE_3 = {
+  titre: "An advert for a showroom",
+  texte: `"Visit our new showroom! Discover sustainable and eco-friendly furniture made from recycled wood. Open every day except Sunday. Free parking available. Ask our team about custom-made pieces for your home or office."`,
+  questions: [
+    { question: `Quel type de meubles sont présentés dans ce showroom ?`, options: ["Des meubles de luxe importés", "Des meubles durables et écologiques en bois recyclé", "Des meubles en plastique", "Des meubles d'occasion uniquement"], expected: 1, explanation: `"sustainable and eco-friendly furniture made from recycled wood."` },
+    { question: `Que peut-on demander à l'équipe du showroom ?`, options: ["Un devis pour une maison entière", "Des pièces sur mesure pour la maison ou le bureau", "Une livraison gratuite dans toute la France", "Un cours de menuiserie"], expected: 1, explanation: `"Ask our team about custom-made pieces for your home or office."` },
+  ],
+};
+
+const TEXTES = [TEXTE_1, TEXTE_2, TEXTE_3];
+
+function buildPool() {
+  const pool = [];
+  TEXTES.forEach(t => t.questions.forEach(q => pool.push({ titre: t.titre, texte: t.texte, ...q })));
+  return pool;
+}
+const POOL = buildPool();
+
+function generateExercise() {
+  return POOL[Math.floor(Math.random() * POOL.length)];
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (anglais LV1, bac pro) : méthode de lecture d'un texte authentique (titre/source puis lecture globale puis détails), compte rendu en français, justification par citation du texte, faux amis classiques.");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <p style="font-style:italic; margin-bottom:6px;">« ${ex.titre} »</p>
+      <p style="background:var(--rose); padding:12px 16px; border-radius:14px; margin-bottom:14px;">${ex.texte}</p>
+      <div class="question">${ex.question}</div>
+      <div id="qcm-options" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;">
+        ${ex.options.map((opt, i) => `<button class="secondary qcm-opt" data-i="${i}" style="text-align:left;">${opt}</button>`).join("")}
+      </div>
+      <div id="feedback"></div>
+    </div>`;
+  const feedback = container.querySelector("#feedback");
+  container.querySelectorAll(".qcm-opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = parseInt(btn.dataset.i, 10);
+      const correct = i === ex.expected;
+      container.querySelectorAll(".qcm-opt").forEach(b => b.disabled = true);
+      feedback.className = "feedback " + (correct ? "ok" : "ko");
+      if (correct) triggerSuccessAnimation();
+      feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+        `<br><a href="#" onclick="askAI('Je ne comprends pas cette question de compréhension écrite : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+      onAnswered(correct);
+    });
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac ----------
+function genBacExercise() {
+  const contexte = `« Customer email » — "Hello, I ordered a custom wardrobe three weeks ago and I still haven't received a confirmation of the delivery date. I am sensible about this because I'm moving house next month and I need the wardrobe before that date. Could you please let me know eventually when it will be ready? Thank you."`;
+  return {
+    dureeConseillee: "10 min",
+    contexte,
+    parts: [
+      { question: `Quel mot du texte est un faux ami qui ne veut PAS dire "sensible" en français ? (réponds par ce mot en anglais)`, expected: "sensible", isText: true, explanation: `"sensible" en anglais veut dire "raisonnable", pas "sensible" (qui se traduit par "sensitive"). C'est un faux ami classique.` },
+      { question: `Pourquoi le client a-t-il besoin de l'armoire rapidement ? (réponds en un mot : "déménagement")`, expected: "déménagement", isText: true, explanation: `Il écrit "I'm moving house next month" — il déménage le mois prochain.` },
+      { question: `Que demande-t-il à la fin du mail ? (réponds "la date" ou "quand")`, expected: "quand", isText: true, explanation: `Il demande "when it will be ready" — quand l'armoire sera prête.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = Math.min(6, POOL.length);
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+  const shuffled = [...POOL].sort(() => Math.random() - 0.5);
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = shuffled[index % shuffled.length];
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>

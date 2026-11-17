@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Lumière et couleur des objets</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,11 +25,53 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Lumière blanche et couleurs.</strong> La lumière blanche (celle du soleil) est en réalité un mélange de toutes les couleurs de l'arc-en-ciel (rouge, orange, jaune, vert, bleu, violet...). On peut le voir en décomposant la lumière avec un prisme.</p>
-    <p><strong>Synthèse additive.</strong> En mélangeant de la lumière rouge, verte et bleue (les couleurs primaires de la lumière), on peut reconstituer toutes les autres couleurs, y compris le blanc. C'est le principe utilisé par les écrans (TV, téléphone).</p>
-    <p><strong>Pourquoi un objet est coloré ?</strong> Un objet éclairé en lumière blanche absorbe une partie des couleurs et réfléchit (ou diffuse) les autres. C'est cette lumière réfléchie qui arrive à nos yeux et qui donne sa couleur apparente à l'objet. Exemple : une pomme rouge absorbe le vert et le bleu, et réfléchit le rouge.</p>
-    <p><strong>Attention à l'éclairage.</strong> La couleur perçue d'un objet dépend de la lumière qui l'éclaire : sous une lumière uniquement rouge, un objet bleu paraîtra noir (il n'y a pas de bleu à réfléchir). C'est important en agencement/décoration intérieure : le choix de l'éclairage change la perception des couleurs et des matériaux.</p>
-    <p><strong>Piège classique :</strong> ne pas confondre la synthèse additive (lumières qui s'ajoutent, primaires rouge/vert/bleu) et la synthèse soustractive (peintures/pigments qui se mélangent, primaires cyan/magenta/jaune).</p>
+    <div id="lesson-text">
+      <h3>1. Lumière blanche et couleurs</h3>
+      <p>La lumière blanche (celle du soleil) est en réalité un mélange de toutes les couleurs de l'arc-en-ciel (rouge, orange, jaune, vert, bleu, violet...). On peut le voir en décomposant la lumière avec un prisme.</p>
+
+      <h3>2. Synthèse additive</h3>
+      <p>En mélangeant de la lumière rouge, verte et bleue (les couleurs primaires de la lumière), on peut reconstituer toutes les autres couleurs, y compris le blanc. C'est le principe utilisé par les écrans (TV, téléphone).</p>
+      <ul>
+        <li>Rouge + Vert = Jaune</li>
+        <li>Rouge + Bleu = Magenta</li>
+        <li>Vert + Bleu = Cyan</li>
+        <li>Rouge + Vert + Bleu = Blanc</li>
+      </ul>
+
+      <h3>3. Pourquoi un objet est coloré ?</h3>
+      <p>Un objet éclairé en lumière blanche <strong>absorbe</strong> une partie des couleurs et <strong>réfléchit</strong> (ou diffuse) les autres. C'est cette lumière réfléchie qui arrive à nos yeux et qui donne sa couleur apparente à l'objet.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode : trouver la couleur apparente d'un objet</p>
+        <ol>
+          <li>Repérer la couleur propre de l'objet (ce qu'il réfléchit sous lumière blanche).</li>
+          <li>Repérer la couleur de la lumière qui l'éclaire.</li>
+          <li>Si la lumière contient la couleur que l'objet réfléchit → l'objet apparaît de cette couleur.</li>
+          <li>Si la lumière ne contient PAS la couleur que l'objet réfléchit → l'objet apparaît noir (il n'a rien à réfléchir).</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple :</em> une pomme rouge absorbe le vert et le bleu, et réfléchit le rouge. Sous lumière blanche, elle paraît rouge. Sous lumière uniquement bleue, elle paraît noire (elle n'a pas de bleu à réfléchir).</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Confondre la synthèse additive (lumières qui s'ajoutent, primaires rouge/vert/bleu) et la synthèse soustractive (peintures/pigments, primaires cyan/magenta/jaune).</li>
+          <li>Oublier que la couleur perçue d'un objet dépend de la lumière qui l'éclaire — pas seulement de l'objet lui-même.</li>
+          <li>Important en agencement/décoration intérieure : le choix de l'éclairage change la perception des couleurs et des matériaux dans une pièce.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>Lumière blanche = mélange de toutes les couleurs.</li>
+          <li>Synthèse additive : rouge + vert + bleu = blanc.</li>
+          <li>Un objet réfléchit sa couleur et absorbe les autres ; sans sa couleur dans la lumière, il paraît noir.</li>
+        </ul>
+      </div>
+    </div>
+    <button class="secondary" onclick="copyForAI('Lumière et couleur des objets (sciences physiques, Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'sciences')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
@@ -41,18 +83,165 @@
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, un schéma de synthèse des couleurs, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Une situation, plusieurs questions liées, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
-<footer class="nina-footer">ça arrive, patience</footer>
+<footer class="nina-footer">chaque exercice te rapproche de ton objectif</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Lumière et couleur des objets";
+const MATIERE = "sciences";
+
+const POOL = [
+  { question: `Une pomme verte éclairée en lumière blanche absorbe le rouge et le bleu. Quelle couleur réfléchit-elle ?`, options: ["Rouge", "Vert", "Bleu", "Noir"], expected: 1, explanation: `Elle absorbe le rouge et le bleu : il ne reste que le vert à réfléchir, donc elle paraît verte.` },
+  { question: `Un tissu bleu est éclairé uniquement par une lumière rouge (sans bleu dedans). Quelle couleur va-t-il apparaître ?`, options: ["Bleu", "Rouge", "Violet", "Noir"], expected: 3, explanation: `Le tissu réfléchit le bleu, mais il n'y a pas de bleu dans la lumière qui l'éclaire : il n'a rien à réfléchir, donc il paraît noir.` },
+  { question: `En synthèse additive (lumière), que donne le mélange rouge + vert ?`, options: ["Blanc", "Jaune", "Noir", "Bleu"], expected: 1, explanation: `En synthèse additive, rouge + vert donne du jaune.` },
+  { question: `En synthèse additive, que donne le mélange des 3 couleurs primaires (rouge + vert + bleu) ?`, options: ["Noir", "Gris", "Blanc", "Jaune"], expected: 2, explanation: `Rouge + vert + bleu = blanc, c'est le principe utilisé par les écrans.` },
+  { question: `Qu'est-ce qui prouve que la lumière blanche est un mélange de couleurs ?`, options: ["Elle chauffe plus que les autres lumières", "Un prisme peut la décomposer en un arc-en-ciel de couleurs", "Elle est toujours plus forte la journée", "Elle ne peut pas être produite artificiellement"], expected: 1, explanation: `Un prisme décompose la lumière blanche en toutes les couleurs qui la composent (comme un arc-en-ciel) : c'est la preuve qu'elle est un mélange.` },
+  { question: `Dans l'agencement d'un showroom, pourquoi le choix des spots lumineux est important pour présenter des meubles colorés ?`, options: ["Parce que les spots consomment de l'électricité", "Parce que la couleur de la lumière change la couleur perçue des meubles", "Parce que les spots chauffent la pièce", "Ça n'a aucune importance"], expected: 1, explanation: `La couleur apparente d'un objet dépend de la lumière qui l'éclaire : un éclairage mal choisi peut dénaturer la couleur réelle d'un meuble.` },
+];
+
+function generateExercise() {
+  return POOL[Math.floor(Math.random() * POOL.length)];
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (sciences physiques, bac pro) : lumière blanche, synthèse additive (rouge/vert/bleu), absorption/réflexion de la lumière par les objets, couleur apparente selon l'éclairage.");
 document.getElementById("video-link-1").href = youtubeSearchLink("Lumni pourquoi les objets sont colorés lumière synthèse additive bac pro");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <div id="qcm-options" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;">
+        ${ex.options.map((opt, i) => `<button class="secondary qcm-opt" data-i="${i}" style="text-align:left;">${opt}</button>`).join("")}
+      </div>
+      <div id="feedback"></div>
+    </div>`;
+  const feedback = container.querySelector("#feedback");
+  container.querySelectorAll(".qcm-opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = parseInt(btn.dataset.i, 10);
+      const correct = i === ex.expected;
+      container.querySelectorAll(".qcm-opt").forEach(b => b.disabled = true);
+      feedback.className = "feedback " + (correct ? "ok" : "ko");
+      if (correct) triggerSuccessAnimation();
+      feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+        `<br><a href="#" onclick="askAI('Je ne comprends pas cette question : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+      onAnswered(correct);
+    });
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac ----------
+function genBacExercise() {
+  const contexte = `Dans un showroom d'agencement, un canapé bleu et un coussin rouge sont installés sous un éclairage composé uniquement de spots rouges (pas de bleu ni de vert dans cette lumière).`;
+  return {
+    dureeConseillee: "8 min",
+    contexte,
+    parts: [
+      { question: `Quelle couleur va apparaître le coussin rouge sous cet éclairage ? (réponds "rouge")`, expected: "rouge", isText: true, explanation: `Le coussin réfléchit le rouge, et la lumière contient du rouge : il apparaît donc rouge.` },
+      { question: `Quelle couleur va apparaître le canapé bleu sous cet éclairage ? (réponds "noir")`, expected: "noir", isText: true, explanation: `Le canapé réfléchit le bleu, mais la lumière ne contient pas de bleu : il n'a rien à réfléchir, donc il apparaît noir.` },
+      { question: `Si on ajoute des spots blancs en plus des spots rouges, le canapé retrouvera-t-il sa couleur bleue ? (réponds "oui" ou "non")`, expected: "oui", isText: true, explanation: `La lumière blanche contient toutes les couleurs, dont le bleu : le canapé pourra donc à nouveau réfléchir du bleu et retrouver sa couleur apparente.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = Math.min(6, POOL.length);
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+  const shuffled = [...POOL].sort(() => Math.random() - 0.5);
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = shuffled[index % shuffled.length];
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>

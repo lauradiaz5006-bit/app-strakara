@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Électricité : distribution et puissance</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,13 +25,48 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Tension, intensité, résistance.</strong> La tension U (en volts, V) est ce qui "pousse" le courant électrique. L'intensité I (en ampères, A) est le débit de courant qui circule. La résistance R (en ohms, Ω) s'oppose au passage du courant. La loi d'Ohm relie les trois :</p>
-    <p style="text-align:center; font-size:1.2em;"><strong>U = R × I</strong></p>
-    <p><strong>Puissance électrique.</strong> La puissance consommée par un appareil dépend de la tension et de l'intensité :</p>
-    <p style="text-align:center; font-size:1.2em;"><strong>P = U × I</strong></p>
-    <p><strong>Monophasé / triphasé.</strong> Dans une maison, l'alimentation est généralement en monophasé (une seule phase + neutre, 230 V). Dans une entreprise ou sur un gros chantier, on utilise souvent le triphasé (trois phases, 400 V entre phases) pour répartir la puissance et alimenter des machines plus puissantes.</p>
-    <p><strong>Piège classique :</strong> ne pas confondre tension entre phase et neutre (230 V) et tension entre deux phases en triphasé (400 V). Vérifier aussi que les unités sont cohérentes (V, A, Ω) avant de calculer.</p>
-    <p><strong>Exemple.</strong> Un appareil alimenté en 230 V consomme un courant de 5 A. Puissance : P = 230 × 5 = 1150 W.</p>
+    <div id="lesson-text">
+      <h3>1. Tension, intensité, résistance (loi d'Ohm)</h3>
+      <p>La <strong>tension U</strong> (en volts, V) est ce qui "pousse" le courant électrique. L'<strong>intensité I</strong> (en ampères, A) est le débit de courant qui circule. La <strong>résistance R</strong> (en ohms, Ω) s'oppose au passage du courant. La loi d'Ohm relie les trois :</p>
+      <p style="text-align:center; font-size:1.2em;"><strong>U = R × I</strong></p>
+
+      <div class="methode">
+        <p class="titre">Méthode : utiliser la loi d'Ohm</p>
+        <ol>
+          <li>Identifier les deux grandeurs connues parmi U, R, I.</li>
+          <li>Isoler la grandeur cherchée : U = R×I, ou I = U/R, ou R = U/I.</li>
+          <li>Vérifier les unités (V, Ω, A) avant de calculer.</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple :</em> un appareil de résistance R = 46 Ω est alimenté en 230 V. I = U/R = 230/46 = 5 A.</p>
+
+      <h3>2. Puissance électrique</h3>
+      <p>La puissance consommée par un appareil dépend de la tension et de l'intensité :</p>
+      <p style="text-align:center; font-size:1.2em;"><strong>P = U × I</strong></p>
+
+      <h3>3. Monophasé / triphasé</h3>
+      <p>Dans une maison, l'alimentation est généralement en <strong>monophasé</strong> (une seule phase + neutre, 230 V). Dans une entreprise ou sur un gros chantier, on utilise souvent le <strong>triphasé</strong> (trois phases, 400 V entre phases) pour répartir la puissance et alimenter des machines plus puissantes sans surcharger une seule ligne.</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Confondre tension entre phase et neutre (230 V) et tension entre deux phases en triphasé (400 V).</li>
+          <li>Oublier de vérifier que les unités sont cohérentes (V, A, Ω) avant de calculer.</li>
+          <li>Croire que le triphasé "triple" la tension sur un seul appareil — en réalité il répartit la puissance sur 3 phases.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>U = R × I (loi d'Ohm).</li>
+          <li>P = U × I (puissance électrique).</li>
+          <li>Monophasé = 230 V (habitat), triphasé = 400 V entre phases (entreprise, gros matériel).</li>
+        </ul>
+      </div>
+    </div>
+    <button class="secondary" onclick="copyForAI('Électricité : distribution et puissance (sciences physiques, Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'sciences')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
@@ -43,18 +78,216 @@
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, de vérifier un calcul avec la loi d'Ohm, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
-<footer class="nina-footer">ça arrive, patience</footer>
+<footer class="nina-footer">chaque exercice te rapproche de ton objectif</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Électricité : distribution et puissance";
+const MATIERE = "sciences";
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
+function parseUserNumber(str) { if (!str) return NaN; return parseFloat(str.toString().replace(",", ".")); }
+function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
+
+function genOhm() {
+  const subtype = randInt(1, 3);
+  const R = randInt(10, 100);
+  const I = roundTo(randInt(5, 60) / 10, 1);
+  const U = roundTo(R * I, 1);
+
+  if (subtype === 1) {
+    return {
+      question: `Un appareil a une résistance R = ${R} Ω et est traversé par un courant I = ${I} A. Calcule la tension U (en V) à ses bornes.`,
+      expected: U,
+      explanation: `U = R × I = ${R} × ${I} = ${U} V`,
+    };
+  } else if (subtype === 2) {
+    return {
+      question: `Un appareil est alimenté sous une tension U = ${U} V et a une résistance R = ${R} Ω. Calcule l'intensité I (en A).`,
+      expected: I,
+      explanation: `I = U / R = ${U} / ${R} = ${I} A`,
+    };
+  } else {
+    return {
+      question: `Un appareil est alimenté sous U = ${U} V et traversé par un courant I = ${I} A. Calcule sa résistance R (en Ω).`,
+      expected: R,
+      explanation: `R = U / I = ${U} / ${I} = ${R} Ω`,
+    };
+  }
+}
+
+function genPuissance() {
+  const subtype = randInt(1, 2);
+  const U = randInt(200, 240);
+  const I = roundTo(randInt(5, 80) / 10, 1);
+  const P = roundTo(U * I, 1);
+
+  if (subtype === 1) {
+    return {
+      question: `Un appareil électrique est alimenté sous U = ${U} V et traversé par I = ${I} A. Calcule la puissance P consommée (en W).`,
+      expected: P,
+      explanation: `P = U × I = ${U} × ${I} = ${P} W`,
+    };
+  } else {
+    return {
+      question: `Un appareil de puissance ${P} W est alimenté sous U = ${U} V. Calcule l'intensité I (en A).`,
+      expected: I,
+      explanation: `I = P / U = ${P} / ${U} = ${I} A`,
+    };
+  }
+}
+
+function generateExercise() {
+  return Math.random() < 0.5 ? genOhm() : genPuissance();
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (sciences physiques, bac pro) : loi d'Ohm U=R×I, puissance électrique P=U×I, monophasé/triphasé, distribution de l'énergie électrique à l'entreprise.");
 document.getElementById("video-link-1").href = youtubeSearchLink("Lumni tension intensité puissance électrique loi d'Ohm bac pro");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input ${ex.isText ? 'type="text"' : 'type="number" step="any"'} id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    let correct;
+    if (ex.isText) {
+      correct = input.value.trim().toLowerCase() === ex.expected;
+    } else {
+      correct = closeEnough(parseUserNumber(input.value), ex.expected);
+    }
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    if (correct) triggerSuccessAnimation();
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac ----------
+function genBacExercise() {
+  const R = randInt(20, 60);
+  const U = 230;
+  const I = roundTo(U / R, 2);
+  const P = roundTo(U * I, 1);
+  const estTriphase = Math.random() < 0.5;
+  return {
+    dureeConseillee: "10 min",
+    contexte: `Sur un chantier, une machine-outil de résistance ${R} Ω est raccordée à une installation. ${estTriphase ? "L'installation du chantier est en triphasé (400 V entre phases), mais cette machine particulière est branchée en monophasé sous 230 V." : "L'installation est en monophasé, sous une tension de 230 V."}`,
+    parts: [
+      { question: `Calculer l'intensité I du courant qui traverse la machine (en A).`, expected: I, explanation: `I = U / R = ${U} / ${R} = ${I} A` },
+      { question: `Calculer la puissance P consommée par la machine (en W).`, expected: P, explanation: `P = U × I = ${U} × ${I} = ${P} W` },
+      { question: `Sur ce chantier, quel type d'alimentation permet de répartir la puissance pour des machines plus puissantes : "monophasé" ou "triphasé" ?`, expected: "triphasé", isText: true, explanation: `Le triphasé (3 phases, 400 V entre phases) permet de répartir la puissance et d'alimenter des machines plus puissantes qu'en monophasé.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>

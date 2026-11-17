@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Compréhension orale</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,27 +25,220 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Le format à l'examen.</strong> Tu écoutes un document audio ou vidéo court (1 min 30 maximum), 3 fois, avec 1 minute de pause entre chaque écoute. Tu dois ensuite rendre compte de ce que tu as compris <strong>en français</strong>, par écrit — on ne te demande pas de traduire mot à mot, mais de dire ce que tu as compris.</p>
-    <p><strong>Méthode, écoute par écoute :</strong></p>
-    <p>1ère écoute : repère le contexte général — qui parle ? de quoi ? où ? Ne cherche pas à tout comprendre, juste le sujet global.</p>
-    <p>2ème écoute : note les mots-clés que tu reconnais (dates, chiffres, noms, lieux, mots répétés). Les mots que tu comprends déjà te donnent 80% du sens.</p>
-    <p>3ème écoute : complète et vérifie — cherche les détails qui manquent encore et les liens logiques (cause, conséquence, opposition).</p>
-    <p><strong>Piège classique :</strong> ne pas paniquer si tu ne comprends pas un mot : continue d'écouter, le sens général vaut plus que la traduction exacte d'un seul mot. Évite aussi de traduire mot à mot dans ta tête pendant l'écoute — ça te fait perdre le fil.</p>
-    <p><strong>Vocabulaire utile :</strong> des mots transparents (qui ressemblent au français) sont souvent les plus faciles à repérer : "important", "possible", "information", "professional"... Entraîne-toi à les repérer vite.</p>
+    <div id="lesson-text">
+      <p><strong>Le format à l'examen.</strong> Tu écoutes un document audio ou vidéo court (1 min 30 maximum), 3 fois, avec 1 minute de pause entre chaque écoute. Tu dois ensuite rendre compte de ce que tu as compris <strong>en français</strong>, par écrit — on ne te demande pas de traduire mot à mot, mais de dire ce que tu as compris.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode, écoute par écoute</p>
+        <ol>
+          <li><strong>1ère écoute :</strong> repère le contexte général — qui parle ? de quoi ? où ? Ne cherche pas à tout comprendre, juste le sujet global.</li>
+          <li><strong>2ème écoute :</strong> note les mots-clés que tu reconnais (dates, chiffres, noms, lieux, mots répétés). Les mots que tu comprends déjà te donnent 80% du sens.</li>
+          <li><strong>3ème écoute :</strong> complète et vérifie — cherche les détails qui manquent encore et les liens logiques (cause, conséquence, opposition).</li>
+        </ol>
+      </div>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Paniquer sur un mot inconnu : continue d'écouter, le sens général vaut plus que la traduction exacte d'un seul mot.</li>
+          <li>Traduire mot à mot dans ta tête pendant l'écoute — ça te fait perdre le fil de la suite.</li>
+          <li>Oublier les mots transparents (qui ressemblent au français) : "important", "possible", "information", "professional"... Ils sont souvent les plus faciles à repérer.</li>
+        </ul>
+      </div>
+
+      <p><em>Ci-dessous, les exercices te donnent une transcription à lire comme si tu l'écoutais — entraîne-toi à repérer l'essentiel sans tout traduire.</em></p>
+    </div>
+    <button class="secondary" onclick="copyForAI('Compréhension orale en anglais (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'anglais')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui de t'expliquer la méthode, de te donner des exemples de mots transparents, ou de t'aider à comprendre une consigne d'exercice avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Une transcription courte, puis une question. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un document, plusieurs questions liées, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
 <footer class="nina-footer">step by step 🇬🇧</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Compréhension orale";
+const MATIERE = "anglais";
+
+const DOC_1 = {
+  titre: "A phone message",
+  texte: `"Hi, it's Sarah from the workshop. The delivery of wood panels is delayed until Thursday, so we can't start the cabinet project tomorrow as planned. Can you call the client to explain the new schedule? Thanks, bye!"`,
+  questions: [
+    { question: `Qui laisse ce message, et pourquoi appelle-t-elle ?`, options: ["Un client qui annule son projet", "Sarah, de l'atelier, pour signaler un retard de livraison", "Un fournisseur qui confirme une commande", "Sarah pour annoncer une augmentation de prix"], expected: 1, explanation: `Sarah ("it's Sarah from the workshop") appelle pour dire que la livraison des panneaux de bois est retardée ("the delivery of wood panels is delayed").` },
+    { question: `Que doit faire la personne qui écoute ce message ?`, options: ["Commander plus de bois", "Appeler le client pour expliquer le nouveau planning", "Annuler le projet", "Venir à l'atelier immédiatement"], expected: 1, explanation: `Sarah demande : "Can you call the client to explain the new schedule?"` },
+  ],
+};
+
+const DOC_2 = {
+  titre: "A radio advert",
+  texte: `"Looking for a new career? Join our training centre for carpentry and interior design! Classes start every September and January. Visit our website for more information about prices and schedules."`,
+  questions: [
+    { question: `De quoi parle cette publicité ?`, options: ["Une offre d'emploi dans un magasin", "Un centre de formation en menuiserie et agencement intérieur", "La vente de meubles en ligne", "Un salon professionnel"], expected: 1, explanation: `La publicité parle d'un centre de formation ("training centre") en menuiserie et agencement intérieur ("carpentry and interior design").` },
+    { question: `Que doit-on faire pour avoir plus d'informations sur les prix ?`, options: ["Appeler un numéro de téléphone", "Aller directement sur place", "Visiter le site internet", "Écrire un mail"], expected: 2, explanation: `La publicité dit : "Visit our website for more information about prices and schedules."` },
+  ],
+};
+
+const DOC_3 = {
+  titre: "A short dialogue",
+  texte: `"Can you measure the width of this room before we order the new shelves?" — "Sure, I'll do it this afternoon and send you the exact numbers by email."`,
+  questions: [
+    { question: `Que demande la première personne ?`, options: ["De commander les étagères immédiatement", "De mesurer la largeur de la pièce avant de commander", "De repeindre la pièce", "D'annuler la commande d'étagères"], expected: 1, explanation: `"Can you measure the width of this room before we order the new shelves?" — elle demande de mesurer la largeur avant de commander.` },
+    { question: `Comment la deuxième personne va-t-elle transmettre les mesures ?`, options: ["Par téléphone", "En personne demain", "Par email cet après-midi", "Elle ne va pas les transmettre"], expected: 2, explanation: `"I'll do it this afternoon and send you the exact numbers by email."` },
+  ],
+};
+
+const DOCS = [DOC_1, DOC_2, DOC_3];
+
+function buildPool() {
+  const pool = [];
+  DOCS.forEach(d => d.questions.forEach(q => pool.push({ titre: d.titre, texte: d.texte, ...q })));
+  return pool;
+}
+const POOL = buildPool();
+
+function generateExercise() {
+  return POOL[Math.floor(Math.random() * POOL.length)];
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (anglais LV1, bac pro) : méthode d'écoute en 3 passages (contexte global, mots-clés, détails), compte rendu en français, repérage de mots transparents, ne pas traduire mot à mot.");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <p style="font-style:italic; margin-bottom:6px;">« ${ex.titre} »</p>
+      <p style="background:var(--rose); padding:12px 16px; border-radius:14px; margin-bottom:14px;">${ex.texte}</p>
+      <div class="question">${ex.question}</div>
+      <div id="qcm-options" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;">
+        ${ex.options.map((opt, i) => `<button class="secondary qcm-opt" data-i="${i}" style="text-align:left;">${opt}</button>`).join("")}
+      </div>
+      <div id="feedback"></div>
+    </div>`;
+  const feedback = container.querySelector("#feedback");
+  container.querySelectorAll(".qcm-opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = parseInt(btn.dataset.i, 10);
+      const correct = i === ex.expected;
+      container.querySelectorAll(".qcm-opt").forEach(b => b.disabled = true);
+      feedback.className = "feedback " + (correct ? "ok" : "ko");
+      if (correct) triggerSuccessAnimation();
+      feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+        `<br><a href="#" onclick="askAI('Je ne comprends pas cette question de compréhension orale : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+      onAnswered(correct);
+    });
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac ----------
+function genBacExercise() {
+  const contexte = `« Voicemail » — "Hello, this is Mark from the showroom. The customer who ordered the oak table wants to change the color to a darker wood. He also asked if we could deliver it two weeks earlier than planned, by the end of the month. Please call me back to confirm if that's possible."`;
+  return {
+    dureeConseillee: "10 min",
+    contexte,
+    parts: [
+      { question: `Quel changement le client demande-t-il concernant la table ? (réponds en un mot : "couleur")`, expected: "couleur", isText: true, explanation: `Le client veut changer la couleur de la table pour un bois plus sombre ("change the color to a darker wood").` },
+      { question: `Que demande le client concernant la livraison : plus tôt ou plus tard que prévu ? (réponds "plus tôt" ou "plus tard")`, expected: "plus tôt", isText: true, explanation: `Il demande une livraison deux semaines plus tôt que prévu ("deliver it two weeks earlier than planned").` },
+      { question: `Que doit faire la personne qui écoute ce message ? (réponds "rappeler")`, expected: "rappeler", isText: true, explanation: `Mark demande de le rappeler pour confirmer ("Please call me back to confirm").` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = Math.min(6, POOL.length);
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+  const shuffled = [...POOL].sort(() => Math.random() - 0.5);
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = shuffled[index % shuffled.length];
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>

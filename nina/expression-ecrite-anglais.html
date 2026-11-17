@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Nina" />
 <title>Expression écrite en anglais</title>
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 <header class="top">
@@ -25,27 +25,192 @@
 
   <section class="card">
     <h2>Le cours</h2>
-    <p><strong>Le format à l'examen.</strong> Tu choisis 1 sujet parmi 2 proposés, et tu rédiges <strong>en anglais</strong> un texte de 100 à 120 mots (ni trop court, ni trop long — compte tes mots !).</p>
-    <p><strong>Méthode :</strong></p>
-    <p>1. Choisis le sujet sur lequel tu as le plus de vocabulaire, pas forcément celui qui te semble "le plus facile" au premier regard.</p>
-    <p>2. Fais un brouillon en français de tes idées d'abord (2-3 idées principales), puis traduis-les en anglais avec des phrases simples et correctes plutôt que des phrases compliquées mal maîtrisées.</p>
-    <p>3. Utilise des connecteurs simples pour structurer : "first" (d'abord), "then" / "after that" (ensuite), "because" (parce que), "but" / "however" (mais), "finally" (enfin).</p>
-    <p><strong>Phrases utiles à retenir :</strong> "In my opinion..." (à mon avis), "I think that..." (je pense que), "For example..." (par exemple), "On the other hand..." (d'un autre côté).</p>
-    <p><strong>Piège classique :</strong> une phrase simple et juste rapporte plus de points qu'une phrase compliquée pleine de fautes. Reste dans ce que tu maîtrises. Vérifie toujours : le verbe est-il conjugué ? Le sujet est-il présent (en anglais, on ne peut jamais sous-entendre le sujet comme en français) ?</p>
+    <div id="lesson-text">
+      <p><strong>Le format à l'examen.</strong> Tu choisis 1 sujet parmi 2 proposés, et tu rédiges <strong>en anglais</strong> un texte de 100 à 120 mots (ni trop court, ni trop long — compte tes mots !).</p>
+
+      <div class="methode">
+        <p class="titre">Méthode</p>
+        <ol>
+          <li>Choisis le sujet sur lequel tu as le plus de vocabulaire, pas forcément celui qui te semble "le plus facile" au premier regard.</li>
+          <li>Fais un brouillon en français de tes idées d'abord (2-3 idées principales), puis traduis-les en anglais avec des phrases simples et correctes plutôt que des phrases compliquées mal maîtrisées.</li>
+          <li>Utilise des connecteurs simples pour structurer : "first" (d'abord), "then" / "after that" (ensuite), "because" (parce que), "but" / "however" (mais), "finally" (enfin).</li>
+        </ol>
+      </div>
+
+      <p><strong>Phrases utiles à retenir :</strong> "In my opinion..." (à mon avis), "I think that..." (je pense que), "For example..." (par exemple), "On the other hand..." (d'un autre côté).</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Une phrase simple et juste rapporte plus de points qu'une phrase compliquée pleine de fautes. Reste dans ce que tu maîtrises.</li>
+          <li>En anglais, on ne peut JAMAIS sous-entendre le sujet comme en français (ex : "Il pleut" → "It rains", pas juste "Rains").</li>
+          <li>Vérifie toujours : le verbe est-il bien conjugué ? (he/she/it + verbe + "s" au présent simple : "he works", pas "he work").</li>
+        </ul>
+      </div>
+    </div>
+    <button class="secondary" onclick="copyForAI('Expression écrite en anglais (Terminale Bac Pro)', document.getElementById('lesson-text').innerText, null, 'anglais')">📋 Copier le cours pour le coller dans une IA</button>
   </section>
 
   <section class="card">
-    <h2>Pose tes questions</h2>
-    <p>Ton prof IA connaît ce thème : demande-lui de relire une phrase que tu as écrite, de te proposer du vocabulaire pour un sujet donné, ou de t'aider à structurer ton texte avec le bouton en bas à droite.</p>
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Choisir le bon mot ou la bonne forme. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Compléter un texte à trous, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
 
 <footer class="nina-footer">step by step 🇬🇧</footer>
 
-<script src="shared.js?v=3"></script>
+<script src="shared.js?v=6"></script>
 <script>
 const THEME = "Expression écrite en anglais";
+const MATIERE = "anglais";
+
+const POOL = [
+  { question: `Complète : "I like this job ___ it is creative and I work with my hands."`, options: ["but", "because", "finally", "however"], expected: 1, explanation: `"because" introduit une cause/raison : j'aime ce travail PARCE QU'il est créatif.` },
+  { question: `Complète : "The delivery was late, ___ the customer was not happy."`, options: ["for example", "so", "in my opinion", "first"], expected: 1, explanation: `"so" introduit une conséquence : la livraison était en retard, DONC le client n'était pas content.` },
+  { question: `Quelle phrase est correcte ?`, options: ["She work in a workshop.", "She works in a workshop.", "She working in a workshop.", "She is work in a workshop."], expected: 1, explanation: `À la 3ème personne du singulier (she/he/it), on ajoute "s" au verbe au présent simple : "She works".` },
+  { question: `Complète : "I wanted to finish the project on time, ___ I didn't have enough wood."`, options: ["but", "because", "then", "for example"], expected: 0, explanation: `"but" introduit une opposition : je voulais finir à temps, MAIS je n'avais pas assez de bois.` },
+  { question: `Quelle phrase est correcte pour dire "D'abord, je mesure la pièce. Ensuite, je commande le bois." ?`, options: ["First I measure the room. Then I order the wood.", "First I measure the room. But I order the wood.", "I measure the room first then order.", "Measure the room, order the wood."], expected: 0, explanation: `"First... then..." structure bien les deux étapes dans l'ordre, avec un sujet et un verbe conjugué dans chaque phrase.` },
+  { question: `Complète : "___ my opinion, custom-made furniture is better than mass-produced furniture."`, options: ["At", "In", "For", "On"], expected: 1, explanation: `L'expression correcte est "In my opinion" (à mon avis).` },
+];
+
+function generateExercise() {
+  return POOL[Math.floor(Math.random() * POOL.length)];
+}
+
+const chrono = new Chrono(null);
+chrono.start();
 initAIChat(() => THEME + " (anglais LV1, bac pro) : rédaction de 100 à 120 mots en anglais, choix du sujet, brouillon d'idées puis traduction en phrases simples, connecteurs (first, then, because, but, finally), vérifier sujet + verbe conjugué.");
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <div id="qcm-options" style="display:flex; flex-direction:column; gap:8px; margin:12px 0;">
+        ${ex.options.map((opt, i) => `<button class="secondary qcm-opt" data-i="${i}" style="text-align:left;">${opt}</button>`).join("")}
+      </div>
+      <div id="feedback"></div>
+    </div>`;
+  const feedback = container.querySelector("#feedback");
+  container.querySelectorAll(".qcm-opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = parseInt(btn.dataset.i, 10);
+      const correct = i === ex.expected;
+      container.querySelectorAll(".qcm-opt").forEach(b => b.disabled = true);
+      feedback.className = "feedback " + (correct ? "ok" : "ko");
+      if (correct) triggerSuccessAnimation();
+      feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+        `<br><a href="#" onclick="askAI('Je ne comprends pas cette question d\\'expression écrite : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+      onAnswered(correct);
+    });
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac (texte à trous) ----------
+function genBacExercise() {
+  const contexte = `Complète ce court texte avec les mots qui manquent (en anglais), pour répondre au sujet : "Describe a professional experience you had." — "Last year, I did a work placement in a design company. ___ (d'abord), I helped with simple tasks like measuring and cutting wood. ___ (ensuite), I started working on small projects with the team. I really enjoyed it ___ (parce que) I could use my hands and be creative. ___ (enfin), this experience helped me decide to continue in this field."`;
+  return {
+    dureeConseillee: "12 min",
+    contexte,
+    parts: [
+      { question: `Quel mot anglais pour "d'abord" ? (un seul mot)`, expected: "first", isText: true, explanation: `"First" se place en début de phrase pour introduire la première étape.` },
+      { question: `Quel mot/expression anglais pour "ensuite" ? (une seule réponse possible : "then")`, expected: "then", isText: true, explanation: `"Then" introduit l'étape suivante.` },
+      { question: `Quel mot anglais pour "parce que" ? (un seul mot)`, expected: "because", isText: true, explanation: `"Because" introduit la raison/cause.` },
+      { question: `Quel mot anglais pour "enfin" ? (un seul mot)`, expected: "finally", isText: true, explanation: `"Finally" introduit la dernière idée, la conclusion.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total, MATIERE);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = Math.min(6, POOL.length);
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+  const shuffled = [...POOL].sort(() => Math.random() - 0.5);
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = shuffled[index % shuffled.length];
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS, MATIERE);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
 </script>
 </body>
 </html>
