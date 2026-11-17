@@ -12,6 +12,7 @@
   <span class="manuscrit">objectif : réussir ton bac</span>
   <h1>Salut Nina</h1>
   <p id="bac-countdown">—</p>
+  <span class="streak-badge" id="streak-badge" style="display:none;"></span>
 </header>
 
 <main>
@@ -121,23 +122,75 @@ renderNotes();
   }
 })();
 
-// ---------- Objectif du jour (non punitif, pas de série à casser) ----------
-(async function renderObjectifJour() {
+// ---------- Objectif du jour + thème suggéré + série (non punitif) ----------
+(async function renderAccueilDynamique() {
   const sessions = await getSessions();
+
+  const THEME_URLS = {
+    "Statistiques et probabilités": "stats-probas.html",
+    "Suites géométriques": "suites.html",
+    "Calcul rapide": "automatismes.html",
+    "Fonctions polynômes degré 3": "fonctions-degre3.html",
+    "Exponentielle et logarithme": "fonctions-exp-log.html",
+    "Vecteurs": "vecteurs.html",
+  };
+
+  // -- Objectif du jour --
   const todayStr = new Date().toDateString();
   const todaySessions = sessions.filter(s => new Date(s.created_at).toDateString() === todayStr);
   const totalQuestionsToday = todaySessions.reduce((a, s) => a + (s.total_questions || 0), 0);
   const totalMinToday = Math.round(todaySessions.reduce((a, s) => a + (s.duree_secondes || 0), 0) / 60);
-  const atteint = totalQuestionsToday >= 5 || totalMinToday >= 10;
+  const atteint = totalQuestionsToday >= 15 || totalMinToday >= 30;
+
+  // -- Thème suggéré du jour --
+  const byTheme = {};
+  sessions.forEach(s => {
+    const t = s.theme.replace(/^Quiz final — /, "");
+    if (!byTheme[t]) byTheme[t] = { bonnes: 0, total: 0 };
+    byTheme[t].bonnes += s.bonnes_reponses || 0;
+    byTheme[t].total += s.total_questions || 0;
+  });
+
+  let suggestedTheme = null, suggestedReason = "";
+  if (sessions.length === 0) {
+    suggestedTheme = "Calcul rapide";
+    suggestedReason = "pour t'échauffer en douceur";
+  }
+  if (!suggestedTheme) {
+    const attempted = Object.entries(byTheme)
+      .filter(([, d]) => d.total >= 3)
+      .map(([theme, d]) => ({ theme, pct: Math.round((d.bonnes / d.total) * 100) }))
+      .sort((a, b) => a.pct - b.pct);
+    if (attempted.length > 0 && attempted[0].pct < 80) {
+      suggestedTheme = attempted[0].theme;
+      suggestedReason = `ton point à muscler en ce moment (${attempted[0].pct}%)`;
+    }
+  }
+  if (!suggestedTheme) {
+    const neverStarted = Object.keys(THEME_URLS).find(t => !byTheme[t] || byTheme[t].total === 0);
+    suggestedTheme = neverStarted || "Calcul rapide";
+    suggestedReason = neverStarted ? "un thème que tu n'as pas encore attaqué" : "pour garder la main";
+  }
 
   const text = document.getElementById("objectif-jour-text");
   const btn = document.getElementById("objectif-jour-btn");
+  btn.href = THEME_URLS[suggestedTheme] || "maths.html";
+
   if (atteint) {
     text.textContent = `Objectif atteint aujourd'hui (${totalQuestionsToday} exercices, ${totalMinToday} min). Tu peux continuer si tu veux, ou t'arrêter là, c'est très bien comme ça.`;
     btn.textContent = "Continuer quand même";
   } else {
-    text.textContent = `10 minutes ou 5 exercices aujourd'hui, c'est largement suffisant pour avancer.`;
-    btn.textContent = "C'est parti";
+    text.innerHTML = `30 minutes ou 15 exercices aujourd'hui, un bon rythme pour préparer le bac.<br><strong>Aujourd'hui : ${suggestedTheme}</strong> — ${suggestedReason}.`;
+    btn.textContent = `Go sur ${suggestedTheme}`;
+  }
+
+  // -- Série de jours --
+  const { streak, graceUsed } = computeStreak(sessions);
+  const streakEl = document.getElementById("streak-badge");
+  if (streak > 0) {
+    streakEl.style.display = "inline-flex";
+    streakEl.textContent = `🔥 ${streak} jour${streak > 1 ? "s" : ""} d'affilée`;
+    streakEl.title = graceUsed ? "Tu as sauté un jour mais la série continue, pas de souci." : "";
   }
 })();
 

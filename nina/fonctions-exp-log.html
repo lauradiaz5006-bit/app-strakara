@@ -185,6 +185,7 @@ function renderExercise(container, ex, onAnswered) {
       correct = closeEnough(parseUserNumber(input.value), ex.expected);
     }
     feedback.className = "feedback " + (correct ? "ok" : "ko");
+    if (correct) triggerSuccessAnimation();
     feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
       `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
     checkBtn.disabled = true;

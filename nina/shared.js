@@ -126,6 +126,37 @@ function encouragementRatee() {
   return randomFrom(ENCOURAGEMENTS_RATEES);
 }
 
+// ---------- Petite animation de validation (feedback immédiat) ----------
+function triggerSuccessAnimation() {
+  const el = document.createElement("div");
+  el.className = "success-burst";
+  el.textContent = "✨";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 900);
+}
+
+// ---------- Série de jours (streak non punitif, un jour de grâce) ----------
+function computeStreak(sessions) {
+  const activeDays = new Set(sessions.map(s => new Date(s.created_at).toDateString()));
+  const todayStr = new Date().toDateString();
+  let streak = 0, graceUsed = false;
+  const cursor = new Date();
+  while (true) {
+    const dayStr = cursor.toDateString();
+    if (activeDays.has(dayStr)) {
+      streak++;
+    } else if (dayStr === todayStr) {
+      // journée pas encore faite : on ne casse rien, on regarde juste hier
+    } else if (!graceUsed) {
+      graceUsed = true; // un jour sauté toléré, la série continue sans compter ce jour-là
+    } else {
+      break;
+    }
+    cursor.setDate(cursor.getDate() - 1);
+  }
+  return { streak, graceUsed };
+}
+
 // ---------- Copier pour une IA externe ----------
 function copyForAI(lessonTitle, lessonText, question, matiere = "maths") {
   const prompt = `Je suis en Terminale Bac Pro ERA, j'ai du mal avec ce point de ${matiere} : "${lessonTitle}".\n\nVoici le cours :\n${lessonText}\n\nMa question / ce qui me bloque : ${question || "(explique-moi ce point autrement, avec un exemple très simple)"}`;
@@ -255,6 +286,7 @@ function renderMultiPartExercise(container, ex, onFinish) {
       input.disabled = true;
       return `<p class="feedback ${correct ? "ok" : "ko"}" style="margin:8px 0;"><strong>${String.fromCharCode(97 + i)}) ${correct ? "✓" : "✗"}</strong> ${p.explanation}</p>`;
     }).join("");
+    if (correctCount === ex.parts.length) triggerSuccessAnimation();
     container.querySelector("#mp-check-btn").disabled = true;
     const fb = container.querySelector("#mp-feedback");
     fb.innerHTML = `<p style="font-weight:700;">${correctCount}/${ex.parts.length} — ${correctCount === ex.parts.length ? encouragementBonne() : encouragementRatee()}</p>` + feedbackHtml +
