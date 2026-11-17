@@ -29,6 +29,38 @@
       </ul>
       <p><em>Exemple :</em> u₀ = 3, q = 2. u₃ = 3 × 2³ = 3 × 8 = 24.</p>
       <p><em>Contexte pro :</em> une pièce de bois qui perd 10 % de sa valeur chaque année suit une suite géométrique de raison q = 0,9.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode : étape par étape</p>
+        <ol>
+          <li>Repérer le premier terme u₀ et la raison q (q &gt; 0 ici). Astuce : q = u₁ / u₀ (un terme divisé par le précédent).</li>
+          <li>Pour calculer un terme de rang n : uₙ = u₀ × qⁿ (on multiplie u₀ par q, n fois).</li>
+          <li>Pour le sens de variation, regarder uniquement q : q &gt; 1 → ça augmente, 0 &lt; q &lt; 1 → ça diminue.</li>
+          <li>Pour une somme de termes, utiliser directement la formule Sₙ (ne jamais additionner les termes un par un si n est grand).</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple 2 (reconnaître q et vérifier) :</em> une entreprise facture 5 000 € la 1ère année. Son chiffre d'affaires est multiplié par 1,5 chaque année. Quel est le CA de la 3e année (u₂, car u₀ = 1ère année) ?<br>
+      u₀ = 5000, q = 1,5. u₂ = 5000 × 1,5² = 5000 × 2,25 = 11 250 €.<br>
+      Vérification intermédiaire : u₁ = 5000 × 1,5 = 7 500 € (2e année), u₂ = 7500 × 1,5 = 11 250 € (3e année) — même résultat, deux méthodes.</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Confondre le rang n et le nombre d'années/multiplications : u₀ est le <strong>premier</strong> terme (souvent l'année de départ), donc après n années on est à uₙ, pas uₙ₊₁.</li>
+          <li>Oublier que q peut être inférieur à 1 (ex. une perte de valeur) : la suite est alors décroissante, même si elle reste positive.</li>
+          <li>Confondre suite géométrique (on multiplie par q) et suite arithmétique (on ajoute une raison r) — ici on multiplie toujours.</li>
+          <li>Calculer la somme en additionnant les termes un par un au lieu d'utiliser la formule Sₙ.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>uₙ = u₀ × qⁿ — on multiplie, on n'ajoute jamais.</li>
+          <li>q &gt; 1 → la suite augmente ; 0 &lt; q &lt; 1 → elle diminue.</li>
+        </ul>
+      </div>
     </div>
     <button class="secondary" onclick="copyForAI('Suites géométriques (Terminale Bac Pro)', document.getElementById('lesson-text').innerText)">📋 Copier le cours pour le coller dans une IA</button>
   </section>

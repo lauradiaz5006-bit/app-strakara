@@ -9,19 +9,279 @@
 </head>
 <body>
 <header class="top">
-  <span class="manuscrit">thème à venir</span>
+  <span class="manuscrit">thème 6</span>
   <h1>➡️ Vecteurs</h1>
-  <p>Coordonnées, norme, colinéarité</p>
+  <p>Terminale Bac Pro — groupement B</p>
 </header>
+
 <main>
   <p><a class="retour" href="maths.html">← Retour aux thèmes</a></p>
+
   <section class="card">
-    <h2>Le cours complet arrive bientôt</h2>
-    <p>En attendant, ton prof IA connaît déjà ce thème — pose-lui directement tes questions avec le bouton en bas à droite. Il t'expliquera les coordonnées d'un vecteur, le calcul de norme, la somme de vecteurs et la colinéarité, avec des exemples.</p>
+    <h2>Le cours</h2>
+    <div id="lesson-text">
+      <h3>1. Coordonnées d'un vecteur dans l'espace</h3>
+      <p>Dans un repère orthonormé de l'espace (3 axes x, y, z), si A(xₐ;yₐ;zₐ) et B(x_b;y_b;z_b), le vecteur <strong>AB</strong> a pour coordonnées :</p>
+      <p><code>AB (x_b − xₐ ; y_b − yₐ ; z_b − zₐ)</code></p>
+      <p><em>Exemple :</em> A(1;2;0) et B(4;6;12). AB = (4−1 ; 6−2 ; 12−0) = (3 ; 4 ; 12).</p>
+
+      <h3>2. Norme d'un vecteur</h3>
+      <p>La norme ||AB|| donne la longueur (la distance) entre A et B :</p>
+      <p><code>||AB|| = √(x² + y² + z²)</code></p>
+      <p><em>Exemple (suite) :</em> ||AB|| = √(3² + 4² + 12²) = √(9 + 16 + 144) = √169 = 13.</p>
+
+      <h3>3. Somme et produit par un réel</h3>
+      <ul>
+        <li>Somme : si u(x;y;z) et v(x';y';z'), alors u + v = (x+x' ; y+y' ; z+z').</li>
+        <li>Produit par un réel k : k·u = (k×x ; k×y ; k×z).</li>
+      </ul>
+
+      <h3>4. Colinéarité</h3>
+      <p>Deux vecteurs u et v sont <strong>colinéaires</strong> s'il existe un réel k tel que v = k·u, c'est-à-dire si <strong>toutes</strong> les coordonnées sont proportionnelles entre elles (le même k pour x, y et z).</p>
+
+      <div class="methode">
+        <p class="titre">Méthode : étape par étape</p>
+        <ol>
+          <li>Pour les coordonnées d'un vecteur AB : toujours faire « arrivée moins départ » (coordonnées de B moins coordonnées de A), jamais l'inverse.</li>
+          <li>Pour la norme : mettre chaque coordonnée au carré, additionner, puis prendre la racine carrée — ne jamais oublier la racine carrée à la fin.</li>
+          <li>Pour vérifier une colinéarité : calculer le rapport entre chaque coordonnée de v et celle de u (k = x'/x, puis vérifier que y'/y et z'/z donnent le même k).</li>
+          <li>Si les trois rapports sont égaux (le même k partout), les vecteurs sont colinéaires ; sinon, ils ne le sont pas.</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple complet (colinéarité) :</em> u(2;4;−6) et v(−1;−2;3). On teste k : −1/2 = −0,5 ; −2/4 = −0,5 ; 3/(−6) = −0,5. Les trois rapports sont égaux (k = −0,5) : u et v sont <strong>colinéaires</strong>.</p>
+
+      <p><em>Contexte pro :</em> un bras robotisé déplace une pièce du point A au point B dans l'atelier (coordonnées en mètres, sur 3 axes). Le vecteur AB donne le déplacement exact, et sa norme donne la distance parcourue par la pièce.</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Oublier la coordonnée z en travaillant « comme en 2D » : dans l'espace, il y a toujours 3 coordonnées.</li>
+          <li>Calculer AB comme (coordonnées de A) − (coordonnées de B) au lieu de B − A (c'est l'inverse).</li>
+          <li>Oublier la racine carrée à la fin du calcul de la norme (le résultat est √(...), pas la somme des carrés elle-même).</li>
+          <li>Vérifier la colinéarité avec un seul rapport (ex. juste x'/x) au lieu des trois : il faut que les <strong>trois</strong> rapports soient égaux.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>AB (x_b−xₐ ; y_b−yₐ ; z_b−zₐ), toujours « arrivée moins départ ».</li>
+          <li>||AB|| = √(x² + y² + z²).</li>
+          <li>u et v colinéaires ⟺ les trois rapports de coordonnées sont égaux (même k).</li>
+        </ul>
+      </div>
+    </div>
+    <button class="secondary" onclick="copyForAI('Vecteurs dans l\'espace (Terminale Bac Pro, groupement B)', document.getElementById('lesson-text').innerText)">📋 Copier le cours pour le coller dans une IA</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercices d'entraînement</h2>
+    <p style="color:var(--prune-doux);">Autant de questions que tu veux. <span id="practice-score">0 bonnes / 0</span></p>
+    <div id="practice-exercise"></div>
+    <button class="primary" id="next-exercise-btn">Nouvelle question</button>
+  </section>
+
+  <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
+    <h2>Quiz final</h2>
+    <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
+    <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
+    <div id="quiz-area"></div>
+  </section>
+
+  <section class="card" style="text-align:center;">
+    <button class="secondary" id="finish-session-btn">J'ai fini pour l'instant</button>
   </section>
 </main>
-<footer class="nina-footer">ça arrive, patience</footer>
+
+<footer class="nina-footer">chaque coordonnée te rapproche du point d'arrivée</footer>
+
 <script src="shared.js"></script>
-<script>initAIChat(() => "Vecteurs (Terminale Bac Pro, groupement B) : coordonnées, norme, somme et produit par un réel dans l'espace muni d'un repère orthonormé, colinéarité");</script>
+<script>
+const THEME = "Vecteurs";
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function randNZ(min, max) { let v; do { v = randInt(min, max); } while (v === 0); return v; }
+function roundTo(n, decimals = 2) { return Math.round(n * 10 ** decimals) / 10 ** decimals; }
+function parseUserNumber(str) { if (!str) return NaN; return parseFloat(str.toString().replace(",", ".")); }
+function closeEnough(a, b, tol = 0.05) { return Math.abs(a - b) <= tol; }
+
+function isColinear(u, v, eps = 0.001) {
+  const cx = u.y * v.z - u.z * v.y;
+  const cy = u.z * v.x - u.x * v.z;
+  const cz = u.x * v.y - u.y * v.x;
+  return Math.abs(cx) < eps && Math.abs(cy) < eps && Math.abs(cz) < eps;
+}
+
+function genExercise() {
+  const subtype = randInt(1, 3);
+
+  if (subtype === 1) {
+    const A = { x: randInt(-5, 5), y: randInt(-5, 5), z: randInt(-5, 5) };
+    const B = { x: randInt(-5, 5), y: randInt(-5, 5), z: randInt(-5, 5) };
+    const ab = { x: B.x - A.x, y: B.y - A.y, z: B.z - A.z };
+    const coord = ["x", "y", "z"][randInt(0, 2)];
+    return {
+      question: `A(${A.x};${A.y};${A.z}) et B(${B.x};${B.y};${B.z}). Calcule la coordonnée ${coord} du vecteur AB.`,
+      expected: ab[coord],
+      explanation: `${coord}(AB) = ${coord}(B) − ${coord}(A) = ${B[coord]} − ${A[coord]} = ${ab[coord]}`,
+    };
+  } else if (subtype === 2) {
+    const u = { x: randNZ(-6, 6), y: randNZ(-6, 6), z: randNZ(-6, 6) };
+    const norme = Math.sqrt(u.x ** 2 + u.y ** 2 + u.z ** 2);
+    return {
+      question: `u(${u.x};${u.y};${u.z}). Calcule la norme ||u|| (arrondie à 0,01 près).`,
+      expected: roundTo(norme, 2),
+      explanation: `||u|| = √(${u.x}² + ${u.y}² + ${u.z}²) = √(${u.x**2} + ${u.y**2} + ${u.z**2}) = √${u.x**2+u.y**2+u.z**2} ≈ ${roundTo(norme,2)}`,
+    };
+  } else {
+    const u = { x: randNZ(-5, 5), y: randNZ(-5, 5), z: randNZ(-5, 5) };
+    const makeColinear = Math.random() < 0.5;
+    const k = [2, -1, 0.5, 3, -2][randInt(0, 4)];
+    const v = makeColinear
+      ? { x: roundTo(u.x * k, 2), y: roundTo(u.y * k, 2), z: roundTo(u.z * k, 2) }
+      : { x: randNZ(-6, 6), y: randNZ(-6, 6), z: randNZ(-6, 6) };
+    const colinear = isColinear(u, v);
+    return {
+      question: `u(${u.x};${u.y};${u.z}) et v(${v.x};${v.y};${v.z}). u et v sont-ils colinéaires ? (réponds "oui" ou "non")`,
+      expected: colinear ? "oui" : "non",
+      isText: true,
+      explanation: colinear
+        ? `Les rapports des coordonnées de v par celles de u sont tous égaux : u et v sont colinéaires.`
+        : `Les rapports des coordonnées de v par celles de u ne sont pas tous égaux : u et v ne sont pas colinéaires.`,
+    };
+  }
+}
+
+function generateExercise() { return genExercise(); }
+
+const chrono = new Chrono(null);
+chrono.start();
+initAIChat(() => THEME);
+
+let practiceCorrect = 0, practiceTotal = 0;
+
+function renderExercise(container, ex, onAnswered) {
+  container.innerHTML = `
+    <div class="exercise">
+      <div class="question">${ex.question}</div>
+      <input ${ex.isText ? 'type="text"' : 'type="number" step="any"'} id="answer-input" placeholder="Ta réponse" />
+      <button class="primary" id="check-btn">Vérifier</button>
+      <div id="feedback"></div>
+    </div>`;
+  const checkBtn = container.querySelector("#check-btn");
+  const input = container.querySelector("#answer-input");
+  const feedback = container.querySelector("#feedback");
+  checkBtn.addEventListener("click", () => {
+    let correct;
+    if (ex.isText) {
+      correct = input.value.trim().toLowerCase() === ex.expected;
+    } else {
+      correct = closeEnough(parseUserNumber(input.value), ex.expected);
+    }
+    feedback.className = "feedback " + (correct ? "ok" : "ko");
+    feedback.innerHTML = `<strong>${correct ? encouragementBonne() : encouragementRatee()}</strong><br>${ex.explanation}` +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice : ${ex.question.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    checkBtn.disabled = true;
+    input.disabled = true;
+    onAnswered(correct);
+  });
+}
+
+function loadPracticeExercise() {
+  const ex = generateExercise();
+  renderExercise(document.getElementById("practice-exercise"), ex, (correct) => {
+    practiceTotal++;
+    if (correct) practiceCorrect++;
+    document.getElementById("practice-score").textContent = `${practiceCorrect} bonnes / ${practiceTotal}`;
+  });
+}
+document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
+loadPracticeExercise();
+
+// ---------- Exercice type bac (contexte professionnel : bras robotisé) ----------
+function genBacExercise() {
+  const A = { x: randInt(0, 4), y: randInt(0, 4), z: 0 };
+  const dx = randInt(2, 6), dy = randInt(2, 6), dz = randInt(1, 4);
+  const B = { x: A.x + dx, y: A.y + dy, z: A.z + dz };
+  const norme = roundTo(Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2), 2);
+  const k = [2, 0.5, -1][randInt(0, 2)];
+  const v = { x: roundTo(dx * k, 2), y: roundTo(dy * k, 2), z: roundTo(dz * k, 2) };
+  return {
+    dureeConseillee: "14 min",
+    contexte: `Un bras robotisé déplace une pièce du point A(${A.x};${A.y};${A.z}) au point B(${B.x};${B.y};${B.z}) dans l'atelier (coordonnées en mètres, repère orthonormé de l'espace).`,
+    parts: [
+      { question: `Calculer la coordonnée x du vecteur AB.`, expected: dx, explanation: `x(AB) = x(B) − x(A) = ${B.x} − ${A.x} = ${dx}` },
+      { question: `Calculer la coordonnée z du vecteur AB.`, expected: dz, explanation: `z(AB) = z(B) − z(A) = ${B.z} − ${A.z} = ${dz}` },
+      { question: `Calculer la distance parcourue par la pièce, c'est-à-dire ||AB|| (arrondie à 0,01 près).`, expected: norme, explanation: `||AB|| = √(${dx}² + ${dy}² + ${dz}²) ≈ ${norme} m` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
+document.getElementById("finish-session-btn").addEventListener("click", async () => {
+  chrono.stop();
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
+});
+
+document.getElementById("start-quiz-btn").addEventListener("click", () => {
+  document.getElementById("start-quiz-btn").disabled = true;
+  const quizArea = document.getElementById("quiz-area");
+  const NB_QUESTIONS = 6;
+  let index = 0, correctCount = 0;
+  const quizChrono = new Chrono(null);
+  quizChrono.start();
+
+  function nextQuestion() {
+    if (index >= NB_QUESTIONS) { quizChrono.stop(); finishQuiz(); return; }
+    quizArea.innerHTML = `<div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${(index/NB_QUESTIONS)*100}%"></div></div><p>Question ${index+1}/${NB_QUESTIONS}</p><div id="quiz-exercise"></div>`;
+    const ex = generateExercise();
+    renderExercise(document.getElementById("quiz-exercise"), ex, (correct) => {
+      if (correct) correctCount++;
+      index++;
+      setTimeout(nextQuestion, 1800);
+    });
+  }
+
+  async function finishQuiz() {
+    const pct = Math.round((correctCount / NB_QUESTIONS) * 100);
+    let message;
+    if (pct >= 80) message = "Excellent niveau sur ce thème, tu es prête !";
+    else if (pct >= 50) message = "Niveau correct, encore un peu d'entraînement et ce sera top.";
+    else message = "C'est le début — ce thème demande encore du travail, mais tu as fait l'effort de tester, et ça compte.";
+
+    quizArea.innerHTML = `
+      <div class="exercise">
+        <h3>Résultat : ${correctCount}/${NB_QUESTIONS} (${pct}%)</h3>
+        <p>${message}</p>
+        <button class="primary" onclick="location.reload()">Refaire un quiz</button>
+      </div>`;
+    await logSession(`Quiz final — ${THEME}`, quizChrono.seconds, correctCount, NB_QUESTIONS);
+    document.getElementById("start-quiz-btn").disabled = false;
+  }
+
+  nextQuestion();
+});
+</script>
 </body>
 </html>
