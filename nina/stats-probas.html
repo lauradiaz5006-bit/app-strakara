@@ -98,8 +98,12 @@
     <h2>Vidéos pour approfondir</h2>
     <p style="color:var(--prune-doux);">Vidéos sélectionnées en priorité sur Lumni (France TV Éducation), fiable et sans pub intrusive.</p>
     <div class="video-links">
-      <a href="#" id="video-link-1" target="_blank" rel="noopener">🎥 Ajustement affine et nuage de points</a>
-      <a href="#" id="video-link-2" target="_blank" rel="noopener">🎥 Probabilités et arbres pondérés</a>
+      <a href="https://youtu.be/AVIrBeP-wh8" target="_blank" rel="noopener">🎥 Ajustement affine et nuage de points (1)</a>
+      <a href="https://youtu.be/vzFe1__dVL4" target="_blank" rel="noopener">🎥 Ajustement affine et nuage de points (2)</a>
+      <a href="https://youtu.be/pH33nr-8QVo" target="_blank" rel="noopener">🎥 Ajustement affine et nuage de points (3)</a>
+      <a href="https://youtu.be/R8bjZpJFeHg" target="_blank" rel="noopener">🎥 Probabilités et arbres pondérés (1)</a>
+      <a href="https://youtu.be/ATq47IUunG4" target="_blank" rel="noopener">🎥 Comment calculer une probabilité</a>
+      <a href="https://www.youtube.com/@hedacademy/search?query=Probabilit%C3%A9s%20%2F%20arbre%20pond%C3%A9r%C3%A9" target="_blank" rel="noopener">🎥 Toutes les vidéos probabilités (HedAcademy)</a>
     </div>
   </section>
 
@@ -212,8 +216,6 @@ function generateExercise() {
 const chrono = new Chrono(null);
 chrono.start();
 initAIChat(() => THEME);
-document.getElementById("video-link-1").href = youtubeSearchLink("Lumni ajustement affine nuage de points bac pro maths");
-document.getElementById("video-link-2").href = youtubeSearchLink("Lumni probabilités arbre pondéré bac pro maths");
 
 let practiceCorrect = 0, practiceTotal = 0;
 
