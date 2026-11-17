@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#7C3AED" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Nina" />
+<title>Lumière et couleur des objets</title>
+<link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">on explore ensemble 🔬</span>
+  <h1>🎨 Lumière et couleur des objets</h1>
+  <p>Pourquoi les objets sont-ils colorés ?</p>
+</header>
+
+<main>
+  <p><a class="retour" href="sciences.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <p><strong>Lumière blanche et couleurs.</strong> La lumière blanche (celle du soleil) est en réalité un mélange de toutes les couleurs de l'arc-en-ciel (rouge, orange, jaune, vert, bleu, violet...). On peut le voir en décomposant la lumière avec un prisme.</p>
+    <p><strong>Synthèse additive.</strong> En mélangeant de la lumière rouge, verte et bleue (les couleurs primaires de la lumière), on peut reconstituer toutes les autres couleurs, y compris le blanc. C'est le principe utilisé par les écrans (TV, téléphone).</p>
+    <p><strong>Pourquoi un objet est coloré ?</strong> Un objet éclairé en lumière blanche absorbe une partie des couleurs et réfléchit (ou diffuse) les autres. C'est cette lumière réfléchie qui arrive à nos yeux et qui donne sa couleur apparente à l'objet. Exemple : une pomme rouge absorbe le vert et le bleu, et réfléchit le rouge.</p>
+    <p><strong>Attention à l'éclairage.</strong> La couleur perçue d'un objet dépend de la lumière qui l'éclaire : sous une lumière uniquement rouge, un objet bleu paraîtra noir (il n'y a pas de bleu à réfléchir). C'est important en agencement/décoration intérieure : le choix de l'éclairage change la perception des couleurs et des matériaux.</p>
+    <p><strong>Piège classique :</strong> ne pas confondre la synthèse additive (lumières qui s'ajoutent, primaires rouge/vert/bleu) et la synthèse soustractive (peintures/pigments qui se mélangent, primaires cyan/magenta/jaune).</p>
+  </section>
+
+  <section class="card">
+    <h2>Vidéos pour approfondir</h2>
+    <p style="color:var(--prune-doux);">Vidéos sélectionnées en priorité sur Lumni (France TV Éducation), fiable et sans pub intrusive.</p>
+    <div class="video-links">
+      <a href="#" id="video-link-1" target="_blank" rel="noopener">🎥 Pourquoi les objets sont colorés</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Pose tes questions</h2>
+    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, un schéma de synthèse des couleurs, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+  </section>
+</main>
+
+<footer class="nina-footer">ça arrive, patience</footer>
+
+<script src="shared.js?v=3"></script>
+<script>
+const THEME = "Lumière et couleur des objets";
+initAIChat(() => THEME + " (sciences physiques, bac pro) : lumière blanche, synthèse additive (rouge/vert/bleu), absorption/réflexion de la lumière par les objets, couleur apparente selon l'éclairage.");
+document.getElementById("video-link-1").href = youtubeSearchLink("Lumni pourquoi les objets sont colorés lumière synthèse additive bac pro");
+</script>
+</body>
+</html>

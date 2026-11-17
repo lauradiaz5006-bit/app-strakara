@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#7C3AED" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Nina" />
+<title>Électricité : distribution et puissance</title>
+<link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">on explore ensemble 🔬</span>
+  <h1>⚡ Électricité : distribution et puissance</h1>
+  <p>Comment l'énergie électrique est-elle distribuée à l'entreprise ?</p>
+</header>
+
+<main>
+  <p><a class="retour" href="sciences.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <p><strong>Tension, intensité, résistance.</strong> La tension U (en volts, V) est ce qui "pousse" le courant électrique. L'intensité I (en ampères, A) est le débit de courant qui circule. La résistance R (en ohms, Ω) s'oppose au passage du courant. La loi d'Ohm relie les trois :</p>
+    <p style="text-align:center; font-size:1.2em;"><strong>U = R × I</strong></p>
+    <p><strong>Puissance électrique.</strong> La puissance consommée par un appareil dépend de la tension et de l'intensité :</p>
+    <p style="text-align:center; font-size:1.2em;"><strong>P = U × I</strong></p>
+    <p><strong>Monophasé / triphasé.</strong> Dans une maison, l'alimentation est généralement en monophasé (une seule phase + neutre, 230 V). Dans une entreprise ou sur un gros chantier, on utilise souvent le triphasé (trois phases, 400 V entre phases) pour répartir la puissance et alimenter des machines plus puissantes.</p>
+    <p><strong>Piège classique :</strong> ne pas confondre tension entre phase et neutre (230 V) et tension entre deux phases en triphasé (400 V). Vérifier aussi que les unités sont cohérentes (V, A, Ω) avant de calculer.</p>
+    <p><strong>Exemple.</strong> Un appareil alimenté en 230 V consomme un courant de 5 A. Puissance : P = 230 × 5 = 1150 W.</p>
+  </section>
+
+  <section class="card">
+    <h2>Vidéos pour approfondir</h2>
+    <p style="color:var(--prune-doux);">Vidéos sélectionnées en priorité sur Lumni (France TV Éducation), fiable et sans pub intrusive.</p>
+    <div class="video-links">
+      <a href="#" id="video-link-1" target="_blank" rel="noopener">🎥 Tension, intensité, puissance électrique</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Pose tes questions</h2>
+    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, de vérifier un calcul avec la loi d'Ohm, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+  </section>
+</main>
+
+<footer class="nina-footer">ça arrive, patience</footer>
+
+<script src="shared.js?v=3"></script>
+<script>
+const THEME = "Électricité : distribution et puissance";
+initAIChat(() => THEME + " (sciences physiques, bac pro) : loi d'Ohm U=R×I, puissance électrique P=U×I, monophasé/triphasé, distribution de l'énergie électrique à l'entreprise.");
+document.getElementById("video-link-1").href = youtubeSearchLink("Lumni tension intensité puissance électrique loi d'Ohm bac pro");
+</script>
+</body>
+</html>

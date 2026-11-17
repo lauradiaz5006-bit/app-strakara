@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#7C3AED" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Nina" />
+<title>Sciences physiques et chimiques — thèmes</title>
+<link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">on explore ensemble 🔬</span>
+  <h1>🔬 Sciences physiques et chimiques</h1>
+  <p>Terminale Bac Pro — groupement B</p>
+</header>
+
+<main>
+  <p><a class="retour" href="index.html">← Retour à l'accueil</a></p>
+
+  <section class="card">
+    <div class="theme-grid">
+      <a class="theme-card active" href="energie-chauffage.html" data-theme="Énergie et chauffage">
+        <div class="emoji">🔥</div>
+        <h3>Énergie et chauffage</h3>
+        <p class="desc">Comment fonctionnent les dispositifs de chauffage ? Puissance, énergie, rendement</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+      <a class="theme-card active" href="electricite-distribution.html" data-theme="Électricité : distribution et puissance">
+        <div class="emoji">⚡</div>
+        <h3>Électricité : distribution et puissance</h3>
+        <p class="desc">Comment l'énergie électrique est distribuée à l'entreprise ? Tension, intensité, puissance</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+      <a class="theme-card active" href="lumiere-couleur.html" data-theme="Lumière et couleur des objets">
+        <div class="emoji">🎨</div>
+        <h3>Lumière et couleur des objets</h3>
+        <p class="desc">Pourquoi les objets sont-ils colorés ? Lumière, couleurs, matériaux</p>
+        <span class="tag status-tag">Non commencé</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="nina-footer">un pas après l'autre</footer>
+
+<script src="shared.js?v=3"></script>
+<script>
+(async function updateStatuses() {
+  const sessions = await getSessions("sciences");
+  const byTheme = {};
+  sessions.forEach(s => {
+    const t = s.theme.replace(/^Quiz final — /, "");
+    if (!byTheme[t]) byTheme[t] = { bonnes: 0, total: 0, hasQuiz: false };
+    byTheme[t].bonnes += s.bonnes_reponses || 0;
+    byTheme[t].total += s.total_questions || 0;
+    if (s.theme.startsWith("Quiz final")) byTheme[t].hasQuiz = true;
+  });
+
+  document.querySelectorAll(".theme-card[data-theme]").forEach(card => {
+    const theme = card.dataset.theme;
+    const tag = card.querySelector(".status-tag");
+    const data = byTheme[theme];
+    if (!data || data.total === 0) return;
+    const pct = Math.round((data.bonnes / data.total) * 100);
+    if (data.hasQuiz && pct >= 80) {
+      tag.textContent = `Maîtrisé · ${pct}%`;
+    } else {
+      tag.textContent = `En cours · ${pct}%`;
+    }
+  });
+})();
+</script>
+</body>
+</html>

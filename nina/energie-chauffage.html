@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#7C3AED" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Nina" />
+<title>Énergie et chauffage</title>
+<link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+<header class="top">
+  <span class="manuscrit">on explore ensemble 🔬</span>
+  <h1>🔥 Énergie et chauffage</h1>
+  <p>Comment fonctionnent certains dispositifs de chauffage ?</p>
+</header>
+
+<main>
+  <p><a class="retour" href="sciences.html">← Retour aux thèmes</a></p>
+
+  <section class="card">
+    <h2>Le cours</h2>
+    <p><strong>Énergie et puissance.</strong> Un appareil (radiateur, chauffe-eau...) transforme de l'énergie électrique en chaleur. La <strong>puissance P</strong> (en watts, W) indique la quantité d'énergie fournie chaque seconde. L'<strong>énergie E</strong> (en joules J, ou en kWh pour la facture) dépend de la puissance ET du temps d'utilisation :</p>
+    <p style="text-align:center; font-size:1.2em;"><strong>E = P × t</strong></p>
+    <p>(E en joules si P est en watts et t en secondes ; E en kWh si P est en kW et t en heures)</p>
+    <p><strong>Rendement.</strong> Un appareil ne convertit jamais 100% de l'énergie reçue en énergie utile : une partie se perd (souvent sous forme de chaleur non utilisée). Le rendement η (lettre grecque "êta") compare l'énergie utile à l'énergie reçue :</p>
+    <p style="text-align:center; font-size:1.2em;"><strong>η = énergie utile / énergie reçue</strong> (souvent exprimé en %)</p>
+    <p><strong>Piège classique :</strong> ne pas confondre puissance (en W, un instant donné) et énergie (en J ou kWh, cumulée sur une durée). Sur une facture d'électricité, c'est toujours l'énergie (kWh) qui est facturée, jamais la puissance seule.</p>
+    <p><strong>Exemple.</strong> Un radiateur de 1500 W fonctionne pendant 4 heures. Énergie consommée : E = 1,5 kW × 4 h = 6 kWh.</p>
+  </section>
+
+  <section class="card">
+    <h2>Vidéos pour approfondir</h2>
+    <p style="color:var(--prune-doux);">Vidéos sélectionnées en priorité sur Lumni (France TV Éducation), fiable et sans pub intrusive.</p>
+    <div class="video-links">
+      <a href="#" id="video-link-1" target="_blank" rel="noopener">🎥 Puissance, énergie, rendement</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Pose tes questions</h2>
+    <p>Ton prof IA connaît ce thème : demande-lui d'expliquer un exercice, de vérifier un calcul de puissance ou d'énergie, ou de t'aider sur ton devoir avec le bouton en bas à droite.</p>
+  </section>
+</main>
+
+<footer class="nina-footer">ça arrive, patience</footer>
+
+<script src="shared.js?v=3"></script>
+<script>
+const THEME = "Énergie et chauffage";
+initAIChat(() => THEME + " (sciences physiques, bac pro) : puissance P (W), énergie E = P×t (J ou kWh), rendement η = énergie utile / énergie reçue, dispositifs de chauffage électrique.");
+document.getElementById("video-link-1").href = youtubeSearchLink("Lumni puissance énergie rendement chauffage électrique bac pro");
+</script>
+</body>
+</html>
