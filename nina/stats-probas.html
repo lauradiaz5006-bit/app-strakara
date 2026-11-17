@@ -29,6 +29,20 @@
       </ul>
       <p><em>Exemple :</em> points (2 ; 5) et (4 ; 9). a = (9−5)/(4−2) = 2. Puis b = 5 − 2×2 = 1. Donc y = 2x + 1. Pour x = 6 : y = 13.</p>
 
+      <div class="methode">
+        <p class="titre">Méthode : ajuster par une droite, étape par étape</p>
+        <ol>
+          <li>Repérer les deux points connus (x₁;y₁) et (x₂;y₂).</li>
+          <li>Calculer a = (y₂ − y₁) / (x₂ − x₁).</li>
+          <li>Remplacer un des points dans y = a·x + b pour trouver b = y₁ − a × x₁.</li>
+          <li>Écrire l'équation complète y = a·x + b.</li>
+          <li>Pour estimer une valeur, remplacer x par la valeur demandée dans l'équation.</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple 2 (contexte pro) :</em> un artisan relève le temps de séchage d'un vernis (en h) selon son épaisseur (en mm) : (1 mm ; 2 h) et (3 mm ; 6 h). On estime y = a·x + b.<br>
+      a = (6−2)/(3−1) = 4/2 = 2. b = 2 − 2×1 = 0. Donc y = 2x. Pour x = 5 mm : y = 2×5 = 10 h.</p>
+
       <h3>2. Probabilités (arbre pondéré)</h3>
       <p>Quand une situation se déroule en plusieurs étapes, on utilise un arbre de probabilités. Sur chaque branche, on écrit la probabilité de l'évènement.</p>
       <ul>
@@ -37,6 +51,39 @@
         <li>A et B sont indépendants si P(B sachant A) = P(B sachant non A).</li>
       </ul>
       <p><em>Exemple :</em> P(A) = 0,3 ; P(B sachant A) = 0,2. Alors P(A ∩ B) = 0,3 × 0,2 = 0,06.</p>
+
+      <div class="methode">
+        <p class="titre">Méthode : lire un arbre pondéré, étape par étape</p>
+        <ol>
+          <li>Dessiner (ou imaginer) les branches avec, sur chacune, la probabilité de l'évènement.</li>
+          <li>Pour suivre un même chemin (A <strong>puis</strong> B) : on <strong>multiplie</strong> les probabilités des branches traversées.</li>
+          <li>Pour additionner deux chemins différents qui mènent au même résultat final : on <strong>additionne</strong> les deux probabilités obtenues.</li>
+          <li>Vérifier que les probabilités qui sortent d'un même nœud font bien 1 au total — sinon il y a une erreur.</li>
+        </ol>
+      </div>
+
+      <p><em>Exemple 2 (contexte pro, deux chemins) :</em> un contrôle qualité se fait en 2 étapes. P(défaut à l'étape 1) = 0,05. Si défaut, P(pièce rejetée) = 0,9. Si pas de défaut, P(pièce rejetée) = 0,01 (contrôle aléatoire). Calcule P(pièce rejetée).<br>
+      Il y a deux chemins qui mènent à « rejetée » : (défaut puis rejetée) et (pas défaut puis rejetée).<br>
+      P(défaut ∩ rejetée) = 0,05 × 0,9 = 0,045. P(pas défaut ∩ rejetée) = 0,95 × 0,01 = 0,0095.<br>
+      P(rejetée) = 0,045 + 0,0095 = 0,0545 (soit environ 5,45 %).</p>
+
+      <div class="piege">
+        <p class="titre">⚠️ Pièges fréquents</p>
+        <ul>
+          <li>Confondre a et b dans y = a·x + b (toujours calculer a en premier, b ensuite).</li>
+          <li>Dans un arbre : additionner le long d'un même chemin au lieu de multiplier (c'est l'inverse : multiplier sur un chemin, additionner entre chemins différents).</li>
+          <li>Oublier qu'un ajustement affine n'est qu'une estimation — valable seulement si les points sont à peu près alignés.</li>
+          <li>Écrire P(non A) = 1 − P(A) alors que ce n'est valable que si A et « non A » couvrent bien tous les cas possibles.</li>
+        </ul>
+      </div>
+
+      <div class="retenir">
+        <p class="titre">✅ Ce qu'il faut retenir</p>
+        <ul>
+          <li>Ajustement affine : y = a·x + b, avec a = (y₂−y₁)/(x₂−x₁) puis b = y₁ − a×x₁.</li>
+          <li>Arbre pondéré : on multiplie le long d'un chemin, on additionne entre chemins différents qui mènent au même résultat.</li>
+        </ul>
+      </div>
     </div>
     <button class="secondary" onclick="copyForAI('Statistiques à deux variables et probabilités (Terminale Bac Pro)', document.getElementById('lesson-text').innerText)">📋 Copier le cours pour le coller dans une IA</button>
   </section>

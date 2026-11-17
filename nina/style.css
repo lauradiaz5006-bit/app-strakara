@@ -264,3 +264,34 @@ footer.nina-footer { text-align: center; color: var(--prune-doux); font-size: 0.
 
 a.retour { color: var(--prune-doux); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
 a.retour:hover { color: var(--prune); }
+
+.methode {
+  background: var(--nacre);
+  border-left: 4px solid var(--champagne);
+  border-radius: 0 14px 14px 0;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.methode p.titre { margin: 0 0 8px; font-weight: 800; color: var(--champagne); }
+.methode ol { margin: 0; padding-left: 20px; }
+.methode li { margin-bottom: 4px; }
+
+.piege {
+  background: var(--rose);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.piege p.titre { margin: 0 0 8px; font-weight: 800; color: var(--prune); }
+.piege ul { margin: 0; padding-left: 20px; }
+.piege li { margin-bottom: 4px; }
+
+.retenir {
+  background: var(--champagne-clair);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 16px 0 0;
+}
+.retenir p.titre { margin: 0 0 8px; font-weight: 800; color: var(--champagne); }
+.retenir ul { margin: 0; padding-left: 20px; }
+.retenir li { margin-bottom: 4px; }
