@@ -98,20 +98,22 @@ class Chrono {
 
 // ---------- Encouragements ----------
 const ENCOURAGEMENTS_BONNES = [
-  "Nickel, continue comme ça !",
-  "Exactement ça — tu progresses vraiment.",
-  "Bien joué, tu as pris la bonne méthode.",
-  "Parfait, c'est tout bon.",
-  "Super, tu maîtrises ce point.",
-  "Impeccable, on sent que tu t'es entraînée.",
+  "Nickel, t'as tout bon ! 🔥 Continue comme ça.",
+  "Exactement ça — tu progresses vraiment, ça se voit.",
+  "Bien joué, t'as pris la bonne méthode du premier coup.",
+  "Parfait, c'est tout bon ✨",
+  "Super, ce point-là tu le maîtrises carrément.",
+  "Impeccable, on sent que tu t'es entraînée. Fière de toi.",
+  "Oui ! C'est ça. Tu gères plus que tu ne le crois.",
 ];
 
 const ENCOURAGEMENTS_RATEES = [
-  "Pas grave, on regarde pourquoi ensemble et tu vas y arriver.",
-  "C'est une erreur fréquente, pas un problème de niveau — on reprend le raisonnement.",
-  "Presque ! Regarde l'explication et retente une question comme celle-ci.",
-  "Normal de bloquer là, c'est un point technique. On décortique.",
-  "Ce n'est pas réussi mais c'est en comprenant l'erreur qu'on progresse le plus vite.",
+  "Pas grave du tout, on regarde pourquoi ensemble et tu vas y arriver.",
+  "C'est une erreur super fréquente, pas un problème de niveau — on reprend le raisonnement.",
+  "Presque ! Regarde l'explication et retente une question comme celle-ci, tu vas la choper.",
+  "Normal de bloquer là, c'est un point technique. On décortique ensemble.",
+  "Ce n'est pas réussi, mais c'est en comprenant l'erreur qu'on progresse le plus vite. Promis.",
+  "Pas la bonne réponse, mais le raisonnement n'est pas loin. On y retourne ?",
 ];
 
 function randomFrom(arr) {

@@ -1,21 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@600&display=swap');
 
 :root {
-  --nacre: #FFF9F7;
-  --rose: #F7E6E8;
-  --rose-fonce: #EBCFD5;
-  --champagne: #B98A55;
-  --champagne-clair: #F3DCC0;
-  --corail: #E7A79E;
-  --prune: #6B2F5B;
-  --prune-doux: #8E6383;
-  --prune-survol: #7D3A6B;
+  /* Palette pop & jeune, inspirée de l'univers que Nina aime (couleurs vives,
+     chaleureuses, complices) — même structure de variables, nouvelles valeurs. */
+  --nacre: #FFF8EC;
+  --rose: #FFE3EE;
+  --rose-fonce: #FFB9D6;
+  --champagne: #FF8A3D;
+  --champagne-clair: #FFE7CF;
+  --corail: #FF6B6B;
+  --prune: #7C3AED;
+  --prune-doux: #9B7FD4;
+  --prune-survol: #6B2FD6;
   --blanc: #FFFFFF;
   --rayon: 22px;
   --display: 'Gilda Display', Georgia, serif;
   --texte: 'Nunito Sans', system-ui, sans-serif;
   --manuscrit: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
-  --ombre: 0 8px 24px rgba(107, 47, 91, 0.10);
+  --ombre: 0 8px 24px rgba(124, 58, 237, 0.12);
 }
 
 * { box-sizing: border-box; }

@@ -9,8 +9,8 @@
 </head>
 <body>
 <header class="top">
-  <span class="manuscrit">objectif : réussir ton bac</span>
-  <h1>Salut Nina</h1>
+  <span class="manuscrit">objectif : décrocher ce bac 💪</span>
+  <h1>Hey Nina !</h1>
   <p id="bac-countdown">—</p>
   <div class="badges-row">
     <span class="streak-badge" id="streak-badge" style="display:none;"></span>
@@ -81,7 +81,7 @@
   </section>
 </main>
 
-<footer class="nina-footer">fait avec soin, pour que tu avances sereine</footer>
+<footer class="nina-footer">on avance, à ton rythme, et c'est déjà énorme 💛</footer>
 
 <script src="shared.js?v=2"></script>
 <script>
@@ -194,10 +194,10 @@ renderPhraseCle("phrase-cle");
   btn.href = THEME_URLS[suggestedTheme] || "maths.html";
 
   if (atteint) {
-    text.textContent = `Objectif atteint aujourd'hui (${totalQuestionsToday} exercices, ${totalMinToday} min). Tu peux continuer si tu veux, ou t'arrêter là, c'est très bien comme ça.`;
+    text.textContent = `Objectif atteint aujourd'hui 🎉 (${totalQuestionsToday} exercices, ${totalMinToday} min). Tu peux continuer si t'es lancée, ou t'arrêter là — franchement, c'est déjà top.`;
     btn.textContent = "Continuer quand même";
   } else {
-    text.innerHTML = `30 minutes ou 15 exercices aujourd'hui, un bon rythme pour préparer le bac.<br><strong>Aujourd'hui : ${suggestedTheme}</strong> — ${suggestedReason}.`;
+    text.innerHTML = `30 minutes ou 15 exercices aujourd'hui, un bon rythme pour préparer le bac tranquille.<br><strong>Aujourd'hui : ${suggestedTheme}</strong> — ${suggestedReason}.`;
     btn.textContent = `Go sur ${suggestedTheme}`;
   }
 
