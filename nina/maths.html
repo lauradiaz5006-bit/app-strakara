@@ -19,23 +19,23 @@
 
   <section class="card">
     <div class="theme-grid">
-      <a class="theme-card active" href="stats-probas.html">
+      <a class="theme-card active" href="stats-probas.html" data-theme="Statistiques et probabilités">
         <div class="emoji">📊</div>
         <h3>Statistiques & probabilités</h3>
         <p class="desc">Ajustement affine, arbres pondérés, indépendance</p>
-        <span class="tag">Ouvrir</span>
+        <span class="tag status-tag">Non commencé</span>
       </a>
-      <a class="theme-card active" href="suites.html">
+      <a class="theme-card active" href="suites.html" data-theme="Suites géométriques">
         <div class="emoji">🔢</div>
         <h3>Suites géométriques</h3>
         <p class="desc">Terme de rang n, sens de variation, somme</p>
-        <span class="tag">Ouvrir</span>
+        <span class="tag status-tag">Non commencé</span>
       </a>
-      <a class="theme-card active" href="automatismes.html">
+      <a class="theme-card active" href="automatismes.html" data-theme="Calcul rapide">
         <div class="emoji">⚡</div>
         <h3>Calcul rapide</h3>
         <p class="desc">Échauffement : fractions, pourcentages, priorités</p>
-        <span class="tag">Ouvrir</span>
+        <span class="tag status-tag">Non commencé</span>
       </a>
       <a class="theme-card soon" href="fonctions-degre3.html">
         <div class="emoji">📈</div>
@@ -61,5 +61,31 @@
 
 <footer class="nina-footer">un thème à la fois, et ça suffit</footer>
 <script src="shared.js"></script>
+<script>
+(async function renderStatus() {
+  const sessions = await getSessions();
+  const byTheme = {};
+  sessions.forEach(s => {
+    const t = s.theme.replace(/^Quiz final — /, "");
+    if (!byTheme[t]) byTheme[t] = { bonnes: 0, total: 0, hasQuiz: false };
+    byTheme[t].bonnes += s.bonnes_reponses || 0;
+    byTheme[t].total += s.total_questions || 0;
+    if (s.theme.startsWith("Quiz final")) byTheme[t].hasQuiz = true;
+  });
+
+  document.querySelectorAll(".theme-card[data-theme]").forEach(card => {
+    const theme = card.dataset.theme;
+    const tag = card.querySelector(".status-tag");
+    const data = byTheme[theme];
+    if (!data || data.total === 0) return; // reste "Non commencé"
+    const pct = Math.round((data.bonnes / data.total) * 100);
+    if (data.hasQuiz && pct >= 80) {
+      tag.textContent = `Maîtrisé · ${pct}%`;
+    } else {
+      tag.textContent = `En cours · ${pct}%`;
+    }
+  });
+})();
+</script>
 </body>
 </html>

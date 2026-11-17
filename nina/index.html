@@ -9,12 +9,18 @@
 </head>
 <body>
 <header class="top">
-  <span class="manuscrit">ton espace à toi</span>
+  <span class="manuscrit">objectif : réussir ton bac</span>
   <h1>Salut Nina</h1>
-  <p>Avance à ton rythme. Chaque effort compte, même petit.</p>
+  <p id="bac-countdown">—</p>
 </header>
 
 <main>
+  <section class="card" id="objectif-jour-card">
+    <h2>Objectif du jour</h2>
+    <p id="objectif-jour-text" style="font-size:1.05rem;">—</p>
+    <a class="btn" id="objectif-jour-btn" href="maths.html" style="background:var(--prune); color:var(--blanc);">C'est parti</a>
+  </section>
+
   <section class="card">
     <h2>Tes matières</h2>
     <div class="theme-grid">
@@ -101,6 +107,39 @@ async function renderNotes() {
 }
 
 renderNotes();
+
+// ---------- Compte à rebours bac (approximatif, épreuves écrites bac pro session 2027) ----------
+(function renderCountdown() {
+  const examDate = new Date("2027-06-03T00:00:00");
+  const today = new Date();
+  const diffDays = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
+  const el = document.getElementById("bac-countdown");
+  if (diffDays > 0) {
+    el.textContent = `${diffDays} jours avant les épreuves écrites (juin 2027)`;
+  } else {
+    el.textContent = `Courage, c'est le moment !`;
+  }
+})();
+
+// ---------- Objectif du jour (non punitif, pas de série à casser) ----------
+(async function renderObjectifJour() {
+  const sessions = await getSessions();
+  const todayStr = new Date().toDateString();
+  const todaySessions = sessions.filter(s => new Date(s.created_at).toDateString() === todayStr);
+  const totalQuestionsToday = todaySessions.reduce((a, s) => a + (s.total_questions || 0), 0);
+  const totalMinToday = Math.round(todaySessions.reduce((a, s) => a + (s.duree_secondes || 0), 0) / 60);
+  const atteint = totalQuestionsToday >= 5 || totalMinToday >= 10;
+
+  const text = document.getElementById("objectif-jour-text");
+  const btn = document.getElementById("objectif-jour-btn");
+  if (atteint) {
+    text.textContent = `Objectif atteint aujourd'hui (${totalQuestionsToday} exercices, ${totalMinToday} min). Tu peux continuer si tu veux, ou t'arrêter là, c'est très bien comme ça.`;
+    btn.textContent = "Continuer quand même";
+  } else {
+    text.textContent = `10 minutes ou 5 exercices aujourd'hui, c'est largement suffisant pour avancer.`;
+    btn.textContent = "C'est parti";
+  }
+})();
 
 document.getElementById("note-form").addEventListener("submit", async (e) => {
   e.preventDefault();
