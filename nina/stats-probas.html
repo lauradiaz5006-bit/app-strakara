@@ -49,6 +49,13 @@
   </section>
 
   <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
     <h2>Quiz final</h2>
     <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
     <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
@@ -184,10 +191,67 @@ function loadPracticeExercise() {
 document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
 loadPracticeExercise();
 
+// ---------- Exercice type bac (contexte professionnel, questions a/b/c liées) ----------
+function genBacExercise() {
+  const mode = randInt(1, 2);
+  if (mode === 1) {
+    // Ajustement affine - contexte atelier
+    const a = randInt(1, 4) / 2;
+    const b = randInt(5, 15);
+    const x1 = randInt(1, 4);
+    const x2 = x1 + randInt(2, 4);
+    const y1 = roundTo(a * x1 + b, 1);
+    const y2 = roundTo(a * x2 + b, 1);
+    const x3 = x2 + randInt(2, 3);
+    const y3 = roundTo(a * x3 + b, 1);
+    return {
+      dureeConseillee: "12 min",
+      contexte: `Dans un atelier d'agencement, on étudie le temps de pose (en heures) en fonction de la surface à agencer (en m²). Deux chantiers ont donné les résultats suivants : pour ${x1} m², ${y1} h de pose ; pour ${x2} m², ${y2} h de pose. On admet un ajustement affine du temps de pose y en fonction de la surface x, de la forme y = a·x + b.`,
+      parts: [
+        { question: `Calculer le coefficient directeur a.`, expected: a, explanation: `a = (y₂−y₁)/(x₂−x₁) = (${y2}−${y1})/(${x2}−${x1}) = ${a}` },
+        { question: `En déduire la valeur de b.`, expected: b, explanation: `b = y₁ − a×x₁ = ${y1} − ${a}×${x1} = ${b}` },
+        { question: `Estimer le temps de pose pour un chantier de ${x3} m².`, expected: y3, explanation: `y = ${a}×${x3} + ${b} = ${y3} h` },
+      ],
+    };
+  } else {
+    // Probabilités - contexte contrôle qualité
+    const pA = roundTo(randInt(2, 6) / 10, 2);
+    const pBsachantA = roundTo(randInt(3, 8) / 10, 2);
+    const pBsachantNonA = pBsachantA; // indépendance pour varier parfois
+    const useIndep = Math.random() < 0.5;
+    const pBNonA = useIndep ? pBsachantA : roundTo(randInt(1, 8) / 10, 2);
+    const result = roundTo(pA * pBsachantA, 3);
+    const pNonA = roundTo(1 - pA, 2);
+    const indep = pBsachantA === pBNonA;
+    return {
+      dureeConseillee: "12 min",
+      contexte: `Un atelier d'agencement contrôle la qualité des plans de travail produits. On note A l'événement « la pièce présente un défaut d'aspect » et B l'événement « la pièce est rejetée au contrôle ». On donne : P(A) = ${pA} ; la probabilité que la pièce soit rejetée sachant qu'elle présente un défaut d'aspect est ${pBsachantA} ; la probabilité qu'elle soit rejetée sachant qu'elle ne présente pas de défaut d'aspect est ${pBNonA}.`,
+      parts: [
+        { question: `Calculer P(A ∩ B), la probabilité que la pièce présente un défaut ET soit rejetée.`, expected: result, explanation: `P(A∩B) = P(A) × P(B sachant A) = ${pA} × ${pBsachantA} = ${result}` },
+        { question: `Calculer P(non A).`, expected: pNonA, explanation: `P(non A) = 1 − P(A) = 1 − ${pA} = ${pNonA}` },
+        { question: `Les événements A et B sont-ils indépendants ? (réponds "oui" ou "non")`, expected: indep ? "oui" : "non", isText: true, explanation: indep ? `Les probabilités sont égales, donc A et B sont indépendants.` : `Les probabilités sont différentes (${pBsachantA} ≠ ${pBNonA}), donc A et B ne sont pas indépendants.` },
+      ],
+    };
+  }
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
 document.getElementById("finish-session-btn").addEventListener("click", async () => {
   chrono.stop();
-  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
-  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
 });
 
 document.getElementById("start-quiz-btn").addEventListener("click", () => {

@@ -214,3 +214,49 @@ function initAIChat(getLessonContext) {
 function askAI(question) {
   if (_aiChatSendFn) _aiChatSendFn(question);
 }
+
+// ---------- Exercice multi-questions façon annale (contexte + a) b) c) ) ----------
+function parseUserNumberShared(str) {
+  if (!str) return NaN;
+  return parseFloat(str.toString().replace(",", "."));
+}
+function closeEnoughShared(a, b, tol = 0.05) {
+  return Math.abs(a - b) <= tol;
+}
+
+function renderMultiPartExercise(container, ex, onFinish) {
+  container.innerHTML = `
+    <div class="exercise">
+      <p style="font-size:0.85rem; color:var(--prune-doux, #8E6383); margin-top:0;">Durée conseillée : ${ex.dureeConseillee || "10 min"}</p>
+      <div class="question">${ex.contexte}</div>
+      ${ex.parts.map((p, i) => `
+        <div style="margin:14px 0;">
+          <p style="margin-bottom:6px;"><strong>${String.fromCharCode(97 + i)})</strong> ${p.question}</p>
+          <input ${p.isText ? 'type="text"' : 'type="number" step="any"'} id="mp-answer-${i}" placeholder="Ta réponse" />
+        </div>
+      `).join("")}
+      <button class="primary" id="mp-check-btn">Vérifier toutes mes réponses</button>
+      <div id="mp-feedback"></div>
+    </div>`;
+
+  container.querySelector("#mp-check-btn").addEventListener("click", () => {
+    let correctCount = 0;
+    const feedbackHtml = ex.parts.map((p, i) => {
+      const input = container.querySelector(`#mp-answer-${i}`);
+      let correct;
+      if (p.isText) {
+        correct = input.value.trim().toLowerCase() === p.expected;
+      } else {
+        correct = closeEnoughShared(parseUserNumberShared(input.value), p.expected);
+      }
+      if (correct) correctCount++;
+      input.disabled = true;
+      return `<p class="feedback ${correct ? "ok" : "ko"}" style="margin:8px 0;"><strong>${String.fromCharCode(97 + i)}) ${correct ? "✓" : "✗"}</strong> ${p.explanation}</p>`;
+    }).join("");
+    container.querySelector("#mp-check-btn").disabled = true;
+    const fb = container.querySelector("#mp-feedback");
+    fb.innerHTML = `<p style="font-weight:700;">${correctCount}/${ex.parts.length} — ${correctCount === ex.parts.length ? encouragementBonne() : encouragementRatee()}</p>` + feedbackHtml +
+      `<br><a href="#" onclick="askAI('Je ne comprends pas cet exercice type bac : ${ex.contexte.replace(/"/g, "'").replace(/'/g, "\\'")}'); return false;">Pas clair ? Demander à l'IA</a>`;
+    onFinish(correctCount, ex.parts.length);
+  });
+}

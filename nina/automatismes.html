@@ -39,6 +39,13 @@
   </section>
 
   <section class="card">
+    <h2>Exercice type devis</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, comme dans un vrai cas professionnel.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type devis</button>
+  </section>
+
+  <section class="card">
     <h2>Quiz final</h2>
     <p style="color:var(--prune-doux);">6 questions mélangées, contre la montre dans ta tête.</p>
     <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
@@ -131,10 +138,42 @@ function loadPracticeExercise() {
 document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
 loadPracticeExercise();
 
+// ---------- Exercice type devis (contexte professionnel) ----------
+function genBacExercise() {
+  const prixUnitaire = randInt(20, 60);
+  const quantite = randInt(3, 10);
+  const sousTotal = prixUnitaire * quantite;
+  const remisePct = [5, 10, 15, 20][randInt(0, 3)];
+  const remiseMontant = roundTo((remisePct / 100) * sousTotal, 2);
+  const totalApresRemise = roundTo(sousTotal - remiseMontant, 2);
+  return {
+    dureeConseillee: "10 min",
+    contexte: `Un client commande ${quantite} plans de travail à ${prixUnitaire} € pièce. L'atelier accorde une remise de ${remisePct} % sur ce devis.`,
+    parts: [
+      { question: `Calculer le sous-total (avant remise).`, expected: sousTotal, explanation: `${quantite} × ${prixUnitaire} = ${sousTotal} €` },
+      { question: `Calculer le montant de la remise.`, expected: remiseMontant, explanation: `${remisePct} % de ${sousTotal} = (${remisePct}÷100) × ${sousTotal} = ${remiseMontant} €` },
+      { question: `Calculer le montant total du devis après remise.`, expected: totalApresRemise, explanation: `${sousTotal} − ${remiseMontant} = ${totalApresRemise} €` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
 document.getElementById("finish-session-btn").addEventListener("click", async () => {
   chrono.stop();
-  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
-  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
 });
 
 document.getElementById("start-quiz-btn").addEventListener("click", () => {

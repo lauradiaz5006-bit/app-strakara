@@ -41,6 +41,13 @@
   </section>
 
   <section class="card">
+    <h2>Exercice type bac</h2>
+    <p style="color:var(--prune-doux);">Un exercice à plusieurs questions, dans le style d'une épreuve réelle.</p>
+    <div id="bac-exercise"></div>
+    <button class="primary" id="bac-next-btn">Nouvel exercice type bac</button>
+  </section>
+
+  <section class="card">
     <h2>Quiz final</h2>
     <p style="color:var(--prune-doux);">6 questions mélangées pour tester ton niveau.</p>
     <button class="primary" id="start-quiz-btn">Démarrer le quiz final</button>
@@ -145,10 +152,46 @@ function loadPracticeExercise() {
 document.getElementById("next-exercise-btn").addEventListener("click", loadPracticeExercise);
 loadPracticeExercise();
 
+// ---------- Exercice type bac (contexte professionnel) ----------
+function genBacExercise() {
+  const u0 = randInt(3, 12) * 100;
+  const q = QS[randInt(0, QS.length - 1)];
+  const n = randInt(2, 3);
+  const un = roundTo(u0 * Math.pow(q, n), 2);
+  const u1 = roundTo(u0 * q, 2);
+  const isIncreasing = q > 1;
+  const contexteType = randInt(1, 2);
+  const contexte = contexteType === 1
+    ? `Un atelier d'agencement investit dans une machine à commande numérique valant ${u0} € la première année. Sa valeur est multipliée par ${q} chaque année (on note u₀ = ${u0} la valeur initiale, et uₙ la valeur après n années). On admet que (uₙ) est une suite géométrique de raison q = ${q}.`
+    : `Une entreprise d'agencement produit ${u0} pièces la première année. Chaque année, sa production est multipliée par ${q} (on note u₀ = ${u0} la production initiale, et uₙ la production après n années). On admet que (uₙ) est une suite géométrique de raison q = ${q}.`;
+  return {
+    dureeConseillee: "12 min",
+    contexte,
+    parts: [
+      { question: `Calculer u₁.`, expected: u1, explanation: `u₁ = u₀ × q = ${u0} × ${q} = ${u1}` },
+      { question: `Calculer u${toSubscript(n)} (arrondir si besoin).`, expected: un, explanation: `u${toSubscript(n)} = u₀ × q${toSuperscript(n)} = ${u0} × ${q}${toSuperscript(n)} = ${un}` },
+      { question: `La suite (uₙ) est-elle croissante ou décroissante ? (réponds "croissante" ou "décroissante")`, expected: isIncreasing ? "croissante" : "décroissante", isText: true, explanation: isIncreasing ? `q = ${q} > 1, donc la suite est croissante.` : `0 < q = ${q} < 1, donc la suite est décroissante.` },
+    ],
+  };
+}
+
+let bacCorrect = 0, bacTotal = 0;
+function loadBacExercise() {
+  const ex = genBacExercise();
+  renderMultiPartExercise(document.getElementById("bac-exercise"), ex, (correct, total) => {
+    bacCorrect += correct;
+    bacTotal += total;
+  });
+}
+document.getElementById("bac-next-btn").addEventListener("click", loadBacExercise);
+loadBacExercise();
+
 document.getElementById("finish-session-btn").addEventListener("click", async () => {
   chrono.stop();
-  await logSession(THEME, chrono.seconds, practiceCorrect, practiceTotal);
-  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${practiceCorrect}/${practiceTotal} bonnes réponses. Bravo pour le travail fourni !`);
+  const bonnes = practiceCorrect + bacCorrect;
+  const total = practiceTotal + bacTotal;
+  await logSession(THEME, chrono.seconds, bonnes, total);
+  alert(`Session enregistrée : ${Math.round(chrono.seconds/60)} min, ${bonnes}/${total} bonnes réponses. Bravo pour le travail fourni !`);
 });
 
 document.getElementById("start-quiz-btn").addEventListener("click", () => {
