@@ -259,8 +259,24 @@ function initAIChat(getLessonContext) {
   const photoInput = widget.querySelector("#ai-tutor-photo-input");
   const previewEl = widget.querySelector("#ai-tutor-preview");
 
-  toggle.addEventListener("click", () => panel.classList.toggle("hidden"));
-  closeBtn.addEventListener("click", () => panel.classList.add("hidden"));
+  // Garde le chat calé sur la zone visible (clavier du téléphone) et fige la page derrière
+  const vv = window.visualViewport;
+  function fitPanel() {
+    if (panel.classList.contains("hidden") || window.innerWidth > 600 || !vv) { panel.style.top = panel.style.bottom = ""; return; }
+    panel.style.top = (vv.offsetTop + 8) + "px";
+    panel.style.bottom = "auto";
+    panel.style.height = (vv.height - 16) + "px";
+  }
+  function setOpen(open) {
+    panel.classList.toggle("hidden", !open);
+    document.body.classList.toggle("ai-open", open);
+    if (!open) { panel.style.top = panel.style.bottom = panel.style.height = ""; }
+    fitPanel();
+    if (open) messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+  if (vv) { vv.addEventListener("resize", fitPanel); vv.addEventListener("scroll", fitPanel); }
+  toggle.addEventListener("click", () => setOpen(panel.classList.contains("hidden")));
+  closeBtn.addEventListener("click", () => setOpen(false));
 
   photoInput.addEventListener("change", () => {
     const file = photoInput.files && photoInput.files[0];
@@ -284,7 +300,7 @@ function initAIChat(getLessonContext) {
   });
 
   _aiChatSendFn = (text) => {
-    panel.classList.remove("hidden");
+    setOpen(true);
     input.value = text;
     form.dispatchEvent(new Event("submit", { cancelable: true }));
   };
