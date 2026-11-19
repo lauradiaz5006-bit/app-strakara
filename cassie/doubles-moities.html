@@ -8,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9F45">
 <title>Doubles et moitiés</title>
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 <style>
   .objets-ligne { font-size: 2.4rem; line-height: 1.3; letter-spacing: 4px; }
 </style>
@@ -25,7 +25,7 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=7"></script>
+<script src="shared.js?v=8"></script>
 <script>
 const objetsEmoji = ["🍓", "🍎", "🎈", "🐟", "🌟", "🧸"];
 
@@ -33,10 +33,10 @@ function genQuestion(level) {
   const emoji = objetsEmoji[randInt(0, objetsEmoji.length - 1)];
   const isDouble = Math.random() < 0.5;
   const petit = level === 1;
-  const rep = (n) => petit ? `<div class="objets-ligne">${emoji.repeat(n)}</div>` : blocsPour(n);
+  const rep = (n) => petit ? `<div class="objets-ligne">${emoji.repeat(n)}</div>` : level >= 4 ? `<div style="font-size:3rem;font-weight:800;text-align:center;margin:8px 0">${n}</div>` : blocsPour(n);
   let n, correct, html;
   if (isDouble) {
-    n = petit ? randInt(1, 6) : level === 2 ? randInt(5, 25) : randInt(25, 50);
+    n = petit ? randInt(1, 6) : level === 2 ? randInt(5, 25) : level === 3 ? randInt(25, 50) : randInt(50, 250);
     correct = n * 2;
     html = `
       <div class="niveau-badge">Niveau ${level}</div>
@@ -44,7 +44,7 @@ function genQuestion(level) {
       <p style="font-size:1.1rem; font-weight:700; color:#6b6484; margin:10px 0 0;">${petit ? `Si on double, ça fait combien de ${emoji} ?` : "Si on double ce nombre, ça fait combien ?"}</p>
     `;
   } else {
-    n = (petit ? randInt(1, 6) : level === 2 ? randInt(5, 25) : randInt(25, 50)) * 2;
+    n = (petit ? randInt(1, 6) : level === 2 ? randInt(5, 25) : level === 3 ? randInt(25, 50) : randInt(50, 250)) * 2;
     correct = n / 2;
     html = `
       <div class="niveau-badge">Niveau ${level}</div>
@@ -52,12 +52,12 @@ function genQuestion(level) {
       <p style="font-size:1.1rem; font-weight:700; color:#6b6484; margin:10px 0 0;">${petit ? `La moitié de ces ${emoji}, ça fait combien ?` : "La moitié de ce nombre, ça fait combien ?"}</p>
     `;
   }
-  const options = fakeAnswersAround(correct, 0, petit ? 14 : 110);
+  const options = fakeAnswersAround(correct, 0, petit ? 14 : 510, level >= 4);
   return { text: html, correct, options };
 }
 
 async function start() {
-  const level = await chooseAdaptiveLevel("doubles-moities", 3);
+  const level = await chooseAdaptiveLevel("doubles-moities", 4);
   runQuizGame(document.getElementById("game-root"), "doubles-moities", () => genQuestion(level), 6);
 }
 start();

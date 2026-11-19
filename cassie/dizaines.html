@@ -8,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9F45">
 <title>Dizaines et centaines</title>
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
 
@@ -22,11 +22,11 @@
   <div id="game-root">Chargement...</div>
 </main>
 
-<script src="shared.js?v=7"></script>
+<script src="shared.js?v=8"></script>
 <script>
 async function start() {
-  const level = await chooseAdaptiveLevel("dizaines", 3);
-  const range = level === 1 ? [11, 99] : level === 2 ? [100, 499] : [500, 999];
+  const level = await chooseAdaptiveLevel("dizaines", 4);
+  const range = level === 1 ? [11, 99] : level === 2 ? [100, 499] : level === 3 ? [500, 999] : [101, 999];
 
   function genQuestion() {
     const n = randInt(range[0], range[1]);
@@ -35,7 +35,7 @@ async function start() {
       ${blocsPour(n)}
       <p style="font-size:1.1rem; font-weight:700; color:#6b6484;">Quel nombre est-ce ?</p>
     `;
-    const options = fakeAnswersAround(n, 0, 999);
+    const options = fakeAnswersAround(n, 0, 999, level >= 4);
     return { text, correct: n, options };
   }
 

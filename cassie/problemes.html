@@ -8,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9F45">
 <title>Petits problèmes</title>
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 <style>
   .question-text { font-size: 1.6rem; line-height: 1.4; }
   .objets-ligne { font-size: 2.2rem; letter-spacing: 3px; margin: 10px 0; }
@@ -26,7 +26,7 @@
   <div id="game-root"></div>
 </main>
 
-<script src="shared.js?v=7"></script>
+<script src="shared.js?v=8"></script>
 <script>
 const objets = [
   { emoji: "🍎", nom: "pommes" },
@@ -45,25 +45,25 @@ function genQuestion(level) {
   const pronom = feminins.includes(prenom) ? "elle" : "il";
   const isAddition = Math.random() < 0.5;
   const petit = level === 1;
-  const rep = (n) => petit ? `<div class="objets-ligne">${obj.emoji.repeat(n)}</div>` : blocsPour(n);
+  const rep = (n) => petit ? `<div class="objets-ligne">${obj.emoji.repeat(n)}</div>` : level >= 4 ? "<br/>" : blocsPour(n);
   let text, correct, a, b;
   if (isAddition) {
-    a = petit ? randInt(2, 6) : level === 2 ? randInt(10, 40) : randInt(40, 80);
-    b = petit ? randInt(1, 5) : level === 2 ? randInt(5, 20) : randInt(10, 40);
+    a = petit ? randInt(2, 6) : level === 2 ? randInt(10, 40) : level === 3 ? randInt(40, 80) : randInt(120, 600);
+    b = petit ? randInt(1, 5) : level === 2 ? randInt(5, 20) : level === 3 ? randInt(10, 40) : randInt(30, 380);
     correct = a + b;
     text = `<div class="niveau-badge">Niveau ${level}</div>${prenom} a ${a} ${obj.nom}.${rep(a)}On lui en donne ${b} de plus.${rep(b)}Combien ${pronom === "elle" ? "en a-t-elle" : "en a-t-il"} maintenant ?`;
   } else {
-    a = petit ? randInt(6, 10) : level === 2 ? randInt(20, 50) : randInt(50, 100);
-    b = petit ? randInt(1, a - 2) : randInt(5, Math.floor(a / 2));
+    a = petit ? randInt(6, 10) : level === 2 ? randInt(20, 50) : level === 3 ? randInt(50, 100) : randInt(200, 900);
+    b = petit ? randInt(1, a - 2) : level >= 4 ? randInt(20, Math.floor(a / 2)) : randInt(5, Math.floor(a / 2));
     correct = a - b;
     text = `<div class="niveau-badge">Niveau ${level}</div>${prenom} a ${a} ${obj.nom}.${rep(a)}${pronom === "elle" ? "Elle" : "Il"} en donne ${b} à un copain.<br/>Combien lui en reste-t-il ?`;
   }
-  const options = fakeAnswersAround(correct, 0, petit ? 16 : 150);
+  const options = fakeAnswersAround(correct, 0, petit ? 16 : 1000, level >= 4);
   return { text, correct, options };
 }
 
 async function start() {
-  const level = await chooseAdaptiveLevel("problemes", 3);
+  const level = await chooseAdaptiveLevel("problemes", 4);
   runQuizGame(document.getElementById("game-root"), "problemes", () => genQuestion(level), 5);
 }
 start();

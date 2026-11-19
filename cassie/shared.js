@@ -139,9 +139,16 @@ function shuffle(arr) {
 }
 
 // Génère 3 réponses fausses plausibles autour de la bonne réponse (pour QCM)
-function fakeAnswersAround(correct, min = 0, max = 200) {
+function fakeAnswersAround(correct, min = 0, max = 200, hard = false) {
   const set = new Set([correct]);
-  while (set.size < 4) {
+  if (hard) {
+    shuffle([1, -1, 10, -10, 100, -100]).forEach(d => {
+      const c = correct + d;
+      if (set.size < 4 && c >= min && c <= max) set.add(c);
+    });
+  }
+  let guard = 0;
+  while (set.size < 4 && guard++ < 200) {
     const delta = randInt(-6, 6);
     const candidate = correct + delta;
     if (candidate !== correct && candidate >= min && candidate <= max) set.add(candidate);
@@ -221,12 +228,31 @@ function runQuizGame(rootEl, jeuNom, generateQuestion, totalQuestions = 8) {
     if (bonnesReponses === totalQuestions) message = "Parfait ! Tu as tout bon !";
     else if (bonnesReponses >= totalQuestions * 0.7) message = "Super travail, continue comme ça !";
     else message = "Bien joué d'avoir essayé, on retente ?";
+    const info = (window.__cassieLvl || {})[jeuNom];
+    const ratio = bonnesReponses / totalQuestions;
+    let bouton = `<button class="btn-gros" onclick="location.reload()">Rejouer</button>`;
+    let niveauTxt = "";
+    if (info) {
+      niveauTxt = `<p style="font-weight:700;color:#6b6484;">Niveau ${info.level}</p>`;
+      if (ratio >= 0.8 && info.level < info.max) {
+        setCassieLevel(jeuNom, info.level + 1);
+        message = "Tu es prête pour le niveau d'après !";
+        bouton = `<button class="btn-gros" onclick="location.reload()">Niveau supérieur ⬆️</button>`;
+      } else if (ratio >= 0.8) {
+        niveauTxt = `<p style="font-weight:700;color:#6b6484;">Niveau ${info.level} : le plus haut, bravo !</p>`;
+      } else if (ratio < 0.5 && info.level > 1) {
+        setCassieLevel(jeuNom, info.level - 1);
+      } else {
+        setCassieLevel(jeuNom, info.level);
+      }
+    }
     rootEl.innerHTML = `
       <div class="bravo-screen">
         <h2>${message}</h2>
         <div class="stars">${starsDisplay}</div>
         <p style="font-size:1.2rem; font-weight:700;">${bonnesReponses} / ${totalQuestions} bonnes réponses</p>
-        <button class="btn-gros" onclick="location.reload()">Rejouer</button>
+        ${niveauTxt}
+        ${bouton}
         <br/><a class="back-link" href="index.html">← Retour à l'accueil</a>
       </div>
     `;
@@ -252,13 +278,22 @@ function blocsPour(n) {
 // Regarde les 3 dernières parties de ce jeu : si ça se passe bien, on monte
 // d'un niveau ; si c'est difficile, on redescend. Comme ça elle réussit de
 // mieux en mieux, sans jamais rester bloquée sur un niveau trop dur.
+window.__cassieLvl = window.__cassieLvl || {};
+function lvlKey(jeu) { return "cassie_lvl_" + jeu; }
 async function chooseAdaptiveLevel(jeu, maxLevel = 3) {
-  const sessions = (await getCassieSessions()).filter(s => s.jeu === jeu).slice(0, 3);
-  if (sessions.length === 0) return 1;
-  const totalBonnes = sessions.reduce((s, x) => s + (x.bonnes_reponses || 0), 0);
-  const totalQ = sessions.reduce((s, x) => s + (x.total_questions || 0), 0);
-  const rate = totalQ ? totalBonnes / totalQ : 0;
-  if (rate >= 0.85) return maxLevel;
-  if (rate >= 0.6) return Math.min(maxLevel, 2);
-  return 1;
+  let level = null;
+  try { level = parseInt(localStorage.getItem(lvlKey(jeu)), 10) || null; } catch (e) {}
+  if (!level) {
+    const sessions = (await getCassieSessions()).filter(s => s.jeu === jeu).slice(0, 3);
+    const totalBonnes = sessions.reduce((s, x) => s + (x.bonnes_reponses || 0), 0);
+    const totalQ = sessions.reduce((s, x) => s + (x.total_questions || 0), 0);
+    const rate = totalQ ? totalBonnes / totalQ : 0;
+    level = !totalQ ? 1 : rate >= 0.85 ? Math.min(maxLevel, 3) : rate >= 0.6 ? 2 : 1;
+  }
+  level = Math.max(1, Math.min(maxLevel, level));
+  window.__cassieLvl[jeu] = { level, max: maxLevel };
+  return level;
+}
+function setCassieLevel(jeu, level) {
+  try { localStorage.setItem(lvlKey(jeu), String(level)); } catch (e) {}
 }

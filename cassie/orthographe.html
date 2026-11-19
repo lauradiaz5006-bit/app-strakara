@@ -8,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9F45">
 <title>Orthographe</title>
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 <style>
   .mot-emoji { font-size: 3.5rem; text-align: center; margin: 6px 0 14px; }
   .niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
@@ -26,7 +26,7 @@
   <div id="game-root">Chargement...</div>
 </main>
 
-<script src="shared.js?v=7"></script>
+<script src="shared.js?v=8"></script>
 <script>
 const MOTS_L1 = [
   {emoji:"🐱", mot:"chat"}, {emoji:"🐶", mot:"chien"}, {emoji:"🌙", mot:"lune"},
@@ -37,6 +37,11 @@ const MOTS_L2 = [
   {emoji:"🏠", mot:"maison"}, {emoji:"🐟", mot:"poisson"}, {emoji:"🐦", mot:"oiseau"},
   {emoji:"⛵", mot:"bateau"}, {emoji:"🎂", mot:"gateau"}, {emoji:"🎈", mot:"ballon"},
   {emoji:"🎁", mot:"cadeau"}, {emoji:"☁️", mot:"nuage"}, {emoji:"🚗", mot:"voiture"}, {emoji:"🌳", mot:"jardin"},
+];
+const MOTS_L4 = [
+  {emoji:"🧒", mot:"enfant"}, {emoji:"🍽️", mot:"restaurant"}, {emoji:"🚒", mot:"pompier"}, {emoji:"🐴", mot:"cheval"},
+  {emoji:"🐢", mot:"tortue"}, {emoji:"👟", mot:"chaussure"}, {emoji:"🧀", mot:"fromage"}, {emoji:"🥕", mot:"carotte"},
+  {emoji:"🐻", mot:"ours"}, {emoji:"🚂", mot:"train"}, {emoji:"🍓", mot:"fraise"}, {emoji:"🌊", mot:"vague"},
 ];
 const MOTS_L3 = [
   {emoji:"⭐", mot:"etoile"}, {emoji:"☀️", mot:"soleil"}, {emoji:"⛰️", mot:"montagne"},
@@ -69,8 +74,8 @@ function afficheMot(m) {
 }
 
 async function start() {
-  const level = await chooseAdaptiveLevel("orthographe", 3);
-  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : MOTS_L3;
+  const level = await chooseAdaptiveLevel("orthographe", 4);
+  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : level === 3 ? MOTS_L3 : MOTS_L4;
 
   function genQuestion() {
     const item = pool[randInt(0, pool.length - 1)];

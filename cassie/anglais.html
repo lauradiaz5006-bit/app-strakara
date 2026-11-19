@@ -8,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9F45">
 <title>Anglais</title>
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 <style>
   .mot-emoji { font-size: 3.5rem; text-align: center; margin: 6px 0 14px; }
   .niveau-badge { text-align:center; font-weight:800; color:#6b6484; margin-bottom:6px; }
@@ -26,7 +26,7 @@
   <div id="game-root">Chargement...</div>
 </main>
 
-<script src="shared.js?v=7"></script>
+<script src="shared.js?v=8"></script>
 <script>
 const MOTS_L1 = [
   {emoji:"🔴", mot:"red"}, {emoji:"🔵", mot:"blue"}, {emoji:"🟡", mot:"yellow"}, {emoji:"🟢", mot:"green"},
@@ -42,19 +42,49 @@ const MOTS_L3 = [
   {emoji:"☀️", mot:"sun"}, {emoji:"🌙", mot:"moon"}, {emoji:"⭐", mot:"star"}, {emoji:"🏠", mot:"house"},
   {emoji:"📚", mot:"book"}, {emoji:"🍎", mot:"apple"}, {emoji:"🚗", mot:"car"}, {emoji:"🎂", mot:"cake"},
 ];
-const TOUS_LES_MOTS = [...MOTS_L1, ...MOTS_L2, ...MOTS_L3];
+const MOTS_L3b = [
+  {emoji:"🐴", mot:"horse"}, {emoji:"🐦", mot:"bird"}, {emoji:"🐮", mot:"cow"}, {emoji:"🍞", mot:"bread"},
+  {emoji:"🥛", mot:"milk"}, {emoji:"💧", mot:"water"}, {emoji:"🌳", mot:"tree"}, {emoji:"🛏️", mot:"bed"},
+];
+const TOUS_LES_MOTS = [...MOTS_L1, ...MOTS_L2, ...MOTS_L3, ...MOTS_L3b];
+
+// Niveau 4 : compléter la phrase
+const PHRASES_L4 = [
+  {fr:"Je suis une fille.", en:"I ___ a girl.", rep:"am", faux:["is","are","have"]},
+  {fr:"Il a un chien.", en:"He ___ a dog.", rep:"has", faux:["have","is","am"]},
+  {fr:"Nous sommes amis.", en:"We ___ friends.", rep:"are", faux:["is","am","has"]},
+  {fr:"J'ai un chat.", en:"I ___ a cat.", rep:"have", faux:["has","am","is"]},
+  {fr:"Elle est grande.", en:"She ___ tall.", rep:"is", faux:["am","are","have"]},
+  {fr:"J'aime les pommes.", en:"I ___ apples.", rep:"like", faux:["likes","am","is"]},
+  {fr:"Elle aime le chocolat.", en:"She ___ chocolate.", rep:"likes", faux:["like","are","have"]},
+  {fr:"Tu es mon ami.", en:"You ___ my friend.", rep:"are", faux:["is","am","has"]},
+  {fr:"Il y a un livre sur la table.", en:"There ___ a book on the table.", rep:"is", faux:["are","am","have"]},
+  {fr:"J'ai six ans.", en:"I am six years ___.", rep:"old", faux:["young","big","long"]},
+];
+// Niveau 5 : comprendre une phrase
+const PHRASES_L5 = [
+  {en:"Hello! How are you?", rep:"Bonjour ! Comment vas-tu ?", faux:["Au revoir ! À demain !","Bonjour ! Comment t'appelles-tu ?","Merci ! De rien !"]},
+  {en:"My name is Cassie.", rep:"Je m'appelle Cassie.", faux:["J'ai Cassie ans.","Cassie est mon amie.","Je suis à Cassie."]},
+  {en:"I like pizza.", rep:"J'aime la pizza.", faux:["Je n'aime pas la pizza.","Je mange une pomme.","Elle aime la pizza."]},
+  {en:"The cat is under the table.", rep:"Le chat est sous la table.", faux:["Le chat est sur la table.","Le chien est sous la table.","Le chat dort dans le lit."]},
+  {en:"I have two brothers.", rep:"J'ai deux frères.", faux:["J'ai deux sœurs.","J'ai trois frères.","Je suis le frère de deux amis."]},
+  {en:"What colour is the sun?", rep:"De quelle couleur est le soleil ?", faux:["Quel âge a le soleil ?","Où est le soleil ?","Comment s'appelle le soleil ?"]},
+  {en:"Thank you very much!", rep:"Merci beaucoup !", faux:["S'il te plaît !","Bonne nuit !","Pardon !"]},
+  {en:"I can jump and run.", rep:"Je peux sauter et courir.", faux:["Je veux manger et boire.","Je peux lire et écrire.","Je dois dormir et rêver."]},
+  {en:"It is a sunny day.", rep:"C'est une journée ensoleillée.", faux:["Il pleut aujourd'hui.","C'est la nuit.","Il neige beaucoup."]},
+  {en:"Where is my book?", rep:"Où est mon livre ?", faux:["Qui est mon ami ?","Quel est mon livre ?","Voici mon livre."]},
+];
 
 async function start() {
-  const level = await chooseAdaptiveLevel("anglais", 3);
-  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : MOTS_L3;
+  const level = await chooseAdaptiveLevel("anglais", 5);
+  const pool = level === 1 ? MOTS_L1 : level === 2 ? MOTS_L2 : [...MOTS_L3, ...MOTS_L3b];
 
-  function genQuestion() {
+  function genMot() {
     const item = pool[randInt(0, pool.length - 1)];
     const options = new Set([item.mot]);
     let tries = 0;
     while (options.size < 4 && tries < 30) {
-      const candidat = TOUS_LES_MOTS[randInt(0, TOUS_LES_MOTS.length - 1)].mot;
-      options.add(candidat);
+      options.add(TOUS_LES_MOTS[randInt(0, TOUS_LES_MOTS.length - 1)].mot);
       tries++;
     }
     const text = `
@@ -64,8 +94,27 @@ async function start() {
     `;
     return { text, correct: item.mot, options: shuffle([...options]) };
   }
-
-  runQuizGame(document.getElementById("game-root"), "anglais", genQuestion, 6);
+  function genPhrase() {
+    const p = PHRASES_L4[randInt(0, PHRASES_L4.length - 1)];
+    const text = `
+      <div class="niveau-badge">Niveau 4</div>
+      <p style="font-size:1rem; font-weight:700; color:#6b6484;">${p.fr}</p>
+      <p style="font-size:1.4rem; font-weight:800; margin:10px 0;">${p.en}</p>
+      <p style="font-size:1.05rem; font-weight:700; color:#6b6484;">Quel mot manque ?</p>
+    `;
+    return { text, correct: p.rep, options: shuffle([p.rep, ...p.faux]) };
+  }
+  function genComprendre() {
+    const p = PHRASES_L5[randInt(0, PHRASES_L5.length - 1)];
+    const text = `
+      <div class="niveau-badge">Niveau 5</div>
+      <p style="font-size:1.4rem; font-weight:800; margin:10px 0;">${p.en}</p>
+      <p style="font-size:1.05rem; font-weight:700; color:#6b6484;">Ça veut dire quoi ?</p>
+    `;
+    return { text, correct: p.rep, options: shuffle([p.rep, ...p.faux]) };
+  }
+  const gen = level === 4 ? genPhrase : level === 5 ? genComprendre : genMot;
+  runQuizGame(document.getElementById("game-root"), "anglais", gen, 6);
 }
 start();
 </script>
